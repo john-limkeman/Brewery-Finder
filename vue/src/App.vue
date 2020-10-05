@@ -9,3 +9,15 @@
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+#nav {
+  text-align: center;
+}
+</style>
