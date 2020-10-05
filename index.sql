@@ -1,16 +1,3 @@
-CREATE Table Roles (
-
-id serial,
-user_role varchar(64),
-
-constraint pk_Roles primary key (id)
-
-);
-
-INSERT INTO Roles (user_role) VALUES ('admin');
-INSERT INTO ROles (user_role) VALUES ('brewer');
-INSERT INTO Roles (user_role) VALUES ('beer lover');
-
 
 CREATE Table Breweries (
 
