@@ -68,12 +68,12 @@ public class JDBCBeerDAO implements BeerDAO {
 		
 		beer.setId(row.getLong("beer_id"));
 		beer.setName(row.getString("beer_name"));
-		beer.setAbv(row.getInt("abv"));
-		beer.setIbu(row.getInt("ibu"));
+		beer.setAbv(row.getDouble("abv"));
+		beer.setIbu(row.getDouble("ibu"));
 		beer.setBreweryId(row.getLong("brewery_id"));
-		beer.setType(row.getString(""));
+		beer.setType(row.getString("beer_type"));
 		beer.setDescription(row.getString("description"));
-		beer.setRating(row.getInt("rating"));
+		beer.setRating(row.getDouble("rating"));
 		beer.setCurrent(row.getBoolean("available"));
 	
 		

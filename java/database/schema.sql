@@ -75,5 +75,4 @@ INSERT INTO Beers (beer_name, brewery_id, beer_type, description, picture, abv, 
 
 
 
-
 COMMIT TRANSACTION;
