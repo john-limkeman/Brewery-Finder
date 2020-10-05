@@ -70,7 +70,6 @@ INSERT INTO Beers (beer_name, brewery_id, beer_type, description, picture, abv, 
 INSERT INTO Beers (beer_name, brewery_id, beer_type, description, picture, abv, ibu, rating, available) VALUES ('COSMIC CRYPT', 2, 'Pale Ale', 'Farmhouse Pale Ale fermented with Belgian Farmhouse yeast and dry hopped with Mosaic and Mandarina Bavaria hop', 'https://cdn.beeradvocate.com/im/c_beer_image.gif',
 '5.6', null ,3.5, true);
 
-//DROP TABLE if exists Roles cascade;
 
 
 

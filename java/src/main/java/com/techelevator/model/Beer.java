@@ -5,12 +5,12 @@ public class Beer {
 	
 	private Long id;
 	private String name;
-	private int abv;
-	private int ibu;
+	private Double abv;
+	private Double ibu;
 	private Long breweryId;
 	private String type;
 	private String description;
-	private int rating;
+	private Double rating;
 	private boolean current;
 	 
 	public Long getId() {
@@ -25,16 +25,16 @@ public class Beer {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAbv() {
+	public Double getAbv() {
 		return abv;
 	}
-	public void setAbv(int abv) {
+	public void setAbv(Double abv) {
 		this.abv = abv;
 	}
-	public int getIbu() {
+	public Double getIbu() {
 		return ibu;
 	}
-	public void setIbu(int ibu) {
+	public void setIbu(Double ibu) {
 		this.ibu = ibu;
 	}
 	public Long getBreweryId() {
@@ -55,10 +55,10 @@ public class Beer {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getRating() {
+	public Double getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
 	public boolean isCurrent() {

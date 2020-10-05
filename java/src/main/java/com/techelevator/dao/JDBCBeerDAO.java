@@ -35,6 +35,18 @@ public class JDBCBeerDAO implements BeerDAO {
 		
 		
 	}
+	
+	@Override
+	public List<Beer> BeerByBrewery(Long id){
+		List<Beer> brewBeers = new ArrayList<>();
+		String sqlBrewBeer = "SELECT * FROM beers WHERE brewery_id = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlBrewBeer, id);
+		
+		while(result.next()) {
+			brewBeers.add(mapRowToBeer(result));
+		}
+		return brewBeers;
+	}
 
 	@Override
 	public Beer getBeerById(Long id) {
@@ -54,15 +66,15 @@ public class JDBCBeerDAO implements BeerDAO {
 		
 		Beer beer = new Beer();
 		
-		beer.setId(row.getLong(""));
-		beer.setName(row.getString(""));
-		beer.setAbv(row.getInt(""));
-		beer.setIbu(row.getInt(""));
-		beer.setBreweryId(row.getLong(""));
-		beer.setType(row.getString(""));
-		beer.setDescription(row.getString(""));
-		beer.setRating(row.getInt(""));
-		beer.setCurrent(row.getBoolean(""));
+		beer.setId(row.getLong("beer_id"));
+		beer.setName(row.getString("beer_name"));
+		beer.setAbv(row.getDouble("abv"));
+		beer.setIbu(row.getDouble("ibu"));
+		beer.setBreweryId(row.getLong("brewery_id"));
+		beer.setType(row.getString("beer_type"));
+		beer.setDescription(row.getString("description"));
+		beer.setRating(row.getDouble("rating"));
+		beer.setCurrent(row.getBoolean("available"));
 	
 		
 		return beer;

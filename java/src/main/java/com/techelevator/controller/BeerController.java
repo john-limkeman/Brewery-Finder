@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +25,13 @@ public class BeerController {
 	}
 	
 	@RequestMapping(path="/beer/{id}", method=RequestMethod.GET)
-	public Beer getBeerById(Long id) {
+	public Beer getBeerById(@PathVariable Long id) {
 		return dao.getBeerById(id);
+	}
+	
+	@RequestMapping(path="/brewery/{id}/beers", method=RequestMethod.GET)
+	public List<Beer> beerByBrewery(@PathVariable Long id){
+		return dao.BeerByBrewery(id);
 	}
 	
 
