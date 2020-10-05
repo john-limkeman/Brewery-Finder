@@ -23,6 +23,7 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		String sql = "SELECT * FROM breweries";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 		while (results.next()) {
+			System.out.println("test test test");
 			 output.add(mapRowToBrewery(results));
 		} 
 		return output;
@@ -48,7 +49,7 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		brewery.setDiscription(results.getString("description"));
 		brewery.setBrewerId(results.getLong("brewer_id"));
 		brewery.setUrl(results.getString("brewery_url"));
-		brewery.setPhoneNumber(results.getInt("phone"));
+		brewery.setPhoneNumber(results.getLong("phone"));
 		brewery.setHours(results.getString("hours"));
 		brewery.setActive(results.getBoolean("active"));
 		return brewery;

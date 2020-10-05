@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +25,13 @@ public class BreweryController {
 		return "It worked";
 	}
 	
+	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/breweries", method = RequestMethod.GET)
 	public List <Brewery> getAllBreweries() {
 		return dao.getAllBrewerys();
 	}
 	
+	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.GET)
 	public Brewery getBrewery(@PathVariable long id) {
 		return dao.getBreweryById(id);

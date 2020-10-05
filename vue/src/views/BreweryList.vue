@@ -1,5 +1,6 @@
 <template>
   <div>
+          <h2> Breweries </h2>
       <div v-for='brewery in breweries' v-bind:key='brewery.id'>
           {{brewery.name}}
           </div>
@@ -7,7 +8,7 @@
 </template>
 
 <script>
-import BreweryService from '@/services/BreweryService';
+import BreweryService from '@/services/BreweryService.js';
 
 export default {
     name: 'BreweryList',
