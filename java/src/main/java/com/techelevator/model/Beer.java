@@ -12,7 +12,7 @@ public class Beer {
 	private String description;
 	private int rating;
 	private boolean current;
-	
+	 
 	public Long getId() {
 		return id;
 	}
