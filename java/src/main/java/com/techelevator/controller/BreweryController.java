@@ -19,6 +19,11 @@ public class BreweryController {
 	@Autowired
 	public BreweryDAO dao;
 	
+	@RequestMapping(path = "/", method = RequestMethod.GET)
+	public String test() {
+		return "It worked";
+	}
+	
 	@RequestMapping(path = "/breweries", method = RequestMethod.GET)
 	public List <Brewery> getAllBreweries() {
 		return dao.getAllBrewerys();

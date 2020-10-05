@@ -8,9 +8,10 @@ public class Brewery {
 	private String discription;
 	private long brewerId;
 	private String url;
-	private String phoneNumber;
+	private int phoneNumber;
 	private String hours;
 	private boolean active;
+	
 	
 	public long getId() {
 		return id;
@@ -48,10 +49,10 @@ public class Brewery {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getPhoneNumber() {
+	public int getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getHours() {
