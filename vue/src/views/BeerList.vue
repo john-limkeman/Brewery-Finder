@@ -2,7 +2,9 @@
   <div>
       <h2>All Beers</h2>
 <div v-for='beer in beers' v-bind:key='beer.id'>
-    {{beer.name}}
+    <router-link
+        v-bind:to="{ name: 'BeerDetails', params: { id: beer.id } }"
+      > {{beer.name}} </router-link>
 </div>
   </div>
 </template>
