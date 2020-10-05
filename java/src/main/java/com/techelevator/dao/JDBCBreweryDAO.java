@@ -17,11 +17,10 @@ public class JDBCBreweryDAO implements BreweryDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	
-	// TODO make sure table is named appropriately for this method
 	@Override
 	public List<Brewery> getAllBrewerys() {
 		List <Brewery> output = new ArrayList <Brewery>();
-		String sql = "SELECT * FROM brewery";
+		String sql = "SELECT * FROM breweries";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 		while (results.next()) {
 			 output.add(mapRowToBrewery(results));
@@ -29,10 +28,9 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		return output;
 	}
 
-	// TODO make sure table and column are named appropriately for this method
 	@Override
 	public Brewery getBreweryById(long id) {
-		String sql = "SELECT * FROM brewery WHERE id = ?";
+		String sql = "SELECT * FROM breweries WHERE id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 		if (results.next()) {
 			 return mapRowToBrewery(results);
@@ -42,18 +40,17 @@ public class JDBCBreweryDAO implements BreweryDAO {
 	}
 
 	// maps SQL query to brewery object 
-	// TODO add column names in the ""
 	private Brewery mapRowToBrewery(SqlRowSet results) {
 		Brewery brewery = new Brewery();
-		brewery.setId(results.getLong(""));
-		brewery.setName(results.getString(""));
-		brewery.setAddress(results.getString(""));
-		brewery.setDiscription(results.getString(""));
-		brewery.setBrewerId(results.getLong(""));
-		brewery.setUrl(results.getString(""));
-		brewery.setPhoneNumber(results.getString(""));
-		brewery.setHours(results.getString(""));
-		brewery.setActive(results.getBoolean(""));
+		brewery.setId(results.getLong("id"));
+		brewery.setName(results.getString("name"));
+		brewery.setAddress(results.getString("address"));
+		brewery.setDiscription(results.getString("description"));
+		brewery.setBrewerId(results.getLong("brewer_id"));
+		brewery.setUrl(results.getString("brewery_url"));
+		brewery.setPhoneNumber(results.getString("phone"));
+		brewery.setHours(results.getString("hours"));
+		brewery.setActive(results.getBoolean("active"));
 		return brewery;
 	}
 	
