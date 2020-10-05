@@ -60,7 +60,7 @@ INSERT INTO Beers (beer_name, brewery_id, beer_type, description, picture, abv, 
 
 //DROP TABLE if exists Beers cascade;
 
-UPDATE users
-SET role = 'admin'
-WHERE user_id = 2;
+//UPDATE users
+//SET role = 'admin'
+//WHERE user_id = 2;
 
