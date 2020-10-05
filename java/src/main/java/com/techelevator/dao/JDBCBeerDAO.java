@@ -24,7 +24,7 @@ public class JDBCBeerDAO implements BeerDAO {
 	public List<Beer> getAllBeer() {
 		
 		List<Beer> allBeer = new ArrayList<>();
-		String sqlSelectAllBeer = "WHatever select stament matches tables";
+		String sqlSelectAllBeer = "SELECT * FROM beers";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllBeer);
 		
 		while(result.next()) {
@@ -40,7 +40,7 @@ public class JDBCBeerDAO implements BeerDAO {
 	public Beer getBeerById(Long id) {
 			
 		Beer beer = new Beer();
-		String sqlSelectBeerByName = "WHatever select stament matches tables";
+		String sqlSelectBeerByName = "SELECT * FROM beers where beer_id = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectBeerByName,id);
 		
 		if(result.next()) {
