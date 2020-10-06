@@ -1,5 +1,5 @@
 <template>
-  <div class="contaner text-center col-xl-6 mx-auto border border-dark rounded p-2">
+  <div id="beerlist" class="contaner text-center col-xl-5 mx-auto border border-dark rounded">
     <h2>Breweries</h2>
     <div v-for="brewery in breweries" v-bind:key="brewery.id" class='brewery'>
         <img v-bind:src='brewery.imgUrl' width="180px" height="auto"/>
@@ -43,6 +43,9 @@ flex-direction: column;
   position: fixed;
   top: 25px;
 }
+#beerlist {
+  background-color: wheat;
+}
 
 div > img {
   max-width: 100%;
@@ -63,5 +66,8 @@ h2{
 }
 body {
   padding-top: 50px;
+}
+img {
+  margin-right: 20px;
 }
 </style>
