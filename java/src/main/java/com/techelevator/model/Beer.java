@@ -12,7 +12,14 @@ public class Beer {
 	private String description;
 	private Double rating;
 	private boolean current;
+	private String imgUrl;
 	 
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
 	public Long getId() {
 		return id;
 	}

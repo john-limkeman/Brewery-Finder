@@ -18,6 +18,20 @@ export default {
 
 <style>
 #nav {
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  background-color: goldenrod;
+  color:whitesmoke;
+  width: 100%;
+     position: absolute;
+     top: 0;
+     }
+
+
+body.custom-background {
+    background-color: #dddddd;
 }
+
 </style>
