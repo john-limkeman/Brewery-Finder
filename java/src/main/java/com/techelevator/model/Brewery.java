@@ -11,8 +11,15 @@ public class Brewery {
 	private Long phoneNumber;
 	private String hours;
 	private boolean active;
+	private String imgUrl;
 	
 	
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
 	public long getId() {
 		return id;
 	}
@@ -52,7 +59,7 @@ public class Brewery {
 	public Long getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(long l) {
+	public void setPhoneNumber(Long l) {
 		this.phoneNumber = l;
 	}
 	public String getHours() {
