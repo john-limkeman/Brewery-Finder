@@ -51,6 +51,7 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		brewery.setPhoneNumber(results.getLong("phone"));
 		brewery.setHours(results.getString("hours"));
 		brewery.setActive(results.getBoolean("active"));
+		brewery.setImgUrl(results.getString("image"));
 		return brewery;
 	}
 	
