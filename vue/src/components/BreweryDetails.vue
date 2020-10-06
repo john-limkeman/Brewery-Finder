@@ -14,10 +14,10 @@
           {{brewery.hours}}
       </p>
       <p id="description">
-          {{brewery.description}}
+          {{brewery.discription}}
       </p>
       <a v-bind:href="brewery.url">Web site</a> <br>
-      <router-link v-bind:to="{ name: 'BreweryBeers', params: {id:brewery.id}}">View our beers</router-link>
+      <!-- <router-link v-bind:to="{ name: 'BreweryBeers', params: {id:brewery.id}}">View our beers</router-link> -->
   </div>
 </template>
 

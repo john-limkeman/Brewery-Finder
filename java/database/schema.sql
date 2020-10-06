@@ -45,7 +45,7 @@ INSERT INTO Breweries (name, address, description, image, brewer_id, brewery_url
 ('Denver Beer Company', '1695 Platte St, Denver, CO 80202', 'Brewery-based taproom with an industrial vibe, dog-friendly outdoor beer garden & food trucks', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png', 3,
 'https://denverbeerco.com/', 3034332739, '11am to 11pm', true);
 INSERT INTO Breweries (name, address, description, image, brewer_id, brewery_url, phone, hours, active) VALUES 
-('TRVE Brewing Company', '227 Broadway #101, Denver, CO 80203', 'Small local brewery & taproom featuring eclectic housemade beers in heavy metal–inspired environs.', 'https://static1.squarespace.com/static/5213f5e8e4b01f4a9dc27a0e/t/52140116e4b03b02bb825d9b/1597071837346/?format=1500w', 3, 'https://www.trvebrewing.com/ontap/', '3033511021', '3pm to 11pm', true);
+('TRVE Brewing Company', '227 Broadway #101, Denver, CO 80203', 'Small local brewery & taproom featuring eclectic housemade beers in heavy metal–inspired environs.', 'https://trvebrewing.square.site/product/bandanna-wolf/186?cs=true', 3, 'https://www.trvebrewing.com/ontap/', '3033511021', '3pm to 11pm', true);
 
 CREATE TABLE Beers
 (
