@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.techelevator.model.Beer;
 import com.techelevator.model.Brewery;
 
 @Component
@@ -48,10 +49,12 @@ public class JDBCBreweryDAO implements BreweryDAO {
 
 	@Override
 	public void saveBrewery(Brewery brewery) {
-		// TODO Auto-generated method stub
 		
-	}
-
+			jdbcTemplate.update("INSERT INTO breweries (name, address, description, image, brewer_id, brewery_url, phone, hours, active) VALUES (?,?,?,?,?,?,?,?,?)",
+					brewery.getName(),brewery.getAddress(),brewery.getDiscription(),brewery.getImgUrl(),brewery.getBrewerId(), brewery.getUrl(), brewery.getPhoneNumber(),brewery.getHours(),brewery.isActive());
+			
+		}
+		
 	// maps SQL query to brewery object 
 	private Brewery mapRowToBrewery(SqlRowSet results) {
 		Brewery brewery = new Brewery();
