@@ -45,11 +45,7 @@ INSERT INTO Breweries (name, address, description, image, brewer_id, brewery_url
 ('Denver Beer Company', '1695 Platte St, Denver, CO 80202', 'Brewery-based taproom with an industrial vibe, dog-friendly outdoor beer garden & food trucks', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png', 3,
 'https://denverbeerco.com/', 3034332739, '11am to 11pm', true);
 INSERT INTO Breweries (name, address, description, image, brewer_id, brewery_url, phone, hours, active) VALUES 
-
-
 ('TRVE Brewing Company', '227 Broadway #101, Denver, CO 80203', 'Small local brewery & taproom featuring eclectic housemade beers in heavy metal–inspired environs.', 'https://pbs.twimg.com/profile_images/707978949037436929/MItXQjYg.jpg', 3, 'https://www.trvebrewing.com/ontap/', '3033511021', '3pm to 11pm', true);
-
-
 
 
 CREATE TABLE Beers
@@ -100,8 +96,7 @@ VALUES ('Gnomeboy', 4, 'Belgian-style Golden Specialty Ale', 'Gnomeboy is specia
 INSERT INTO beers (beer_name, brewery_id, beer_type, description, abv, available) 
 VALUES ('Serenite Grand Cru', 4, 'Belgian-style Quadrupel', 'Silver Medal Winner GABF 2019 - Deep amber in color, a nose of malt, fruit and a touch of smoke. Taste notes of brown sugar, plums, grapes, cherries, raisins, coriander and chocolate. Medium-full bodied with a long, dry fruity finish.', 13.2, true);
 
-
-
 COMMIT TRANSACTION;
 
 
+SELECT * FROM users;

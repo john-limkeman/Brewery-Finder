@@ -18,6 +18,12 @@ getBeerById(id){
 },
 getBeerByBrewery(id){
     return http.get(`/brewery/${id}/beers`)
+},
+addBrewery(brewery) {
+    return http.post("/addBrewery", brewery)
+},
+updateBrewery(brewery) {
+    return http.put("/updateBrewery", brewery)
 }
 
 }

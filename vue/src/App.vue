@@ -10,7 +10,8 @@
         >&nbsp;|&nbsp;
         <router-link class="navlink" v-bind:to="{ name: 'BreweryList' }">Breweries</router-link
         >&nbsp;|&nbsp;
-        <router-link class="navlink" v-bind:to="{ name: 'AllBeers' }">Beers</router-link>
+        <router-link class="navlink" v-bind:to="{ name: 'AllBeers' }">Beers</router-link>&nbsp;&nbsp;
+        <router-link class="navlink" v-bind:to="{ name: 'Request' }" v-if="$store.state.user.roal == 'admon'">Request</router-link>
       </div>
       <div>
         <router-link class="navlink"

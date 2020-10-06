@@ -11,6 +11,10 @@ import BreweryBeers from '../views/BreweryBeers.vue'
 import BeerDetails from "../components/BeerDetails.vue"
 import BeerList from '@/views/BeerList.vue'
 import userPage from "../views/UserPage.vue"
+import request from "../views/Request.vue"
+import AddBrewery from "../views/AddBrewery.vue"
+import editBrewery from "../views/EditBrewery.vue"
+
 
 Vue.use(Router)
 
@@ -100,6 +104,30 @@ const router = new Router({
       path: "user/:id",
       name: "UserPage",
       component: userPage,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/requests",
+      name: "Request",
+      component: request,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/brewery/add",
+      name: "AddBrewery",
+      component: AddBrewery,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/brewery/update",
+      name: "UpdateBrewery",
+      component: editBrewery,
       meta: {
         requiresAuth: true
       }

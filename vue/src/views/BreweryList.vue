@@ -11,6 +11,7 @@
           </router-link>
       </h3>
     </div>
+    <button id="addBreweryBtn" v-on:click="addBrewery">Add a brewery</button>
   </div>
 </template>
 
@@ -29,6 +30,11 @@ export default {
     BreweryService.getBreweryList().then((response) => {
       this.breweries = response.data;
     });
+  },
+  methods: {
+    addBrewery() {
+      this.$router.push("/brewery/add")
+    }
   },
 };
 </script>
@@ -69,5 +75,8 @@ body {
 }
 img {
   margin-right: 20px;
+}
+#addBreweryBtn {
+  width: auto;
 }
 </style>

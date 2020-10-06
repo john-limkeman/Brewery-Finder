@@ -20,6 +20,12 @@
         {{ brewery.discription }}
       </p>
       <a class="navlink" v-bind:href="brewery.url">Web site</a> <br />
+      <br>
+      <router-link class="navlink"
+        v-bind:to="{ name: 'UpdateBrewery', params: { id: brewery.id } }"
+      >
+        Update Brewery
+      </router-link>
     </div>
   </div>
 </template>
