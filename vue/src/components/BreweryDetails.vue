@@ -1,19 +1,19 @@
 <template>
-  <div>
-      <h2>
+  <div class="breweryInfo">
+      <h2 id="name">
       {{brewery.name}}
       </h2>
-      <p>
+      <p id="address">
           {{brewery.address}}
       </p>
-      <p>
+      <p id="phone">
           {{brewery.number}}
       </p>
-      <p>
+      <p id="hours">
           {{brewery.hours}}
       </p>
-      <p>
-          {{brewery.discription}}
+      <p id="description">
+          {{brewery.description}}
       </p>
       <a v-bind:href="brewery.url">Web site</a> <br>
       <router-link v-bind:to="{ name: 'BreweryBeers', params: {id:brewery.id}}">View our beers</router-link>
@@ -37,5 +37,18 @@ export default {
 </script>
 
 <style>
+
+.breweryInfo{
+
+  text-align: center;
+  padding: 50px;
+  margin: 10px;
+  border-style: solid;
+}
+
+#name{
+    text-decoration: underline;
+}
+
 
 </style>

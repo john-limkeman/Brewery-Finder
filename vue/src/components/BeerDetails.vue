@@ -1,23 +1,25 @@
 <template>
   <div>
-      <h2>{{beer.name}}</h2>
-      <h4>
-          {{beer.brewery_id}} <!-- need to pull from $store to get name-->
+      <h2>{{beer.name}} <span> {{beer.rating}} </span></h2> 
+      <h4 v-bind='getBrewery()'>
+          {{brewery.name}} 
       </h4>
+      <!-- <img src='{{beer.imgUrl}}'/> -->
       <ul>
           <li>
               {{beer.type}}
           </li>
           <li>
-              {{beer.abv}}
+              ABV : {{beer.abv}}
           </li>
           <li>
-              {{beer.ibu}}
+              IBU : {{beer.ibu}}
           </li>
           <li>
                {{this.setStatus}}
           </li>
       </ul>
+      <p> {{beer.description}} </p>
   </div>
 </template>
 
@@ -27,7 +29,8 @@ export default {
     data() {
         return {
             beer: {},
-            status: ""
+            brewery: '',
+
         }
     },
     computed: {
@@ -40,14 +43,25 @@ export default {
             }
         }
     },
+    methods : {
+        getBrewery(){
+            breweryServices.getBreweryById(this.beer.breweryId).then((response) => {
+                this.brewery = response.data;
+            })
+
+        }
+    },
     created() {
         breweryServices.getBeerById(this.$route.params.id).then((response) => {
             this.beer = response.data;
+            console.log(this.beer.breweryId)
         })
+        
     }
 }
 </script>
 
 <style>
+
 
 </style>
