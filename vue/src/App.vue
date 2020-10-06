@@ -48,10 +48,32 @@ export default {};
 .navlink {
   color: black;
 }
+.navlink:hover{
+  color: whitesmoke;
+}
+.navlink:visited{
+  color: #630F0F;
+}
+.navlink:visited:hover{
+  color: whitesmoke;
+}
+.whitelink{
+    color: whitesmoke;
+}
+.whitelink:visited{
+    color: wheat;
+}
+.whitelink:hover{
+    color: goldenrod;
+}
+.whitelink:visited:hover{
+    color: goldenrod;
+}
 body {
   padding-top: 50px;
 }
 body.custom-background {
   background-color: #dddddd;
 }
+
 </style>

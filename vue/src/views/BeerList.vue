@@ -5,7 +5,7 @@
           <h3> Sours </h3>
           <ul>
               <li v-for='beer in getSours' v-bind:key='beer.id'>
-                 {{beer.name}} --- {{beer.type}}
+                         <router-link v-bind:to="{ name : 'BeerDetails', params : {id : beer.id}}" class='navlink'> {{beer.name}} ({{beer.type}})</router-link>
               </li>
           </ul>
       </div>
@@ -14,7 +14,7 @@
           <h3> IPAs </h3>
           <ul>
               <li v-for='beer in getIPAs' v-bind:key='beer.id'>
-                   {{beer.name}} --- {{beer.type}}
+                  <router-link v-bind:to="{ name : 'BeerDetails', params : {id : beer.id}}" class='navlink'> {{beer.name}} ({{beer.type}})</router-link>
               </li >
           </ul>
       </div>
@@ -22,7 +22,7 @@
           <h3> Ales </h3>
           <ul>
               <li v-for='beer in getAles' v-bind:key='beer.id'>
-                 {{beer.name}} --- {{beer.type}}
+                       <router-link v-bind:to="{ name : 'BeerDetails', params : {id : beer.id}}" class='navlink'> {{beer.name}} ({{beer.type}})</router-link>
               </li>
           </ul>
       </div>
@@ -30,7 +30,7 @@
           <h3> Lagers </h3>
           <ul>
               <li v-for='beer in getLagers' v-bind:key='beer.id'>
-                 {{beer.name}} --- {{beer.type}}
+                      <router-link v-bind:to="{ name : 'BeerDetails', params : {id : beer.id}}" class='navlink'> {{beer.name}} ({{beer.type}})</router-link>
               </li>
           </ul>
       </div>
@@ -38,7 +38,7 @@
           <h3> Stouts and Porters </h3>
           <ul>
               <li v-for='beer in getStoutPorter' v-bind:key='beer.id'>
-                 {{beer.name}} --- {{beer.type}}
+                        <router-link v-bind:to="{ name : 'BeerDetails', params : {id : beer.id}}" class='whitelink'> {{beer.name}} ({{beer.type}})</router-link>
               </li>
           </ul>
       </div>
@@ -46,7 +46,7 @@
           <h3> Other </h3>
           <ul>
               <li v-for='beer in getOthers' v-bind:key='beer.id'>
-                 {{beer.name}} --- {{beer.type}}
+                      <router-link v-bind:to="{ name : 'BeerDetails', params : {id : beer.id}}" class='whitelink'> {{beer.name}} ({{beer.type}})</router-link>
               </li>
           </ul>
       </div>
@@ -147,6 +147,14 @@ h3{
     padding: 10px;
     margin: 5px;
     width: 70%;
+    color: black;
+}
+.beer-type > ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.beer-type > ul > li{
+    margin-right: 30px;
 }
 #Sours-Container{
     background-color: #FDEE6F;
@@ -170,7 +178,7 @@ h3{
    
 }
 #Others-Container{
-    background-color: #2E0708;
+    background-color: #2C0603;
     color: whitesmoke;
 
 }
