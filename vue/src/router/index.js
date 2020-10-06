@@ -6,7 +6,6 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import BreweryList from '../views/BreweryList.vue'
-// import BreweryDetails from "../components/BreweryDetails"
 import BreweryBeers from '../views/BreweryBeers.vue'
 import BeerDetails from "../components/BeerDetails.vue"
 import BeerList from '@/views/BeerList.vue'
@@ -71,14 +70,7 @@ const router = new Router({
         requiresAuth: false
       }
     },
-    // {
-    //   path: "/brewery/:id",
-    //   name: "breweryDetails",
-    //   component: BreweryDetails,
-    //   meta: {
-    //     requiresAuth: false
-    //   }
-    // },
+
     {
       path: "/brewery/:id/beers",
       name: "BreweryBeers",
@@ -100,7 +92,7 @@ const router = new Router({
       name: 'AllBeers',
       component: BeerList
     },
-    {// finish this for a user home page
+    {
       path: "user/:id",
       name: "UserPage",
       component: userPage,
