@@ -9,7 +9,8 @@ public interface BeerDAO {
 	public List <Beer> getAllBeer();
 	public Beer getBeerById(Long id);
 	public List<Beer> BeerByBrewery(Long id);
-	
+	public void deleteBeer(Long id);
+	public void saveBeer(Beer beer);
 	
 
 }
