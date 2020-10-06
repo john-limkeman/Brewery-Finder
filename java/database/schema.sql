@@ -45,12 +45,8 @@ INSERT INTO Breweries (name, address, description, image, brewer_id, brewery_url
 ('Denver Beer Company', '1695 Platte St, Denver, CO 80202', 'Brewery-based taproom with an industrial vibe, dog-friendly outdoor beer garden & food trucks', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png', 3,
 'https://denverbeerco.com/', 3034332739, '11am to 11pm', true);
 INSERT INTO Breweries (name, address, description, image, brewer_id, brewery_url, phone, hours, active) VALUES 
-<<<<<<< HEAD
 ('TRVE Brewing Company', '227 Broadway #101, Denver, CO 80203', 'Small local brewery & taproom featuring eclectic housemade beers in heavy metal–inspired environs.', 'https://pbs.twimg.com/profile_images/707978949037436929/MItXQjYg.jpg', 3, 'https://www.trvebrewing.com/ontap/', '3033511021', '3pm to 11pm', true);
 
-=======
-('TRVE Brewing Company', '227 Broadway #101, Denver, CO 80203', 'Small local brewery & taproom featuring eclectic housemade beers in heavy metal–inspired environs.', 'https://trvebrewing.square.site/product/bandanna-wolf/186?cs=true', 3, 'https://www.trvebrewing.com/ontap/', '3033511021', '3pm to 11pm', true);
->>>>>>> d8d5fec09a748caa0936ab4912d0610c575e71e1
 
 CREATE TABLE Beers
 (
@@ -99,5 +95,7 @@ INSERT INTO beers (beer_name, brewery_id, beer_type, description, abv, ibu, avai
 VALUES ('Gnomeboy', 4, 'Belgian-style Golden Specialty Ale', 'Gnomeboy is specialty ale with roots in the Ardennes Mountains of Belgium. It is a spicy, peppery beer with a touch of sweetness, fruit notes and a dry finish. Gnomeboy is clean, complex and flavorful.', '8.2', '', true);
 INSERT INTO beers (beer_name, brewery_id, beer_type, description, abv, ibu, available) 
 VALUES ('Serenite Grand Cru', 4, 'Belgian-style Quadrupel', 'Silver Medal Winner GABF 2019 - Deep amber in color, a nose of malt, fruit and a touch of smoke. Taste notes of brown sugar, plums, grapes, cherries, raisins, coriander and chocolate. Medium-full bodied with a long, dry fruity finish.', '13.2', '', true);
+
+
 
 COMMIT TRANSACTION;
