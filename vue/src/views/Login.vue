@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="text-center">
+  <div id="login" class="text-center col-xl-3 mx-auto border border-dark rounded">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
@@ -30,9 +30,10 @@
         placeholder="Password"
         v-model="user.password"
         required
-      />
+      /> <br>
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+      <br>
     </form>
   </div>
 </template>
@@ -74,3 +75,9 @@ export default {
   }
 };
 </script>
+
+<style>
+#login {
+  padding: 20px;
+}
+</style>
