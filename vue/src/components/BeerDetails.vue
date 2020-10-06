@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="beerInfo">
       <h2>{{beer.name}} <span> {{beer.rating}} </span></h2> 
       <h4 v-bind='getBrewery()'>
           {{brewery.name}} 
       </h4>
-      <img v-bind:src='beer.imgUrl'/>
+      <img v-bind:src='beer.imgUrl' width="180px" height="auto"/>
       <ul>
           <li>
               {{beer.type}}
@@ -62,6 +62,15 @@ export default {
 </script>
 
 <style>
+.beerInfo{
+
+  text-align: center;
+  padding: 50px;
+  margin: 10px;
+  border-style: solid;
+}
+
+
 
 
 </style>

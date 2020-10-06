@@ -3,7 +3,7 @@
       <h2 id="name">
       {{brewery.name}}
       </h2>
-      <img v-bind:src='brewery.imgUrl'/>
+      <img v-bind:src='brewery.imgUrl ' width="180px" height="auto"/>
       <p id="address">
           {{brewery.address}}
       </p>

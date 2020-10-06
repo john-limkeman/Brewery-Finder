@@ -3,7 +3,7 @@
     <h2>Breweries</h2>
     <div v-for="brewery in breweries" v-bind:key="brewery.id">
       <h3>
-        <img v-bind:src='brewery.imgUrl'/>
+        <img v-bind:src='brewery.imgUrl' width="180px" height="auto"/>
         <router-link v-bind:to="{ name: 'breweryDetails', params: {id:brewery.id} }">
          
           {{brewery.name}}
@@ -36,7 +36,12 @@ export default {
 <style>
 .container {
   border: 1px, solid, black;
-  background-color: lightblue;
+  background-color: wheat;
   width: 30%;
+}
+
+div > img {
+  max-width: 100%;
+  max-height: 100%;
 }
 </style>
