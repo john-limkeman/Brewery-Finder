@@ -19,7 +19,7 @@
       <p id="description">
         {{ brewery.discription }}
       </p>
-      <a v-bind:href="brewery.url">Web site</a> <br />
+      <a class="navlink" v-bind:href="brewery.url">Web site</a> <br />
     </div>
   </div>
 </template>
@@ -41,18 +41,18 @@ export default {
 </script>
 
 <style>
-.flexLeft{
-    display: flex;
-    grid-area: img;
+.flexLeft {
+  display: flex;
+  grid-area: img;
 }
 .felxRight {
-    display: flex;
-    grid-area: text;
+  display: flex;
+  grid-area: text;
 }
 #breweryInfo {
-    display: grid;
-    grid-template-columns: 1fr, 1fr;
-    grid-template-areas: "img text";
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-areas: "img text";
   background: wheat;
   text-align: center;
   padding: 50px;

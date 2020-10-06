@@ -3,7 +3,7 @@
       <BreweryDetails /> 
     <h2>Beers</h2>
     <div class="contaner text-center col-xl-12 mx-auto rounded" v-for="beer in beers" v-bind:key="beer.id">
-      <router-link
+      <router-link class="navlink"
         v-bind:to="{ name: 'BeerDetails', params: { id: beer.id } }"
       >
         {{ beer.name }}
