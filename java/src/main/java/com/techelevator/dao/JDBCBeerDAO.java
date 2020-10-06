@@ -71,8 +71,8 @@ public class JDBCBeerDAO implements BeerDAO {
 
 	@Override
 	public void saveBeer(Beer beer) {
-		jdbcTemplate.update("INSERT INTO beers(beer_name, abv, ibu, beer_type, description, brewery_id, available) VALUES (?,?,?,?,?,?,?.?)",
-				beer.getName(),beer.getAbv(),beer.getIbu(),beer.getType(),beer.getDescription(),beer.getBreweryId(),beer.isCurrent(),beer.getImgUrl());
+		jdbcTemplate.update("INSERT INTO beers (beer_name, brewery_id, beer_type, description, picture, abv, ibu, available) VALUES (?,?,?,?,?,?,?,?)",
+				beer.getName(),beer.getBreweryId(),beer.getType(),beer.getDescription(),beer.getImgUrl(),beer.getAbv(),beer.getIbu(),beer.isCurrent());
 		
 	}
 	
