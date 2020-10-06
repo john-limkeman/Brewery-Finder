@@ -100,6 +100,8 @@ VALUES ('Gnomeboy', 4, 'Belgian-style Golden Specialty Ale', 'Gnomeboy is specia
 INSERT INTO beers (beer_name, brewery_id, beer_type, description, abv, available) 
 VALUES ('Serenite Grand Cru', 4, 'Belgian-style Quadrupel', 'Silver Medal Winner GABF 2019 - Deep amber in color, a nose of malt, fruit and a touch of smoke. Taste notes of brown sugar, plums, grapes, cherries, raisins, coriander and chocolate. Medium-full bodied with a long, dry fruity finish.', 13.2, true);
 
+
+
 COMMIT TRANSACTION;
 
 
