@@ -40,8 +40,7 @@ flex-direction: column;
   border: 1px, solid, black;
   background-color: wheat;
   width: 70%;
-  position: fixed;
-  top: 25px;
+  margin-top: 100px;
 }
 #beerlist {
   background-color: wheat;

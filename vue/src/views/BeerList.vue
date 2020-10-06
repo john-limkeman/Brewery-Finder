@@ -134,6 +134,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
 }
 h3{
          text-align: center;

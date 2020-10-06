@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav" class="navbar navbar-expand-lg navbar-dark py-lg-2 navbar-fixed-top">
       <div>
-        <router-link class="navlink" v-bind:to="{ name: 'home' }">Home</router-link
+        <router-link class="navlink" v-bind:to="{ name: 'home' }"><img src='@/Resources/output-onlinepngtools.png'/></router-link
         >&nbsp;|&nbsp;
         <router-link class="navlink"
           v-bind:to="{ name: 'UserPage' }"
@@ -44,6 +44,10 @@ export default {};
   position: absolute;
   top: 0;
   font-size: 16pt;
+}
+#nav img{
+  width: 75px;
+  height: auto;
 }
 .navlink {
   color: black;
