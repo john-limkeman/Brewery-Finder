@@ -3,9 +3,12 @@
     <h2>Breweries</h2>
     <div v-for="brewery in breweries" v-bind:key="brewery.id">
       <h3>
-        <router-link v-bind:to="{ name: 'breweryDetails', params: {id:brewery.id} }">{{
-          brewery.name
-        }}</router-link>
+        <img v-bind:src='brewery.imgUrl'/>
+        <router-link v-bind:to="{ name: 'breweryDetails', params: {id:brewery.id} }">
+         
+          {{brewery.name}}
+          
+          </router-link>
       </h3>
     </div>
   </div>
