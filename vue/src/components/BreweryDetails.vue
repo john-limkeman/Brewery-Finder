@@ -1,55 +1,70 @@
 <template>
-  <div class="breweryInfo">
+  <div id="breweryInfo" class="contaner text-center col-xl-12 mx-auto rounded">
+    <div class="flexLeft">
+      <img v-bind:src="brewery.imgUrl" width="180px" height="auto" />
+    </div>
+    <div class="flexRight">
       <h2 id="name">
-      {{brewery.name}}
+        {{ brewery.name }}
       </h2>
-      <img v-bind:src='brewery.imgUrl ' width="180px" height="auto"/>
       <p id="address">
-          {{brewery.address}}
+        {{ brewery.address }}
       </p>
       <p id="phone">
-          {{brewery.number}}
+        {{ brewery.number }}
       </p>
       <p id="hours">
-          {{brewery.hours}}
+        {{ brewery.hours }}
       </p>
       <p id="description">
-          {{brewery.discription}}
+        {{ brewery.discription }}
       </p>
-      <a v-bind:href="brewery.url">Web site</a> <br>
-      <!-- <router-link v-bind:to="{ name: 'BreweryBeers', params: {id:brewery.id}}">View our beers</router-link> -->
+      <a v-bind:href="brewery.url">Web site</a> <br />
+    </div>
   </div>
 </template>
 
 <script>
 import BreweryService from "@/services/BreweryService.js";
 export default {
-    data() {
-        return {
-            brewery: {}
-        }
-    },
-    created() {
-        BreweryService.getBreweryById(this.$route.params.id).then((responce) => {
-            this.brewery = responce.data;
-        }) 
-    }
-}
+  data() {
+    return {
+      brewery: {},
+    };
+  },
+  created() {
+    BreweryService.getBreweryById(this.$route.params.id).then((responce) => {
+      this.brewery = responce.data;
+    });
+  },
+};
 </script>
 
 <style>
-
-.breweryInfo{
-
+.flexLeft{
+    display: flex;
+    grid-area: img;
+}
+.felxRight {
+    display: flex;
+    grid-area: text;
+}
+#breweryInfo {
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-areas: "img text";
+  background: wheat;
   text-align: center;
   padding: 50px;
   margin: 10px;
   border-style: solid;
+  border-width: 3px;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
 }
 
-#name{
-    text-decoration: underline;
+#name {
+  text-decoration: underline;
 }
-
-
 </style>

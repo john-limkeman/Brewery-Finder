@@ -10,6 +10,7 @@ import BreweryList from '../views/BreweryList.vue'
 import BreweryBeers from '../views/BreweryBeers.vue'
 import BeerDetails from "../components/BeerDetails.vue"
 import BeerList from '@/views/BeerList.vue'
+import userPage from "../views/UserPage.vue"
 
 Vue.use(Router)
 
@@ -31,7 +32,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -94,6 +95,14 @@ const router = new Router({
       path: '/beer',
       name: 'AllBeers',
       component: BeerList
+    },
+    {// finish this for a user home page
+      path: "user/:id",
+      name: "UserPage",
+      component: userPage,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })
