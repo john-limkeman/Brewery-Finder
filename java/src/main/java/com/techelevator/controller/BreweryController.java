@@ -37,7 +37,7 @@ public class BreweryController {
 		return dao.getBreweryById(id);
 	}
 	
-	@RequestMapping(path="/beer/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(path="/brewery/{id}", method=RequestMethod.DELETE)
 	public String deleteBeer(@PathVariable Long id) {
 		 dao.deleteBrewery(id);
 		return "Brewery Deleted";
