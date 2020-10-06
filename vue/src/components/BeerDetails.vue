@@ -4,7 +4,7 @@
       <h4 v-bind='getBrewery()'>
           {{brewery.name}} 
       </h4>
-      <!-- <img src='{{beer.imgUrl}}'/> -->
+      <img v-bind:src='beer.imgUrl'/>
       <ul>
           <li>
               {{beer.type}}
