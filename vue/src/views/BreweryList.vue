@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="contaner text-center col-xl-6 mx-auto border border-dark rounded p-2">
     <h2>Breweries</h2>
     <div v-for="brewery in breweries" v-bind:key="brewery.id" class='brewery'>
         <img v-bind:src='brewery.imgUrl' width="180px" height="auto"/>
@@ -60,5 +60,8 @@ h2{
 }
 .brewery-name{
     color:black;
+}
+body {
+  padding-top: 50px;
 }
 </style>

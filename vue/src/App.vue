@@ -29,7 +29,9 @@ export default {
      top: 0;
      }
 
-
+body {
+  padding-top: 50px;
+}
 body.custom-background {
     background-color: #dddddd;
 }

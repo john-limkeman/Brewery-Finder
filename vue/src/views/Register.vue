@@ -1,5 +1,5 @@
 <template>
-  <div id="register" class="text-center">
+  <div id="register" class="text-center col-xl-3 mx-auto border border-dark rounded">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -31,7 +31,7 @@
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
         required
-      />
+      /> <br>
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -90,4 +90,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#register {
+  padding: 20px;
+}
+</style>
