@@ -1,9 +1,9 @@
 <template>
   <div>
       <h3> Reviews </h3>
-      <div>
-          <!-- to contain reviewCards -->
-      </div>
+      <div v-for='card in reviews' v-bind:key='card.id'>
+          <ReviewCard chosen = card> </ReviewCard> 
+     </div>
       <div>
           <ReviewForm /> 
       </div>
@@ -11,7 +11,8 @@
 </template>
 
 <script>
-import BreweryService from '@/services/BreweryService.vue'
+import ReviewCard from '@/components/ReviewCard.vue'
+import BreweryService from '@/services/BreweryService.js'
 import ReviewForm from '@/components/ReviewForm.vue'
 export default {
     data(){
@@ -20,10 +21,15 @@ export default {
         }
     },
     components: {
-        ReviewForm
+        ReviewForm,
+        ReviewCard
     },
     created(){
-        BreweryService
+        BreweryService.getReviewByBeer(this.$route.params.id).then(
+        (response) => {
+            this.reviews = response.data;
+        }
+        )
     }
 }
 </script>
