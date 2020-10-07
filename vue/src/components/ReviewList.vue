@@ -2,10 +2,10 @@
   <div>
       <h3> Reviews </h3>
       <div v-for='card in reviews' v-bind:key='card.id'>
-          <ReviewCard chosen = card> </ReviewCard> 
+          <ReviewCard v-bind:chosen='card'> </ReviewCard> 
      </div>
       <div>
-          <ReviewForm /> 
+          <ReviewForm v-bind:beer='beer'></ReviewForm> 
       </div>
   </div>
 </template>
@@ -17,7 +17,8 @@ import ReviewForm from '@/components/ReviewForm.vue'
 export default {
     data(){
         return{
-            reviews: []
+            reviews: [],
+            beer : {}
         }
     },
     components: {
@@ -29,6 +30,11 @@ export default {
         (response) => {
             this.reviews = response.data;
         }
+        ),
+        BreweryService.getBeerById(this.$route.params.id).then(
+            (response) => {
+                this.beer = response.data;
+            }
         )
     }
 }
