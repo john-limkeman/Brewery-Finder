@@ -27,6 +27,13 @@
       >
         Update Brewery
       </router-link>
+      <br>
+       <router-link
+        class="navlink"
+        v-bind:to="{ name: 'AddBeer', params: { id: brewery.id } }"
+      >
+        Add Beer
+      </router-link>
     </div>
   </div>
 </template>

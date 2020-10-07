@@ -14,6 +14,7 @@
         {{ beer.name }}
       </router-link>
     </div>
+      
   </div>
 </template>
 
@@ -34,6 +35,11 @@ export default {
       this.beers = response.data;
     });
   },
+  methods:{
+    addBeer(){
+      this.$router.push()
+    }
+  }
 };
 </script>
 
