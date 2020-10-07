@@ -29,10 +29,12 @@
       >
         Edit this beer
       </router-link>
+    <ReviewList />
   </div>
 </template>
 
 <script>
+import ReviewList from '@/components/ReviewList.vue'
 import breweryServices from "../services/BreweryService.js";
 export default {
   data() {
@@ -63,6 +65,9 @@ export default {
       console.log(this.beer.breweryId);
     });
   },
+  components: {
+    ReviewList
+  }
 };
 </script>
 

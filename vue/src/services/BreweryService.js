@@ -42,7 +42,12 @@ export default {
     },
     deleteReview(review){
         return http.delete('/delete-review', review)
-    }
+    },
+    getUser(userId) {
+        return http.get(`/user/${userId}`)
+    },
+    
+
 
 
 }

@@ -24,7 +24,6 @@
         name="description"
         placeholder="Beer description"
       />
-
       <br />
       <label for="abv">abv</label>
       <input v-model="newBeer.abv" type="text" name="abv" placeholder="abv" />

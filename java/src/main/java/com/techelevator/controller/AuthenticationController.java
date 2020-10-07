@@ -63,6 +63,17 @@ public class AuthenticationController {
 			userDAO.create(newUser.getUsername(), newUser.getPassword(), newUser.getRole());
 		}
 	}
+	
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+	public User getUserById(@PathVariable("userId") long userId) {
+	  return userDAO.getUserById(userId);
+	}
+	
+	@RequestMapping(value = "/user/{userId}" , method = RequestMethod.PUT)
+	public void updateUserRole(@Valid @RequestBody User user ) {
+		userDAO.updateUserRole(user);
+		
+	}
 
 	/**
 	 * Object to return as body in JWT Authentication.
