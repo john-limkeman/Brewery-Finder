@@ -1,33 +1,28 @@
 <template>
   <div
-    id="addBrewery"
+    id="addBeer"
     class="contaner col-xl-5 mx-auto border border-dark rounded"
   >
-    <h2 class="text-center">Add a Brewery</h2>
-    <breweryForm />
+    <h2 class="text-center">Add a Beer</h2>
+    <beerForm/>
+     <br />
     
   </div>
 </template>
 
 <script>
-import breweryForm from "../components/BreweryFrom";
-import breweryService from "../services/BreweryService";
+import beerForm from "../components/BeerForm";
 export default {
   data() {
     return {
-      newBrewery: {},
+       
+     
     };
   },
   components: {
-    breweryForm,
+    beerForm,
   },
-  methods: {
-    addBrewery() {
-      breweryService.addBrewery(this.newBrewery);
-      this.$router.push({ name: "BreweryList" });
-    },
-    
-  },
+  
 };
 </script>
 
@@ -38,14 +33,13 @@ export default {
   border: 1px, solid, black;
   background-color: wheat;
   width: 70%;
-  margin-top: 50px;
 }
 #newBreweryForm {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-div > button, div > input {
+div > button {
   width: 100px;
   align-items: center;
 }
