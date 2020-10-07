@@ -61,7 +61,7 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		String sqlInsert = "UPDATE breweries SET name = ?, address = ?, description = ?, image = ?, brewer_id = ?, brewery_url = ?, phone = ?, hours = ?, active = ?"
 				+ " WHERE id = ?";
 		
-		jdbcTemplate.update(sqlInsert, brewery.getName(), brewery.getAddress(), brewery.getDiscription(), brewery.getImgUrl(),
+		jdbcTemplate.update(sqlInsert, brewery.getName(), brewery.getAddress(), brewery.getDiscription(), brewery.getImgUrl(), brewery.getBrewerId(),
 				brewery.getUrl(), brewery.getPhoneNumber(), brewery.getHours(), brewery.isActive(), id);
 			
 	}
