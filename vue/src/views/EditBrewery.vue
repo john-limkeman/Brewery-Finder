@@ -1,7 +1,7 @@
 <template>
   <div
     id="addBrewery"
-    class="contaner col-xl-5 mx-auto border border-dark rounded"
+    class="container col-xl-5 mx-auto border border-dark rounded"
   >
     <h2 class="text-center">Edit a Brewery</h2>
     <breweryForm/>

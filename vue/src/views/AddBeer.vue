@@ -1,7 +1,7 @@
 <template>
   <div
     id="addBeer"
-    class="contaner col-xl-5 mx-auto border border-dark rounded"
+    class="contianer col-xl-5 mx-auto border border-dark rounded"
   >
     <h2 class="text-center">Add a Beer</h2>
     <beerForm/>
@@ -15,8 +15,7 @@ import beerForm from "../components/BeerForm";
 export default {
   data() {
     return {
-       
-     
+
     };
   },
   components: {
@@ -27,12 +26,13 @@ export default {
 </script>
 
 <style>
-#addBrewery {
+#addBeer {
   display: flex;
   flex-direction: column;
   border: 1px, solid, black;
   background-color: wheat;
   width: 70%;
+  margin-top: 50px;
 }
 #newBreweryForm {
   display: flex;

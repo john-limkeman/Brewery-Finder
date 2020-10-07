@@ -14,6 +14,7 @@ import request from "../views/Request.vue"
 import AddBrewery from "../views/AddBrewery.vue"
 import editBrewery from "../views/EditBrewery.vue"
 import AddBeer from "../views/AddBeer.vue"
+import editBeer from "../views/EditBeer.vue"
 
 Vue.use(Router)
 
@@ -128,6 +129,14 @@ const router = new Router({
       path: "/brewery/:id/addBeer",
       name: "AddBeer",
       component: AddBeer,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/beer/:id/update/:beerId",
+      name: "UpdateBeer",
+      component: editBeer,
       meta: {
         requiresAuth: true
       }

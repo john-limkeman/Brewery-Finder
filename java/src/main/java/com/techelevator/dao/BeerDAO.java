@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import java.util.List;
 
 import com.techelevator.model.Beer;
+import com.techelevator.model.Brewery;
 
 public interface BeerDAO {
 
@@ -15,5 +16,7 @@ public interface BeerDAO {
 	public void deleteBeer(Long id);
 
 	public void saveBeer(Beer beer);
+
+	void updateBeer(Beer beer, long id);
 
 }

@@ -90,9 +90,9 @@ export default {};
 }
 body {
   padding-top: 50px;
-}
-body.custom-background {
-  background-color: #dddddd;
+  background-image: url("https://skookumbrewery.com/wp-content/uploads/2019/05/cropped-IMG_4560-6.jpg");
+  background-repeat: no-repeat;
+  
 }
 .container {
   display: flex;

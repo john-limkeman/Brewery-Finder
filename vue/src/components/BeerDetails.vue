@@ -23,6 +23,12 @@
       </li>
     </ul>
     <p>{{ beer.description }}</p>
+    <router-link
+        class="navlink"
+        v-bind:to="{ name: 'UpdateBeer', params: {id: beer.breweryId, beerId: beer.id } }"
+      >
+        Edit this beer
+      </router-link>
   </div>
 </template>
 
