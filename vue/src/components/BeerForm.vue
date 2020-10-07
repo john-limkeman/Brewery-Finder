@@ -1,6 +1,6 @@
 <template>
   <div class = "beerForm"> 
-      <form id="addBeerForm" v-on:submit="saveBeer()">
+      <form id="addBeerForm">
           <label for="name">Beer Name</label>
             <input
                 v-model="this.newBeer.name"
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import BreweryService from "@/services/BreweryService.js"
+
 
 export default {
     data(){
@@ -76,18 +76,8 @@ export default {
 
         };
     },
-    created() {
-    BreweryService.getBreweryById(this.$route.params.id).then((response) => {
-      this.newBeer.breweryId = response.data.id;
-    });
-  },
-  methods : {
-      saveBeer() {
-      BreweryService.addBeer(this.newBeer);
-      this.$router.push({ name: "BreweryBeers" });
-    },
+    
 
-  }
 
 }
 </script>
