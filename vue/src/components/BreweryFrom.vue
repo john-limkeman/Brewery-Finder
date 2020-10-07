@@ -87,13 +87,13 @@ export default {
   background-color: wheat;
   width: 70%;
 }
-#newBreweryForm{ 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+#newBreweryForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 div > form > button {
-    width: 80px;
-    align-items: center;
+  width: 80px;
+  align-items: center;
 }
 </style>

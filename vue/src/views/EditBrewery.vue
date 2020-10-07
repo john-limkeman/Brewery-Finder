@@ -10,23 +10,23 @@
 </template>
 
 <script>
-import breweryForm from "../components/BreweryFrom"
-import breweryService from "../services/BreweryService"
+import breweryForm from "../components/BreweryFrom";
+import breweryService from "../services/BreweryService";
 export default {
-    data() {
-        return {
-            brewery: {}
-        }
+  data() {
+    return {
+      brewery: {},
+    };
+  },
+  components: {
+    breweryForm,
+  },
+  methods: {
+    updateBrewery() {
+      breweryService.updateBrewery(this.brewery);
+      this.$router.push({ name: "BreweryList" });
     },
-    components: {
-        breweryForm
-    },
-      methods: {
-      updateBrewery() {
-          breweryService.updateBrewery(this.brewery)
-          this.$router.push({name: "BreweryList"})
-      }
-  }
+  },
 };
 </script>
 
@@ -38,13 +38,13 @@ export default {
   background-color: wheat;
   width: 70%;
 }
-#newBreweryForm{ 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+#newBreweryForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 div > button {
-    width: 100px;
-    align-items: center;
+  width: 100px;
+  align-items: center;
 }
 </style>

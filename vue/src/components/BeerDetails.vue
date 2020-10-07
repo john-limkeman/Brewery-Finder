@@ -4,7 +4,10 @@
       {{ beer.name }} <span> {{ beer.rating }} </span>
     </h2>
     <h4 v-bind="getBrewery()">
-      <router-link class="navlink" v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }">
+      <router-link
+        class="navlink"
+        v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }"
+      >
         {{ brewery.name }}
       </router-link>
     </h4>
@@ -70,9 +73,9 @@ export default {
   align-items: center;
 }
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
 div > img {
-    margin: 10px;
+  margin: 10px;
 }
 </style>

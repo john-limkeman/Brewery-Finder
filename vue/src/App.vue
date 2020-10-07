@@ -1,25 +1,38 @@
 <template>
   <div id="app">
-    <div id="nav" class="navbar navbar-expand-lg navbar-dark py-lg-2 navbar-fixed-top">
+    <div
+      id="nav"
+      class="navbar navbar-expand-lg navbar-dark py-lg-2 navbar-fixed-top"
+    >
       <div>
-        <router-link class="navlink" v-bind:to="{ name: 'home' }"><img src='@/Resources/output-onlinepngtools.png'/></router-link
+        <router-link class="navlink" v-bind:to="{ name: 'home' }"
+          ><img src="@/Resources/output-onlinepngtools.png" /></router-link
         >&nbsp;|&nbsp;
-        <router-link class="navlink"
-          v-bind:to="{ name: 'UserPage' }"
+        <router-link class="navlink" v-bind:to="{ name: 'UserPage' }"
           >My page</router-link
         >&nbsp;|&nbsp;
-        <router-link class="navlink" v-bind:to="{ name: 'BreweryList' }">Breweries</router-link
+        <router-link class="navlink" v-bind:to="{ name: 'BreweryList' }"
+          >Breweries</router-link
         >&nbsp;|&nbsp;
-        <router-link class="navlink" v-bind:to="{ name: 'AllBeers' }">Beers</router-link>&nbsp;&nbsp;
-        <router-link class="navlink" v-bind:to="{ name: 'Request' }" v-if="$store.state.user.roal == 'admon'">Request</router-link>
+        <router-link class="navlink" v-bind:to="{ name: 'AllBeers' }"
+          >Beers</router-link
+        >&nbsp;&nbsp;
+        <router-link
+          class="navlink"
+          v-bind:to="{ name: 'Request' }"
+          v-if="$store.state.user.roal == 'admon'"
+          >Request</router-link
+        >
       </div>
       <div>
-        <router-link class="navlink"
+        <router-link
+          class="navlink"
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
           >Logout</router-link
         >
-        <router-link class="navlink" v-else v-bind:to="{ name: 'login' }">Login</router-link
+        <router-link class="navlink" v-else v-bind:to="{ name: 'login' }"
+          >Login</router-link
         >&nbsp;|&nbsp;
       </div>
     </div>
@@ -46,33 +59,33 @@ export default {};
   top: 0;
   font-size: 16pt;
 }
-#nav img{
+#nav img {
   width: 75px;
   height: auto;
 }
 .navlink {
   color: black;
 }
-.navlink:hover{
+.navlink:hover {
   color: whitesmoke;
 }
-.navlink:visited{
-  color: #630F0F;
+.navlink:visited {
+  color: #630f0f;
 }
-.navlink:visited:hover{
+.navlink:visited:hover {
   color: whitesmoke;
 }
-.whitelink{
-    color: whitesmoke;
+.whitelink {
+  color: whitesmoke;
 }
-.whitelink:visited{
-    color: wheat;
+.whitelink:visited {
+  color: wheat;
 }
-.whitelink:hover{
-    color: goldenrod;
+.whitelink:hover {
+  color: goldenrod;
 }
-.whitelink:visited:hover{
-    color: goldenrod;
+.whitelink:visited:hover {
+  color: goldenrod;
 }
 body {
   padding-top: 50px;
@@ -80,5 +93,4 @@ body {
 body.custom-background {
   background-color: #dddddd;
 }
-
 </style>
