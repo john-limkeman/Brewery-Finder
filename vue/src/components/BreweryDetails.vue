@@ -1,7 +1,7 @@
 <template>
   <div id="breweryInfo" class="container contaner text-center col-xl-12 mx-auto rounded">
     <div class="flexLeft">
-      <img v-bind:src="brewery.imgUrl" width="180px" height="auto" />
+      <img v-bind:src="brewery.image" width="180px" height="auto" />
     </div>
     <div class="flexRight">
       <h2 id="name">
@@ -11,15 +11,15 @@
         {{ brewery.address }}
       </p>
       <p id="phone">
-        {{ brewery.number }}
+        {{ brewery.phone }}
       </p>
       <p id="hours">
         {{ brewery.hours }}
       </p>
       <p id="description">
-        {{ brewery.discription }}
+        {{ brewery.description }}
       </p>
-      <a class="navlink" v-bind:href="brewery.url">Web site</a> <br />
+      <a class="navlink" v-bind:href="brewery.brewery_url">Web site</a> <br />
       <br />
       <router-link
         class="navlink"

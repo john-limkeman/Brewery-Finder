@@ -5,7 +5,7 @@
   >
     <h2 class="text-center">Add a Brewery</h2>
     <breweryForm />
-    <button v-on:click="addBrewery" type="submit">Submit</button> <br />
+    
   </div>
 </template>
 
@@ -26,6 +26,7 @@ export default {
       breweryService.addBrewery(this.newBrewery);
       this.$router.push({ name: "BreweryList" });
     },
+    
   },
 };
 </script>
@@ -37,13 +38,14 @@ export default {
   border: 1px, solid, black;
   background-color: wheat;
   width: 70%;
+  margin-top: 50px;
 }
 #newBreweryForm {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-div > button {
+div > button, div > input {
   width: 100px;
   align-items: center;
 }

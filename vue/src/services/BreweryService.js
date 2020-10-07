@@ -27,6 +27,7 @@ export default {
     },
     addBeer(beer) {
         return http.post("/addBeer", beer)
+        
     }
 
 

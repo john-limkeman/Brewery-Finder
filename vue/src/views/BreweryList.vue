@@ -6,7 +6,7 @@
   > <!--text-center col-xl-5 mx-auto border border-dark rounded-->
     <h2>Breweries</h2>
     <div v-for="brewery in breweries" v-bind:key="brewery.id" class="brewery">
-      <img v-bind:src="brewery.imgUrl" width="180px" height="auto" />
+      <img v-bind:src="brewery.image" width="180px" height="auto" />
       <h3>
         <router-link
           v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }"

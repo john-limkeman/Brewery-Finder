@@ -65,16 +65,52 @@
         placeholder="Active"
       />
       <br />
+      <button
+        v-on:click="addBrewery"
+        v-if="this.$route.params.id == null"
+      >
+        Create
+      </button>
+      <button v-on:click="updateBrewery" v-else>Update</button>
+      <button v-on:click="cancelForm">Cancel</button>
+      <br />
     </form>
   </div>
 </template>
 
 <script>
+import breweryService from "../services/BreweryService";
 export default {
   data() {
     return {
       newBrewery: {},
     };
+  },
+  props: [],
+  methods: {
+    cancelForm() {
+      this.newBrewery = {};
+      this.$router.push({ name: "BreweryList" });
+    },
+    addBrewery() {
+      console.log(this.newBrewery)
+      breweryService.addBrewery(this.newBrewery);
+      this.$router.push({ name: "BreweryList" });
+    },
+    updateBrewery() {
+      breweryService.updateBrewery(this.newBrewery);
+      this.$router.push({ name: "BreweryList" });
+    },
+  },
+  created() {
+    if (this.$route.params.id != null) {
+      breweryService.getBreweryById(this.$route.params.id).then((response) => {
+        this.newBrewery = response.data;
+      });
+    }
+      else {
+        this.newBrewery = {}
+      }
   },
 };
 </script>
