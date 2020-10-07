@@ -1,5 +1,8 @@
 BEGIN TRANSACTION;
 
+Drop Table if exists Review;
+Drop Table if exists beers;
+Drop Table if exists breweries;
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
@@ -161,13 +164,19 @@ constraint fk_Breweries_Beer foreign key (beerId) references beers (beer_id)
 );
 
 INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('awesome beer', 'I would recommend to anyone', 'dark colored ale', 'somewhat bitter', 'small head', 'smells amazing', 2, 4, 3, null, '2020-10-07', 2);
-INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('beer smells funny', 'I would not recommend to anyone', 'colored ale', 'a littlet bitter', 'massive head', 'smells aweful', 1, 1, 3, null, '2020-10-07', 1);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('beer smells funny', 'I would not recommend to anyone', 'colored ale', 'a little bitter', 'massive head', 'smells aweful', 1, 1, 3, null, '2020-10-07', 1);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Fantastic', 'I would  recommend to anyone that drinks beer', 'light ale', 'balanced bitterness', 'normal head', 'smells like Germany', 3, 4, 1, null, '2020-10-07', 5);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('tastes like potatoes', 'I would  recommend to anyone that likes potatoes', 'clear', 'tastes like a fruit tree that grows potatoes', 'normal head', 'smells like fruit with potatoes ',4, 3, 1, null, '2020-10-07', 5);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('So so cold', 'Very cold', 'cold color', 'tastes cold', 'cold head', 'smells like ice ',5, 5, 1, null, '2020-10-07', 2);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('I love Pumpkin', 'tastes like pumkin in a glass in a beer', 'dark color', 'strong bitterness', 'small head', 'smells like pumpkin patch ',6, 5, 1, null, '2020-10-07', 3);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Strong Rhubarb smell', 'great smell but tastes flat', 'dark red color', 'strong bitterness', 'large head', 'Rhubarb smell ',7, 3, 1, null, '2020-10-07', 3);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Campfire', 'Reminds me of eating smores by a campfire with a peanut butter cup', 'dark color', 'mild bitterness', 'normal head', 'smells like peanuts ',8, 3, 1, null, '2020-10-07', 1);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Delicious beer with minor issues ', 'Was attacked by gnomes shortly after', 'Golden color', 'mild bitterness', 'great head', 'smells like pepper and other spices ',9, 4, 1, null, '2020-10-07', 4);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Serenite Grand Cru', 'full-bodied and dry finish', 'Deep Amber Color', 'tastes like brown sugar', 'fantastic head', 'nose of malty fruit ',10, 4, 1, null, '2020-10-07', 4);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Very sour', 'Sour for a sour beer', 'Sour Color', 'refreshingly tart', 'wonderful head', 'nose of malty wheat ',11, 4, 1, null, '2020-10-07', 1);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Not what I expected', 'Margarita  taste will have you wondering what you are drinking ', 'Ruby Red', 'sour with a hint of lime', 'terrible head', 'nose of the Dead Sea ',12, 4, 1, null, '2020-10-07', 1);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Pedal IPA', 'Absolutely Delightful ', 'Normal Beer Color', 'medium bodied with a little sweetness', 'Incredible head', 'nose of tropical fruit ',13, 4, 1, null, '2020-10-07', 1);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Pretzels Destroyed', 'Easy drinking  ', 'Amber Beer Color', 'Classic lager taste', 'Incredible head', 'nose of tropical fruit ',14, 5, 1, null, '2020-10-07', 1);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('beer smells old running shoes', 'I would not recommend to anything on earth', 'colored ale', 'Tastes like a dumpster fire', 'massive head', 'smells like a dead fish', 1, 1, 3, null, '2020-11-08', 1);
 
 COMMIT TRANSACTION;
-
-
-SELECT * FROM users;
-
-SELECT * FROM review WHERE id = 2
-
-
