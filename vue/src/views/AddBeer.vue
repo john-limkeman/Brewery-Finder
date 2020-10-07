@@ -5,14 +5,13 @@
   >
     <h2 class="text-center">Add a Beer</h2>
     <beerForm/>
-    <button v-on:click="saveBeer()" type="submit">Submit</button> <br />
+     <br />
     
   </div>
 </template>
 
 <script>
 import beerForm from "../components/BeerForm";
-import BreweryService from "../services/BreweryService"
 export default {
   data() {
     return {
@@ -23,17 +22,7 @@ export default {
   components: {
     beerForm,
   },
-  methods: {
-     saveBeer() {
-      BreweryService.addBeer(this.newBeer);
-      this.$router.push({ name: "BreweryBeers" });
-    },
-  },
-  created() {
-    BreweryService.getBreweryById(this.$route.params.id).then((response) => {
-      this.newBeer.breweryId = response.data.id;
-    });
-  }
+  
 };
 </script>
 
