@@ -50,19 +50,19 @@ public class JDBCBreweryDAO implements BreweryDAO {
 
 		jdbcTemplate.update(
 				"INSERT INTO breweries (name, address, description, image, brewery_url, phone, hours, active) VALUES (?,?,?,?,?,?,?,?)",
-				brewery.getName(), brewery.getAddress(), brewery.getDiscription(), brewery.getImgUrl(),
-				brewery.getUrl(), brewery.getPhoneNumber(), brewery.getHours(), brewery.isActive());
+				brewery.getName(), brewery.getAddress(), brewery.getDescription(), brewery.getImage(),
+				brewery.getBrewery_url(), brewery.getPhone(), brewery.getHours(), brewery.isActive());
 
 	}
 	
 	@Override
 	public void updateBrewery(Brewery brewery, long id) {
 
-		String sqlInsert = "UPDATE breweries SET name = ?, address = ?, description = ?, image = ?, brewer_id = ?, brewery_url = ?, phone = ?, hours = ?, active = ?"
+		String sqlInsert = "UPDATE breweries SET name = ?, address = ?, description = ?, image = ?, brewery_url = ?, phone = ?, hours = ?, active = ?"
 				+ " WHERE id = ?";
 		
-		jdbcTemplate.update(sqlInsert, brewery.getName(), brewery.getAddress(), brewery.getDiscription(), brewery.getImgUrl(), brewery.getBrewerId(),
-				brewery.getUrl(), brewery.getPhoneNumber(), brewery.getHours(), brewery.isActive(), id);
+		jdbcTemplate.update(sqlInsert, brewery.getName(), brewery.getAddress(), brewery.getDescription(), brewery.getImage(), 
+				brewery.getBrewery_url(), brewery.getPhone(), brewery.getHours(), brewery.isActive(), id);
 			
 	}
 	
@@ -74,13 +74,13 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		brewery.setId(results.getLong("id"));
 		brewery.setName(results.getString("name"));
 		brewery.setAddress(results.getString("address"));
-		brewery.setDiscription(results.getString("description"));
+		brewery.setDescription(results.getString("description"));
 		brewery.setBrewerId(results.getLong("brewer_id"));
-		brewery.setUrl(results.getString("brewery_url"));
-		brewery.setPhoneNumber(results.getLong("phone"));
+		brewery.setBrewery_url(results.getString("brewery_url"));
+		brewery.setPhone(results.getLong("phone"));
 		brewery.setHours(results.getString("hours"));
 		brewery.setActive(results.getBoolean("active"));
-		brewery.setImgUrl(results.getString("image"));
+		brewery.setImage(results.getString("image"));
 		return brewery;
 	}
 

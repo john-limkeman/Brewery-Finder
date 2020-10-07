@@ -52,6 +52,7 @@ public class BreweryController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path = "/addBrewery", method = RequestMethod.POST)
 	public void saveBrewery(@Valid @RequestBody Brewery brewery) {
+		System.out.println(brewery);
 		dao.saveBrewery(brewery);
 	}
 	

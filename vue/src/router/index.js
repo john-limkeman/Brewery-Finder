@@ -13,7 +13,7 @@ import userPage from "../views/UserPage.vue"
 import request from "../views/Request.vue"
 import AddBrewery from "../views/AddBrewery.vue"
 import editBrewery from "../views/EditBrewery.vue"
-
+import AddBeer from "../views/AddBeer.vue"
 
 Vue.use(Router)
 
@@ -117,13 +117,22 @@ const router = new Router({
       }
     },
     {
-      path: "/brewery/update",
+      path: "/brewery/:id/update",
       name: "UpdateBrewery",
       component: editBrewery,
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/brewery/:id/addBeer",
+      name: "AddBeer",
+      component: AddBeer,
+      meta: {
+        requiresAuth: true
+      }
     }
+
   ]
 })
 

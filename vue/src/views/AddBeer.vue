@@ -1,35 +1,38 @@
 <template>
   <div
-    id="addBrewery"
+    id="addBeer"
     class="contaner col-xl-5 mx-auto border border-dark rounded"
   >
-    <h2 class="text-center">Edit a Brewery</h2>
-    <breweryForm/>
+    <h2 class="text-center">Add a Beer</h2>
+    <beerForm/>
+    <button v-on:click="saveBeer()" type="submit">Submit</button> <br />
+    
   </div>
 </template>
 
 <script>
-import breweryForm from "../components/BreweryFrom";
-import breweryService from "../services/BreweryService";
+import beerForm from "../components/BeerForm";
+import BreweryService from "../services/BreweryService"
 export default {
   data() {
     return {
-      brewery: {},
+       
+     
     };
   },
   components: {
-    breweryForm,
+    beerForm,
   },
   methods: {
-    updateBrewery() {
-      breweryService.updateBrewery(this.brewery);
-      this.$router.push({ name: "BreweryList" });
+     saveBeer() {
+      BreweryService.addBeer(this.newBeer);
+      this.$router.push({ name: "BreweryBeers" });
     },
   },
   created() {
-    breweryService.getBreweryById(this.$route.params.id).then((response) => {
-      this.brewery = response.data;
-    })
+    BreweryService.getBreweryById(this.$route.params.id).then((response) => {
+      this.newBeer.breweryId = response.data.id;
+    });
   }
 };
 </script>
