@@ -16,16 +16,15 @@ public class JDBCBreweryDAO implements BreweryDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
-	
+
 	@Override
 	public List<Brewery> getAllBrewerys() {
-		List <Brewery> output = new ArrayList <Brewery>();
+		List<Brewery> output = new ArrayList<Brewery>();
 		String sql = "SELECT * FROM breweries";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 		while (results.next()) {
-			 output.add(mapRowToBrewery(results));
-		} 
+			output.add(mapRowToBrewery(results));
+		}
 		return output;
 	}
 
@@ -34,28 +33,29 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		String sql = "SELECT * FROM breweries WHERE id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 		if (results.next()) {
-			 return mapRowToBrewery(results);
+			return mapRowToBrewery(results);
 		} else {
 			throw new RuntimeException("No brewery found");
 		}
 	}
-	
-	
+
 	@Override
 	public void deleteBrewery(Long id) {
 		jdbcTemplate.update("DELETE FROM breweries WHERE id = ?", id);
-		
+
 	}
 
 	@Override
 	public void saveBrewery(Brewery brewery) {
-		
-			jdbcTemplate.update("INSERT INTO breweries (name, address, description, image, brewery_url, phone, hours, active) VALUES (?,?,?,?,?,?,?,?)",
-					brewery.getName(),brewery.getAddress(),brewery.getDiscription(),brewery.getImgUrl(), brewery.getUrl(), brewery.getPhoneNumber(),brewery.getHours(),brewery.isActive());
-			
-		}
-		
-	// maps SQL query to brewery object 
+
+		jdbcTemplate.update(
+				"INSERT INTO breweries (name, address, description, image, brewery_url, phone, hours, active) VALUES (?,?,?,?,?,?,?,?)",
+				brewery.getName(), brewery.getAddress(), brewery.getDiscription(), brewery.getImgUrl(),
+				brewery.getUrl(), brewery.getPhoneNumber(), brewery.getHours(), brewery.isActive());
+
+	}
+
+	// maps SQL query to brewery object
 	private Brewery mapRowToBrewery(SqlRowSet results) {
 		Brewery brewery = new Brewery();
 		brewery.setId(results.getLong("id"));
@@ -63,7 +63,7 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		brewery.setAddress(results.getString("address"));
 		brewery.setDiscription(results.getString("description"));
 		brewery.setBrewerId(results.getLong("brewer_id"));
-		brewery.setUrl(results.getString("brewery_url"));	
+		brewery.setUrl(results.getString("brewery_url"));
 		brewery.setPhoneNumber(results.getLong("phone"));
 		brewery.setHours(results.getString("hours"));
 		brewery.setActive(results.getBoolean("active"));
@@ -71,6 +71,4 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		return brewery;
 	}
 
-
-	
 }

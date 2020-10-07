@@ -24,33 +24,33 @@ public class BreweryController {
 
 	@Autowired
 	public BreweryDAO dao;
-	
+
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public String test() {
 		return "It worked";
 	}
-	
+
 	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/breweries", method = RequestMethod.GET)
-	public List <Brewery> getAllBreweries() {
+	public List<Brewery> getAllBreweries() {
 		return dao.getAllBrewerys();
 	}
-	
+
 	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.GET)
 	public Brewery getBrewery(@PathVariable long id) {
 		return dao.getBreweryById(id);
 	}
-	
-	@RequestMapping(path="/brewery/{id}", method=RequestMethod.DELETE)
+
+	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.DELETE)
 	public String deleteBeer(@PathVariable Long id) {
-		 dao.deleteBrewery(id);
+		dao.deleteBrewery(id);
 		return "Brewery Deleted";
-		 
+
 	}
-	
+
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping(path="/addBrewery", method=RequestMethod.POST)
+	@RequestMapping(path = "/addBrewery", method = RequestMethod.POST)
 	public void saveBrewery(@Valid @RequestBody Brewery brewery) {
 		dao.saveBrewery(brewery);
 	}

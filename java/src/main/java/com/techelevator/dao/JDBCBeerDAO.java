@@ -10,39 +10,34 @@ import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Beer;
 
-
-
 @Component
 public class JDBCBeerDAO implements BeerDAO {
 
-	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
-	
+
 	@Override
 	public List<Beer> getAllBeer() {
-		
+
 		List<Beer> allBeer = new ArrayList<>();
 		String sqlSelectAllBeer = "SELECT * FROM beers";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectAllBeer);
-		
-		while(result.next()) {
+
+		while (result.next()) {
 			allBeer.add(mapRowToBeer(result));
 		}
-		
+
 		return allBeer;
-		
-		
+
 	}
-	
+
 	@Override
-	public List<Beer> BeerByBrewery(Long id){
+	public List<Beer> BeerByBrewery(Long id) {
 		List<Beer> brewBeers = new ArrayList<>();
 		String sqlBrewBeer = "SELECT * FROM beers WHERE brewery_id = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlBrewBeer, id);
-		
-		while(result.next()) {
+
+		while (result.next()) {
 			brewBeers.add(mapRowToBeer(result));
 		}
 		return brewBeers;
@@ -50,38 +45,37 @@ public class JDBCBeerDAO implements BeerDAO {
 
 	@Override
 	public Beer getBeerById(Long id) {
-			
+
 		Beer beer = new Beer();
 		String sqlSelectBeerByName = "SELECT * FROM beers where beer_id = ?";
-		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectBeerByName,id);
-		
-		if(result.next()) {
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlSelectBeerByName, id);
+
+		if (result.next()) {
 			beer = mapRowToBeer(result);
 		}
-		
+
 		return beer;
 	}
-	
 
 	@Override
 	public void deleteBeer(Long id) {
 		jdbcTemplate.update("DELETE FROM beers WHERE beer_id = ?", id);
-		
+
 	}
 
 	@Override
 	public void saveBeer(Beer beer) {
-		jdbcTemplate.update("INSERT INTO beers (beer_name, brewery_id, beer_type, description, picture, abv, ibu, available) VALUES (?,?,?,?,?,?,?,?)",
-				beer.getName(),beer.getBreweryId(),beer.getType(),beer.getDescription(),beer.getImgUrl(),beer.getAbv(),beer.getIbu(),beer.isCurrent());
-		
+		jdbcTemplate.update(
+				"INSERT INTO beers (beer_name, brewery_id, beer_type, description, picture, abv, ibu, available) VALUES (?,?,?,?,?,?,?,?)",
+				beer.getName(), beer.getBreweryId(), beer.getType(), beer.getDescription(), beer.getImgUrl(),
+				beer.getAbv(), beer.getIbu(), beer.isCurrent());
+
 	}
-	
-	
-	
-private Beer mapRowToBeer(SqlRowSet row) {
-		
+
+	private Beer mapRowToBeer(SqlRowSet row) {
+
 		Beer beer = new Beer();
-		
+
 		beer.setId(row.getLong("beer_id"));
 		beer.setName(row.getString("beer_name"));
 		beer.setAbv(row.getDouble("abv"));
@@ -92,10 +86,9 @@ private Beer mapRowToBeer(SqlRowSet row) {
 		beer.setRating(row.getDouble("rating"));
 		beer.setCurrent(row.getBoolean("available"));
 		beer.setImgUrl(row.getString("picture"));
-	
-		
+
 		return beer;
-		
+
 	}
 
 }

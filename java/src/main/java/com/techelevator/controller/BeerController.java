@@ -20,38 +20,36 @@ import com.techelevator.model.Beer;
 @RestController
 @CrossOrigin
 public class BeerController {
-	
+
 	@Autowired
 	BeerDAO dao;
-	
-	@RequestMapping(path="/beer", method=RequestMethod.GET)
+
+	@RequestMapping(path = "/beer", method = RequestMethod.GET)
 	public List<Beer> getAllBeer() {
 		return dao.getAllBeer();
 	}
-	
-	@RequestMapping(path="/beer/{id}", method=RequestMethod.GET)
+
+	@RequestMapping(path = "/beer/{id}", method = RequestMethod.GET)
 	public Beer getBeerById(@PathVariable Long id) {
 		return dao.getBeerById(id);
 	}
-	
-	@RequestMapping(path="/brewery/{id}/beers", method=RequestMethod.GET)
-	public List<Beer> beerByBrewery(@PathVariable Long id){
+
+	@RequestMapping(path = "/brewery/{id}/beers", method = RequestMethod.GET)
+	public List<Beer> beerByBrewery(@PathVariable Long id) {
 		return dao.BeerByBrewery(id);
 	}
-	
-	@RequestMapping(path="/beer/{id}", method=RequestMethod.DELETE)
+
+	@RequestMapping(path = "/beer/{id}", method = RequestMethod.DELETE)
 	public String deleteBeer(@PathVariable Long id) {
-		 dao.deleteBeer(id);
+		dao.deleteBeer(id);
 		return "Beer Deleted";
-		 
+
 	}
-	
+
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping(path="/addBeer", method=RequestMethod.POST)
+	@RequestMapping(path = "/addBeer", method = RequestMethod.POST)
 	public void saveBeer(@Valid @RequestBody Beer beer) {
-		 dao.saveBeer(beer);
+		dao.saveBeer(beer);
 	}
-	
-	
 
 }
