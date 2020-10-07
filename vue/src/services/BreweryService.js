@@ -23,7 +23,7 @@ export default {
         return http.post("/addBrewery", brewery)
     },
     updateBrewery(brewery) {
-        return http.put("/updateBrewery", brewery)
+        return http.put(`/brewery/${brewery.id}`, brewery)
     }
 
 }

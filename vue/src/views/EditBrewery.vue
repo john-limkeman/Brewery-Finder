@@ -4,8 +4,7 @@
     class="contaner col-xl-5 mx-auto border border-dark rounded"
   >
     <h2 class="text-center">Edit a Brewery</h2>
-    <breweryForm />
-    <button v-on:click="updateBrewery" type="submit">Submit</button> <br />
+    <breweryForm/>
   </div>
 </template>
 
@@ -27,6 +26,11 @@ export default {
       this.$router.push({ name: "BreweryList" });
     },
   },
+  created() {
+    breweryService.getBreweryById(this.$route.params.id).then((response) => {
+      this.brewery = response.data;
+    })
+  }
 };
 </script>
 
