@@ -84,6 +84,13 @@ public class UserSqlDAO implements UserDAO {
 
 		return userCreated;
 	}
+	
+	@Override
+	public void updateUserRole(User user) {
+		String sqlInsert = "UPDATE users SET role = ?  WHERE user_id = ?";
+		jdbcTemplate.update(sqlInsert, user.getAuthorities(), user.getId());
+				
+	}
 
 	private User mapRowToUser(SqlRowSet rs) {
 		User user = new User();

@@ -48,7 +48,8 @@ public class BreweryController {
 		return "Brewery Deleted";
 
 	}
-
+	
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path = "/addBrewery", method = RequestMethod.POST)
 	public void saveBrewery(@Valid @RequestBody Brewery brewery) {

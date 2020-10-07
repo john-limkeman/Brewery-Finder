@@ -49,7 +49,7 @@
                 v-model="newBeer.imgUrl"
                 type="text"
                 name="active"
-                placeholder="Active"
+                placeholder="img URL"
             />
              <br />
              <label for ="Current">Available</label>
@@ -79,7 +79,7 @@ export default {
     },
     methods: {
      saveBeer() {
-         console.log(this.newBeer);
+         
       BreweryService.addBeer(this.newBeer);
       this.$router.push({ name: "BreweryBeers" });
     },
