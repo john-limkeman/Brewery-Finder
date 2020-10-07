@@ -92,7 +92,7 @@ body {
   padding-top: 50px;
   background-image: url("https://skookumbrewery.com/wp-content/uploads/2019/05/cropped-IMG_4560-6.jpg");
   background-repeat: no-repeat;
-  
+  background-attachment: fixed;
 }
 .container {
   display: flex;
