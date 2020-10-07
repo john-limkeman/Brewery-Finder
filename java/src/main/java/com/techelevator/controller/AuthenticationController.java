@@ -68,6 +68,12 @@ public class AuthenticationController {
 	public User getUserById(@PathVariable("userId") long userId) {
 	  return userDAO.getUserById(userId);
 	}
+	
+	@RequestMapping(value = "/user/{userId}" , method = RequestMethod.PUT)
+	public void updateUserRole(@Valid @RequestBody User user ) {
+		userDAO.updateUserRole(user);
+		
+	}
 
 	/**
 	 * Object to return as body in JWT Authentication.
