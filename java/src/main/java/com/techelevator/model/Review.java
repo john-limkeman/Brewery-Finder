@@ -26,8 +26,15 @@ public class Review {
 	public Long userId;
 	public String reviewImgUrl;
 	public Date reviewDate;
+	public Long breweryId;
 	
 	
+	public Long getBreweryId() {
+		return breweryId;
+	}
+	public void setBreweryId(Long breweryId) {
+		this.breweryId = breweryId;
+	}
 	public Long getId() {
 		return id;
 	}
