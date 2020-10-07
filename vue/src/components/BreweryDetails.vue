@@ -1,5 +1,5 @@
 <template>
-  <div id="breweryInfo" class="contaner text-center col-xl-12 mx-auto rounded">
+  <div id="breweryInfo" class="container contaner text-center col-xl-12 mx-auto rounded">
     <div class="flexLeft">
       <img v-bind:src="brewery.imgUrl" width="180px" height="auto" />
     </div>

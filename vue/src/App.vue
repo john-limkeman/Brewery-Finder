@@ -20,9 +20,9 @@
         <router-link
           class="navlink"
           v-bind:to="{ name: 'Request' }"
-          v-if="$store.state.user.roal == 'admon'"
-          >Request</router-link
-        >
+          v-if="$store.state.user.roal == 'admon'" 
+          >Request</router-link 
+        > <!-- whats goin on with the roal and admon? -->
       </div>
       <div>
         <router-link
@@ -55,9 +55,10 @@ export default {};
   background-color: goldenrod;
   color: whitesmoke;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   font-size: 16pt;
+  z-index: 5;
 }
 #nav img {
   width: 75px;
@@ -92,5 +93,15 @@ body {
 }
 body.custom-background {
   background-color: #dddddd;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 1px, solid, black;
+  background-color: wheat;
+  width: 50%;
+  position: absolute;
+  top: 50px;
+  padding: 10px;
 }
 </style>

@@ -1,8 +1,9 @@
 <template>
+<div>
   <div
     id="beerlist"
-    class="contaner text-center col-xl-5 mx-auto border border-dark rounded"
-  >
+    class="container contaner text-center col-xl-5 mx-auto border border-dark rounded"
+  > <!--text-center col-xl-5 mx-auto border border-dark rounded-->
     <h2>Breweries</h2>
     <div v-for="brewery in breweries" v-bind:key="brewery.id" class="brewery">
       <img v-bind:src="brewery.imgUrl" width="180px" height="auto" />
@@ -16,6 +17,7 @@
       </h3>
     </div>
     <button id="addBreweryBtn" v-on:click="addBrewery">Add a brewery</button>
+  </div>
   </div>
 </template>
 
@@ -44,14 +46,7 @@ export default {
 </script>
 
 <style>
-.container {
-  display: flex;
-  flex-direction: column;
-  border: 1px, solid, black;
-  background-color: wheat;
-  width: 70%;
-  margin-top: 100px;
-}
+
 #beerlist {
   background-color: wheat;
 }

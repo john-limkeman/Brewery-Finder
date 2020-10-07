@@ -1,5 +1,5 @@
 <template>
-  <div id="beerInfo" class="contaner text-center col-xl-12 mx-auto rounded">
+  <div id="beerInfo" class=" container contaner text-center col-xl-12 mx-auto rounded">
     <h2>
       {{ beer.name }} <span> {{ beer.rating }} </span>
     </h2>
