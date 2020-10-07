@@ -2,7 +2,7 @@
 <div>
   <div
     id="beerlist"
-    class="container contaner text-center col-xl-5 mx-auto border border-dark rounded"
+    class="container text-center col-xl-5 mx-auto border border-dark rounded"
   > <!--text-center col-xl-5 mx-auto border border-dark rounded-->
     <h2>Breweries</h2>
     <div v-for="brewery in breweries" v-bind:key="brewery.id" class="brewery">
@@ -16,7 +16,7 @@
         </router-link>
       </h3>
     </div>
-    <button id="addBreweryBtn" v-on:click="addBrewery">Add a brewery</button>
+    <router-link class="navlink" v-bind:to="{name: 'AddBrewery'}">Add a brewery</router-link>
   </div>
   </div>
 </template>

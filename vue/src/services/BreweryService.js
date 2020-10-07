@@ -23,10 +23,13 @@ export default {
         return http.post("/addBrewery", brewery)
     },
     updateBrewery(brewery) {
-        return http.put("/updateBrewery", brewery)
+        return http.put(`/brewery/${brewery.id}`, brewery)
     },
     addBeer(beer) {
         return http.post("/addBeer", beer)
+    },
+    updateBeer(beer) {
+        return http.put(`/beer/${beer.id}`, beer)
     },
     getReviewByBeer(id){
         return http.get(`/beer/${id}/reviews`)

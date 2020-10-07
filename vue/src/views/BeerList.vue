@@ -187,7 +187,6 @@ h3 {
   border: solid 1px black;
   border-radius: 20px;
   padding: 10px;
-  margin: 5px;
   width: 70%;
   color: black;
 }
