@@ -54,4 +54,11 @@ public class BreweryController {
 	public void saveBrewery(@Valid @RequestBody Brewery brewery) {
 		dao.saveBrewery(brewery);
 	}
+	
+	//@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.PUT)
+	public void updateBrewery(@PathVariable long id, @RequestBody Brewery brewery) {
+		dao.updateBrewery(brewery, id);
+		
+	}
 }
