@@ -27,7 +27,18 @@ export default {
     },
     addBeer(beer) {
         return http.post("/addBeer", beer)
-        
+    },
+    getReviewByBeer(id){
+        return http.get(`/beer/${id}/reviews`)
+    },
+    getReviewByBrewery(id){
+        return http.get(`/brewery/${id}/reviews`)
+    },
+    addReview(review){
+        return http.post("/new-review", review)
+    },
+    deleteReview(review){
+        return http.delete('/delete-review', review)
     }
 
 
