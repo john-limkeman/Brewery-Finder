@@ -137,7 +137,37 @@ INSERT INTO Beers (beer_name, brewery_id, beer_type, description, picture, abv, 
 INSERT INTO Beers (beer_name, brewery_id, beer_type, description, picture, abv, ibu, rating, available) VALUES ('Colette', 3, 'Ale', 'Brewed with barley, wheat and rice and fermented at high temperatures with a special blend of four different yeast strains, COLETTE is fruity and slightly tart, with a dry finish that makes it that rarest of treats — a beer as refreshing as it is complex', 'https://greatdivide.com/wp-content/uploads/2016/06/Colette_2017_Front_HR.png',
 7.3, null , 5.0, true);
 
+
+
+CREATE Table Review (
+
+id serial, 
+title varchar,
+overall varchar,
+color varchar,
+taste varchar,
+head varchar,
+smell varchar,
+beerId bigint,
+rating int,
+userId bigint,
+reviewImgUrl varchar,
+reviewDate date,
+breweryId bigint,
+
+constraint pk_Review primary key (id),
+constraint fk_Beers_Breweries foreign key (breweryId) references Breweries (id),
+constraint fk_Breweries_Beer foreign key (beerId) references beers (beer_id)
+);
+
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('awesome beer', 'I would recommend to anyone', 'dark colored ale', 'somewhat bitter', 'small head', 'smells amazing', 2, 4, 3, null, '2020-10-07', 2);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('beer smells funny', 'I would not recommend to anyone', 'colored ale', 'a littlet bitter', 'massive head', 'smells aweful', 1, 1, 3, null, '2020-10-07', 1);
+
 COMMIT TRANSACTION;
 
 
 SELECT * FROM users;
+
+SELECT * FROM review WHERE id = 2
+
+

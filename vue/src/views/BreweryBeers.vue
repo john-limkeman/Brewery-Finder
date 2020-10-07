@@ -1,7 +1,7 @@
 <template>
   <div>
     <BreweryDetails />
-    <h2>Beers</h2>
+    <h2 id='beers-header'>Beers</h2>
     <div
       class="contaner text-center col-xl-12 mx-auto rounded"
       v-for="beer in beers"
@@ -44,4 +44,7 @@ export default {
 </script>
 
 <style>
+    #beers-header{
+        margin-top: 50px;
+    }
 </style>
