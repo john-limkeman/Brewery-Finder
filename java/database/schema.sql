@@ -160,12 +160,14 @@ constraint fk_Beers_Breweries foreign key (breweryId) references Breweries (id),
 constraint fk_Breweries_Beer foreign key (beerId) references beers (beer_id)
 );
 
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('awesome beer', 'I would recommend to anyone', 'dark colored ale', 'somewhat bitter', 'small head', 'smells amazing', 2, 4, 3, null, '2020-10-07', 2);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('beer smells funny', 'I would not recommend to anyone', 'colored ale', 'a littlet bitter', 'massive head', 'smells aweful', 1, 1, 3, null, '2020-10-07', 1);
 
 COMMIT TRANSACTION;
 
 
 SELECT * FROM users;
 
-
+SELECT * FROM review WHERE id = 2
 
 
