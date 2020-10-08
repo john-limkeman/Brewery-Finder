@@ -4,9 +4,8 @@
     class="contianer col-xl-5 mx-auto border border-dark rounded"
   >
     <h2 class="text-center">Add a Beer</h2>
-    <beerForm/>
-     <br />
-    
+    <beerForm />
+    <br />
   </div>
 </template>
 
@@ -14,14 +13,11 @@
 import beerForm from "../components/BeerForm";
 export default {
   data() {
-    return {
-
-    };
+    return {};
   },
   components: {
     beerForm,
   },
-  
 };
 </script>
 

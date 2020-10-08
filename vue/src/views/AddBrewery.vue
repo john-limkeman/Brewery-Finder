@@ -5,7 +5,6 @@
   >
     <h2 class="text-center">Add a Brewery</h2>
     <breweryForm />
-    
   </div>
 </template>
 
@@ -26,7 +25,6 @@ export default {
       breweryService.addBrewery(this.newBrewery);
       this.$router.push({ name: "BreweryList" });
     },
-    
   },
 };
 </script>
@@ -45,7 +43,8 @@ export default {
   flex-direction: column;
   justify-content: space-around;
 }
-div > button, div > input {
+div > button,
+div > input {
   width: 100px;
   align-items: center;
 }

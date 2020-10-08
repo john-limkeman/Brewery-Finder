@@ -4,7 +4,7 @@
     class="container col-xl-5 mx-auto border border-dark rounded"
   >
     <h2 class="text-center">Edit a Brewery</h2>
-    <breweryForm/>
+    <breweryForm />
   </div>
 </template>
 
@@ -29,8 +29,8 @@ export default {
   created() {
     breweryService.getBreweryById(this.$route.params.id).then((response) => {
       this.brewery = response.data;
-    })
-  }
+    });
+  },
 };
 </script>
 
