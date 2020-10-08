@@ -10,7 +10,7 @@ import BreweryBeers from '../views/BreweryBeers.vue'
 import BeerDetails from "../components/BeerDetails.vue"
 import BeerList from '@/views/BeerList.vue'
 import userPage from "../views/UserPage.vue"
-import request from "../views/Request.vue"
+import adminTools from "../views/AdminTools.vue"
 import AddBrewery from "../views/AddBrewery.vue"
 import editBrewery from "../views/EditBrewery.vue"
 import AddBeer from "../views/AddBeer.vue"
@@ -71,7 +71,6 @@ const router = new Router({
         requiresAuth: false
       }
     },
-
     {
       path: "/brewery/:id/beers",
       name: "BreweryBeers",
@@ -102,9 +101,9 @@ const router = new Router({
       }
     },
     {
-      path: "/requests",
-      name: "Request",
-      component: request,
+      path: "/adminTools",
+      name: "AdminTools",
+      component: adminTools,
       meta: {
         requiresAuth: true
       }
