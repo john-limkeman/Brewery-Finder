@@ -2,7 +2,15 @@
 <div class='revCardContainer'>
   <div class='review-card'>
       <h4 id='review-title'> "{{review.title}}"</h4>
-      <p id='review-rating'>{{review.rating}}</p>
+      <div id= 'review-rating'>
+       <img
+          src="../Resources/star.png"
+          v-bind:title="review.rating + ' Star Review'"
+          id="ratingStar"
+          v-for="n in review.rating"
+          v-bind:key="n"
+        />
+        </div>
       <h6 id='review-user'><span>By:</span> {{this.username}}</h6>
      <p id='review-overall'> <span>Overall:</span> {{review.overall}}</p>
      <p id='review-color'><span>Color:</span> {{review.color}}</p>
@@ -74,8 +82,15 @@ export default {
 #review-title{
     grid-area: title;
 }
+#ratingStar{
+    width: 25px;
+}
 #review-rating{
     grid-area: rating;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 #review-user{
     grid-area: username;
@@ -86,6 +101,7 @@ export default {
 #review-img{
     grid-area: img;
     height: 200px;
+    max-width: 300px;;
     align-items: right;
 }
 #review-color{

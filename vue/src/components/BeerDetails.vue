@@ -1,7 +1,7 @@
 <template>
-  <div id="beerInfo" class=" container contaner text-center col-xl-12 mx-auto rounded">
+  <div id="beerInfo" class=" container text-center col-xl-12 mx-auto rounded">
     <h2>
-      {{ beer.name }} <span> {{ beer.rating }} </span>
+      {{ beer.name }}  <span id='avgRatingDisplay'> {{ beer.rating }}</span>
     </h2>
     <h4 v-bind="getBrewery()">
       <router-link
@@ -83,11 +83,25 @@ export default {
   width: 60%;
   justify-content: center;
   align-items: center;
+  display: grid;
+  grid-template-columns: ;
 }
 li {
   list-style-type: none;
 }
 div > img {
   margin: 10px;
+}
+
+#avgRatingDisplay {
+  font-weight: bold;
+  color: goldenrod;
+  background-color: black;
+  margin-left: 200px;
+  padding: 10px;
+  border: solid 3px goldenrod;
+}
+#beerInfo > h2{
+  text-align: center;
 }
 </style>
