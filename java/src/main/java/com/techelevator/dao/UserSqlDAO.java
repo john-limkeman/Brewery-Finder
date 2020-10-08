@@ -11,11 +11,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.User;
 
 @Service
 public class UserSqlDAO implements UserDAO {
-
+	RegisterUserDTO registeredUser = new RegisterUserDTO();
+	
 	private JdbcTemplate jdbcTemplate;
 
 	public UserSqlDAO(JdbcTemplate jdbcTemplate) {
@@ -88,7 +90,7 @@ public class UserSqlDAO implements UserDAO {
 	@Override
 	public void updateUserRole(User user) {
 		String sqlInsert = "UPDATE users SET role = ?  WHERE user_id = ?";
-		jdbcTemplate.update(sqlInsert, user.getAuthorities(), user.getId());
+		jdbcTemplate.update(sqlInsert, registeredUser.getRole(), user.getId());
 				
 	}
 
