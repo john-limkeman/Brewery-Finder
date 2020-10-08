@@ -84,6 +84,7 @@ export default {
 }
 #ratingStar{
     width: 25px;
+    height: auto;
 }
 #review-rating{
     grid-area: rating;

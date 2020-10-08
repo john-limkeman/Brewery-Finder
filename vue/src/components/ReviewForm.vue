@@ -90,7 +90,7 @@ export default {
         AddReview(){
             this.review.reviewDate = new Date();
             BreweryService.addReview(this.review).then(
-                window.location.reload()
+                this.$router.push({name: 'UserPage', params : {id : this.$store.state.user.id}})
             )
             console.log(this.$store.state.logIn)
         },
