@@ -47,8 +47,8 @@ export default {
     };
   },
   created() {
-    BreweryService.getBreweryById(this.$route.params.id).then((responce) => {
-      this.brewery = responce.data;
+    BreweryService.getBreweryById(this.$route.params.id).then((response) => {
+      this.brewery = response.data;
     });
   },
 };

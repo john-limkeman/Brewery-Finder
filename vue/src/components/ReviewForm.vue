@@ -1,7 +1,7 @@
 <template>
   <div>
-      <button v-on:click='ChangeVis' v-if='this.$store.state.logIn'>Add A review</button>
-      <form v-on:submit.prevent='AddReview' v-if='visibility == true'>
+      <button v-on:click='ChangeVis'>Add A review</button>
+      <form v-on:submit='AddReview' v-if='visibility == true'>
             <label for="title">Title</label>
             <input
                 v-model="review.title"
@@ -64,8 +64,13 @@
                 name="image"
                 placeholder="Pics or it didn't happen!"
             />
-            <button>Submit</button>
-            <button v-on:click='Cancel'>Cancel</button>
+            <button v-on:click="saveBeer" v-if="this.$route.params.beerId == null">
+        Add
+      </button>
+      <button v-on:click="updateBeer" v-else>Update</button>
+      <button v-on:click="cancel">Cancel</button>
+            <!-- <button>Submit</button>
+            <button v-on:click='Cancel'>Cancel</button> -->
       </form>
   </div>
 </template>
@@ -92,7 +97,6 @@ export default {
             BreweryService.addReview(this.review).then(
                 window.location.reload()
             )
-            console.log(this.$store.state.logIn)
         },
         Cancel(){
             this.review = {
@@ -105,9 +109,21 @@ export default {
         },
         ChangeVis(){
             this.visibility = true;
-        }
-       
-    },
+        },
+     
+     created() {
+         if (this.$route.params.userId != null) {
+             BreweryService.getReviewByUser(this.$route.param.userId).then((response) => {
+                 this.newReview = response.data;
+             }
+             )
+         } 
+             
+     }
+
+
+
+    }
 }
 </script>
 
