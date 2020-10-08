@@ -1,35 +1,35 @@
 <template>
   <div id="beerInfo" class=" container text-center col-xl-12 mx-auto rounded">
     <h2>
-      {{ beer.name }}  <span id='avgRatingDisplay'> {{ beer.rating }}</span>
-    </h2>
-    <h4 v-bind="getBrewery()">
+      {{ beer.name }}  <br> <span v-bind="getBrewery()">
       <router-link
         class="navlink"
         v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }"
       >
         {{ brewery.name }}
       </router-link>
-    </h4>
-    <img v-bind:src="beer.imgUrl" width="180px" height="auto" />
+    </span>
+    </h2>
+    <h1 id='avgRatingDisplay'> {{ beer.rating }}</h1>
+    
+    <img id='beerImg' v-bind:src="beer.imgUrl" width="180px" height="auto" />
     <ul>
-      <li>
-        {{ beer.type }}
-      </li>
-      <li>ABV : {{ beer.abv }}</li>
-      <li>IBU : {{ beer.ibu }}</li>
-      <li>
-        {{ this.setStatus }}
-      </li>
+      <li id='beerType'>{{ beer.type }}</li>
+      <li id='beerAbv'>ABV : {{ beer.abv }}</li>
+      <li id='beerIbu'>IBU : {{ beer.ibu }}</li>
+      <li id='beerStatus'>{{ this.setStatus }}</li>
     </ul>
-    <p>{{ beer.description }}</p>
+    <p id='beerDesc'>{{ beer.description }}</p>
+    
     <router-link
-        class="navlink"
+        class="navlink" id="editBeerButton"
         v-bind:to="{ name: 'UpdateBeer', params: {id: beer.breweryId, beerId: beer.id } }"
       >
         Edit this beer
       </router-link>
+    <div id='reviewListContainer'>
     <ReviewList />
+    </div>
   </div>
 </template>
 
@@ -63,6 +63,7 @@ export default {
     breweryServices.getBeerById(this.$route.params.id).then((response) => {
       this.beer = response.data;
       console.log(this.beer.breweryId);
+      console.log(this.$store.state.logIn)
     });
     
   },
@@ -84,24 +85,78 @@ export default {
   justify-content: center;
   align-items: center;
   display: grid;
-  /* grid-template-columns: ; */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "img name rating"
+  "img name edit"
+  "type desc desc"
+  "abv desc desc"
+  "ibu desc desc"
+  "onTap desc desc"
+  "review review review"
 }
 li {
   list-style-type: none;
+  text-align: left;
 }
 div > img {
   margin: 10px;
+  height: 300px;
+  width:auto;
 }
 
 #avgRatingDisplay {
   font-weight: bold;
   color: goldenrod;
   background-color: black;
-  margin-left: 200px;
-  padding: 10px;
+  margin: 50px;
+  padding: 5px;
   border: solid 3px goldenrod;
+  grid-area: rating;
+  width: 150px;
+  align-self:center;
+  justify-self: right;
+  
+ 
+}
+#beerImg{
+  grid-area: img;
 }
 #beerInfo > h2{
-  text-align: center;
+  margin-top: 40px;
+  grid-area: name;
+  align-self: start;
+
+}
+#beerInfo > h2 > span{
+  font-size: 25px;
+  margin-top: 20px;
+}
+#beerType{
+  grid-area: type;
+}
+#beerAbv{
+  grid-area: abv;
+}
+#beerIbu{
+  grid-area: ibu;
+}
+#beerStatus{
+  grid-area: onTap;
+}
+#beerDesc{
+  grid-area: desc;
+}
+#editBeerButton{
+  grid-area: edit;
+  align-self: start;
+  justify-self: right;
+   margin: 50px;
+   border: solid #630f0f 2px;
+   padding: 5px;
+   color: #630f0f;
+}
+#reviewListContainer{
+  grid-area: review;
 }
 </style>
