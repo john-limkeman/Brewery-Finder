@@ -44,7 +44,6 @@
 export default {
   methods: {
     isAdmin() {
-      console.log(this.$store.state.user)
       if (this.$store.state.logIn) {
         if (this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
           return true;
