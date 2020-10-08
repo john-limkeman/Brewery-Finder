@@ -54,6 +54,21 @@ public class JDBCReviewDAO implements ReviewDAO {
 		return reviewsByBrewery;
 	}
 	
+	@Override
+	public List<Review> getReviewsByUserId(Long userId) {
+		List<Review> reviewsByUser = new ArrayList<Review>();
+		String sql = "SELECT * FROM review WHERE userId = ?";
+		SqlRowSet result = jdbc.queryForRowSet(sql, userId);
+		while (result.next()) {
+			Review review = mapToReview(result);
+			reviewsByUser.add(review);
+		}
+		return reviewsByUser;
+	}
+	
+	
+	
+	
 	public Review mapToReview(SqlRowSet row){
 		Review review = new Review();
 		review.id = row.getLong("id");
@@ -72,5 +87,7 @@ public class JDBCReviewDAO implements ReviewDAO {
 		
 		return review;
 	}
+
+
 
 }

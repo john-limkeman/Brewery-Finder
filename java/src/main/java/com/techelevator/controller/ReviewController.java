@@ -48,4 +48,9 @@ public class ReviewController {
 	public List<Review> reviewByBrewery(@PathVariable Long id){
 		return dao.getReviewsByBrewery(id);
 	}
+	
+	@RequestMapping(path = "/user/{id}/reviews", method = RequestMethod.GET)
+	public List<Review> getReviewsByUserId(@PathVariable Long id){
+		return dao.getReviewsByUserId(id);
+	}
 }
