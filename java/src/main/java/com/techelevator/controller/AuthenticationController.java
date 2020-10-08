@@ -18,6 +18,7 @@ import com.techelevator.model.LoginDTO;
 import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.User;
 import com.techelevator.model.UserAlreadyExistsException;
+import com.techelevator.model.UserRoleChange;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
@@ -70,7 +71,8 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value = "/user/{userId}" , method = RequestMethod.PUT)
-	public void updateUserRole(@Valid @RequestBody User user ) {
+	public void updateUserRole(@Valid @RequestBody UserRoleChange user, @PathVariable("userId") long userId ) {
+			
 		userDAO.updateUserRole(user);
 		
 	}

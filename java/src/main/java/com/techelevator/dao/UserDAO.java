@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.User;
+import com.techelevator.model.UserRoleChange;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface UserDAO {
 
 	boolean create(String username, String password, String role);
 	
-	public void updateUserRole(User user);
+	public void updateUserRole(UserRoleChange user);
 	
 	
 }
