@@ -1,6 +1,6 @@
 <template>
   <div>
-      <button v-on:click='ChangeVis'>Add A review</button>
+      <button v-on:click='ChangeVis' v-if='this.$store.state.logIn'>Add A review</button>
       <form v-on:submit.prevent='AddReview' v-if='visibility == true'>
             <label for="title">Title</label>
             <input
@@ -92,6 +92,7 @@ export default {
             BreweryService.addReview(this.review).then(
                 window.location.reload()
             )
+            console.log(this.$store.state.logIn)
         },
         Cancel(){
             this.review = {
