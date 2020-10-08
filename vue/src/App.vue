@@ -19,9 +19,9 @@
         >&nbsp;&nbsp;
         <router-link
           class="navlink"
-          v-bind:to="{ name: 'Request' }"
-          v-if="$store.state.user.roal == 'admon'" 
-          >Request</router-link 
+          v-bind:to="{ name: 'AdminTools' }"
+          v-if="isAdmin()" 
+          >Admin Tools</router-link 
         > <!-- whats goin on with the roal and admon? -->
       </div>
       <div>
@@ -41,7 +41,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    isAdmin() {
+      console.log(this.$store.state.user)
+      if (this.$store.state.user != {}) {
+        if (this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    }
+  }
+};
 </script>
 
 <style>
