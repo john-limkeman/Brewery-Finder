@@ -179,4 +179,20 @@ INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, u
 INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Pretzels Destroyed', 'Easy drinking  ', 'Amber Beer Color', 'Classic lager taste', 'Incredible head', 'nose of tropical fruit ',14, 5, 1, null, '2020-10-07', 1);
 INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('beer smells old running shoes', 'I would not recommend to anything on earth', 'colored ale', 'Tastes like a dumpster fire', 'massive head', 'smells like a dead fish', 1, 5, 3, null, '2020-11-08', 1);
 
+CREATE TABLE brewer_request (
+        id serial,
+	user_id int NOT NULL,
+	username varchar(50) NOT NULL,
+	breweryId int NOT NULL,
+	CONSTRAINT PK_brewer_request PRIMARY KEY (id),
+	CONSTRAINT fk_breweries foreign key (breweryId) references Breweries (id),
+        CONSTRAINT fk_users foreign key (user_id) references users (user_id)
+);
+
+INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'New Brewer', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO brewer_request (user_id, username, breweryid) VALUES (100, 'New Brewer', 1);
+
+
+
+
 COMMIT TRANSACTION;
