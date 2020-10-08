@@ -64,7 +64,7 @@ export default {
       this.beer = response.data;
       console.log(this.beer.breweryId);
     });
-
+    
   },
   components: {
     ReviewList

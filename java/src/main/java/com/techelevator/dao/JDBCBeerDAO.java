@@ -90,9 +90,11 @@ public class JDBCBeerDAO implements BeerDAO {
 	public void updateRating(Long id) {
 		String sql = "SELECT AVG(rating) FROM review WHERE beerId = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+		Double rounded = 0.0;
+		while (result.next()) {
 		Double average = result.getDouble("avg");
-		Double rounded = DoubleRounder.round(average, 1);
-		
+		rounded = DoubleRounder.round(average, 1);
+		}
 		String update = "UPDATE beers SET rating = ? WHERE beer_id = ?";
 		jdbcTemplate.update(update, rounded, id);
 		
