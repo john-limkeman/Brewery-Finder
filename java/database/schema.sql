@@ -61,7 +61,7 @@ description varchar(500) not null,
 picture varchar,
 abv decimal,
 ibu decimal,
-rating int,
+rating decimal,
 available boolean,
 
 constraint pk_Beers primary key (beer_id),
@@ -177,6 +177,6 @@ INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, u
 INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Not what I expected', 'Margarita  taste will have you wondering what you are drinking ', 'Ruby Red', 'sour with a hint of lime', 'terrible head', 'nose of the Dead Sea ',12, 4, 1, null, '2020-10-07', 1);
 INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Pedal IPA', 'Absolutely Delightful ', 'Normal Beer Color', 'medium bodied with a little sweetness', 'Incredible head', 'nose of tropical fruit ',13, 4, 1, null, '2020-10-07', 1);
 INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('Pretzels Destroyed', 'Easy drinking  ', 'Amber Beer Color', 'Classic lager taste', 'Incredible head', 'nose of tropical fruit ',14, 5, 1, null, '2020-10-07', 1);
-INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('beer smells old running shoes', 'I would not recommend to anything on earth', 'colored ale', 'Tastes like a dumpster fire', 'massive head', 'smells like a dead fish', 1, 1, 3, null, '2020-11-08', 1);
+INSERT INTO Review (title, overall, color, taste, head, smell, beerID, rating, userId, reviewImgURL, reviewDate, breweryId) VALUES ('beer smells old running shoes', 'I would not recommend to anything on earth', 'colored ale', 'Tastes like a dumpster fire', 'massive head', 'smells like a dead fish', 1, 5, 3, null, '2020-11-08', 1);
 
 COMMIT TRANSACTION;
