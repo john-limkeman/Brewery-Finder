@@ -72,14 +72,15 @@ public class JDBCBeerDAO implements BeerDAO {
 				beer.getAbv(), beer.getIbu(), beer.isCurrent());
 
 	}
-	
+
 	@Override
 	public void updateBeer(Beer beer, long id) {
 
 		String sql = "UPDATE beers SET beer_name = ?, beer_type = ?, description = ?, picture = ?, abv = ?, ibu = ?, available = ? WHERE beer_id = ?";
-		
-		jdbcTemplate.update(sql, beer.getName(), beer.getType(), beer.getDescription(), beer.getImgUrl(), beer.getAbv(), beer.getIbu(), beer.isCurrent(), id);
-			
+
+		jdbcTemplate.update(sql, beer.getName(), beer.getType(), beer.getDescription(), beer.getImgUrl(), beer.getAbv(),
+				beer.getIbu(), beer.isCurrent(), id);
+
 	}
 
 	private Beer mapRowToBeer(SqlRowSet row) {

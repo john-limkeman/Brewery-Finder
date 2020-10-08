@@ -54,19 +54,18 @@ public class JDBCBreweryDAO implements BreweryDAO {
 				brewery.getBrewery_url(), brewery.getPhone(), brewery.getHours(), brewery.isActive());
 
 	}
-	
+
 	@Override
 	public void updateBrewery(Brewery brewery, long id) {
 
 		String sqlInsert = "UPDATE breweries SET name = ?, address = ?, description = ?, image = ?, brewery_url = ?, phone = ?, hours = ?, active = ?"
 				+ " WHERE id = ?";
-		
-		jdbcTemplate.update(sqlInsert, brewery.getName(), brewery.getAddress(), brewery.getDescription(), brewery.getImage(), 
-				brewery.getBrewery_url(), brewery.getPhone(), brewery.getHours(), brewery.isActive(), id);
-			
+
+		jdbcTemplate.update(sqlInsert, brewery.getName(), brewery.getAddress(), brewery.getDescription(),
+				brewery.getImage(), brewery.getBrewery_url(), brewery.getPhone(), brewery.getHours(),
+				brewery.isActive(), id);
+
 	}
-	
-	
 
 	// maps SQL query to brewery object
 	private Brewery mapRowToBrewery(SqlRowSet results) {
