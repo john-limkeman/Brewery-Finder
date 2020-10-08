@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.BrewerRequest;
 import com.techelevator.model.User;
 import com.techelevator.model.UserRoleChange;
 
@@ -20,5 +21,7 @@ public interface UserDAO {
 	public void updateUserRole(UserRoleChange user);
 	
 	public void newBrewer(long id, User user);
+	
+	public List<BrewerRequest> getAllRequests();
 	
 }

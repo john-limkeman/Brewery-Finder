@@ -1,5 +1,6 @@
 <template>
   <div class="container text-center col-xl-5 mx-auto border border-dark rounded">
+    <router-link class="navlink" v-bind:to="{name: 'AddBrewery'}">Add a brewery</router-link>
     <h2>Pending requests</h2>
     <div v-for="user in pending" v-bind:key="user.id">
       <!-- Need to make sure the are work with the java object -->
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+import breweryService from "../services/BreweryService"
 export default {
   data() {
     return {
@@ -23,9 +25,20 @@ export default {
     }
   },
   created() {
-
+    breweryService.getAllBrewerRequests().then((response) => {
+      for (let i = 0; i < response.length; i++) {
+        if (response[i].processed) {
+          this.processed.push(response[i].data)
+        } else {
+          this.pending.push(response[i].data)
+        }
+      }
+    })
   },
   methods: {
+    addBrewery() {
+      this.$router.push("/brewery/add");
+    },
     approve() {
 
     },
