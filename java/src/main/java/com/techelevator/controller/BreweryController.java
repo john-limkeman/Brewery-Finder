@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.dao.BreweryDAO;
+import com.techelevator.dao.UserDAO;
 import com.techelevator.model.Brewery;
+import com.techelevator.model.User;
 
 @RestController
 @CrossOrigin
@@ -24,6 +26,8 @@ public class BreweryController {
 
 	@Autowired
 	public BreweryDAO dao;
+	@Autowired
+	public UserDAO userDao;
 
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public String test() {
@@ -63,4 +67,10 @@ public class BreweryController {
 		dao.updateBrewery(brewery, id);
 		
 	}
+	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.POST)
+	public void newBrewer(@PathVariable long id, @RequestBody User user) {
+		userDao.newBrewer(id, user);
+		
+	}
+	
 }

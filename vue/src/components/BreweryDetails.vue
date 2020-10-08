@@ -34,6 +34,13 @@
       >
         Add Beer
       </router-link>
+      <br>
+       <router-link
+        class="navlink"
+        v-bind:to="{ name: 'BrewerRequest', params: { id: brewery.id} }"
+      >
+        Request to be a Brewer
+      </router-link>
     </div>
   </div>
 </template>

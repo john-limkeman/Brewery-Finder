@@ -96,6 +96,13 @@ public class UserSqlDAO implements UserDAO {
 		jdbcTemplate.update(sqlInsert, user.getNewRole(), user.getId());
 				
 	}
+	
+	@Override
+	public void newBrewer(long breweryId, User user) {
+		String sqlInsert = "INSERT INTO brewer_request (user_id, username, brewery_id, processed) VALUES (?, ?, ?, false)";
+		jdbcTemplate.update(sqlInsert, user.getId(), user.getUsername(), breweryId);
+		
+	}
 
 	private User mapRowToUser(SqlRowSet rs) {
 		User user = new User();
