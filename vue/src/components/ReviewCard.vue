@@ -3,14 +3,14 @@
   <div class='review-card'>
       <h4 id='review-title'> {{review.title}}</h4>
       <p id='review-rating'>{{review.rating}}</p>
-      <h6 id='review-user'>By: {{this.username}}</h6>
-    <p id='review-overall'> Overall: {{review.overall}}</p>
-    <p id='review-color'>Color: {{review.color}}</p>
-    <p id='review-taste'>Taste: {{review.taste}}</p>
-    <p id='review-head'>Head: {{review.head}}</p>
-    <p id='review-smell'>Smell: {{review.smell}}</p>
-    <p id='review-date'>Submitted On: {{review.reviewDate}}</p>
-    <p id='review-img'>{{review.reviewImgUrl}}</p>
+      <h6 id='review-user'><span>By:</span> {{this.username}}</h6>
+     <p id='review-overall'> <span>Overall:</span> {{review.overall}}</p>
+     <p id='review-color'><span>Color:</span> {{review.color}}</p>
+     <p id='review-taste'><span>Taste:</span> {{review.taste}}</p>
+     <p id='review-head'><span>Head:</span> {{review.head}}</p>
+     <p id='review-smell'><span>Smell:</span> {{review.smell}}</p>
+     <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
+        <img id='review-img' v-bind:src='review.reviewImgUrl'/>
 </div>
   </div>
 </template>
@@ -44,11 +44,18 @@ export default {
     "head head img"
     ". date date";
     text-align:left;
-    border: solid 1px black;
+    border: solid 3px goldenrod;
     border-radius: 10px;
     margin: 2px;
     background-color:ivory;
     padding: 4px;
+}
+
+.review-card span{
+    font-weight: bold;
+}
+.review-card h4{
+    font-weight:bold;
 }
 #review-title{
     grid-area: title;
@@ -64,6 +71,8 @@ export default {
 }
 #review-img{
     grid-area: img;
+    height: 200px;
+    align-items: right;
 }
 #review-color{
     grid-area: color;
@@ -80,6 +89,7 @@ export default {
 #review-date{
     grid-area: date;
     text-align: right;
+    font-size: 12px;
 }
 .revCardContainer{
     display: block;

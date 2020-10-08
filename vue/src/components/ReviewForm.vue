@@ -59,7 +59,7 @@
              /<br>
             <label for="image">Picture URL</label>
             <input
-                v-model="review.image"
+                v-model="review.reviewImgUrl"
                 type="text"
                 name="image"
                 placeholder="Pics or it didn't happen!"
