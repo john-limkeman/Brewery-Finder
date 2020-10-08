@@ -84,7 +84,7 @@ export default {
   justify-content: center;
   align-items: center;
   display: grid;
-  grid-template-columns: ;
+  /* grid-template-columns: ; */
 }
 li {
   list-style-type: none;
