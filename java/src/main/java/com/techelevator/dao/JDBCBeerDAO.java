@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -54,7 +55,9 @@ public class JDBCBeerDAO implements BeerDAO {
 		if (result.next()) {
 			beer = mapRowToBeer(result);
 		}
+		
 
+		
 		return beer;
 	}
 
@@ -81,6 +84,18 @@ public class JDBCBeerDAO implements BeerDAO {
 		jdbcTemplate.update(sql, beer.getName(), beer.getType(), beer.getDescription(), beer.getImgUrl(), beer.getAbv(), beer.getIbu(), beer.isCurrent(), id);
 			
 	}
+	
+	@Override
+	public void updateRating(Long id) {
+		String sql = "SELECT AVG(rating) FROM review WHERE beerId = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
+		Double average = result.getDouble("avg");
+		Double rounded = DoubleRounder.round(average, 1);
+		
+		String update = "UPDATE beers SET rating = ? WHERE beer_id = ?";
+		jdbcTemplate.update(update, rounded, id);
+		
+	}
 
 	private Beer mapRowToBeer(SqlRowSet row) {
 
@@ -100,5 +115,6 @@ public class JDBCBeerDAO implements BeerDAO {
 		return beer;
 
 	}
+
 
 }

@@ -31,6 +31,7 @@ public class BeerController {
 
 	@RequestMapping(path = "/beer/{id}", method = RequestMethod.GET)
 	public Beer getBeerById(@PathVariable Long id) {
+		dao.updateRating(id);
 		return dao.getBeerById(id);
 	}
 

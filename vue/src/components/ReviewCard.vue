@@ -1,7 +1,7 @@
 <template>
 <div class='revCardContainer'>
   <div class='review-card'>
-      <h4 id='review-title'> {{review.title}}</h4>
+      <h4 id='review-title'> "{{review.title}}"</h4>
       <p id='review-rating'>{{review.rating}}</p>
       <h6 id='review-user'><span>By:</span> {{this.username}}</h6>
      <p id='review-overall'> <span>Overall:</span> {{review.overall}}</p>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import BreweryService from '../services/BreweryService'
 export default {
     data(){
         return{
@@ -25,7 +26,11 @@ export default {
     },
     props : ['chosen'],
     created(){
-        //get username from db
+        BreweryService.getUser(this.chosen.userId).then(
+            (response) => {
+                this.username = response.data.username;
+            }
+        )
     },
 }
 </script>
@@ -53,9 +58,18 @@ export default {
 
 .review-card span{
     font-weight: bold;
+    color: black;
+    font-style:normal;
+    font-size: 16px;
 }
 .review-card h4{
     font-weight:bold;
+}
+.review-card h6{
+    font-style: italic;
+    font-weight: bold;
+    color:goldenrod;
+    font-size: 20px;
 }
 #review-title{
     grid-area: title;
