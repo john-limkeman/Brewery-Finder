@@ -39,6 +39,7 @@ public class ReviewController {
 		dao.deleteReview(review);
 	}
 	
+	@PreAuthorize(value = "isAuthenticated()")
 	@RequestMapping(path = "/beer/{id}/reviews", method = RequestMethod.GET)
 	public List<Review> reviewByBeer(@PathVariable Long id){
 		return dao.getReviewsByBeer(id);
