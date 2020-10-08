@@ -39,6 +39,7 @@ public class ReviewController {
 		dao.deleteReview(review);
 	}
 	
+	@PreAuthorize(value = "isAuthenticated()")
 	@RequestMapping(path = "/beer/{id}/reviews", method = RequestMethod.GET)
 	public List<Review> reviewByBeer(@PathVariable Long id){
 		return dao.getReviewsByBeer(id);
@@ -47,5 +48,10 @@ public class ReviewController {
 	@RequestMapping(path = "/brewery/{id}/reviews", method = RequestMethod.GET)
 	public List<Review> reviewByBrewery(@PathVariable Long id){
 		return dao.getReviewsByBrewery(id);
+	}
+	
+	@RequestMapping(path = "/user/{id}/reviews", method = RequestMethod.GET)
+	public List<Review> getReviewsByUserId(@PathVariable Long id){
+		return dao.getReviewsByUserId(id);
 	}
 }

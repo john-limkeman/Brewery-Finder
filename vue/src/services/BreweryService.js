@@ -46,7 +46,9 @@ export default {
     getUser(userId) {
         return http.get(`/user/${userId}`)
     },
-    
+    getReviewByUser(userId) {
+        return http.get(`/user/${userId}/reviews`)
+    }
 
 
 

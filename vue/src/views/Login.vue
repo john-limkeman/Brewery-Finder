@@ -1,7 +1,7 @@
 <template>
   <div
     id="login"
-    class="text-center col-xl-3 mx-auto border border-dark rounded"
+    class="container text-center col-xl-3 mx-auto border border-dark rounded"
   >
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>

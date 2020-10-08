@@ -16,5 +16,7 @@ public interface ReviewDAO {
 	
 	public List<Review> getReviewsByBrewery(Long BreweryId);
 	
+	public List<Review> getReviewsByUserId(Long id);
+	
 	
 }
