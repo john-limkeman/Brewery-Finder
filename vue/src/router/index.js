@@ -15,7 +15,7 @@ import AddBrewery from "../views/AddBrewery.vue"
 import editBrewery from "../views/EditBrewery.vue"
 import AddBeer from "../views/AddBeer.vue"
 import editBeer from "../views/EditBeer.vue"
-import RequestBrewer from "../views/RequestBrewer.vue"
+
 
 Vue.use(Router)
 
@@ -141,14 +141,7 @@ const router = new Router({
         requiresAuth: true
       }
     },
-    {
-      path: "/brewery/:id/brewerRequest/:userId",
-      name: "BrewerRequest",
-      component: RequestBrewer,
-      meta: {
-        requiresAuth: true
-      }
-    },
+   
 
   ]
 })

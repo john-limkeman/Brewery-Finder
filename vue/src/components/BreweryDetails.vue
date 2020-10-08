@@ -35,12 +35,12 @@
         Add Beer
       </router-link>
       <br>
-       <router-link
+       <button
         class="navlink"
-        v-bind:to="{ name: 'BrewerRequest', params: { id: brewery.id} }"
+        v-on:click="brewerRequest"
       >
         Request to be a Brewer
-      </router-link>
+       </button>
     </div>
   </div>
 </template>
@@ -54,10 +54,23 @@ export default {
     };
   },
   created() {
-    BreweryService.getBreweryById(this.$route.params.id).then((responce) => {
-      this.brewery = responce.data;
+    BreweryService.getBreweryById(this.$route.params.id).then((response) => {
+      this.brewery = response.data;
     });
   },
+  methods: {
+    brewerRequest(){
+      BreweryService.brewerRequest(this.$route.params.id, this.$store.state.user).then(
+        (response) => {
+          if (response.status === 200){
+            alert("Request Sent");
+          }
+        }
+      )
+
+    }
+
+  }
 };
 </script>
 
