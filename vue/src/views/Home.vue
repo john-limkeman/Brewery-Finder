@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home container text-center col-xl-5 mx-auto border border-dark rounded">
     <h1>Denver Brew Finder</h1>
     <img src="@/Resources/output-onlinepngtools.png" id='main-page-logo'/>
   </div>

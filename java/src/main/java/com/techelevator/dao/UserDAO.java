@@ -19,5 +19,6 @@ public interface UserDAO {
 	
 	public void updateUserRole(UserRoleChange user);
 	
+	public void newBrewer(long id, User user);
 	
 }

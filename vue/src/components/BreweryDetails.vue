@@ -34,6 +34,13 @@
       >
         Add Beer
       </router-link>
+      <br>
+       <button
+        class="navlink"
+        v-on:click="brewerRequest"
+      >
+        Request to be a Brewer
+       </button>
     </div>
   </div>
 </template>
@@ -51,6 +58,19 @@ export default {
       this.brewery = responce.data;
     });
   },
+  methods: {
+    brewerRequest(){
+      BreweryService.brewerRequest(this.$route.params.id, this.$store.state.user).then(
+        (response) => {
+          if (response.status === 200){
+            alert("Request Sent");
+          }
+        }
+      )
+
+    }
+
+  }
 };
 </script>
 

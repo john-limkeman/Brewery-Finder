@@ -1,20 +1,20 @@
 <template>
   <div>
     <BreweryDetails />
-    <h2 id='beers-header'>Beers</h2>
     <div
-      class="contaner text-center col-xl-12 mx-auto rounded"
-      v-for="beer in beers"
-      v-bind:key="beer.id"  
+      id="beerList"
+      class="container contaner text-center col-xl-12 mx-auto rounded"
     >
-      <router-link
-        class="navlink"
-        v-bind:to="{ name: 'BeerDetails', params: { id: beer.id } }"
-      >
-        {{ beer.name }}
-      </router-link>
+      <h2 id="beers-header">Beers</h2>
+      <div class="" v-for="beer in beers" v-bind:key="beer.id">
+        <router-link
+          class="navlink"
+          v-bind:to="{ name: 'BeerDetails', params: { id: beer.id } }"
+        >
+          {{ beer.name }}
+        </router-link>
+      </div>
     </div>
-      
   </div>
 </template>
 
@@ -35,16 +35,24 @@ export default {
       this.beers = response.data;
     });
   },
-  methods:{
-    addBeer(){
-      this.$router.push()
-    }
-  }
+  methods: {
+    addBeer() {
+      this.$router.push();
+    },
+  },
 };
 </script>
 
 <style>
-    #beers-header{
-        margin-top: 50px;
-    }
+#beerList {
+  background: wheat;
+  text-align: center;
+  padding: 50px;
+  border-style: solid;
+  border-width: 3px;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+}
 </style>

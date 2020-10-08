@@ -16,6 +16,7 @@ import editBrewery from "../views/EditBrewery.vue"
 import AddBeer from "../views/AddBeer.vue"
 import editBeer from "../views/EditBeer.vue"
 
+
 Vue.use(Router)
 
 /**
@@ -139,7 +140,8 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+   
 
   ]
 })
