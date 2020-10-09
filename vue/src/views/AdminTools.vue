@@ -17,7 +17,6 @@
     <h2>Pending Brewery Requests</h2>
     <p>Request Id || User Id</p>
     <div
-      v-bind:class="{ first: index === 0 }"
       v-for="brewery in pendingBreweries"
       v-bind:key="brewery.id"
     >
@@ -63,11 +62,6 @@
     <h2>Processed Brewery Requests</h2>
     <div v-for="brewery in processedBreweries" v-bind:key="brewery.id">
       <div id="breweryInfoBottum" class="text-center col-xl-12 mx-auto rounded">
-        <!-- <p>Request Id || User Id || User Name</p>
-        <p>
-          {{ brewery.id }} || {{ brewery.userId }} ||
-          {{ brewery.brewerUsername }}
-        </p> -->
         <div class="flexLeft">
           <img v-bind:src="brewery.image" width="180px" height="auto" />
         </div>
@@ -159,10 +153,12 @@ export default {
       });
     },
     approveBrewery(brewery) {
+      brewery.brewerId = brewery.userId;
+      brewery.active = true;
       brewery.processed = true;
-      breweryService.getUser(brewery.userId).then((response) => {
-        this.userToUpdate = response.data;
         this.userToUpdate.newRole = "ROLE_BREWER";
+      // breweryService.getUser(brewery.userId).then((response) => {
+        // this.userToUpdate = response.data;
         breweryService
           .changeUserRole(this.userToUpdate.id, this.userToUpdate)
           .then((response) => {
@@ -170,24 +166,24 @@ export default {
               console.log("role changed");
             }
           });
-      });
+      // });
       breweryService.updateBreweryRequest(brewery).then((response) => {
         if (response.status == 200) {
           console.log("proccessed");
         }
       });
-      brewery.brewerId = brewery.userId;
-      brewery.active = true;
       breweryService.addBrewery(brewery).then((response) => {
         if (response.status == 201) {
           console.log("Brewery created");
         }
-        breweryService.setBrewerToBrewery(this.userToUpdate).then((response) => {
-          if (response.status == 200) {
-          console.log("User added to brewery");
-        }
-        })
-      })
+        breweryService
+          .setBrewerToBrewery(this.userToUpdate)
+          .then((response) => {
+            if (response.status == 200) {
+              console.log("User added to brewery");
+            }
+          });
+      });
     },
     declineBrewery(brewery) {
       brewery.processed = true;

@@ -88,6 +88,9 @@ export default {
 </script>
 
 <style>
+span:hover {
+  cursor: pointer;
+}
 #nav {
   display: flex;
   justify-content: space-between;
