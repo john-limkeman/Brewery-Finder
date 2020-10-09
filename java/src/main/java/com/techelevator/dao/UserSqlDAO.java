@@ -91,10 +91,8 @@ public class UserSqlDAO implements UserDAO {
 	
 	@Override
 	public void updateUserRole(UserRoleChange user) {
-		System.out.println(user.getId());
-		System.out.println(user.getNewRole());
 		String sqlInsert = "UPDATE users SET role = ?  WHERE user_id = ?";
-		jdbcTemplate.update(sqlInsert, user.getNewRole(), user.getId());
+		jdbcTemplate.update(sqlInsert, user.getNewRole(), user.getUserId());
 				
 	}
 	

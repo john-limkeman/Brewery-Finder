@@ -8,6 +8,8 @@ public interface BrewerRequestDAO {
 
 	public void switchProcessedStatus(BrewerRequest request);
 	
+	public void updateBrewerIdForBrewery(BrewerRequest request);
+	
 	
 	
 	

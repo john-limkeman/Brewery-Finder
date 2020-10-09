@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS pending_brewery_request;
 DROP TABLE IF EXISTS brewer_request;
 Drop Table if exists Review;
 Drop Table if exists beers;
@@ -26,7 +27,10 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (username,password_hash,role) VALUES ('brewerBob', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_BREWER');
 INSERT INTO users (username,password_hash,role) VALUES ('test', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_ADMIN');
-
+INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'New Brewer', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (101, 'New Brewer2', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (102, 'New Brewer3', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (103, 'New Brewer4', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
 
 CREATE Table Breweries (
 
@@ -46,10 +50,10 @@ constraint fk_Breweries_Brewer foreign key (brewer_id) references users (user_id
 );
 
 INSERT INTO Breweries (name, address, description, image, brewer_id, brewery_url, phone, hours, active) VALUES 
-('Denver Beer Company', '1695 Platte St, Denver, CO 80202', 'Brewery-based taproom with an industrial vibe, dog-friendly outdoor beer garden & food trucks', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png', 3,
+('Denver Beer Company', '1695 Platte St, Denver, CO 80202', 'Brewery-based taproom with an industrial vibe, dog-friendly outdoor beer garden & food trucks', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png', 100,
 'https://denverbeerco.com/', 3034332739, '11am to 11pm', true);
 INSERT INTO Breweries (name, address, description, image, brewer_id, brewery_url, phone, hours, active) VALUES 
-('TRVE Brewing Company', '227 Broadway #101, Denver, CO 80203', 'Small local brewery & taproom featuring eclectic housemade beers in heavy metal–inspired environs.', 'https://pbs.twimg.com/profile_images/707978949037436929/MItXQjYg.jpg', 3, 'https://www.trvebrewing.com/ontap/', '3033511021', '3pm to 11pm', true);
+('TRVE Brewing Company', '227 Broadway #101, Denver, CO 80203', 'Small local brewery & taproom featuring eclectic housemade beers in heavy metal–inspired environs.', 'https://pbs.twimg.com/profile_images/707978949037436929/MItXQjYg.jpg', 101, 'https://www.trvebrewing.com/ontap/', '3033511021', '3pm to 11pm', true);
 
 
 CREATE TABLE Beers
@@ -191,15 +195,28 @@ CREATE TABLE brewer_request (
         CONSTRAINT fk_users foreign key (user_id) references users (user_id)
 );
 
-INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'New Brewer', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
-INSERT INTO users (user_id, username, password_hash, role) VALUES (101, 'New Brewer2', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
-INSERT INTO users (user_id, username, password_hash, role) VALUES (102, 'New Brewer3', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
-INSERT INTO users (user_id, username, password_hash, role) VALUES (103, 'New Brewer4', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
 INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (100, 'New Brewer', 1, false);
 INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (101, 'New Brewer2', 2, false);
 INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (102, 'New Brewer3', 3, true);
 INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (103, 'New Brewer4', 4, false);
 
+CREATE TABLE pending_brewery_request (
+        id serial,
+	user_id int NOT NULL,
+	name varchar(50) NOT NULL,
+	address varchar,
+        description varchar,
+        image varchar,
+        brewery_url varchar,
+        phone bigint,
+        hours varchar,
+	processed boolean,
+	CONSTRAINT PK_pending_brewery_request PRIMARY KEY (id),
+        CONSTRAINT fk_users foreign key (user_id) references users (user_id)
+);
 
+INSERT INTO pending_brewery_request (user_id, name, address, description, image, brewery_url, phone, hours, processed) VALUES (100, 'ROCK HOUSE', '161 Rock Lane', 'Drink a Beer, Climb a Rock','theRock.com', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png',9499999888, '24 hours 7 Days a Week', false);
+INSERT INTO pending_brewery_request (user_id, name, address, description, image, brewery_url, phone, hours, processed) VALUES (3, 'Denver Beer Company', '1695 Platte St, Denver, CO 80202', 'Brewery-based taproom with an industrial vibe, dog-friendly outdoor beer garden & food trucks','https://denverbeerco.com/', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png',3034332739, '11am to 11pm', true);
+INSERT INTO pending_brewery_request (user_id, name, address, description, image, brewery_url, phone, hours, processed) VALUES (101, 'Randys House Of Beer', '555 South Lane', 'Im Not Having A Glass Of Beer, Im Having Six! Its Called A Tasting & Its Classy!','tegrity.com', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png',9495679888, '1am to 12pm', false);
 
 COMMIT TRANSACTION;

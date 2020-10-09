@@ -64,7 +64,18 @@ export default {
     },
     getAllPendingBreweryRequests(){
         return http.get("/GET FROM BRAD")
+
+    switchProccessedStatus(request) {
+        return http.put(`/processedStatus`, request)
+    },
+
+    changeUserRole(userId, user) {
+        return http.put(`/user/${userId}`, user)
+    },
+    setBrewerToBrewery(user) {
+        return http.put("/setBrewerToBrewery", user)
     }
+
 
 
 

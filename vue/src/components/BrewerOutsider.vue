@@ -102,7 +102,7 @@ data(){
             this.$router.push('/');
         },
         SendRequest(){
-            this.newBrewery.UserId = this.$store.state.user.username;
+            this.newBrewery.UserId = this.$store.state.user.id;
             this.newBrewery.processed = false;
             BreweryService.SendPendingBreweryRequest(this.newBrewery).then(
               () => {
