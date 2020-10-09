@@ -10,7 +10,7 @@ public interface PendingBreweryRequestDAO {
 	
 	public void addRequest(PendingBreweryRequest request);
 	
-	public void updateBeer(PendingBreweryRequest request, long id);
+	public void updateRequest(PendingBreweryRequest request, long id);
 	
 	
 	
