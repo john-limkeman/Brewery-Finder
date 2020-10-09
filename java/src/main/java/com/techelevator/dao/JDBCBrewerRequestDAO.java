@@ -25,6 +25,14 @@ private JdbcTemplate jdbcTemplate;
 	}
 
 
+	@Override
+	public void updateBrewerIdForBrewery(BrewerRequest request) {
+		String sql = "Update breweries SET brewer_id = ? WHERE id = ?";
+		jdbcTemplate.update(sql, request.getUserId(), request.getBreweryId() );
+		
+	}
+
+
 	
 	
 

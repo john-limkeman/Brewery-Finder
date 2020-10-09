@@ -25,6 +25,12 @@ public class BrewerRequestController {
 		
 	}
 	
+	@RequestMapping(path ="/setBrewerToBrewery", method = RequestMethod.PUT)
+	public void setBrewerToBrewery( @RequestBody BrewerRequest brewerRequest ) {
+		
+		dao.updateBrewerIdForBrewery(brewerRequest);
+		
+	}
 	
 	
 }
