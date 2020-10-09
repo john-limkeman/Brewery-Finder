@@ -33,7 +33,7 @@ public class BrewerRequest {
 		this.breweryId = breweryId;
 	}
 	public boolean isProcessed() {
-		this.processed = true;
+
 		return processed;
 	}
 	public void setProcessed(boolean processed) {
