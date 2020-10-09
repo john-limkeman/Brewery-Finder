@@ -46,6 +46,12 @@ public class BreweryController {
 	public Brewery getBrewery(@PathVariable long id) {
 		return dao.getBreweryById(id);
 	}
+	
+	@PreAuthorize("permitAll()")
+	@RequestMapping(path = "/brewery/brewer/{id}", method = RequestMethod.GET)
+	public Brewery getBreweryByBrewer(@PathVariable long id) {
+		return dao.getBreweryByBrewer(id);
+	}
 
 	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.DELETE)
 	public String deleteBeer(@PathVariable Long id) {

@@ -9,6 +9,8 @@ public interface BreweryDAO {
 	public List<Brewery> getAllBrewerys();
 
 	public Brewery getBreweryById(long id);
+	
+	public Brewery getBreweryByBrewer(Long id);
 
 	public void deleteBrewery(Long id);
 

@@ -40,6 +40,16 @@ public class JDBCBreweryDAO implements BreweryDAO {
 	}
 
 	@Override
+	public Brewery getBreweryByBrewer(Long id) {
+		String sql = "SELECT * FROM breweries WHERE brewer_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+		if (results.next()) {
+			return mapRowToBrewery(results);
+		} else {
+			throw new RuntimeException("No Brewery Found");
+		}
+	}
+	@Override
 	public void deleteBrewery(Long id) {
 		jdbcTemplate.update("DELETE FROM breweries WHERE id = ?", id);
 
@@ -82,5 +92,6 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		brewery.setImage(results.getString("image"));
 		return brewery;
 	}
+
 
 }

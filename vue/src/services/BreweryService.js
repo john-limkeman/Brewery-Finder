@@ -10,6 +10,9 @@ export default {
     getBreweryById(id) {
         return http.get(`/brewery/${id}`)
     },
+    getBreweryByBrewer(id){
+        return http.get(`/brewery/brewer/${id}`)
+    },
     getBeerList() {
         return http.get('/beer');
     },
@@ -55,6 +58,12 @@ export default {
     },
     getAllBrewerRequests() {
         return http.get("/brewerRequest")
+    },
+    SendPendingBreweryRequest(request){
+        return http.post("/GET FROM BRAD", request)
+    },
+    getAllPendingBreweryRequests(){
+        return http.get("/GET FROM BRAD")
     }
 
 
