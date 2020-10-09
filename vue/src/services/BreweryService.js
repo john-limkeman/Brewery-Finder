@@ -74,6 +74,12 @@ export default {
     },
     setBrewerToBrewery(user) {
         return http.put("/setBrewerToBrewery", user)
+    }, 
+    deleteBeer(beerId){
+        return http.delete(`/beer/${beerId}`)
+    },
+    getAllBreweryRequests() {
+        return http.get()
     }
 
 
