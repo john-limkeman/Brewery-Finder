@@ -36,7 +36,8 @@ export default {
         this.$router.push({name: 'AddBeer', params : {id: this.brewery.id}})
     },
     deleteBeer(beer){
-        this.$router.push({name : 'ConfirmDelete', params : {beerId : beer.id}})
+        this.currentBeer = beer;
+        this.$router.push({name : 'ConfirmDelete', params : {beerId : this.currentBeer.id}})
         
     }
   },
@@ -46,6 +47,7 @@ export default {
         this.brewery = response.data;
         BreweryService.getBeerByBrewery(this.brewery.id).then((response) => {
           this.beers = response.data
+          this.currentBeer = {}
       })
       });
   },

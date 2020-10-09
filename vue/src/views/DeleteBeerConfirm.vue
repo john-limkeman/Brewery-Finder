@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class= 'container text-center col-xl-12 mx-auto rounded'>
       <h4>Are you sure you wish to delete {{beer.name}}?</h4>
-      <button v-on:click='DeleteBeer'>Yes</button>
+      <button v-on:click='DeleteBeer(beer)'>Yes</button>
         <button v-on:click='Cancel'>Cancel</button>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
         }
     },
     created(){
-        BreweryService.getBeerById(this.$route.params.id).then(
+        BreweryService.getBeerById(this.$route.params.beerId).then(
             (response) => {
                 this.beer = response.data;
             }
