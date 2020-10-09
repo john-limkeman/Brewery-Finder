@@ -15,6 +15,7 @@ import AddBrewery from "../views/AddBrewery.vue"
 import editBrewery from "../views/EditBrewery.vue"
 import AddBeer from "../views/AddBeer.vue"
 import editBeer from "../views/EditBeer.vue"
+import BrewerTools from "@/views/BrewerTools.vue"
 
 
 Vue.use(Router)
@@ -140,6 +141,11 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/brewer",
+      name: "BrewerTools",
+      component: BrewerTools
     },
    
 

@@ -22,9 +22,21 @@
           v-bind:to="{ name: 'AdminTools' }"
           v-if="isAdmin()" 
           >Admin Tools</router-link 
-        > <!-- whats goin on with the roal and admon? -->
+        >
       </div>
+      <div id='right-side-nav'>
       <div>
+           <router-link
+          class="navlink"
+          v-bind:to="{ name: 'BrewerTools' }"
+          v-if="isBrewer()"
+          >Brewer Tools</router-link
+        >
+          <router-link class="navlink" v-else v-bind:to="{ name: 'BrewerTools' }"
+          >Add Your Brewery</router-link
+        >&nbsp;|&nbsp;
+        </div>
+        <div>
         <router-link
           class="navlink"
           v-bind:to="{ name: 'logout' }"
@@ -36,6 +48,7 @@
         >&nbsp;|&nbsp;
       </div>
     </div>
+    </div>
     <router-view />
   </div>
 </template>
@@ -46,6 +59,15 @@ export default {
     isAdmin() {
       if (this.$store.state.logIn) {
         if (this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    },
+    isBrewer(){
+      if (this.$store.state.logIn) {
+        if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER' || this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
           return true;
         }
       } else {
@@ -75,6 +97,10 @@ export default {
 #nav img {
   width: 75px;
   height: auto;
+}
+
+#right-side-nav{
+  display: flex;
 }
 .navlink {
   color: black;

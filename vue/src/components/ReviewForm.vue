@@ -1,7 +1,7 @@
 <template>
   <div>
-      <button v-on:click='ChangeVis'>Add A review</button>
-      <form v-on:submit='AddReview' v-if='visibility == true'>
+      <button v-on:click='ChangeVis' >Add A review</button>
+      <form v-on:submit.prevent ='AddReview' v-if='visibility == true'>
             <label for="title">Title</label>
             <input
                 v-model="review.title"
@@ -64,13 +64,8 @@
                 name="image"
                 placeholder="Pics or it didn't happen!"
             />
-            <button v-on:click="saveBeer" v-if="this.$route.params.beerId == null">
-        Add
-      </button>
-      <button v-on:click="updateBeer" v-else>Update</button>
-      <button v-on:click="cancel">Cancel</button>
-            <!-- <button>Submit</button>
-            <button v-on:click='Cancel'>Cancel</button> -->
+            <button>Submit</button>
+            <button v-on:click='Cancel'>Cancel</button>
       </form>
   </div>
 </template>
@@ -94,9 +89,9 @@ export default {
     methods: {
         AddReview(){
             this.review.reviewDate = new Date();
-            BreweryService.addReview(this.review).then(
-                this.$router.push({name: 'UserPage', params : {id : this.$store.state.user.id}})
-            )
+            BreweryService.addReview(this.review).then( () => {
+                this.$router.push({ name: 'UserPage', params: { id: this.$store.state.user.id }  })
+            })
         },
         Cancel(){
             this.review = {
@@ -108,7 +103,12 @@ export default {
             this.visibility = false;
         },
         ChangeVis(){
+            if(this.$store.state.logIn){
             this.visibility = true;
+            }
+            else{
+                this.$router.push({name: 'login'})
+            }
         },
      
      created() {
