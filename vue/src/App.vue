@@ -17,25 +17,26 @@
         <router-link class="navlink" v-bind:to="{ name: 'AllBeers' }"
           >Beers</router-link
         >&nbsp;&nbsp;
+      </div>
+      <div id='right-side-nav'>
+      <div>
         <router-link
           class="navlink"
           v-bind:to="{ name: 'AdminTools' }"
           v-if="isAdmin()" 
           >Admin Tools</router-link 
         >
-      </div>
-      <div id='right-side-nav'>
-      <div>
            <router-link
           class="navlink"
           v-bind:to="{ name: 'BrewerTools' }"
-          v-if="isBrewer()"
+          v-else-if="isBrewer()"
           >Brewer Tools</router-link
         >
-          <router-link class="navlink" v-else v-bind:to="{ name: 'BrewerTools' }"
-          >Add Your Brewery</router-link
+          <span class="navlink" v-else v-on:click='LoggedIn'
+          >Add Your Brewery</span
         >&nbsp;|&nbsp;
         </div>
+
         <div>
         <router-link
           class="navlink"
@@ -67,13 +68,21 @@ export default {
     },
     isBrewer(){
       if (this.$store.state.logIn) {
-        if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER' || this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
+        if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER') {
           return true;
         }
       } else {
         return false;
       }
-    }
+    },
+     LoggedIn(){
+            if(!this.$store.state.logIn){
+              window.alert('You must be signed in to add your brewery - create a free account to proceed!');
+            this.$router.push({name: 'login'})
+            } else{
+            this.$router.push({ name: 'BrewerTools' })
+            }
+        }
   }
 };
 </script>

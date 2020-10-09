@@ -4,13 +4,13 @@
     <h2>Pending requests</h2>
     <div v-for="user in pending" v-bind:key="user.id">
       <!-- Need to make sure the are work with the java object -->
-      {{user.id}} || {{user.username}} || {{user.authorities[0].name}} {{breweryId}}
-      <router-link class="navlink" v-on:click="approve">Approve</router-link>
-      <router-link class="navlink" v-on:click="decline">Decline</router-link>
+      {{user.id}} || {{user.userId}} || {{user.username}} || {{user.breweryId}}
+      <span class="navlink" v-on:click="approve">Approve || </span>
+      <span class="navlink" v-on:click="decline">Decline</span>
     </div>
     <h2>Processed requests</h2>
     <div v-for="user in processed" v-bind:key="user.id">
-      {{user.id}} || {{user.username}} || {{user.authorities[0].name}} {{breweryId}}
+      {{user.id}} || {{user.userId}} || {{user.username}} || {{user.breweryId}}
     </div>
   </div>
 </template>
@@ -27,11 +27,11 @@ export default {
   created() {
     breweryService.getAllBrewerRequests().then((response) => {
       console.log(response.data)
-      for (let i = 0; i < response.length; i++) {
+      for (let i = 0; i < response.data.length; i++) {
         if (response.data[i].processed) {
-          this.processed.push(response[i].data)
+          this.processed.push(response.data[i])
         } else {
-          this.pending.push(response[i].data)
+          this.pending.push(response.data[i])
         }
       }
     })
