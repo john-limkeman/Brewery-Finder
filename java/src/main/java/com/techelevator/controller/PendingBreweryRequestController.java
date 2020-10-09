@@ -29,4 +29,8 @@ public class PendingBreweryRequestController {
 		dao.updateRequest(request, request.getId());
 	}
 	
+	@RequestMapping(path = "/addBreweryRequest", method = RequestMethod.POST)
+	public void addRequest(@RequestBody PendingBreweryRequest request) {
+		dao.addRequest(request);
+	}
 }
