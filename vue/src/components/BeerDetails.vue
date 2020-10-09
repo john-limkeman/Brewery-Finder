@@ -1,40 +1,45 @@
 <template>
-  <div id="beerInfo" class=" container text-center col-xl-12 mx-auto rounded">
+  <div id="beerInfo" class="container text-center col-xl-12 mx-auto rounded">
     <h2>
-      {{ beer.name }}  <br> <span v-bind="getBrewery()">
-      <router-link
-        class="navlink"
-        v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }"
-      >
-        {{ brewery.name }}
-      </router-link>
-    </span>
+      {{ beer.name }} <br />
+      <span v-bind="getBrewery()">
+        <router-link
+          class="navlink"
+          v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }"
+        >
+          {{ brewery.name }}
+        </router-link>
+      </span>
     </h2>
-    <h1 id='avgRatingDisplay'> {{ beer.rating }}</h1>
-    
-    <img id='beerImg' v-bind:src="beer.imgUrl" width="180px" height="auto" />
+    <h1 id="avgRatingDisplay">{{ beer.rating }}</h1>
+
+    <img id="beerImg" v-bind:src="beer.imgUrl" width="180px" height="auto" />
     <ul>
-      <li id='beerType'>{{ beer.type }}</li>
-      <li id='beerAbv'>ABV : {{ beer.abv }}</li>
-      <li id='beerIbu'>IBU : {{ beer.ibu }}</li>
-      <li id='beerStatus'>{{ this.setStatus }}</li>
+      <li id="beerType">{{ beer.type }}</li>
+      <li id="beerAbv">ABV : {{ beer.abv }}</li>
+      <li id="beerIbu">IBU : {{ beer.ibu }}</li>
+      <li id="beerStatus">{{ this.setStatus }}</li>
     </ul>
-    <p id='beerDesc'>{{ beer.description }}</p>
-    
+    <p id="beerDesc">{{ beer.description }}</p>
+
     <router-link
-        class="navlink" id="editBeerButton"
-        v-bind:to="{ name: 'UpdateBeer', params: {id: beer.breweryId, beerId: beer.id } }"
-      >
-        Edit this beer
-      </router-link>
-    <div id='reviewListContainer'>
-    <ReviewList />
+      class="navlink"
+      id="editBeerButton"
+      v-bind:to="{
+        name: 'UpdateBeer',
+        params: { id: beer.breweryId, beerId: beer.id },
+      }"
+    >
+      Edit this beer
+    </router-link>
+    <div id="reviewListContainer">
+      <ReviewList />
     </div>
   </div>
 </template>
 
 <script>
-import ReviewList from '@/components/ReviewList.vue'
+import ReviewList from "@/components/ReviewList.vue";
 import breweryServices from "../services/BreweryService.js";
 export default {
   data() {
@@ -63,13 +68,12 @@ export default {
     breweryServices.getBeerById(this.$route.params.id).then((response) => {
       this.beer = response.data;
       console.log(this.beer.breweryId);
-      console.log(this.$store.state.logIn)
+      console.log(this.$store.state.logIn);
     });
-    
   },
   components: {
-    ReviewList
-  }
+    ReviewList,
+  },
 };
 </script>
 
@@ -86,14 +90,14 @@ export default {
   align-items: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: 
-  "img name rating"
-  "img name edit"
-  "type desc desc"
-  "abv desc desc"
-  "ibu desc desc"
-  "onTap desc desc"
-  "review review review"
+  grid-template-areas:
+    "img name rating"
+    "img name edit"
+    "type desc desc"
+    "abv desc desc"
+    "ibu desc desc"
+    "onTap desc desc"
+    "review review review";
 }
 li {
   list-style-type: none;
@@ -102,7 +106,7 @@ li {
 div > img {
   margin: 10px;
   height: 300px;
-  width:auto;
+  width: auto;
 }
 
 #avgRatingDisplay {
@@ -114,49 +118,46 @@ div > img {
   border: solid 3px goldenrod;
   grid-area: rating;
   width: 150px;
-  align-self:center;
+  align-self: center;
   justify-self: right;
-  
- 
 }
-#beerImg{
+#beerImg {
   grid-area: img;
 }
-#beerInfo > h2{
+#beerInfo > h2 {
   margin-top: 40px;
   grid-area: name;
   align-self: start;
-
 }
-#beerInfo > h2 > span{
+#beerInfo > h2 > span {
   font-size: 25px;
   margin-top: 20px;
 }
-#beerType{
+#beerType {
   grid-area: type;
 }
-#beerAbv{
+#beerAbv {
   grid-area: abv;
 }
-#beerIbu{
+#beerIbu {
   grid-area: ibu;
 }
-#beerStatus{
+#beerStatus {
   grid-area: onTap;
 }
-#beerDesc{
+#beerDesc {
   grid-area: desc;
 }
-#editBeerButton{
+#editBeerButton {
   grid-area: edit;
   align-self: start;
   justify-self: right;
-   margin: 50px;
-   border: solid #630f0f 2px;
-   padding: 5px;
-   color: #630f0f;
+  margin: 50px;
+  border: solid #630f0f 2px;
+  padding: 5px;
+  color: #630f0f;
 }
-#reviewListContainer{
+#reviewListContainer {
   grid-area: review;
 }
 </style>

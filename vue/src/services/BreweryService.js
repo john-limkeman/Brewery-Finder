@@ -31,22 +31,22 @@ export default {
     updateBeer(beer) {
         return http.put(`/beer/${beer.id}`, beer)
     },
-    getReviewByBeer(id){
+    getReviewByBeer(id) {
         return http.get(`/beer/${id}/reviews`)
     },
-    getReviewByBrewery(id){
+    getReviewByBrewery(id) {
         return http.get(`/brewery/${id}/reviews`)
     },
-    addReview(review){
+    addReview(review) {
         return http.post("/new-review", review)
     },
-    deleteReview(review){
+    deleteReview(review) {
         return http.delete('/delete-review', review)
     },
     getUser(userId) {
         return http.get(`/user/${userId}`)
     },
-    sendBrewerRequest(breweryId, user){
+    sendBrewerRequest(breweryId, user) {
         return http.post(`/brewery/${breweryId}`, user)
 
     },
@@ -57,7 +57,7 @@ export default {
         return http.get("/brewerRequest")
     }
 
-    
+
 
 
 
