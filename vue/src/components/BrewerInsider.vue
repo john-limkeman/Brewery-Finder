@@ -12,7 +12,7 @@
     </div>
     
   <div id="BreweryList">
-    <BreweryForm v-bind:brewid="brewery.id"/>
+    <BreweryForm v-bind:brewid="settingBreweryId"/>
 
 
   </div > 
@@ -28,10 +28,17 @@ export default {
     return {
     currentBeer : {},
       beers: [],
-      brewery: {},
+      brewery: {
+
+      },
     };
   },
-  computed: {},
+  computed: {
+    settingBreweryId(){
+      let id = this.brewery.id;
+      return id;
+    }
+  },
   methods: {
     getCurrentBeer(beer){
         this.currentBeer = beer;
@@ -48,10 +55,12 @@ export default {
     }
   },
   created() {
+    
     BreweryService.getBreweryByBrewer(this.$store.state.user.id).then(
       (response) => {
         this.brewery = response.data;
-        console.log(`this is the BrewerInsider component ${this.brewery.id}`)
+    console.log(`this is the BrewerInsider component ${this.brewery.id}`)
+       
 
     BreweryService.getBeerByBrewery(this.brewery.id).then((response) => {
         this.beers = response.data
