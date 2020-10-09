@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.techelevator.model.BrewerRequest;
 import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.User;
 import com.techelevator.model.UserRoleChange;
@@ -104,6 +105,18 @@ public class UserSqlDAO implements UserDAO {
 		
 	}
 
+	@Override
+	public List<BrewerRequest> getAllRequests() {
+		List<BrewerRequest> output = new ArrayList<>();
+		String sql = "SELECT * FROM brewer_request";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			BrewerRequest request = mapRowToBrewerRequest(results);
+			output.add(request);
+		}
+		return output;
+	}
+	
 	private User mapRowToUser(SqlRowSet rs) {
 		User user = new User();
 		user.setId(rs.getLong("user_id"));
@@ -113,4 +126,15 @@ public class UserSqlDAO implements UserDAO {
 		user.setActivated(true);
 		return user;
 	}
+	
+	private BrewerRequest mapRowToBrewerRequest(SqlRowSet results) {
+		BrewerRequest request = new BrewerRequest();
+		request.setId(results.getLong("id"));
+		request.setUserId(results.getInt("user_id"));
+		request.setUsername(results.getString("username"));
+		request.setBreweryId(results.getInt("brewerId"));
+		request.setProcessed(false);
+		return request;
+	}
+
 }

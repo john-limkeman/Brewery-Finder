@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS brewer_request;
 Drop Table if exists Review;
 Drop Table if exists beers;
 Drop Table if exists breweries;
@@ -184,13 +185,14 @@ CREATE TABLE brewer_request (
 	user_id int NOT NULL,
 	username varchar(50) NOT NULL,
 	breweryId int NOT NULL,
+	processed boolean,
 	CONSTRAINT PK_brewer_request PRIMARY KEY (id),
 	CONSTRAINT fk_breweries foreign key (breweryId) references Breweries (id),
         CONSTRAINT fk_users foreign key (user_id) references users (user_id)
 );
 
 INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'New Brewer', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
-INSERT INTO brewer_request (user_id, username, breweryid) VALUES (100, 'New Brewer', 1);
+INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (100, 'New Brewer', 1, false);
 
 
 

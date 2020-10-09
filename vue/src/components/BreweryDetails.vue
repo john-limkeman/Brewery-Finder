@@ -1,5 +1,8 @@
 <template>
-  <div id="breweryInfo" class="container contaner text-center col-xl-12 mx-auto rounded">
+  <div
+    id="breweryInfo"
+    class="container contaner text-center col-xl-12 mx-auto rounded"
+  >
     <div class="flexLeft">
       <img v-bind:src="brewery.image" width="180px" height="auto" />
     </div>
@@ -27,20 +30,17 @@
       >
         Update Brewery
       </router-link>
-      <br>
-       <router-link
+      <br />
+      <router-link
         class="navlink"
         v-bind:to="{ name: 'AddBeer', params: { id: brewery.id } }"
       >
         Add Beer
       </router-link>
-      <br>
-       <button
-        class="navlink"
-        v-on:click="brewerRequest"
-      >
+      <br />
+      <router-link class="navlink" v-on:click="brewerRequest">
         Request to be a Brewer
-       </button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -59,18 +59,17 @@ export default {
     });
   },
   methods: {
-    brewerRequest(){
-      BreweryService.brewerRequest(this.$route.params.id, this.$store.state.user).then(
-        (response) => {
-          if (response.status === 200){
-            alert("Request Sent");
-          }
+    brewerRequest() {
+      BreweryService.brewerRequest(
+        this.$route.params.id,
+        this.$store.state.user
+      ).then((response) => {
+        if (response.status === 200) {
+          alert("Request Sent");
         }
-      )
-
-    }
-
-  }
+      });
+    },
+  },
 };
 </script>
 

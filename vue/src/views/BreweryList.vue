@@ -16,7 +16,6 @@
         </router-link>
       </h3>
     </div>
-    <router-link class="navlink" v-bind:to="{name: 'AddBrewery'}">Add a brewery</router-link>
   </div>
   </div>
 </template>
@@ -36,11 +35,6 @@ export default {
     BreweryService.getBreweryList().then((response) => {
       this.breweries = response.data;
     });
-  },
-  methods: {
-    addBrewery() {
-      this.$router.push("/brewery/add");
-    },
   },
 };
 </script>

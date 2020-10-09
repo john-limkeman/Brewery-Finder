@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.dao.BreweryDAO;
 import com.techelevator.dao.UserDAO;
+import com.techelevator.model.BrewerRequest;
 import com.techelevator.model.Brewery;
 import com.techelevator.model.User;
 
@@ -68,9 +69,14 @@ public class BreweryController {
 		
 	}
 	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.POST)
-	public void newBrewer(@PathVariable long id, @RequestBody User user) {
+	public void sendBrewerRequest(@PathVariable long id, @RequestBody User user) {
 		userDao.newBrewer(id, user);
 		
+	}
+	
+	@RequestMapping(path = "/brewerRequest", method = RequestMethod.GET)
+	public List<BrewerRequest> getBrewerRequest() {
+		return userDao.getAllRequests();
 	}
 	
 }
