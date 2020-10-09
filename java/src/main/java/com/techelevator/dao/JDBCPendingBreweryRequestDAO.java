@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
-import com.techelevator.model.Brewery;
 import com.techelevator.model.PendingBreweryRequest;
 @Component
 public class JDBCPendingBreweryRequestDAO implements PendingBreweryRequestDAO {
@@ -32,7 +30,7 @@ public class JDBCPendingBreweryRequestDAO implements PendingBreweryRequestDAO {
 		String sql = "INSERT INTO pending_brewery_request (user_id , name, address, description, image, brewery_url, phone, hours)"
 				+ "VALUES (?,?,?,?,?,?,?,?)"; 
 		jdbcTemplate.update(sql, request.getUserId(), request.getName(),request.getAddress(),request.getDescription(),
-				request.getImage());
+				request.getImage(),request.getBrewery_url(),request.getPhone(), request.getHours());
 		
 		
 	}
