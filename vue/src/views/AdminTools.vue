@@ -5,8 +5,8 @@
     <div v-for="user in pending" v-bind:key="user.id">
       <!-- Need to make sure the are work with the java object -->
       {{user.id}} || {{user.userId}} || {{user.username}} || {{user.breweryId}}
-      <span class="navlink" v-on:click="approve">Approve || </span>
-      <span class="navlink" v-on:click="decline">Decline</span>
+      <span class="navlink" v-on:click="approve(user)">Approve || </span>
+      <span class="navlink" v-on:click="decline(user)">Decline</span>
     </div>
     <h2>Processed requests</h2>
     <div v-for="user in processed" v-bind:key="user.id">
@@ -26,7 +26,6 @@ export default {
   },
   created() {
     breweryService.getAllBrewerRequests().then((response) => {
-      console.log(response.data)
       for (let i = 0; i < response.data.length; i++) {
         if (response.data[i].processed) {
           this.processed.push(response.data[i])
@@ -40,11 +39,28 @@ export default {
     addBrewery() {
       this.$router.push("/brewery/add");
     },
-    approve() {
-
+    approve(user) {
+      user.processed = true
+      user.newRole = "ROLE_BREWER"
+      console.log(user)
+      breweryService.switchProccessedStatus(user).then((response) => {
+        if (response.status == 200) {
+          console.log("proccessed")
+        }
+      })
+      breweryService.changeUserRole(user.userId, user).then((response) => {
+        if (response.status == 200) {
+          console.log("role changed")
+        }
+      })
     },
-    decline() {
-
+    decline(user) {
+      user.processed = true
+      breweryService.switchProccessedStatus(user).then((response) => {
+        if (response.status == 200) {
+          console.log("proccessed")
+        }
+      })
     }
   }
 };
