@@ -4,15 +4,22 @@ public class PendingBreweryRequest {
 	
 	private long id;
 	private String brewerUsername;
-	private int UserId;
+	private int userId;
 	private String name;
 	private String address;
 	private String description;
+	private String image;
 	private String brewery_url;
 	private Long phone;
 	private String hours;
 	private boolean processed;
 	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public long getId() {
 		return id;
 	}
@@ -26,10 +33,10 @@ public class PendingBreweryRequest {
 		this.brewerUsername = brewerUsername;
 	}
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
 	public void setUserId(int userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 	public String getName() {
 		return name;
