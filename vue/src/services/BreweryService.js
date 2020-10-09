@@ -60,10 +60,7 @@ export default {
         return http.get("/brewerRequest")
     },
     SendPendingBreweryRequest(request){
-        return http.post("/GET FROM BRAD", request)
-    },
-    getAllPendingBreweryRequests(){
-        return http.get("/GET FROM BRAD")
+        return http.post("/addBreweryRequest", request)
     },
     switchProccessedStatus(request) {
         return http.put(`/processedStatus`, request)
