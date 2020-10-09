@@ -1,29 +1,47 @@
 package com.techelevator.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
-
+import com.techelevator.model.Brewery;
 import com.techelevator.model.PendingBreweryRequest;
-
+@Component
 public class JDBCPendingBreweryRequestDAO implements PendingBreweryRequestDAO {
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<PendingBreweryRequest> getAllRequest() {
-		// TODO Auto-generated method stub
-		return null;
+		List<PendingBreweryRequest> output = new ArrayList<PendingBreweryRequest>();
+		String sql = "SELECT * FROM pending_brewery_request";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			output.add(mapRowToRequest(results));
+		}
+		return output;
 	}
 
 	@Override
 	public void addRequest(PendingBreweryRequest request) {
-		// TODO Auto-generated method stub
+		String sql = "INSERT INTO pending_brewery_request (user_id , name, address, description, image, brewery_url, phone, hours)"
+				+ "VALUES (?,?,?,?,?,?,?,?)"; 
+		jdbcTemplate.update(sql, request.getUserId(), request.getName(),request.getAddress(),request.getDescription(),
+				request.getImage());
+		
 		
 	}
 
 	@Override
 	public void updateRequest(PendingBreweryRequest request, long id) {
-		// TODO Auto-generated method stub
+		String sqlInsert = "UPDATE pending_brewery_request set processed = ?";
+		
+		jdbcTemplate.update(sqlInsert, request.isProcessed());
 		
 	}
 	
