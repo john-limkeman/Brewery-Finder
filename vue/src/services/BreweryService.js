@@ -77,6 +77,9 @@ export default {
     }, 
     deleteBeer(beerId){
         return http.delete(`/beer/${beerId}`)
+    },
+    getAllBreweryRequests() {
+        return http.get()
     }
 
 
