@@ -74,6 +74,7 @@ export default {
     saveBeer() {
       breweryService.addBeer(this.newBeer);
       if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
+        window.alert(`${this.newBeer.name} has been created!`)
         this.$router.push({ name: "BrewerTools" });
       }else{
       this.$router.push({ name: "BreweryBeers" });

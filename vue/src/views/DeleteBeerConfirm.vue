@@ -1,0 +1,41 @@
+<template>
+  <div>
+      <h4>Are you sure you wish to delete {{beer.name}}?</h4>
+      <button v-on:click='DeleteBeer'>Yes</button>
+        <button v-on:click='Cancel'>Cancel</button>
+  </div>
+</template>
+
+<script>
+import BreweryService from '../services/BreweryService'
+export default {
+    data(){
+        return{
+            beer : {}
+        }
+    },
+    methods: {
+        DeleteBeer(beer){
+            BreweryService.deleteBeer(beer.id).then(
+                () => {
+            window.alert(`${beer.name} has been deleted!`)
+            this.$router.push({name : 'BrewerTools'})
+            }
+            )},
+        Cancel(){
+            this.$router.push({name : 'BrewerTools'})
+        }
+    },
+    created(){
+        BreweryService.getBeerById(this.$route.params.id).then(
+            (response) => {
+                this.beer = response.data;
+            }
+        )
+    }
+}
+</script>
+
+<style>
+
+</style>

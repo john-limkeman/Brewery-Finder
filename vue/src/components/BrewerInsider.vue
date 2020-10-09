@@ -36,7 +36,13 @@ export default {
         this.$router.push({name: 'AddBeer', params : {id: this.brewery.id}})
     },
     deleteBeer(beer){
-        BreweryService
+        this.$router.push({name : 'BrewerTools'}).catch(()=>{});
+        BreweryService.deleteBeer(beer.id).then(
+            () => {
+                window.alert(`${beer.name} has been deleted!`)
+                this.$forceUpdate
+            }
+        )
     }
   },
   created() {
