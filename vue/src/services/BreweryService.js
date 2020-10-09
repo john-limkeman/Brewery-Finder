@@ -64,7 +64,7 @@ export default {
     },
     getAllPendingBreweryRequests(){
         return http.get("/GET FROM BRAD")
-
+    },
     switchProccessedStatus(request) {
         return http.put(`/processedStatus`, request)
     },
