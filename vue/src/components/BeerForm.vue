@@ -73,14 +73,26 @@ export default {
   methods: {
     saveBeer() {
       breweryService.addBeer(this.newBeer);
+      if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
+        this.$router.push({ name: "BrewerTools" });
+      }else{
       this.$router.push({ name: "BreweryBeers" });
+      }
     },
     updateBeer() {
       breweryService.updateBeer(this.newBeer);
+      if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
+        this.$router.push({ name: "BrewerTools" });
+      }else{
       this.$router.push({ name: "BreweryBeers" });
+      }
     },
     cancel() {
+      if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
+        this.$router.push({ name: "BrewerTools" });
+      }else{
       this.$router.push({ name: "BreweryBeers" });
+      }
     },
   },
   created() {

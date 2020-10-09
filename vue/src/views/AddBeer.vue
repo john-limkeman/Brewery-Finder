@@ -4,7 +4,7 @@
     class="contianer col-xl-5 mx-auto border border-dark rounded"
   >
     <h2 class="text-center">Add a Beer</h2>
-    <beerForm />
+    <beerForm v-bind:brewId='this.$route.params.id'/>
     <br />
   </div>
 </template>
