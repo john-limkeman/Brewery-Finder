@@ -4,7 +4,7 @@
     class="container col-xl-5 mx-auto border border-dark rounded"
   >
     <h2 class="text-center">Edit a Brewery</h2>
-    <breweryForm />
+    <breweryForm v-bind:brewid="brewery.id"/>
   </div>
 </template>
 

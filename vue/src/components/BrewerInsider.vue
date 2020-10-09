@@ -11,11 +11,17 @@
       <button v-on:click='addBeer()'>Add Beer</button>
     </div>
     
+  <div id="BreweryList">
+    <BreweryForm v-bind:brewid="brewery.id"/>
+
+
+  </div > 
+
   </div>
 </template>
 
 <script>
-
+import BreweryForm from "@/components/BreweryFrom.vue";
 import BreweryService from "@/services/BreweryService.js";
 export default {
   data() {
@@ -45,13 +51,16 @@ export default {
     BreweryService.getBreweryByBrewer(this.$store.state.user.id).then(
       (response) => {
         this.brewery = response.data;
-        BreweryService.getBeerByBrewery(this.brewery.id).then((response) => {
-          this.beers = response.data
-          this.currentBeer = {}
+        console.log(`this is the BrewerInsider component ${this.brewery.id}`)
+
+    BreweryService.getBeerByBrewery(this.brewery.id).then((response) => {
+        this.beers = response.data
+        this.currentBeer = {}
       })
       });
   },
   components: {
+    BreweryForm,
     
   }
 };

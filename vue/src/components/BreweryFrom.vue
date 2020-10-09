@@ -86,7 +86,7 @@ export default {
       newBrewery: {},
     };
   },
-  props: [],
+  props: ["brewid"],
   methods: {
     cancelForm() {
       this.newBrewery = {};
@@ -103,14 +103,12 @@ export default {
     },
   },
   created() {
-    if (this.$route.params.id != null) {
-      breweryService.getBreweryById(this.$route.params.id).then((response) => {
+    
+      breweryService.getBreweryById(this.brewid).then((response) => {
         this.newBrewery = response.data;
       });
-    }
-      else {
-        this.newBrewery = {}
-      }
+     console.log(this.brewid)
+    
   },
 };
 </script>
