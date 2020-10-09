@@ -13,11 +13,6 @@
       <span class="navlink" v-on:click="approve(user)">Approve || </span>
       <span class="navlink" v-on:click="decline(user)">Decline</span>
     </div>
-    <h2>Processed Brewers Requests</h2>
-    <div v-for="user in processedBrewers" v-bind:key="user.id">
-      {{ user.id }} || {{ user.userId }} || {{ user.username }} ||
-      {{ user.breweryId }}
-    </div>
     <h2>Pending Brewery Requests</h2>
     <div v-for="brewery in pendingBreweries" v-bind:key="brewery.id">
       <div
@@ -53,6 +48,11 @@
           <br />
         </div>
       </div>
+    </div>
+    <h2 class="processedSection">Processed Brewers Requests</h2>
+    <div v-for="user in processedBrewers" v-bind:key="user.id">
+      {{ user.id }} || {{ user.userId }} || {{ user.username }} ||
+      {{ user.breweryId }}
     </div>
     <h2>Processed Brewery Requests</h2>
     <div v-for="brewery in processedBreweries" v-bind:key="brewery.id">
@@ -111,16 +111,16 @@ export default {
         } else {
           this.pendingBrewers.push(response.data[i]);
         }
-        breweryService.getAllBreweryRequests().then((response) => {
-          for (let i = 0; i < response.data.length; i++) {
-            if (response.data[i].processed) {
-              this.processedBrewers.push(response.data[i]);
-            } else {
-              this.pendingBrewers.push(response.data[i]);
-            }
-          }
-        });
       }
+      breweryService.getAllBreweryRequests().then((response) => {
+        for (let i = 0; i < response.data.length; i++) {
+          if (response.data[i].processed) {
+            this.processedBreweries.push(response.data[i]);
+          } else {
+            this.pendingBreweries.push(response.data[i]);
+          }
+        }
+      });
     });
   },
   methods: {
@@ -159,6 +159,9 @@ export default {
 </script>
 
 <style>
+.processedSection {
+  margin-top: 50px;
+}
 .flexLeft {
   display: flex;
   grid-area: img;

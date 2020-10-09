@@ -74,6 +74,9 @@ export default {
     },
     setBrewerToBrewery(user) {
         return http.put("/setBrewerToBrewery", user)
+    },
+    getAllBreweryRequests() {
+        return http.get()
     }
 
 
