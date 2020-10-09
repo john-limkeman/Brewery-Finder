@@ -27,10 +27,10 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (username,password_hash,role) VALUES ('brewerBob', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_BREWER');
 INSERT INTO users (username,password_hash,role) VALUES ('test', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_ADMIN');
-INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'New Brewer', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
-INSERT INTO users (user_id, username, password_hash, role) VALUES (101, 'New Brewer2', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
-INSERT INTO users (user_id, username, password_hash, role) VALUES (102, 'New Brewer3', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_BREWER');
-INSERT INTO users (user_id, username, password_hash, role) VALUES (103, 'New Brewer4', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_BREWER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'User2', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (101, 'User3', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (102, 'NewBrewer', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_BREWER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (103, 'NewBrewer2', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_BREWER');
 
 CREATE Table Breweries (
 
@@ -195,8 +195,8 @@ CREATE TABLE brewer_request (
         CONSTRAINT fk_users foreign key (user_id) references users (user_id)
 );
 
-INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (100, 'New Brewer', 1, false);
-INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (101, 'New Brewer2', 2, false);
+INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (100, 'User2', 1, false);
+INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (101, 'User3', 2, false);
 INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (102, 'New Brewer3', 3, true);
 INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (103, 'New Brewer4', 4, false);
 

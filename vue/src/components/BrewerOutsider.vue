@@ -70,11 +70,11 @@
       />
       <br />
       <button
-        v-on:click="SendRequest"
+        v-on:click.prevent="SendRequest"
       >
         Request Brewery
       </button>
-      <button v-on:click="CancelForm">Cancel</button>
+      <button v-on:click.prevent="CancelForm">Cancel</button>
       <br />
     </form>
   </div>
@@ -102,7 +102,7 @@ data(){
             this.$router.push('/');
         },
         SendRequest(){
-            this.newBrewery.UserId = this.$store.state.user.id;
+            this.newBrewery.userId = this.$store.state.user.id;
             this.newBrewery.processed = false;
             BreweryService.SendPendingBreweryRequest(this.newBrewery).then(
               () => {
