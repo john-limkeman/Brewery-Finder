@@ -132,7 +132,7 @@ public class UserSqlDAO implements UserDAO {
 		request.setId(results.getLong("id"));
 		request.setUserId(results.getInt("user_id"));
 		request.setUsername(results.getString("username"));
-		request.setBreweryId(results.getInt("brewerId"));
+		request.setBreweryId(results.getInt("breweryId"));
 		request.setProcessed(false);
 		return request;
 	}

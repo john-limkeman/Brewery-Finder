@@ -26,8 +26,9 @@ export default {
   },
   created() {
     breweryService.getAllBrewerRequests().then((response) => {
+      console.log(response.data)
       for (let i = 0; i < response.length; i++) {
-        if (response[i].processed) {
+        if (response.data[i].processed) {
           this.processed.push(response[i].data)
         } else {
           this.pending.push(response[i].data)
