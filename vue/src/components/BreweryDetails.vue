@@ -38,9 +38,9 @@
         Add Beer
       </router-link>
       <br />
-      <router-link class="navlink" v-on:click="brewerRequest">
-        Request to be a Brewer
-      </router-link>
+      <span class="navlink" v-if="brewery.brewerId == ''" v-on:click="brewerRequest">
+        Claim this brewery
+      </span>
     </div>
   </div>
 </template>
