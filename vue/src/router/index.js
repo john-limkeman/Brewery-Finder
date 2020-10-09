@@ -16,7 +16,7 @@ import editBrewery from "../views/EditBrewery.vue"
 import AddBeer from "../views/AddBeer.vue"
 import editBeer from "../views/EditBeer.vue"
 import BrewerTools from "@/views/BrewerTools.vue"
-
+import DeleteBeerConfirm from "@/views/DeleteBeerConfirm.vue"
 
 Vue.use(Router)
 
@@ -147,6 +147,11 @@ const router = new Router({
       name: "BrewerTools",
       component: BrewerTools
     },
+    {
+      path: "/confirmDelete/:beerId",
+      name: "ConfirmDelete",
+      component: DeleteBeerConfirm
+    }
    
 
   ]
