@@ -27,8 +27,8 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (username,password_hash,role) VALUES ('brewerBob', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_BREWER');
 INSERT INTO users (username,password_hash,role) VALUES ('test', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_ADMIN');
-INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'New Brewer', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_BREWER');
-INSERT INTO users (user_id, username, password_hash, role) VALUES (101, 'New Brewer2', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_BREWER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'New Brewer', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (101, 'New Brewer2', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
 INSERT INTO users (user_id, username, password_hash, role) VALUES (102, 'New Brewer3', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_BREWER');
 INSERT INTO users (user_id, username, password_hash, role) VALUES (103, 'New Brewer4', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_BREWER');
 
@@ -220,3 +220,7 @@ INSERT INTO pending_brewery_request (user_id, name, address, description, image,
 INSERT INTO pending_brewery_request (user_id, name, address, description, image, brewery_url, phone, hours, processed) VALUES (101, 'Randys House Of Beer', '555 South Lane', 'Im Not Having A Glass Of Beer, Im Having Six! Its Called A Tasting & Its Classy!', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png','tegrity.com',9495679888, '1am to 12pm', false);
 
 COMMIT TRANSACTION;
+
+SELECT * FROM users;
+SELECT * FROM breweries;
+SELECT * FROM pending_brewery_request;

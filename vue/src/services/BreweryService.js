@@ -68,7 +68,6 @@ export default {
     switchProccessedStatus(request) {
         return http.put(`/processedStatus`, request)
     },
-
     changeUserRole(userId, user) {
         return http.put(`/user/${userId}`, user)
     },
@@ -79,8 +78,11 @@ export default {
         return http.delete(`/beer/${beerId}`)
     },
     getAllBreweryRequests() {
-        return http.get()
-    }
+        return http.get("/getAllPendingBreweryRequest")
+    },
+    updateBreweryRequest(request) {
+        return http.put("updateBreweryRequest", request)
+    },
 
 
 

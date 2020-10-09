@@ -10,20 +10,18 @@
       <!-- Need to make sure the are work with the java object -->
       {{ user.id }} || {{ user.userId }} || {{ user.username }} ||
       {{ user.breweryId }}
-      <span class="navlink" v-on:click="approve(user)">Approve || </span>
+      <span class="navlink" v-on:click="approve(user)">Approve</span
+      >&nbsp;||&nbsp;
       <span class="navlink" v-on:click="decline(user)">Decline</span>
     </div>
     <h2>Pending Brewery Requests</h2>
-    <div v-for="brewery in pendingBreweries" v-bind:key="brewery.id">
-      <div
-        id="breweryInfo"
-        class="container contaner text-center col-xl-12 mx-auto rounded"
-      >
-        <p>Request Id || User Id || User Name</p>
-        <p>
-          {{ brewery.id }} || {{ brewery.userId }} ||
-          {{ brewery.brewerUsername }}
-        </p>
+    <p>Request Id || User Id</p>
+    <div
+      v-bind:class="{ first: index === 0 }"
+      v-for="brewery in pendingBreweries"
+      v-bind:key="brewery.id"
+    >
+      <div id="breweryInfoTop" class="text-center col-xl-12 mx-auto rounded">
         <div class="flexLeft">
           <img v-bind:src="brewery.image" width="180px" height="auto" />
         </div>
@@ -48,23 +46,28 @@
           <br />
         </div>
       </div>
+      <p>
+        {{ brewery.id }} || {{ brewery.userId }} ||
+        <span class="navlink" v-on:click="approveBrewery(brewery)">Approve</span
+        >&nbsp;||&nbsp;
+        <span class="navlink" v-on:click="declineBrewery(brewery)"
+          >Decline</span
+        >
+      </p>
     </div>
-    <h2 class="processedSection">Processed Brewers Requests</h2>
+    <h2>Processed Brewers Requests</h2>
     <div v-for="user in processedBrewers" v-bind:key="user.id">
       {{ user.id }} || {{ user.userId }} || {{ user.username }} ||
       {{ user.breweryId }}
     </div>
     <h2>Processed Brewery Requests</h2>
     <div v-for="brewery in processedBreweries" v-bind:key="brewery.id">
-      <div
-        id="breweryInfo"
-        class="container contaner text-center col-xl-12 mx-auto rounded"
-      >
-        <p>Request Id || User Id || User Name</p>
+      <div id="breweryInfoBottum" class="text-center col-xl-12 mx-auto rounded">
+        <!-- <p>Request Id || User Id || User Name</p>
         <p>
           {{ brewery.id }} || {{ brewery.userId }} ||
           {{ brewery.brewerUsername }}
-        </p>
+        </p> -->
         <div class="flexLeft">
           <img v-bind:src="brewery.image" width="180px" height="auto" />
         </div>
@@ -101,6 +104,7 @@ export default {
       processedBrewers: [],
       pendingBreweries: [],
       processedBreweries: [],
+      userToUpdate: {},
     };
   },
   created() {
@@ -112,15 +116,15 @@ export default {
           this.pendingBrewers.push(response.data[i]);
         }
       }
-      breweryService.getAllBreweryRequests().then((response) => {
-        for (let i = 0; i < response.data.length; i++) {
-          if (response.data[i].processed) {
-            this.processedBreweries.push(response.data[i]);
-          } else {
-            this.pendingBreweries.push(response.data[i]);
-          }
+    });
+    breweryService.getAllBreweryRequests().then((response) => {
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data[i].processed) {
+          this.processedBreweries.push(response.data[i]);
+        } else {
+          this.pendingBreweries.push(response.data[i]);
         }
-      });
+      }
     });
   },
   methods: {
@@ -154,14 +158,50 @@ export default {
         }
       });
     },
+    approveBrewery(brewery) {
+      brewery.processed = true;
+      breweryService.getUser(brewery.userId).then((response) => {
+        this.userToUpdate = response.data;
+        this.userToUpdate.newRole = "ROLE_BREWER";
+        breweryService
+          .changeUserRole(this.userToUpdate.id, this.userToUpdate)
+          .then((response) => {
+            if (response.status == 200) {
+              console.log("role changed");
+            }
+          });
+      });
+      breweryService.updateBreweryRequest(brewery).then((response) => {
+        if (response.status == 200) {
+          console.log("proccessed");
+        }
+      });
+      brewery.brewerId = brewery.userId;
+      brewery.active = true;
+      breweryService.addBrewery(brewery).then((response) => {
+        if (response.status == 201) {
+          console.log("Brewery created");
+        }
+        breweryService.setBrewerToBrewery(this.userToUpdate).then((response) => {
+          if (response.status == 200) {
+          console.log("User added to brewery");
+        }
+        })
+      })
+    },
+    declineBrewery(brewery) {
+      brewery.processed = true;
+      breweryService.updateBreweryRequest(brewery).then((response) => {
+        if (response.status == 200) {
+          console.log("proccessed");
+        }
+      });
+    },
   },
 };
 </script>
 
 <style>
-.processedSection {
-  margin-top: 50px;
-}
 .flexLeft {
   display: flex;
   grid-area: img;
@@ -170,19 +210,23 @@ export default {
   display: flex;
   grid-area: text;
 }
-#breweryInfo {
+#breweryInfoTop,
+#breweryInfoBottum {
   display: grid;
   grid-template-columns: 1fr, 1fr;
   grid-template-areas: "img text";
   background: wheat;
   text-align: center;
-  padding: 50px;
   margin: 10px;
   border-style: solid;
   border-width: 3px;
-  width: 60%;
+  width: 90%;
   justify-content: center;
   align-items: center;
+}
+
+.first {
+  margin-top: -50px;
 }
 
 #name {
