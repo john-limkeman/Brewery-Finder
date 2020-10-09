@@ -57,13 +57,16 @@ export default {
         return http.get("/brewerRequest")
     },
 
-    switchProccessedStatus(request){
+    switchProccessedStatus(request) {
         return http.put(`/processedStatus`, request)
     },
 
-    changeUserRole(userId, user){
+    changeUserRole(userId, user) {
         return http.put(`/user/${userId}`, user)
-      }
+    },
+    setBrewerToBrewery(user) {
+        return http.put("/setBrewerToBrewery", user)
+    }
 
 
 

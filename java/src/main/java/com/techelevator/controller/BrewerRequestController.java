@@ -20,11 +20,15 @@ public class BrewerRequestController {
 	
 	@RequestMapping(path ="/processedStatus", method = RequestMethod.PUT)
 	public void processStatus( @RequestBody BrewerRequest brewerRequest ) {
-		
 		dao.switchProcessedStatus(brewerRequest);
 		
 	}
 	
+	@RequestMapping(path ="/setBrewerToBrewery", method = RequestMethod.PUT)
+	public void setBrewerToBrewery( @RequestBody BrewerRequest brewerRequest ) {
+		dao.updateBrewerIdForBrewery(brewerRequest);
+
+	}
 	
 	
 }

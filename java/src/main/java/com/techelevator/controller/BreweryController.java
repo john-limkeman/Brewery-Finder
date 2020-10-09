@@ -76,7 +76,6 @@ public class BreweryController {
 	
 	@RequestMapping(path = "/brewerRequest", method = RequestMethod.GET)
 	public List<BrewerRequest> getBrewerRequest() {
-		System.out.println(userDao.getAllRequests().toString());
 		return userDao.getAllRequests();
 	}
 	
