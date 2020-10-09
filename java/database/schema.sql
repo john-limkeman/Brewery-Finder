@@ -192,8 +192,13 @@ CREATE TABLE brewer_request (
 );
 
 INSERT INTO users (user_id, username, password_hash, role) VALUES (100, 'New Brewer', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (101, 'New Brewer2', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (102, 'New Brewer3', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
+INSERT INTO users (user_id, username, password_hash, role) VALUES (103, 'New Brewer4', '$2a$10$UAjEa4eYIsQj7TF9MJpqz.MZptrdKkXm5bO9Trv4oe/bSqaA4WU16', 'ROLE_USER');
 INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (100, 'New Brewer', 1, false);
-
+INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (101, 'New Brewer2', 2, false);
+INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (102, 'New Brewer3', 3, true);
+INSERT INTO brewer_request (user_id, username, breweryid, processed) VALUES (103, 'New Brewer4', 4, false);
 
 
 
