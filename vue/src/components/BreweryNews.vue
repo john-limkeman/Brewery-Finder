@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import BreweryService from "@/services/BreweryService.js";
+
 export default {
     data(){
         return{
@@ -23,7 +25,15 @@ export default {
 
 
         }
-    }
+    },
+
+    created(){
+        BreweryService.getNewsByBrewery(this.$route.params.id).then(
+            (response) => {
+                this.News = response.data
+            }
+        )
+    } 
 
 };
 

@@ -6,7 +6,6 @@ public class BreweryNews {
 	private Long breweryId;
 	private String newstitle;
 	private String body;
-	private String author;
 	
 	
 	public Long getNewsId() {
@@ -32,12 +31,6 @@ public class BreweryNews {
 	}
 	public void setBody(String body) {
 		this.body = body;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 	

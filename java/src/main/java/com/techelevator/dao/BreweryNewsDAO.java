@@ -10,7 +10,7 @@ public interface BreweryNewsDAO {
 	
 	public List<BreweryNews> getNewsByBreweryId(Long breweryId);
 	
-	public void deleteNews(BreweryNews news);
+	public void deleteNews(Long newsId);
 	
 	public void updateNews(BreweryNews news);
 	

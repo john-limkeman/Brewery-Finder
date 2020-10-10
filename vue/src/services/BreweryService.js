@@ -80,6 +80,9 @@ export default {
     updateBreweryRequest(request) {
         return http.put("updateBreweryRequest", request)
     },
+    getNewsByBrewery(breweryId){
+        return http.get(`/news/${breweryId}`)
+    }
 
 
 
