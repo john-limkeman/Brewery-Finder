@@ -2,14 +2,14 @@ package com.techelevator.model;
 
 public class UserRoleChange {
 	
-	private int userId;
+	private long userId;
 	private String newRole;
 	
 
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 	public String getNewRole() {

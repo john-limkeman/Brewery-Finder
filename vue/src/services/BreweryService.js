@@ -66,7 +66,7 @@ export default {
         return http.put(`/processedStatus`, request)
     },
     changeUserRole(userId, user) {
-        return http.put(`/user/${userId}`, user)
+        return http.put(`/user/${user.id}`, user)
     },
     setBrewerToBrewery(user) {
         return http.put("/setBrewerToBrewery", user)
@@ -78,7 +78,7 @@ export default {
         return http.get("/getAllPendingBreweryRequest")
     },
     updateBreweryRequest(request) {
-        return http.put("updateBreweryRequest", request)
+        return http.put("/updateBreweryRequest", request)
     },
     getNewsByBrewery(breweryId){
         return http.get(`/news/${breweryId}`)

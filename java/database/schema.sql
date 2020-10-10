@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS brewery_news;
 DROP TABLE IF EXISTS pending_brewery_request;
 DROP TABLE IF EXISTS brewer_request;
 Drop Table if exists Review;
@@ -235,7 +236,3 @@ INSERT INTO brewery_news (breweryId, newsTitle, body) VALUES (1, 'Runaway cow cr
 INSERT INTO brewery_news (breweryId, newsTitle, body) VALUES (2, '2nd best Brewery in Denver', 'Second is the first loser...We are coming for you Denver Beer Company for our rightfuld #1 spot. PS: watch your front window!');
 
 COMMIT TRANSACTION;
-
-SELECT * FROM users;
-SELECT * FROM breweries;
-SELECT * FROM pending_brewery_request;

@@ -37,8 +37,8 @@ public class JDBCPendingBreweryRequestDAO implements PendingBreweryRequestDAO {
 
 	@Override
 	public void updateRequest(PendingBreweryRequest request, long id) {
-		String sqlInsert = "UPDATE pending_brewery_request set processed = ?";
-		jdbcTemplate.update(sqlInsert, request.isProcessed());
+		String sqlInsert = "UPDATE pending_brewery_request set processed = ? WHERE id = ?";
+		jdbcTemplate.update(sqlInsert, request.isProcessed(), request.getId());
 		
 	}
 	

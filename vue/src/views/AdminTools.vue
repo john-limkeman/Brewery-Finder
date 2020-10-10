@@ -4,21 +4,22 @@
   >
     <router-link class="navlink" v-bind:to="{ name: 'AddBrewery' }"
       >Add a brewery</router-link
-    >
+    > 
     <h2>Pending Brewers Requests</h2>
-    <div v-for="user in pendingBrewers" v-bind:key="user.id">
-      <!-- Need to make sure the are work with the java object -->
+    <div v-for="user in pendingBrewers" v-bind:key="user.actualId">
+      
       {{ user.id }} || {{ user.userId }} || {{ user.username }} ||
       {{ user.breweryId }}
       <span class="navlink" v-on:click="approve(user)">Approve</span
       >&nbsp;||&nbsp;
       <span class="navlink" v-on:click="decline(user)">Decline</span>
     </div>
+
     <h2>Pending Brewery Requests</h2>
     <p>Request Id || User Id</p>
     <div
       v-for="brewery in pendingBreweries"
-      v-bind:key="brewery.id"
+      v-bind:key="brewery.actualId"
     >
       <div id="breweryInfoTop" class="text-center col-xl-12 mx-auto rounded">
         <div class="flexLeft">
@@ -111,7 +112,13 @@ export default {
         }
       }
     });
+
+    this.pendingBrewers.forEach( 
+      (brewer) => { brewer.actualId = 'a' + brewer.id}   
+    )
+
     breweryService.getAllBreweryRequests().then((response) => {
+
       for (let i = 0; i < response.data.length; i++) {
         if (response.data[i].processed) {
           this.processedBreweries.push(response.data[i]);
@@ -119,6 +126,11 @@ export default {
           this.pendingBreweries.push(response.data[i]);
         }
       }
+
+    this.pendingBreweries.forEach( 
+      (brewery) => { brewery.actualId = 'b' + brewery.id}   
+    )
+
     });
   },
   methods: {
@@ -154,19 +166,24 @@ export default {
     },
     approveBrewery(brewery) {
       brewery.brewerId = brewery.userId;
+      brewery.breweryId = brewery.id
       brewery.active = true;
       brewery.processed = true;
-        this.userToUpdate.newRole = "ROLE_BREWER";
-      // breweryService.getUser(brewery.userId).then((response) => {
-        // this.userToUpdate = response.data;
-        breweryService
+      breweryService.getUser(brewery.userId).then(
+        (response) => {
+          this.userToUpdate = response.data;
+          this.userToUpdate.userId = this.userToUpdate.id
+          this.userToUpdate.newRole = "ROLE_BREWER";
+          breweryService
           .changeUserRole(this.userToUpdate.id, this.userToUpdate)
-          .then((response) => {
-            if (response.status == 200) {
-              console.log("role changed");
+          .then(
+              (response) => {
+              if (response.status == 200) {
+                console.log("role changed");
+              }
             }
-          });
-      // });
+          );
+        });
       breweryService.updateBreweryRequest(brewery).then((response) => {
         if (response.status == 200) {
           console.log("proccessed");
@@ -177,7 +194,7 @@ export default {
           console.log("Brewery created");
         }
         breweryService
-          .setBrewerToBrewery(this.userToUpdate)
+          .setBrewerToBrewery(brewery)
           .then((response) => {
             if (response.status == 200) {
               console.log("User added to brewery");
