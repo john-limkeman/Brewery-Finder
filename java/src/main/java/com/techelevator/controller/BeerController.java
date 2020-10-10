@@ -52,9 +52,9 @@ public class BeerController {
 	public void saveBeer(@Valid @RequestBody Beer beer) {
 		dao.saveBeer(beer);
 	}
-	
+
 	@RequestMapping(path = "/beer/{id}", method = RequestMethod.PUT)
-	public void updateBeer(@PathVariable long id, @RequestBody Beer beer ) {
+	public void updateBeer(@PathVariable long id, @RequestBody Beer beer) {
 		dao.updateBeer(beer, id);
 	}
 
