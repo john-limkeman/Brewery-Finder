@@ -6,6 +6,7 @@ Drop Table if exists Review;
 Drop Table if exists beers;
 Drop Table if exists breweries;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS brewery_news;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
@@ -218,6 +219,20 @@ CREATE TABLE pending_brewery_request (
 INSERT INTO pending_brewery_request (user_id, name, address, description, image, brewery_url, phone, hours, processed) VALUES (100, 'ROCK HOUSE', '161 Rock Lane', 'Drink a Beer, Climb a Rock', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png','theRock.com',9499999888, '24 hours 7 Days a Week', false);
 INSERT INTO pending_brewery_request (user_id, name, address, description, image, brewery_url, phone, hours, processed) VALUES (3, 'Denver Beer Company', '1695 Platte St, Denver, CO 80202', 'Brewery-based taproom with an industrial vibe, dog-friendly outdoor beer garden & food trucks', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png','https://denverbeerco.com/',3034332739, '11am to 11pm', true);
 INSERT INTO pending_brewery_request (user_id, name, address, description, image, brewery_url, phone, hours, processed) VALUES (101, 'Randys House Of Beer', '555 South Lane', 'Im Not Having A Glass Of Beer, Im Having Six! Its Called A Tasting & Its Classy!', 'https://denverbeerco.com/wp-content/uploads/2014/07/logo_final3.png','tegrity.com',9495679888, '1am to 12pm', false);
+
+CREATE TABLE brewery_news (
+        newsId serial,
+	breweryId int NOT NULL,
+	newstitle varchar(50) NOT NULL,
+	body varchar,
+        
+       
+	CONSTRAINT PK_brewery_news PRIMARY KEY (newsId),
+        CONSTRAINT fk_breweries foreign key (breweryId) references breweries (id)
+);
+
+INSERT INTO brewery_news (breweryId, newsTitle, body) VALUES (1, 'Runaway cow crashes window', 'Hey all,  we will remain open while we fix the front window...think about it, now we have a breezy area for you to enjoy.  Watch out for the glass!!');
+INSERT INTO brewery_news (breweryId, newsTitle, body) VALUES (2, '2nd best Brewery in Denver', 'Second is the first loser...We are coming for you Denver Beer Company for our rightfuld #1 spot. PS: watch your front window!');
 
 COMMIT TRANSACTION;
 
