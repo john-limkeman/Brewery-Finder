@@ -20,6 +20,11 @@ public class BreweryNewsController {
 	public BreweryNewsDAO dao;
 	
 	
+	@RequestMapping(path = "/allNews", method = RequestMethod.GET)
+	public List<BreweryNews> getAllNews() {
+		return dao.getAllNews();
+	}
+	
 	@RequestMapping(path = "/news/{id}", method = RequestMethod.GET)
 	public List<BreweryNews> newsByBreweryID(@PathVariable Long id){
 		return dao.getNewsByBreweryId(id);

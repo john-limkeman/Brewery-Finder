@@ -12,13 +12,10 @@ import com.techelevator.model.BrewerRequest;
 import com.techelevator.model.BreweryNews;
 
 @Component
-public class JDBCBreweryNews implements BreweryNewsDAO{
+public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public JDBCBreweryNews(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
 	@Override
 	public List<BreweryNews> getAllNews() {
 		List<BreweryNews> allNews = new ArrayList<>();
@@ -73,6 +70,7 @@ public class JDBCBreweryNews implements BreweryNewsDAO{
 		news.setBreweryId(results.getLong("breweryId"));
 		news.setNewstitle(results.getString("newsTitle"));
 		news.setBody(results.getString("body"));
+		news.setNewsImageUrl(results.getString("newsImageUrl"));
 		return news;
 	}
 

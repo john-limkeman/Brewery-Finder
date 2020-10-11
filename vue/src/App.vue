@@ -8,7 +8,9 @@
         <router-link class="navlink" v-bind:to="{ name: 'home' }"
           ><img src="@/Resources/output-onlinepngtools.png" /></router-link
         >&nbsp;|&nbsp;
-        <router-link class="navlink" v-bind:to="{ name: 'UserPage', params: { id: this.$store.state.user.id }  }"
+        <router-link class="navlink" v-if="this.$store.state.logIn" v-bind:to="{ name: 'UserPage', params: { id: this.$store.state.user.id }  }"
+          >My page</router-link>
+        <router-link class="navlink" v-else v-bind:to="{ name: 'login'}"
           >My page</router-link
         >&nbsp;|&nbsp;
         <router-link class="navlink" v-bind:to="{ name: 'BreweryList' }"

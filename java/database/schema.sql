@@ -226,13 +226,14 @@ CREATE TABLE brewery_news (
 	breweryId int NOT NULL,
 	newstitle varchar(50) NOT NULL,
 	body varchar,
+	newsImageUrl varchar,
         
        
 	CONSTRAINT PK_brewery_news PRIMARY KEY (newsId),
         CONSTRAINT fk_breweries foreign key (breweryId) references breweries (id)
 );
 
-INSERT INTO brewery_news (breweryId, newsTitle, body) VALUES (1, 'Runaway cow crashes window', 'Hey all,  we will remain open while we fix the front window...think about it, now we have a breezy area for you to enjoy.  Watch out for the glass!!');
-INSERT INTO brewery_news (breweryId, newsTitle, body) VALUES (2, '2nd best Brewery in Denver', 'Second is the first loser...We are coming for you Denver Beer Company for our rightfuld #1 spot. PS: watch your front window!');
+INSERT INTO brewery_news (breweryId, newsTitle, body, newsImageUrl) VALUES (1, 'Runaway cow crashes window', 'Hey all,  we will remain open while we fix the front window...think about it, now we have a breezy area for you to enjoy.  Watch out for the glass!!', 'https://ewscripps.brightspotcdn.com/dims4/default/69a81a7/2147483647/strip/true/crop/930x523+0+88/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2F8a%2Fcd%2F64760e484066abb0816015cb164d%2Fscreen-shot-2019-08-20-at-3.02.57%20PM.png');
+INSERT INTO brewery_news (breweryId, newsTitle, body, newsImageUrl) VALUES (2, '2nd best Brewery in Denver', 'Second is the first loser...We are coming for you Denver Beer Company for our rightfuld #1 spot. PS: watch your front window!', 'https://i.ytimg.com/vi/_WKQXlEbC1s/hqdefault.jpg');
 
 COMMIT TRANSACTION;

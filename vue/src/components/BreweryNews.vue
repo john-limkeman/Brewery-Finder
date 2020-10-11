@@ -1,10 +1,11 @@
 <template>
   <div id="breweryNews">
-      <H3>Brewery News<H3>
+      <h3>Brewery News</h3>
           <div class="newsContainer" v-for='news in News' v-bind:Key="news.id">
               <title id="newsTitle">{{news.title}}</title>
               <p id="newsbody">{{news.body}}</p>
               <p id="author">Written By: {{news.author}}</p>
+              <img v-bind:src="news.newsImageUrl">
 
 
 
@@ -40,5 +41,7 @@ export default {
 </script>
 
 <style>
-
+.newsContainer {
+    border-bottom: 3px, solid, black;
+}
 </style>
