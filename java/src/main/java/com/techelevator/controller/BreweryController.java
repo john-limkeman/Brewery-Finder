@@ -64,7 +64,6 @@ public class BreweryController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path = "/addBrewery", method = RequestMethod.POST)
 	public void saveBrewery(@Valid @RequestBody Brewery brewery) {
-		System.out.println(brewery);
 		dao.saveBrewery(brewery);
 	}
 	
@@ -83,6 +82,11 @@ public class BreweryController {
 	@RequestMapping(path = "/brewerRequest", method = RequestMethod.GET)
 	public List<BrewerRequest> getBrewerRequest() {
 		return userDao.getAllRequests();
+	}
+	
+	@RequestMapping(path = "/getBreweryByName/{name}", method = RequestMethod.GET)
+	public Brewery getBreweryByName(@PathVariable String name) {
+		return dao.getBreweryByName(name);
 	}
 	
 }

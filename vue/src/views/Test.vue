@@ -23,30 +23,5 @@ export default {
 </script>
 
 <style>
-.flexLeft {
-  display: flex;
-  grid-area: img;
-}
-.felxRight {
-  display: flex;
-  grid-area: text;
-}
-#breweryInfoTop,
-#breweryInfoBottum {
-  display: grid;
-  grid-template-columns: 1fr, 1fr;
-  grid-template-areas: "img text";
-  background: wheat;
-  text-align: center;
-  margin: 10px;
-  border-style: solid;
-  border-width: 3px;
-  width: 90%;
-  justify-content: center;
-  align-items: center;
-}
 
-#name {
-  text-decoration: underline;
-}
 </style>

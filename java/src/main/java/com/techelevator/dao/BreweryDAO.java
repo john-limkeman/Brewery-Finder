@@ -18,4 +18,5 @@ public interface BreweryDAO {
 	
 	public void updateBrewery(Brewery brewery, long id);
 
+	public Brewery getBreweryByName(String name);
 }

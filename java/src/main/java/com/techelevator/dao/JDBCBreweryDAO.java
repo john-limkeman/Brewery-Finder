@@ -62,7 +62,6 @@ public class JDBCBreweryDAO implements BreweryDAO {
 				"INSERT INTO breweries (name, address, description, image, brewery_url, phone, hours, active) VALUES (?,?,?,?,?,?,?,?)",
 				brewery.getName(), brewery.getAddress(), brewery.getDescription(), brewery.getImage(),
 				brewery.getBrewery_url(), brewery.getPhone(), brewery.getHours(), brewery.isActive());
-
 	}
 
 	@Override
@@ -77,6 +76,16 @@ public class JDBCBreweryDAO implements BreweryDAO {
 
 	}
 
+	@Override
+	public Brewery getBreweryByName(String name) {
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM breweries WHERE name = ?" , name);
+		if (results.next()) {
+			return mapRowToBrewery(results);
+		} else {
+			throw new RuntimeException("No brewery found");
+		}
+	}
+	
 	// maps SQL query to brewery object
 	private Brewery mapRowToBrewery(SqlRowSet results) {
 		Brewery brewery = new Brewery();
@@ -92,6 +101,7 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		brewery.setImage(results.getString("image"));
 		return brewery;
 	}
+
 
 
 }

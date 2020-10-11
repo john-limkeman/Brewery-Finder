@@ -82,7 +82,10 @@ export default {
     },
     getNewsByBrewery(breweryId){
         return http.get(`/news/${breweryId}`)
-    }
+    },
+    getBreweryByName(name) {
+        return http.get(`/getBreweryByName/${name}`)
+    },
 
 
 

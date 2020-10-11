@@ -71,7 +71,7 @@ public class AuthenticationController {
 	  return userDAO.getUserById(userId);
 	}
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/user/{userId}" , method = RequestMethod.PUT)
 	public void updateUserRole( @PathVariable("userId") long userId, @Valid @RequestBody UserRoleChange user ) {
 		userDAO.updateUserRole(user);

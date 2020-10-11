@@ -17,6 +17,7 @@ import AddBeer from "../views/AddBeer.vue"
 import editBeer from "../views/EditBeer.vue"
 import BrewerTools from "@/views/BrewerTools.vue"
 import DeleteBeerConfirm from "@/views/DeleteBeerConfirm.vue"
+import Test from "../views/Test.vue"
 
 Vue.use(Router)
 
@@ -145,13 +146,24 @@ const router = new Router({
     {
       path: "/brewer",
       name: "BrewerTools",
-      component: BrewerTools
+      component: BrewerTools,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/confirmDelete/:beerId",
       name: "ConfirmDelete",
-      component: DeleteBeerConfirm
-    }
+      component: DeleteBeerConfirm,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/test",
+      name: "Test",
+      component: Test
+    },
    
 
   ]
