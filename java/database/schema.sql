@@ -1,5 +1,7 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS events;
+DROP TABLE IF EXISTS brewery_favorites;
 DROP TABLE IF EXISTS reply_review;
 DROP TABLE IF EXISTS brewery_news;
 DROP TABLE IF EXISTS pending_brewery_request;
@@ -253,5 +255,33 @@ INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (102,2, 'Take
 INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (3,2, 'Ok next time', 'I will be sure to take a pic of the smell next time');
 INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (3,1, 'Thanks', 'Thanks for stopping by');
 INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (103,4, 'Thank you', 'I enjoy potatoes');
+
+CREATE TABLE brewery_favorites (
+        user_id int NOT NULL, 
+        brewery_id int NOT NULL,
+        
+CONSTRAINT pk_brewery_favorites PRIMARY KEY (user_id, brewery_id),
+CONSTRAINT fk_brewery_favorites_user FOREIGN KEY (user_id) references users (user_id),
+CONSTRAINT fk_brewery_favorites_brewery FOREIGN KEY (brewery_id) references breweries (id)
+);
+
+INSERT INTO brewery_favorites (user_id, brewery_id) VALUES (3, 6);
+
+CREATE TABLE events
+(
+event_id serial,
+brewery_id int not null,
+event_date varchar(65),
+description varchar(500) not null,
+picture varchar,
+
+
+constraint pk_events primary key (event_id),
+constraint fk_Beers_Breweries foreign key (brewery_id) references Breweries (id)
+
+);
+
+INSERT INTO events (brewery_id, event_date, description, picture) VALUES (1, 'Grand Re-opening', '10/16/2020', 'Our Grand reopening! We will be doing a silent auction and 50\50 raffle.', 'https://www.chicagotribune.com/resizer/Pr0bKQcAAc3k9r3ZAu6153ZAlMo=/800x450/top/www.trbimg.com/img-5a988d8d/turbine/ct-1519947143-hi4cw0r4bq-snap-image');
+INSERT INTO events (brewery_id, event_date, description, picture) VALUES (2, 'Broncos vs Eagles', '10/18/2020', 'Come enjoy a pint with friends while the game is on', 'https://pbs.twimg.com/profile_images/1306062984427364353/LvHV6KGB_400x400.jpg');
 
 COMMIT TRANSACTION;

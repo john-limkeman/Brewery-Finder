@@ -89,7 +89,15 @@ export default {
     getAllNews() {
         return http.get("/allNews")
     },
-
+    getFavoritesByUser(id){
+        return http.get(`/favorite/${id}`)
+    },
+    addFavorite(user_id, brewery_id){
+        return http.post(`/favorite/${user_id}/${brewery_id}`)
+    },
+    deleteFavorite(user_id, brewery_id){
+        return http.delete(`/favorite/${user_id}/${brewery_id}`)
+    },
 
 
 

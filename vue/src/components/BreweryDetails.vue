@@ -44,6 +44,9 @@
       <span class="navlink" v-if="brewery.brewerId == ''" v-on:click="brewerRequest">
         Claim this brewery
       </span>
+
+      <button id='RemoveFavoriteBtn' v-if='isFavorite' v-on:click.prevent='toggleFavorite'>Unfavorite</button>
+      <button id='MakeFavoriteBtn' v-else v-on:click.prevent='toggleFavorite'>Favorite</button>
     </div>
    
   </div>
@@ -56,12 +59,23 @@ export default {
   data() {
     return {
       brewery: {},
-      directions: "https://www.google.com/maps/place/"
+      directions: "https://www.google.com/maps/place/",
+      isFavorite: false
     };
   },
   created() {
     BreweryService.getBreweryById(this.$route.params.id).then((response) => {
       this.brewery = response.data;
+      BreweryService.getFavoritesByUser(this.$store.state.user.id).then(
+        (response) => {
+          let results = response.data;
+          for (let i = 0; i < results.length; i++){
+            if (results[i].brewery_id == this.brewery.id){
+                this.isFavorite = true;
+            }
+          }
+        }
+      )
     });
   },
   methods: {
@@ -84,6 +98,21 @@ export default {
         return false;
       }
     },
+    toggleFavorite(){
+      if (this.isFavorite == true){
+        BreweryService.deleteFavorite(this.$store.state.user.id, this.brewery.id).then(
+          () => {
+            this.isFavorite = false;
+          }
+        )
+      }else {
+        BreweryService.addFavorite(this.$store.state.user.id, this.brewery.id).then(
+          () => {
+            this.isFavorite = true;
+          }
+        )
+      }
+    }
   },
   components: {  }
 };
