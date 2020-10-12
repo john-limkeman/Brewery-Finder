@@ -86,7 +86,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr, 1fr;
   grid-template-areas: "img text";
-  background: wheat;
   text-align: center;
   padding: 50px;
   margin: 10px;

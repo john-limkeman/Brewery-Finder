@@ -60,6 +60,7 @@ export default {
 }
 #main-page-logo {
   width: 400px;
+  height: auto;
 }
 .home > h1 {
   font-family: cursive;

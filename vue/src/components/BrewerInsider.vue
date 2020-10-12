@@ -11,8 +11,79 @@
       <button v-on:click='addBeer()'>Add Beer</button>
     </div>
     
-  <div id="BreweryList">
-    <BreweryForm v-bind:brewid="settingBreweryId"/>
+<div id="BreweryList">
+      <form id="newBreweryForm">
+      <label for="name">Brewery name</label>
+      <input
+        v-model="brewery.name"
+        type="text"
+        name="name"
+        placeholder="Brewery name"
+      />
+      <br />
+      <label for="address">Address</label>
+      <input
+        v-model="brewery.address"
+        type="text"
+        name="address"
+        placeholder="Address"
+      />
+      <br />
+      <label for="description">Description</label>
+      <input
+        v-model="brewery.description"
+        type="text"
+        name="description"
+        placeholder="Description"
+      />
+      <br />
+      <label for="image">Image url</label>
+      <input
+        v-model="brewery.image"
+        type="text"
+        name="image"
+        placeholder="Image url"
+      />
+      <br />
+      <label for="brewery_url">Brewery url</label>
+      <input
+        v-model="brewery.brewery_url"
+        type="text"
+        name="brewery_url"
+        placeholder="Brewery url"
+      />
+      <br />
+      <label for="phone">Phone number</label>
+      <input
+        v-model="brewery.phone"
+        type="text"
+        name="phone"
+        placeholder="Phone number"
+      />
+      <br />
+      <label for="hours">Hours</label>
+      <input
+        v-model="brewery.hours"
+        type="text"
+        name="hours"
+        placeholder="Hours"
+      />
+      <br />
+      <label for="active">Active</label>
+      <input
+        v-model="brewery.active"
+        type="checkbox"
+        name="active"
+        placeholder="Active"
+      />
+      <br />
+      <button v-on:click.prevent="updateBrewery" >Update</button>
+      <button v-on:click.prevent="clearForm">Clear</button>
+      <br />
+    </form>
+  
+
+    <!-- <BreweryForm v-bind:brewid="settingBreweryId"/> -->
 
 
   </div > 
@@ -21,7 +92,7 @@
 </template>
 
 <script>
-import BreweryForm from "@/components/BreweryFrom.vue";
+// import BreweryForm from "@/components/BreweryFrom.vue";
 import BreweryService from "@/services/BreweryService.js";
 export default {
   data() {
@@ -52,7 +123,14 @@ export default {
         this.currentBeer = beer;
         this.$router.push({name : 'ConfirmDelete', params : {beerId : this.currentBeer.id}})
         
-    }
+    },
+      clearForm() {
+      this.brewery = {};
+    },
+        updateBrewery() {
+      BreweryService.updateBrewery(this.brewery);
+      this.$router.push({ name: "BreweryBeers", params: {id : this.brewery.id} });
+    },
   },
   created() {
     
@@ -69,7 +147,7 @@ export default {
       });
   },
   components: {
-    BreweryForm,
+    // BreweryForm,
     
   }
 };

@@ -142,15 +142,17 @@ span:hover {
 }
 body {
   padding-top: 50px;
-  background-image: url("https://skookumbrewery.com/wp-content/uploads/2019/05/cropped-IMG_4560-6.jpg");
+  /* background-image: url("https://skookumbrewery.com/wp-content/uploads/2019/05/cropped-IMG_4560-6.jpg"); */
+    background-image: url('https://www.doctorhomebrew.com/wp-content/uploads/2014/05/storageok.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover;
 }
 .container {
   display: flex;
   flex-direction: column;
   border: 1px, solid, black;
-  background-color: wheat;
+  background-color: rgba(245,222,179 ,0.7 );
   width: 50%;
   position: absolute;
   top: 50px;
