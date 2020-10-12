@@ -102,8 +102,12 @@ export default {
     },
     createEvent(eventId, event){
         return http.post(`/newEvent/${eventId}`, event)
-    }
+    },
 
+    getReviewReply() {
+        return http.get("/replies")
+    }
+    
 
 
 
