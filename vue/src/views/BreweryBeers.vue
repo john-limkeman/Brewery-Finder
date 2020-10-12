@@ -50,7 +50,6 @@ export default {
 
 <style>
 #beerList {
-  background: wheat;
   text-align: center;
   padding: 50px;
   border-style: solid;

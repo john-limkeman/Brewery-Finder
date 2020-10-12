@@ -1,5 +1,7 @@
 <template>
   <div class="breweryFormComponent">
+    <p>Hi
+</p>
     <form id="newBreweryForm">
       <label for="name">Brewery name</label>
       <input
@@ -87,6 +89,17 @@ export default {
     };
   },
   props: ["brewid"],
+  watch: {
+    brewid: function(newVal, oldVal) { // watch it
+          console.log('Prop changed: ', newVal, ' | was: ', oldVal);
+          breweryService.getBreweryById(this.brewid).then(
+            (response) => {
+              this.newBrewery = response.data;
+            }
+          );
+     console.log(this.brewid)
+    }    
+  },
   methods: {
     cancelForm() {
       this.newBrewery = {};
@@ -104,10 +117,7 @@ export default {
   },
   created() {
     
-      breweryService.getBreweryById(this.brewid).then((response) => {
-        this.newBrewery = response.data;
-      });
-     console.log(this.brewid)
+
     
   },
 };

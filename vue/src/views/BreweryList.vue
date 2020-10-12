@@ -41,9 +41,6 @@ export default {
 
 <style>
 
-#beerlist {
-  background-color: wheat;
-}
 
 div > img {
   max-width: 100%;
