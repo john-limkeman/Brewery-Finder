@@ -39,6 +39,7 @@
                 name="reply"
                 placeholder="What is your reply to this review?"
             /><br>
+               <button>Submit</button>
            </form>
        
 </div>
@@ -50,6 +51,8 @@ import BreweryService from '../services/BreweryService'
 export default {
     data(){
         return{
+            userId : this.$store.state.user.id,
+            reviewId: this.reviewId,
             username : 'Stand-in',
             review: this.chosen,
             reply: this.chosen,
@@ -70,7 +73,7 @@ export default {
 
     addReply(){
                 this.review.reviewDate = new Date();
-            BreweryService.addReply(this.reply).then( (response) => {
+            BreweryService.addReviewReply(this.reply).then( (response) => {
                 this.reply = response.data;
 
 
