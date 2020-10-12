@@ -103,10 +103,13 @@ export default {
     createEvent(eventId, event){
         return http.post(`/newEvent/${eventId}`, event)
     },
-
     getReviewReply() {
         return http.get("/replies")
-    }
+    },
+    addReviewReply(replyReview) {
+        return http.post("/replies", replyReview)
+    },
+
     
 
 
