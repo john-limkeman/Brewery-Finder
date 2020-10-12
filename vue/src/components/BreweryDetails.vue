@@ -24,6 +24,7 @@
       </p>
       <a class="navlink" v-bind:href="brewery.brewery_url">Web site</a> <br />
       <br />
+      <a class="navlink" v-bind:href="directions + brewery.address">Directions</a>
       <router-link
         class="navlink"
         v-bind:to="{ name: 'UpdateBrewery', params: { id: brewery.id } }"
@@ -51,6 +52,7 @@ export default {
   data() {
     return {
       brewery: {},
+      directions: "https://www.google.com/maps/place/"
     };
   },
   created() {
