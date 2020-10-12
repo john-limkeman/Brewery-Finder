@@ -1,4 +1,8 @@
 <template>
+<div>
+    <aside class="container">Something
+      
+    </aside>
   <div
     class="home container text-center col-xl-5 mx-auto border border-dark rounded"
   >
@@ -13,6 +17,7 @@
       <img v-bind:src="item.newsImageUrl" />
     </div>
   </div>
+</div>
 </template>
 
 <script>

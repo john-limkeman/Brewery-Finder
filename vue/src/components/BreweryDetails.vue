@@ -24,10 +24,11 @@
       </p>
       <a class="navlink" v-bind:href="brewery.brewery_url">Web site</a> <br />
       <br />
-      <a class="navlink" v-bind:href="directions + brewery.address">Directions</a>
+      <a target="blank" class="navlink" v-bind:href="directions + brewery.address">Directions</a>
       <router-link
         class="navlink"
         v-bind:to="{ name: 'UpdateBrewery', params: { id: brewery.id } }"
+        v-if="isAdmin()" 
       >
         Update Brewery
       </router-link>
@@ -35,6 +36,7 @@
       <router-link
         class="navlink"
         v-bind:to="{ name: 'AddBeer', params: { id: brewery.id } }"
+        v-if="isAdmin()" 
       >
         Add Beer
       </router-link>
@@ -70,6 +72,15 @@ export default {
           alert("Request Sent");
         }
       });
+    },
+    isAdmin() {
+      if (this.$store.state.logIn) {
+        if (this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
+          return true;
+        }
+      } else {
+        return false;
+      }
     },
   },
 };

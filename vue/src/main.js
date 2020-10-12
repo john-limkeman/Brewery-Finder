@@ -8,6 +8,7 @@ import axios from 'axios'
 import BootStrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.use(BootStrapVue)
 
 Vue.config.productionTip = false
