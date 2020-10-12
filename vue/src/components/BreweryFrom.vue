@@ -67,14 +67,14 @@
         placeholder="Active"
       />
       <br />
-      <button
+      <button class="btn btn-primary"
         v-on:click="addBrewery"
         v-if="this.$route.params.id == null"
       >
         Create
       </button>
-      <button v-on:click="updateBrewery" v-else>Update</button>
-      <button v-on:click="cancelForm">Cancel</button>
+      <button class="btn btn-primary" v-on:click="updateBrewery" v-else>Update</button>
+      <button class="btn btn-primary" v-on:click="cancelForm">Cancel</button>
       <br />
     </form>
   </div>
