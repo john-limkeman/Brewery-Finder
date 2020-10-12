@@ -90,6 +90,20 @@ export default {
         return http.get("/allNews")
     },
 
+    getEventsById(breweryId){
+        return http.get(`/breweryEvents/${breweryId}`)
+    },
+
+    deleteEvent(event){
+        return http.delete('/deleteEvent', event)
+    },
+    updateEvent(event){
+        return http.put('/updateEvent', event)
+    },
+    createEvent(eventId, event){
+        return http.post(`/newEvent/${eventId}`, event)
+    }
+
 
 
 
