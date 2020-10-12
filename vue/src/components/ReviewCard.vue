@@ -10,6 +10,7 @@
           v-for="n in review.rating"
           v-bind:key="n"
         />
+
         </div>
       
       <h6 id='review-user'><span>By:</span> {{this.username}}</h6>
@@ -20,7 +21,24 @@
      <p id='review-smell'><span>Smell:</span> {{review.smell}}</p>
      <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
-           <button id= "review-reply">Add Reply</button>
+           <button id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
+           
+           <form v-on:submit.prevent ='addReply' v-if='visibility == true' >
+                 <label for="title">Title</label>
+            <input
+                v-model="reply.reviewTitle"
+                type="text"
+                name="reviewTitle"
+                placeholder="Title for Review reply"
+            /> <br>
+            <label for="reply">Reply</label>
+            <input
+                v-model="reply.reply"
+                type="text"
+                name="reply"
+                placeholder="What is your reply to this review?"
+            /><br>
+           </form>
        
 </div>
   </div>
@@ -32,10 +50,34 @@ export default {
     data(){
         return{
             username : 'Stand-in',
-            review: this.chosen
+            review: this.chosen,
+            reply: this.chosen,
+        visibility: false
         }
     },
     props : ['chosen'],
+    methods: {
+
+         ChangeVis(){
+            if(this.$store.state.logIn){
+            this.visibility = true;
+            }
+            else{
+                this.$router.push({name: 'login'})
+            }
+        },
+
+    addReply(){
+                this.review.reviewDate = new Date();
+            BreweryService.addReply(this.reply).then( (response) => {
+                this.reply = response.data;
+
+
+            } )
+
+    }
+
+    },
     created(){
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
