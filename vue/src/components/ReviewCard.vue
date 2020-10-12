@@ -23,9 +23,10 @@
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
            <button id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
            
-           <form v-on:submit.prevent ='addReply' v-if='visibility == true' >
+           <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility == true' >
                  <label for="title">Title</label>
             <input
+                
                 v-model="reply.reviewTitle"
                 type="text"
                 name="reviewTitle"
@@ -101,7 +102,8 @@ export default {
     "taste taste img"
     "head head img"
     ". date date"
-    "review review .";
+    "review review ."
+    "review-texts  review-texts .";
     text-align:left;
     border: solid 3px goldenrod;
     border-radius: 10px;
@@ -175,6 +177,11 @@ export default {
 #review-reply{
      grid-area: review;
 }
+
+#review-reply-text{
+     grid-area: review-texts;
+}
+
 
 
 </style>
