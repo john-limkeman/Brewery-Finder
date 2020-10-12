@@ -45,11 +45,13 @@
         Claim this brewery
       </span>
     </div>
+   
   </div>
 </template>
 
 <script>
 import BreweryService from "@/services/BreweryService.js";
+
 export default {
   data() {
     return {
@@ -83,6 +85,7 @@ export default {
       }
     },
   },
+  components: {  }
 };
 </script>
 
