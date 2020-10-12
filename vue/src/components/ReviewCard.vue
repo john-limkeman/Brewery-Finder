@@ -59,7 +59,7 @@ export default {
     "taste taste img"
     "head head img"
     ". date date"
-    ". review .";
+    "review review .";
     text-align:left;
     border: solid 3px goldenrod;
     border-radius: 10px;
