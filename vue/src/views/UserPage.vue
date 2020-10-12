@@ -28,6 +28,7 @@
 <script>
 import breweryService from "../services/BreweryService.js"
 import reviewCard from "../components/ReviewCard.vue"
+import BreweryService from '../services/BreweryService.js';
 export default {
   data() {
     return {
@@ -46,12 +47,22 @@ export default {
   },
   created() {
     breweryService.getReviewByUser(this.user.id).then((response) => {
-      this.reviews = response.data
+      this.reviews = response.data;
+      BreweryService.getFavoritesByUser(this.user.id).then(
+        (response) => {
+          let results = response.data;
+          results.forEach((result) => {
+            BreweryService.getBreweryById(result.brewery_id).then(
+              (response) => {
+                let brewery = response.data;
+                this.breweries.push(brewery);
+              }
+            )
+          })
+        }
+      )
     });
-    // when able to get favorit breweries uncomment this
-    // breweryService.getFavoretBreweries().then((response) => {
-    //   this.breweries = response.data;
-    // });
+   
   }
 };
 </script>
