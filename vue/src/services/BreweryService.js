@@ -89,6 +89,9 @@ export default {
     getAllNews() {
         return http.get("/allNews")
     },
+    deleteUserById(id) {
+        return http.delete(`/user/${id}`)
+    }
 
 
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <button v-on:click='ChangeVis' >Add A review</button>
+      <button id="addReviewBtn" class="btn btn-primary" v-on:click='ChangeVis' >Add A review</button>
       <form v-on:submit.prevent ='AddReview' v-if='visibility == true'>
             <label for="title">Title</label>
             <input
@@ -64,8 +64,8 @@
                 name="image"
                 placeholder="Pics or it didn't happen!"
             />
-            <button>Submit</button>
-            <button v-on:click='Cancel'>Cancel</button>
+            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" v-on:click='Cancel'>Cancel</button>
       </form>
   </div>
 </template>
@@ -128,5 +128,7 @@ export default {
 </script>
 
 <style>
-
+#addReviewBtn {
+    width: 200px;
+}
 </style>
