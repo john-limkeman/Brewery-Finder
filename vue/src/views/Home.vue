@@ -1,4 +1,8 @@
 <template>
+<div>
+    <aside class="container">Something
+      
+    </aside>
   <div
     class="home container text-center col-xl-5 mx-auto border border-dark rounded"
   >
@@ -6,13 +10,14 @@
     <img src="@/Resources/output-onlinepngtools.png" id="main-page-logo" />
     <h3 class="newsContainer">Brewery News</h3>
     <div class="newsContainer" v-for="item in news" v-bind:Key="item.id">
-      <title id="newsTitle">{{ item.title }}</title>
       <h3>Brewery: {{ item.breweryName }}</h3>
+      <title id="newsTitle">{{ item.newsTitle }}</title>
       <p id="newsbody">{{ item.body }}</p>
-      <p id="author">Written By: {{ item.author }}</p>
+     
       <img v-bind:src="item.newsImageUrl" />
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -29,8 +34,9 @@ export default {
   created() {
     breweryServices.getAllNews().then((response) => {
       this.news = response.data.reverse();
-      for (let i = 0; i < this.news.length || i < 5; i++) {
+      for (let i = 0; i < this.news.length && i < 5; i++) {
         console.log(this.news[i])
+
         breweryServices
           .getBreweryById(this.news[i].breweryId)
           .then((response) => {

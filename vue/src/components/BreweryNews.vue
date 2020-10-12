@@ -1,15 +1,10 @@
 <template>
   <div id="breweryNews">
-      <h3>Brewery News</h3>
+      <h2>Brewery News</h2><br>
           <div class="newsContainer" v-for='news in News' v-bind:Key="news.id">
-              <title id="newsTitle">{{news.title}}</title>
+              <H5 id="newsTitle">{{news.newstitle}}</H5>
               <p id="newsbody">{{news.body}}</p>
-              <p id="author">Written By: {{news.author}}</p>
-              <img v-bind:src="news.newsImageUrl">
-
-
-
-
+                      <img v-bind:src="news.newsImageUrl">
           </div>
 
 
@@ -31,7 +26,7 @@ export default {
     created(){
         BreweryService.getNewsByBrewery(this.$route.params.id).then(
             (response) => {
-                this.News = response.data
+                this.News = response.data.reverse();
             }
         )
     } 

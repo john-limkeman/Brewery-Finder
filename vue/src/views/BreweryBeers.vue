@@ -15,12 +15,16 @@
         </router-link>
       </div>
     </div>
+    <div id="newsContainer" class="container contaner text-center col-xl-12 mx-auto rounded">
+      <BreweryNews/>
+    </div>
   </div>
 </template>
 
 <script>
 import BreweryDetails from "@/components/BreweryDetails.vue";
 import BreweryService from "@/services/BreweryService.js";
+import BreweryNews from "@/components/BreweryNews.vue"
 export default {
   data() {
     return {
@@ -29,6 +33,7 @@ export default {
   },
   components: {
     BreweryDetails,
+    BreweryNews,
   },
   created() {
     BreweryService.getBeerByBrewery(this.$route.params.id).then((response) => {
@@ -45,6 +50,17 @@ export default {
 
 <style>
 #beerList {
+  text-align: center;
+  padding: 50px;
+  border-style: solid;
+  border-width: 3px;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+}
+#newsContainer{
+   background: wheat;
   text-align: center;
   padding: 50px;
   border-style: solid;

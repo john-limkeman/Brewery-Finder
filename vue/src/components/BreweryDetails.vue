@@ -24,9 +24,11 @@
       </p>
       <a class="navlink" v-bind:href="brewery.brewery_url">Web site</a> <br />
       <br />
+      <a target="blank" class="navlink" v-bind:href="directions + brewery.address">Directions</a>
       <router-link
         class="navlink"
         v-bind:to="{ name: 'UpdateBrewery', params: { id: brewery.id } }"
+        v-if="isAdmin()" 
       >
         Update Brewery
       </router-link>
@@ -34,6 +36,7 @@
       <router-link
         class="navlink"
         v-bind:to="{ name: 'AddBeer', params: { id: brewery.id } }"
+        v-if="isAdmin()" 
       >
         Add Beer
       </router-link>
@@ -42,15 +45,18 @@
         Claim this brewery
       </span>
     </div>
+   
   </div>
 </template>
 
 <script>
 import BreweryService from "@/services/BreweryService.js";
+
 export default {
   data() {
     return {
       brewery: {},
+      directions: "https://www.google.com/maps/place/"
     };
   },
   created() {
@@ -69,7 +75,17 @@ export default {
         }
       });
     },
+    isAdmin() {
+      if (this.$store.state.logIn) {
+        if (this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    },
   },
+  components: {  }
 };
 </script>
 
