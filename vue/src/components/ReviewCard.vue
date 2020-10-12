@@ -21,7 +21,7 @@
      <p id='review-smell'><span>Smell:</span> {{review.smell}}</p>
      <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
-           <button id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
+           <button class="btn btn-primary" id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
            
            <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility == true' >
                  <label for="title">Title</label>
@@ -39,7 +39,7 @@
                 name="reply"
                 placeholder="What is your reply to this review?"
             /><br>
-               <button>Submit</button>
+               <button class="btn btn-primary">Submit</button>
            </form>
        
 </div>

@@ -1,8 +1,8 @@
 <template>
   <div class= 'container text-center col-xl-12 mx-auto rounded'>
       <h4>Are you sure you wish to delete {{beer.name}}?</h4>
-      <button v-on:click='DeleteBeer(beer)'>Yes</button>
-        <button v-on:click='Cancel'>Cancel</button>
+      <button class="btn btn-danger" v-on:click='DeleteBeer(beer)'>Yes</button>
+        <button class="btn btn-primary" v-on:click='Cancel'>Cancel</button>
   </div>
 </template>
 
