@@ -1,0 +1,76 @@
+package com.techelevator.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+
+
+import com.techelevator.model.ReplyReview;
+
+public class JDBCReplyReviewDAO implements ReplyReviewDAO{
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+
+	@Override
+	public List<ReplyReview> getAllReplys() {
+		List<ReplyReview> output = new ArrayList<ReplyReview>();
+		String sql = "SELECT * FROM reply_review";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			output.add(mapRowToReply(results));
+		}
+		return output;
+	}
+
+	@Override
+	public List<ReplyReview> getReplysByUserId(Long userId) {
+		List<ReplyReview> output = new ArrayList<ReplyReview>();
+		String sql = "SELECT * FROM reply_review WHERE user_id = ? ";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			output.add(mapRowToReply(results));
+		}
+		return output;
+	}
+
+	@Override
+	public List<ReplyReview> getReplysByReviewId(Long reviewId) {
+		List<ReplyReview> output = new ArrayList<ReplyReview>();
+		String sql = "SELECT * FROM reply_review WHERE review_id = ? ";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			output.add(mapRowToReply(results));
+		}
+		return output;
+	}
+	
+	@Override
+	public void addReplyReview(ReplyReview replyReview) {
+		String sql = "INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (?,?,?,?);";
+		jdbcTemplate.update(sql, replyReview.getId(),replyReview.getReviewId(),replyReview.getTitle(),replyReview.getReply());
+	}
+
+	@Override
+	public void deleteReplyReview(ReplyReview replyReview) {
+		String sql = "DELETE * FROM reply_review WHERE id = ?";
+		jdbcTemplate.update(sql, replyReview.getId());
+	}	
+	
+	private ReplyReview mapRowToReply(SqlRowSet results) {
+		ReplyReview request = new ReplyReview();
+		request.setId(results.getLong("id"));
+		request.setUserId(results.getLong("user_id"));
+		request.setReviewId(results.getLong("review_id"));
+		request.setTitle(results.getString("title"));
+		request.setReply(results.getString("reply"));
+
+		return request;
+	}
+
+
+}
