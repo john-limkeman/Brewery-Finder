@@ -18,7 +18,7 @@ export default {
         PendingBreweryRequest,
         ProcessedBrewerReuest,
         ProcessedBreweryRequest
-    }
+    },
 }
 </script>
 

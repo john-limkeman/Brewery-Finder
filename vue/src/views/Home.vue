@@ -1,23 +1,20 @@
 <template>
-<div>
-    <aside class="container">Something
-      
-    </aside>
-  <div
-    class="home container text-center col-xl-5 mx-auto border border-dark rounded"
-  >
-    <h1>Welcome to Denver Brew Finder</h1>
-    <img src="@/Resources/output-onlinepngtools.png" id="main-page-logo" />
-    <h3 class="newsContainer">Brewery News</h3>
-    <div class="newsContainer" v-for="item in news" v-bind:Key="item.id">
-      <h3>Brewery: {{ item.breweryName }}</h3>
-      <title id="newsTitle">{{ item.newsTitle }}</title>
-      <p id="newsbody">{{ item.body }}</p>
-     
-      <img v-bind:src="item.newsImageUrl" />
+  <div>
+    <aside class="container"></aside>
+    <div
+      class="home container text-center col-xl-5 mx-auto border border-dark rounded"
+    >
+      <h1>Welcome to Denver Brew Finder</h1>
+      <img src="@/Resources/output-onlinepngtools.png" id="main-page-logo" />
+      <h3 class="newsContainer">Brewery News</h3>
+      <div class="newsContainer" v-for="item in news" v-bind:Key="item.id">
+        <h3>Brewery: {{ item.breweryName }}</h3>
+        <h4 id="newsTitle">Title: {{ item.newstitle }}</h4>
+        <p id="newsbody">{{ item.body }}</p>
+        <img v-bind:src="item.newsImageUrl" />
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -34,17 +31,6 @@ export default {
   created() {
     breweryServices.getAllNews().then((response) => {
       this.news = response.data.reverse();
-      for (let i = 0; i < this.news.length && i < 5; i++) {
-        console.log(this.news[i])
-
-        breweryServices
-          .getBreweryById(this.news[i].breweryId)
-          .then((response) => {
-            console.log(response.data)
-            this.news[i].breweryName = response.data.name;
-            console.log(this.news[i])
-          });
-      }
     });
   },
   methods: {

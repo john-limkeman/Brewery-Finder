@@ -7,6 +7,7 @@ public class BreweryNews {
 	private String newstitle;
 	private String body;
 	private String newsImageUrl;
+	private String breweryName;
 	
 	
 	public Long getNewsId() {
@@ -38,6 +39,12 @@ public class BreweryNews {
 	}
 	public void setNewsImageUrl(String newsImageUrl) {
 		this.newsImageUrl = newsImageUrl;
+	}
+	public String getBreweryName() {
+		return breweryName;
+	}
+	public void setBreweryName(String breweryName) {
+		this.breweryName = breweryName;
 	}
 
 	
