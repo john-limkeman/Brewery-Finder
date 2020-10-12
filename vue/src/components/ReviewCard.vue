@@ -11,6 +11,7 @@
           v-bind:key="n"
         />
         </div>
+      
       <h6 id='review-user'><span>By:</span> {{this.username}}</h6>
      <p id='review-overall'> <span>Overall:</span> {{review.overall}}</p>
      <p id='review-color'><span>Color:</span> {{review.color}}</p>
@@ -19,6 +20,8 @@
      <p id='review-smell'><span>Smell:</span> {{review.smell}}</p>
      <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
+           <button id= "review-reply">Add Reply</button>
+       
 </div>
   </div>
 </template>
@@ -55,7 +58,8 @@ export default {
     "smell smell img"
     "taste taste img"
     "head head img"
-    ". date date";
+    ". date date"
+    "review review .";
     text-align:left;
     border: solid 3px goldenrod;
     border-radius: 10px;
@@ -125,4 +129,10 @@ export default {
 .revCardContainer{
     display: block;
 }
+
+#review-reply{
+     grid-area: review;
+}
+
+
 </style>
