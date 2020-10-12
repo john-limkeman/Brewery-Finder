@@ -10,7 +10,9 @@
           v-for="n in review.rating"
           v-bind:key="n"
         />
+
         </div>
+      
       <h6 id='review-user'><span>By:</span> {{this.username}}</h6>
      <p id='review-overall'> <span>Overall:</span> {{review.overall}}</p>
      <p id='review-color'><span>Color:</span> {{review.color}}</p>
@@ -19,6 +21,27 @@
      <p id='review-smell'><span>Smell:</span> {{review.smell}}</p>
      <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
+           <button id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
+           
+           <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility == true' >
+                 <label for="title">Title</label>
+            <input
+                
+                v-model="reply.reviewTitle"
+                type="text"
+                name="reviewTitle"
+                placeholder="Title for Review reply"
+            /> <br>
+            <label for="reply">Reply</label>
+            <input
+                v-model="reply.reply"
+                type="text"
+                name="reply"
+                placeholder="What is your reply to this review?"
+            /><br>
+               <button>Submit</button>
+           </form>
+       
 </div>
   </div>
 </template>
@@ -28,11 +51,37 @@ import BreweryService from '../services/BreweryService'
 export default {
     data(){
         return{
+            userId : this.$store.state.user.id,
+            reviewId: this.reviewId,
             username : 'Stand-in',
-            review: this.chosen
+            review: this.chosen,
+            reply: this.chosen,
+        visibility: false
         }
     },
     props : ['chosen'],
+    methods: {
+
+         ChangeVis(){
+            if(this.$store.state.logIn){
+            this.visibility = true;
+            }
+            else{
+                this.$router.push({name: 'login'})
+            }
+        },
+
+    addReply(){
+                this.review.reviewDate = new Date();
+            BreweryService.addReviewReply(this.reply).then( (response) => {
+                this.reply = response.data;
+
+
+            } )
+
+    }
+
+    },
     created(){
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
@@ -55,7 +104,9 @@ export default {
     "smell smell img"
     "taste taste img"
     "head head img"
-    ". date date";
+    ". date date"
+    "review review ."
+    "review-texts  review-texts .";
     text-align:left;
     border: solid 3px goldenrod;
     border-radius: 10px;
@@ -125,4 +176,15 @@ export default {
 .revCardContainer{
     display: block;
 }
+
+#review-reply{
+     grid-area: review;
+}
+
+#review-reply-text{
+     grid-area: review-texts;
+}
+
+
+
 </style>

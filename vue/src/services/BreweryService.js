@@ -98,6 +98,29 @@ export default {
     deleteFavorite(user_id, brewery_id){
         return http.delete(`/favorite/${user_id}/${brewery_id}`)
     },
+    deleteUserById(id) {
+        return http.delete(`/user/${id}`)
+    },
+    getEventsById(breweryId){
+        return http.get(`/breweryEvents/${breweryId}`)
+    },
+    deleteEvent(event){
+        return http.delete('/deleteEvent', event)
+    },
+    updateEvent(event){
+        return http.put('/updateEvent', event)
+    },
+    createEvent(eventId, event){
+        return http.post(`/newEvent/${eventId}`, event)
+    },
+    getReviewReply() {
+        return http.get("/replies")
+    },
+    addReviewReply(replyReview) {
+        return http.post("/replies", replyReview)
+    },
+
+    
 
 
 

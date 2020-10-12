@@ -19,7 +19,8 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 	@Override
 	public List<BreweryNews> getAllNews() {
 		List<BreweryNews> allNews = new ArrayList<>();
-		String sqlInsert = "SELECT * from brewery_news";
+		String sqlInsert = "SELECT * from brewery_news " + 
+				"JOIN breweries ON brewery_news.breweryId = breweries.id";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlInsert);
 		while(results.next()) {
 			BreweryNews news = mapRowToBreweryNews(results);
@@ -71,6 +72,11 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 		news.setNewstitle(results.getString("newsTitle"));
 		news.setBody(results.getString("body"));
 		news.setNewsImageUrl(results.getString("newsImageUrl"));
+		try {
+			news.setBreweryName(results.getString("name"));
+		} catch (Exception e){
+			
+		}
 		return news;
 	}
 

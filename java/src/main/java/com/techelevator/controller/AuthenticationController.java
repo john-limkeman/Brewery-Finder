@@ -75,7 +75,11 @@ public class AuthenticationController {
 	@RequestMapping(value = "/user/{userId}" , method = RequestMethod.PUT)
 	public void updateUserRole( @PathVariable("userId") long userId, @Valid @RequestBody UserRoleChange user ) {
 		userDAO.updateUserRole(user);
-		
+	}
+	
+	@RequestMapping(path = "/user/{id}", method = RequestMethod.DELETE)
+	public void deleteUserById(@PathVariable long id) {
+		userDAO.deleteUserById(id);
 	}
 
 	/**

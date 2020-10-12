@@ -158,4 +158,15 @@ body {
   top: 50px;
   padding: 10px;
 }
+.btn-primary,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #2c0603  !important;
+  border-color: black !important;
+}
+.btn-primary:hover {
+  color: black !important;
+  background-color: #fbf1cd !important;
+  border: 1px solid black !important;
+}
 </style>

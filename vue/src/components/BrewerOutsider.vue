@@ -70,11 +70,12 @@
       />
       <br />
       <button
+      class="btn btn-primary"
         v-on:click.prevent="SendRequest"
       >
         Request Brewery
       </button>
-      <button v-on:click.prevent="CancelForm">Cancel</button>
+      <button class="btn btn-primary" v-on:click.prevent="CancelForm">Cancel</button>
       <br />
     </form>
   </div>

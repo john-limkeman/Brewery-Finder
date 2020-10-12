@@ -25,6 +25,7 @@
     <router-link
       class="navlink"
       id="editBeerButton"
+      v-if="isAdmin()"
       v-bind:to="{
         name: 'UpdateBeer',
         params: { id: beer.breweryId, beerId: beer.id },
@@ -62,6 +63,15 @@ export default {
       breweryServices.getBreweryById(this.beer.breweryId).then((response) => {
         this.brewery = response.data;
       });
+    },
+    isAdmin() {
+      if (this.$store.state.logIn) {
+        if (this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
+          return true;
+        }
+      } else {
+        return false;
+      }
     },
   },
   created() {

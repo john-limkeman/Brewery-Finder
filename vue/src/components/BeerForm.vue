@@ -50,11 +50,11 @@
       />
       <br />
 
-      <button v-on:click="saveBeer" v-if="this.$route.params.beerId == null">
+      <button class="btn btn-primary" v-on:click="saveBeer" v-if="this.$route.params.beerId == null">
         Add
       </button>
-      <button v-on:click="updateBeer" v-else>Update</button>
-      <button v-on:click="cancel">Cancel</button>
+      <button class="btn btn-primary" v-on:click="updateBeer" v-else>Update</button>
+      <button class="btn btn-primary" v-on:click="cancel">Cancel</button>
     </form>
   </div>
 </template>

@@ -19,6 +19,9 @@
     <div v-for="card in reviews" v-bind:key="card.id">
       <reviewCard v-bind:chosen='card'> </reviewCard> 
     </div>
+    <div class="btnFlex">
+    <button class="btn btn-danger btn-lg" v-on:click="deleteUser">Delete my account</button>
+    </div>
   </div>
 </template>
 
@@ -36,6 +39,11 @@ export default {
   },
   components: {
     reviewCard
+  },
+  methods: {
+    deleteUser() {
+      this.$router.push({name: "ConfirmDeleteUser"})
+    }
   },
   created() {
     breweryService.getReviewByUser(this.user.id).then((response) => {
@@ -60,4 +68,12 @@ export default {
 </script>
 
 <style>
+.btnFlex {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+.btnFlex > button{
+  width: 200px;
+}
 </style>

@@ -4,11 +4,11 @@
       <h4>{{ brewery.name }} Beers</h4>
       <div v-for="beer in beers" v-bind:key="beer.id">
        <p>{{ beer.name }} 
-           <button v-on:click='getCurrentBeer(beer)' >Edit</button>
-           <button v-on:click='deleteBeer(beer)' >Delete</button>
+           <button class="btn btn-primary" v-on:click='getCurrentBeer(beer)' >Edit</button>
+           <button class="btn btn-danger" v-on:click='deleteBeer(beer)' >Delete</button>
         </p> 
       </div>
-      <button v-on:click='addBeer()'>Add Beer</button>
+      <button class="btn btn-primary" v-on:click='addBeer()'>Add Beer</button>
     </div>
     
 <div id="BreweryList">
@@ -77,8 +77,8 @@
         placeholder="Active"
       />
       <br />
-      <button v-on:click.prevent="updateBrewery" >Update</button>
-      <button v-on:click.prevent="clearForm">Clear</button>
+      <button class="btn btn-primary" v-on:click.prevent="updateBrewery" >Update</button>
+      <button class="btn btn-primary" v-on:click.prevent="clearForm">Clear</button>
       <br />
     </form>
   

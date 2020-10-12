@@ -115,6 +115,12 @@ public class UserSqlDAO implements UserDAO {
 		return output;
 	}
 	
+	@Override
+	public void deleteUserById(long id) {
+		jdbcTemplate.update("DELETE FROM users WHERE user_id = ?", id);
+		
+	}
+	
 	private User mapRowToUser(SqlRowSet rs) {
 		User user = new User();
 		user.setId(rs.getLong("user_id"));
@@ -134,5 +140,6 @@ public class UserSqlDAO implements UserDAO {
 		request.setProcessed(results.getBoolean("processed"));
 		return request;
 	}
+
 
 }
