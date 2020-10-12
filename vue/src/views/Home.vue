@@ -29,7 +29,7 @@ export default {
   created() {
     breweryServices.getAllNews().then((response) => {
       this.news = response.data.reverse();
-      for (let i = 0; i < this.news.length || i < 5; i++) {
+      for (let i = 0; i < this.news.length && i < 5; i++) {
         console.log(this.news[i])
         breweryServices
           .getBreweryById(this.news[i].breweryId)
