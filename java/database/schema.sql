@@ -224,7 +224,7 @@ INSERT INTO pending_brewery_request (user_id, name, address, description, image,
 CREATE TABLE brewery_news (
         newsId serial,
 	breweryId int NOT NULL,
-	newstitle varchar(50) NOT NULL,
+	newsTitle varchar(50) NOT NULL,
 	body varchar,
 	newsImageUrl varchar,
         
