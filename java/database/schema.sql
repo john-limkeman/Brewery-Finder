@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS reply_review;
 DROP TABLE IF EXISTS brewery_news;
 DROP TABLE IF EXISTS pending_brewery_request;
 DROP TABLE IF EXISTS brewer_request;
@@ -15,7 +16,6 @@ CREATE SEQUENCE seq_user_id
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
-
 
 CREATE TABLE users (
 	user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
@@ -235,5 +235,23 @@ CREATE TABLE brewery_news (
 
 INSERT INTO brewery_news (breweryId, newsTitle, body, newsImageUrl) VALUES (1, 'Runaway cow crashes window', 'Hey all,  we will remain open while we fix the front window...think about it, now we have a breezy area for you to enjoy.  Watch out for the glass!!', 'https://ewscripps.brightspotcdn.com/dims4/default/69a81a7/2147483647/strip/true/crop/930x523+0+88/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2F8a%2Fcd%2F64760e484066abb0816015cb164d%2Fscreen-shot-2019-08-20-at-3.02.57%20PM.png');
 INSERT INTO brewery_news (breweryId, newsTitle, body, newsImageUrl) VALUES (2, '2nd best Brewery in Denver', 'Second is the first loser...We are coming for you Denver Beer Company for our rightfuld #1 spot. PS: watch your front window!', 'https://i.ytimg.com/vi/_WKQXlEbC1s/hqdefault.jpg');
+
+CREATE TABLE reply_review (
+        id serial,
+	user_id int NOT NULL,
+        review_id int not null,
+        title varchar,
+        reply varchar,
+
+	CONSTRAINT PK_reply_review PRIMARY KEY (id),
+        CONSTRAINT fk_users foreign key (user_id) references users (user_id),
+        CONSTRAINT fk_review foreign key (review_id) references review (id)
+);
+
+INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (101,2, 'Never Seen', 'This man has never been to this brewery');
+INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (102,2, 'Take a Pic', 'Pictures or it didnt happen');
+INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (3,2, 'Ok next time', 'I will be sure to take a pic of the smell next time');
+INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (3,1, 'Thanks', 'Thanks for stopping by');
+INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (103,4, 'Thank you', 'I enjoy potatoes');
 
 COMMIT TRANSACTION;
