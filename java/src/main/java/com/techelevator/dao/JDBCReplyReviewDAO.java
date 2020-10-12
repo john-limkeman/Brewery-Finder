@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-
+import org.springframework.stereotype.Component;
 
 import com.techelevator.model.ReplyReview;
-
+@Component
 public class JDBCReplyReviewDAO implements ReplyReviewDAO{
 	
 	@Autowired

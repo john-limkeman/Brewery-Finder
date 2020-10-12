@@ -19,6 +19,8 @@ import BrewerTools from "@/views/BrewerTools.vue"
 import DeleteBeerConfirm from "@/views/DeleteBeerConfirm.vue"
 import Test from "../views/Test.vue"
 import DeleteUserConfirmation from "../views/DeleteUserConfirmation.vue"
+import ReviewCard from "../components/ReviewCard.vue"
+
 Vue.use(Router)
 
 /**
@@ -158,6 +160,11 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+    path: "/replies",
+    name: "ReviewReplies",
+    component: ReviewCard
     },
     {
       path: "/test",
