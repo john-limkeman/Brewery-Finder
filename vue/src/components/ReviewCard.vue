@@ -70,7 +70,7 @@ export default {
 
     addReply(){
                 this.review.reviewDate = new Date();
-            BreweryService.addReply(this.reply).then( (response) => {
+            BreweryService.addReviewReply(this.reply).then( (response) => {
                 this.reply = response.data;
 
 
