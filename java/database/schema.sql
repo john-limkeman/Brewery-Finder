@@ -267,11 +267,14 @@ CONSTRAINT fk_brewery_favorites_brewery FOREIGN KEY (brewery_id) references brew
 
 INSERT INTO brewery_favorites (user_id, brewery_id) VALUES (3, 6);
 
+
+
 CREATE TABLE events
 (
 event_id serial,
 brewery_id int not null,
 event_date varchar(65),
+event_title varchar(65),
 description varchar(500) not null,
 picture varchar,
 
@@ -281,7 +284,7 @@ constraint fk_Beers_Breweries foreign key (brewery_id) references Breweries (id)
 
 );
 
-INSERT INTO events (brewery_id, event_date, description, picture) VALUES (1, 'Grand Re-opening', '10/16/2020', 'Our Grand reopening! We will be doing a silent auction and 50\50 raffle.', 'https://www.chicagotribune.com/resizer/Pr0bKQcAAc3k9r3ZAu6153ZAlMo=/800x450/top/www.trbimg.com/img-5a988d8d/turbine/ct-1519947143-hi4cw0r4bq-snap-image');
-INSERT INTO events (brewery_id, event_date, description, picture) VALUES (2, 'Broncos vs Eagles', '10/18/2020', 'Come enjoy a pint with friends while the game is on', 'https://pbs.twimg.com/profile_images/1306062984427364353/LvHV6KGB_400x400.jpg');
+INSERT INTO events (brewery_id, event_title, event_date, description, picture) VALUES (1, 'Grand Re-opening', '10/16/2020', 'Our Grand reopening! We will be doing a silent auction and 50\50 raffle.', 'https://www.chicagotribune.com/resizer/Pr0bKQcAAc3k9r3ZAu6153ZAlMo=/800x450/top/www.trbimg.com/img-5a988d8d/turbine/ct-1519947143-hi4cw0r4bq-snap-image');
+INSERT INTO events (brewery_id, event_title, event_date, description, picture) VALUES (2, 'Broncos vs Eagles', '10/18/2020', 'Come enjoy a pint with friends while the game is on', 'https://pbs.twimg.com/profile_images/1306062984427364353/LvHV6KGB_400x400.jpg');
 
 COMMIT TRANSACTION;

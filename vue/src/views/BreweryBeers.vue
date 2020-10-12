@@ -60,7 +60,7 @@ export default {
   margin-top: -10px;
 }
 #newsContainer{
-   background: wheat;
+   background: rgba(245, 222, 179, 0.7);
   text-align: center;
   padding: 50px;
   border-style: solid;

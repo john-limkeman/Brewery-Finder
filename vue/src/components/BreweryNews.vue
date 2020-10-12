@@ -2,7 +2,7 @@
   <div id="breweryNews">
       <h2>Brewery News</h2><br>
           <div class="newsContainer" v-for='news in News' v-bind:Key="news.id">
-              <H5 id="newsTitle">{{news.newstitle}}</H5>
+              <h5 id="newsTitle">{{news.newstitle}}</h5>
               <p id="newsbody">{{news.body}}</p>
                       <img v-bind:src="news.newsImageUrl">
           </div>
