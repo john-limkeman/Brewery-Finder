@@ -89,7 +89,10 @@ export default {
     getAllNews() {
         return http.get("/allNews")
     },
-
+    getReviewReply() {
+        return http.get("/replies")
+    },
+    
 
 
 
