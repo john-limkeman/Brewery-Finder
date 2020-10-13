@@ -1,5 +1,5 @@
 <template>
-  <div id='brewerInsiderBox'>
+  <div id='brewerInsiderBox' >
     <div id="BrewBeerList">
       <h2>{{ brewery.name }}</h2>
       <h4> Beers </h4>
@@ -15,13 +15,15 @@
       </div>
       <h4>Events</h4>
       <!-- loop through events here -->
+      <div id='BTbuttons'>
       <button class="btn btn-primary" v-on:click='addBeer()'>Add Beer</button>
       <button class='btn btn-primary' v-on:click='addEvent()'>Add Event</button>
-      <button class='btn btn-primary' v-on:click='toggleVis()'> Update Brewery Information</button>
+      <button class='btn btn-primary' id='updateBreweryInformationButton' v-on:click='toggleVis()'> Update Brewery Information</button>
+      </div>
     </div>
     
 
-      <form id="newBreweryForm" v-if='Vis'>
+      <form id="updateBreweryForm" v-if='Vis'>
       <label for="name">Brewery name</label>
       <input
         v-model="brewery.name"
@@ -78,13 +80,13 @@
         placeholder="Hours"
       />
       <br />
-      <label for="active">Active</label>
+      <p>Active: <span>
       <input
         v-model="brewery.active"
         type="checkbox"
         name="active"
         placeholder="Active"
-      />
+      /></span></p>
       <br />
       <button class="btn btn-primary" v-on:click.prevent="updateBrewery" >Update</button>
       <button class="btn btn-primary" v-on:click.prevent="clearForm">Clear</button>
@@ -183,26 +185,33 @@ export default {
 #BrewBeerList{
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   justify-content: space-evenly;
   width: 30%;
+  height: 700px;
   border-right: black 5px solid;
   margin-right: 5px;
 }
 #beerSideBar{
+
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
+  align-items: center;
 }
-#newBreweryForm{
+#updateBreweryForm{
   display:flex;
   flex-direction: column;
   width: 70%;
 }
-#newBreweryForm label{
+#updateBreweryForm label{
   text-align: left;
   margin-left: 50px;
 }
-#newBreweryForm input{
+#updateBreweryForm p{
+    text-align: left;
+  margin-left: 50px
+}
+#updateBreweryForm input{
   margin-left: 50px;
   width: 50%
 }
@@ -213,5 +222,10 @@ export default {
   position: absolute;
   left: 50%;
   right: 50%;
+  height: 500px;
+  width: auto;
+}
+#updateBreweryInformationButton{
+  width: auto;
 }
 </style>

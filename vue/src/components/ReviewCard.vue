@@ -13,7 +13,8 @@
 
         </div>
       
-      <h6 id='review-user'><span>By:</span> {{this.username}}</h6>
+      <h6 id='review-user' v-if='!checkUser()'><span>By:</span> {{this.username}}</h6>
+     <h6 id='review-beer' v-else><span>Reviewed:</span> <br><router-link class='navlink' v-bind:to='{name : "BeerDetails", params: {id : this.beer.id}}'>{{beer.name}}</router-link></h6>
      <p id='review-overall'> <span>Overall:</span> {{review.overall}}</p>
      <p id='review-color'><span>Color:</span> {{review.color}}</p>
      <p id='review-taste'><span>Taste:</span> {{review.taste}}</p>
@@ -63,6 +64,8 @@ export default {
 
             review: this.chosen,
             visibility: false,
+            beer: {},
+            username: "",
           
         }
 
@@ -86,6 +89,14 @@ export default {
             } )
 
     },
+    checkUser(){
+        let url = this.$route.name
+    if (url == 'UserPage'){
+        return true;
+    } else {
+        return false;
+    }
+    },
 
             Cancel(){
 
@@ -103,6 +114,11 @@ export default {
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
                 this.username = response.data.username;
+                BreweryService.getBeerById(this.chosen.beerId).then(
+                    (response) => {
+                        this.beer = response.data;
+                    }
+                )
             }
         )
     },
@@ -115,7 +131,7 @@ export default {
     grid-template-columns: 1fr 2fr 2fr;
     grid-template-areas: 
     "title title rating"
-    "username . img"
+    "username username img"
     "overall overall img"
     "color color img"
     "smell smell img"
@@ -189,6 +205,9 @@ export default {
     grid-area: date;
     text-align: right;
     font-size: 12px;
+}
+#review-beer{
+    grid-area: username;
 }
 .revCardContainer{
     display: block;
