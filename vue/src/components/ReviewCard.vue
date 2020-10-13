@@ -26,8 +26,7 @@
            <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility == true' >
                  <label for="title">Title</label>
             <input
-                
-                v-model="reply.reviewTitle"
+                v-model="reply.title"
                 type="text"
                 name="reviewTitle"
                 placeholder="Title for Review reply"
@@ -37,7 +36,7 @@
                 v-model="reply.reply"
                 type="text"
                 name="reply"
-                placeholder="What is your reply to this review?"
+             placeholder="What is your reply?"
             /><br>
                <button class="btn btn-primary">Submit</button>
             <button class="btn btn-primary" v-on:click='Cancel'>Cancel</button>
@@ -56,9 +55,10 @@ export default {
               reply: {
 
             userId : this.$store.state.user.id,
-            reviewId: this.reviewId,
+            reviewId: this.chosen.id,
             relpyDate : "",
-            reply: this.chosen,
+            title: "",
+            reply:""
         },
 
             review: this.chosen,
@@ -81,21 +81,20 @@ export default {
         },
 
     addReply(){
-            this.review.reviewDate = new Date();
-            BreweryService.addReviewReply(this.reply).then( (response) => {
-                this.reply = response.data;
+            this.reply.relpyDate = new Date();
+            console.log(this.reply)
+            BreweryService.addReviewReply(this.reply).then( () => {
             } )
 
     }
-
     },
             Cancel(){
             this.reply = {
-                title : {},
-                reply : {},
+                title : "",
+                reply : "",
             };
             
-            this.visibility = false;
+            this.reply.visibility = false;
         },
     created(){
         BreweryService.getUser(this.chosen.userId).then(
