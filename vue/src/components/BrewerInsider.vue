@@ -1,5 +1,5 @@
 <template>
-  <div id='brewerInsiderBox' >
+  <div id='brewerInsiderBox' class='container text-center col-xl-12 mx-auto border border-dark rounded' >
     <div id="BrewBeerList">
       <h2>{{ brewery.name }}</h2>
       <h4> Beers </h4>
@@ -185,7 +185,7 @@ export default {
 #BrewBeerList{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: space-between;
   justify-content: space-evenly;
   width: 30%;
   height: 700px;
@@ -193,10 +193,11 @@ export default {
   margin-right: 5px;
 }
 #beerSideBar{
-
+  font-weight: bold;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
+  padding-right: 10px;
 }
 #updateBreweryForm{
   display:flex;

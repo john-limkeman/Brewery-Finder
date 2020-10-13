@@ -1,6 +1,8 @@
 <template>
   <div class="beer-container">
+    <div id='BeersListHeader' class='container'>
     <h2>All Beers</h2>
+    </div>
     <div id="Sours-Container" class="beer-type">
       <h3>Sours</h3>
       <ul>
@@ -171,6 +173,10 @@ export default {
 </script>
 
 <style>
+#BeersListHeader{
+  margin-top: 50px;
+  margin-bottom: 5px;
+}
 .beer-container {
   display: flex;
   flex-direction: column;
