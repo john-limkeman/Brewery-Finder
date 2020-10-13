@@ -178,7 +178,7 @@ export default {
 #brewerInsiderBox{
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   height: 100%;
 }
@@ -186,7 +186,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: space-between;
-  justify-content: space-evenly;
   width: 30%;
   height: 700px;
   border-right: black 5px solid;

@@ -1,6 +1,6 @@
 <template>
   <div class="beer-container">
-    <div id='BeersListHeader' class='container'>
+    <div id='BeersListHeader' class='beer-type'>
     <h2>All Beers</h2>
     </div>
     <div id="Sours-Container" class="beer-type">
@@ -173,10 +173,6 @@ export default {
 </script>
 
 <style>
-#BeersListHeader{
-  margin-top: 50px;
-  margin-bottom: 5px;
-}
 .beer-container {
   display: flex;
   flex-direction: column;
@@ -222,5 +218,9 @@ h3 {
 #Others-Container {
   background-color: #2c0603;
   color: whitesmoke;
+}
+#BeersListHeader{
+  background-color: wheat;
+
 }
 </style>

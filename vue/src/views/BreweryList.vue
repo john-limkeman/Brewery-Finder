@@ -80,13 +80,20 @@ export default {
   flex-wrap: wrap;
   width: 100%
 }
+
+#breweryList img{
+  height:250px;
+  width: 250px;
+  border-radius: 50%;
+}
 #favoritedBreweryCard{
-  background-color: rgba(255, 215, 0, 0.5);
+  
 }
-div > img {
-  max-width: 100%;
-  max-height: 100%;
+#favoritedBreweryCard img{
+  border: gold solid 5px;
+
 }
+
 .brewery {
   display: flex;
   align-items: center;
