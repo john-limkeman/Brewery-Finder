@@ -1,8 +1,9 @@
 <template>
-  <div>
+<div class='container text-center col-xl-5 mx-auto border border-dark rounded'>
         <h3> Are you a Brewer? </h3>
           <p>Looking to join our community of Denver Breweries? Submit this form and our Admin will be in touch!</p>
     
+
       <div class="breweryFormComponent">
     <form id="newBreweryForm" v-if='vis'>
       <label for="name">Brewery name</label>
@@ -69,6 +70,7 @@
         placeholder="Active"
       />
       <br />
+      <span>
       <button
       class="btn btn-primary"
         v-on:click.prevent="SendRequest"
@@ -76,6 +78,7 @@
         Request Brewery
       </button>
       <button class="btn btn-primary" v-on:click.prevent="CancelForm">Cancel</button>
+      </span>
       <br />
     </form>
   </div>
@@ -124,4 +127,14 @@ data(){
 
 <style>
 
+#breweryFormComponent{
+
+  width: 800px;
+  align-self: center;
+  justify-self: center;
+}
+#newBreweryForm{
+   align-self: center;
+  justify-self: center;
+}
 </style>

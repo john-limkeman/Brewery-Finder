@@ -90,6 +90,7 @@ export default {
 </script>
 
 <style>
+
 span:hover {
   cursor: pointer;
 }
@@ -107,6 +108,7 @@ span:hover {
   top: 0;
   font-size: 16pt;
   z-index: 5;
+  font-family: 'Bungee Inline'
 }
 #nav img {
   width: 75px;
@@ -169,4 +171,12 @@ body {
   background-color: #fbf1cd !important;
   border: 1px solid black !important;
 }
+h1, h2, h3, h4 ,h5{
+  font-family: 'Bungee Inline'
+}
+h6, p, span{
+  font-family: helvetica;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Inline&family=Bungee+Outline&family=Bungee+Shade&family=Freckle+Face&family=Frijole&family=Salsa&family=Skranji&family=Walter+Turncoat&display=swap');
 </style>

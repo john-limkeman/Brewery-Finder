@@ -1,5 +1,5 @@
 <template>
-  <div class='container text-center col-xl-12 mx-auto rounded'>
+  <div >
       <div id='brewerInsider' v-if='isRole() == "BREWER"' >
           <BrewerInsider />
       </div>
@@ -44,5 +44,4 @@ export default {
 </script>
 
 <style>
-
 </style>

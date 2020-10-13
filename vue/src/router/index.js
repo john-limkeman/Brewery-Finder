@@ -20,6 +20,8 @@ import DeleteBeerConfirm from "@/views/DeleteBeerConfirm.vue"
 import Test from "../views/Test.vue"
 import DeleteUserConfirmation from "../views/DeleteUserConfirmation.vue"
 import ReviewCard from "../components/ReviewCard.vue"
+import AllUsers from "../components/UserList.vue"
+import AdminConfirmDeleteUser from "../views/AdminDeleteUserConfirmation.vue"
 
 Vue.use(Router)
 
@@ -179,6 +181,22 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: "/adminTools/allUsers",
+      name: "AllUsers",
+      component: AllUsers,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/adminTools/allUsers/user/:id",
+      name: "AdminConfirmDeleteUser",
+      component: AdminConfirmDeleteUser,
+      meta: {
+        requiresAuth: true
+      }
+    }
 
   ]
 })
