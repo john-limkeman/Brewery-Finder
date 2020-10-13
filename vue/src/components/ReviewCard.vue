@@ -23,7 +23,7 @@
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
            <button class="btn btn-primary" id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
            
-           <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility == true' >
+           <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility' >
                  <label for="title">Title</label>
             <input
                 v-model="reply.title"
@@ -39,7 +39,7 @@
              placeholder="What is your reply?"
             /><br>
                <button class="btn btn-primary">Submit</button>
-            <button class="btn btn-primary" v-on:click='Cancel'>Cancel</button>
+            <button class="btn btn-primary" v-on:click.prevent='Cancel()'>Cancel</button>
            </form>
        
 </div>
@@ -82,20 +82,23 @@ export default {
 
     addReply(){
             this.reply.relpyDate = new Date();
-            console.log(this.reply)
             BreweryService.addReviewReply(this.reply).then( () => {
             } )
 
-    }
     },
+
             Cancel(){
-            this.reply = {
-                title : "",
-                reply : "",
-            };
+
+         this.visibility = false;
+          //  this.reply = {
+       //         title : this.$store.state.user.id,
+       //         reply : this.chosen.id,
+       //     };
             
-            this.reply.visibility = false;
+         
         },
+    },
+
     created(){
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
