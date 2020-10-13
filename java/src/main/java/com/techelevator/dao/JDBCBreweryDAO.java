@@ -88,6 +88,13 @@ public class JDBCBreweryDAO implements BreweryDAO {
 
 	@Override
 	public void deleteBrewery(long id) {
+		jdbcTemplate.update("DELETE FROM reply_review WHERE review_id IN (SELECT id FROM review WHERE beerid IN (SELECT beer_id FROM beers WHERE brewery_id = ?))", id);
+		jdbcTemplate.update("DELETE FROM review WHERE beerid IN (SELECT beer_id FROM beers WHERE brewery_id = ?)", id);
+		jdbcTemplate.update("DELETE FROM beers WHERE brewery_id = ?", id);
+		jdbcTemplate.update("DELETE FROM brewer_request WHERE breweryid = ?", id);
+		jdbcTemplate.update("DELETE FROM brewery_favorites WHERE brewery_id = ?", id);
+		jdbcTemplate.update("DELETE FROM brewery_news WHERE breweryid = ?", id);	
+		jdbcTemplate.update("DELETE FROM events WHERE brewery_id = ?", id);
 		jdbcTemplate.update("DELETE FROM breweries WHERE id = ?", id);
 		
 	}

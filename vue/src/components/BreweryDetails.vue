@@ -44,9 +44,10 @@
       <span class="navlink" v-if="brewery.brewerId == ''" v-on:click="brewerRequest">
         Claim this brewery
       </span>
+      <button id="deleteBrewery" class="btn btn-danger" v-on:click="deleteBrewery(brewery.id)" v-if="isAdmin()" >Delete brewery</button>
 
-      <button id='RemoveFavoriteBtn' v-if='isFavorite' v-on:click.prevent='toggleFavorite'>Unfavorite</button>
-      <button id='MakeFavoriteBtn' v-else v-on:click.prevent='toggleFavorite'>Favorite</button>
+      <button id='RemoveFavoriteBtn' class="btn btn-primary" v-if='isFavorite' v-on:click.prevent='toggleFavorite'>Unfavorite</button>
+      <button id='MakeFavoriteBtn' class="btn btn-primary" v-else v-on:click.prevent='toggleFavorite'>Favorite</button>
     </div>
    
   </div>
@@ -112,6 +113,9 @@ export default {
           }
         )
       }
+    },
+    deleteBrewery(id) {
+      this.$router.push({ name: "AdminConfirmDeleteBrewery", params:{id: id}})
     }
   },
   components: {  }
@@ -143,5 +147,8 @@ export default {
 
 #name {
   text-decoration: underline;
+}
+#deleteBrewery {
+  width: 150px;
 }
 </style>
