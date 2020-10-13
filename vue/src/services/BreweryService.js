@@ -123,11 +123,11 @@ export default {
         return http.post("/replies", replyReview)
         
     },
-
-    
-
-
-
-
+    getAllUsers() {
+        return http.get("/allUsers")
+    },
+    deleteBrewery(id) {
+        return http.delete(`/brewery/${id}`)
+    },
 
 }

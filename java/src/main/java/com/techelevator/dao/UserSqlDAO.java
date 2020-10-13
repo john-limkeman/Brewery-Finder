@@ -117,9 +117,15 @@ public class UserSqlDAO implements UserDAO {
 	
 	@Override
 	public void deleteUserById(long id) {
+		jdbcTemplate.update("DELETE FROM reply_review WHERE user_id = ?", id);
+		jdbcTemplate.update("DELETE FROM review WHERE userid = ?", id);
+		jdbcTemplate.update("DELETE FROM pending_brewery_request WHERE user_id = ?", id);
+		jdbcTemplate.update("UPDATE breweries SET brewer_id = null WHERE brewer_id = ?;", id);
+		jdbcTemplate.update("DELETE FROM brewer_request WHERE user_id = ?", id);
+		jdbcTemplate.update("DELETE FROM brewery_favorites WHERE user_id = ?", id);
 		jdbcTemplate.update("DELETE FROM users WHERE user_id = ?", id);
-		
 	}
+
 	
 	private User mapRowToUser(SqlRowSet rs) {
 		User user = new User();
@@ -140,6 +146,7 @@ public class UserSqlDAO implements UserDAO {
 		request.setProcessed(results.getBoolean("processed"));
 		return request;
 	}
+
 
 
 }
