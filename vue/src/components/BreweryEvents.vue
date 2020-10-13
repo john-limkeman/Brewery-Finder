@@ -1,11 +1,12 @@
 <template>
 <div> 
     <H3>Brewery Events</H3>
-<div v-for="event in events" v-bind:key="event.id">
-    
-
-
-</div>
+    <div id="eventCard" v-for="event in events" v-bind:key="event.event_id">
+    <h3 id="eventTitle">{{event.event_title}}</h3>
+    <h4 id="eventDate"> {{event.event_date}}</h4>
+    <p id="description">{{event.description}}</p>
+    <img id='event-picture' v-bind:src="event.picture"/>
+    </div>
 
 
 
@@ -19,7 +20,10 @@ import BreweryService from "@/services/BreweryService.js"
 export default {
     data(){
         return{
-            events: [],
+            events: [
+
+            ],
+            brewery: {},
         }
     },
     created () {
@@ -29,6 +33,12 @@ export default {
             }
         )
 
+        BreweryService.getBreweryById(this.$route.params.id).then(
+            (response) => {
+                this.brewery = response.data;
+                this.events.breweryId = this.$route.params.id;
+            }
+        )
 
     }
 }

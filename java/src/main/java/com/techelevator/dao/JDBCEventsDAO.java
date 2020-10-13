@@ -1,6 +1,6 @@
 package com.techelevator.dao;
 
-import java.awt.Event;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +67,10 @@ public class JDBCEventsDAO implements EventsDAO{
 	
 	public Events mapToRowEvents(SqlRowSet results) {
 		Events event = new Events();
+		
+		event.setEvent_id(results.getLong("event_id"));
 		event.setBrewery_id(results.getLong("brewery_id"));
+		event.setEvent_title(results.getString("event_title"));
 		event.setEvent_date(results.getString("event_date"));
 		event.setDescription(results.getString("description"));
 		event.setPicture(results.getString("picture"));

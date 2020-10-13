@@ -52,7 +52,7 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO{
 	@Override
 	public void addReplyReview(ReplyReview replyReview) {
 		String sql = "INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (?,?,?,?);";
-		jdbcTemplate.update(sql, replyReview.getId(),replyReview.getReviewId(),replyReview.getTitle(),replyReview.getReply());
+		jdbcTemplate.update(sql, replyReview.getUserId(),replyReview.getReviewId(),replyReview.getTitle(),replyReview.getReply());
 	}
 
 	@Override

@@ -40,6 +40,7 @@ public class ReplyReviewController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path = "/replies", method = RequestMethod.POST)
 	public void addReplyReview(@Valid @RequestBody ReplyReview replyReview) {
+		System.out.println(replyReview.getUserId());
 		dao.addReplyReview(replyReview);
 	}
 	

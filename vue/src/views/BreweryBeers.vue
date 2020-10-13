@@ -18,13 +18,17 @@
     <div id="newsContainer" class="container contaner text-center col-xl-12 mx-auto rounded">
       <BreweryNews/>
     </div>
+    <div id="eventContainer" class="container contaner text-center col-xl-12 mx-auto rounded">
+      <BreweryEvents/>
+    </div>
   </div>
 </template>
 
 <script>
 import BreweryDetails from "@/components/BreweryDetails.vue";
 import BreweryService from "@/services/BreweryService.js";
-import BreweryNews from "@/components/BreweryNews.vue"
+import BreweryNews from "@/components/BreweryNews.vue";
+import BreweryEvents from "@/components/BreweryEvents.vue"
 export default {
   data() {
     return {
@@ -34,6 +38,7 @@ export default {
   components: {
     BreweryDetails,
     BreweryNews,
+    BreweryEvents,
   },
   created() {
     BreweryService.getBeerByBrewery(this.$route.params.id).then((response) => {

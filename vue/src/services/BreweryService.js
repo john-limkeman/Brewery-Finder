@@ -117,7 +117,11 @@ export default {
         return http.get("/replies")
     },
     addReviewReply(replyReview) {
+
+        console.log("this worked")
+        console.log(replyReview)
         return http.post("/replies", replyReview)
+        
     },
     getAllUsers() {
         return http.get("/allUsers")
