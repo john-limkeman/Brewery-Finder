@@ -23,11 +23,10 @@
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
            <button class="btn btn-primary" id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
            
-           <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility == true' >
+           <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility' >
                  <label for="title">Title</label>
             <input
-                
-                v-model="reply.reviewTitle"
+                v-model="reply.title"
                 type="text"
                 name="reviewTitle"
                 placeholder="Title for Review reply"
@@ -37,9 +36,10 @@
                 v-model="reply.reply"
                 type="text"
                 name="reply"
-                placeholder="What is your reply to this review?"
+             placeholder="What is your reply?"
             /><br>
                <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" v-on:click.prevent='Cancel()'>Cancel</button>
            </form>
        
 </div>
@@ -51,13 +51,22 @@ import BreweryService from '../services/BreweryService'
 export default {
     data(){
         return{
+
+              reply: {
+
             userId : this.$store.state.user.id,
-            reviewId: this.reviewId,
-            username : 'Stand-in',
+            reviewId: this.chosen.id,
+            relpyDate : "",
+            title: "",
+            reply:""
+        },
+
             review: this.chosen,
-            reply: this.chosen,
-        visibility: false
+            visibility: false,
+          
         }
+
+      
     },
     props : ['chosen'],
     methods: {
@@ -72,16 +81,24 @@ export default {
         },
 
     addReply(){
-                this.review.reviewDate = new Date();
-            BreweryService.addReviewReply(this.reply).then( (response) => {
-                this.reply = response.data;
-
-
+            this.reply.relpyDate = new Date();
+            BreweryService.addReviewReply(this.reply).then( () => {
             } )
 
-    }
-
     },
+
+            Cancel(){
+
+         this.visibility = false;
+          //  this.reply = {
+       //         title : this.$store.state.user.id,
+       //         reply : this.chosen.id,
+       //     };
+            
+         
+        },
+    },
+
     created(){
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
