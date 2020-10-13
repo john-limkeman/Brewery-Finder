@@ -14,7 +14,7 @@
         </div>
       
       <h6 id='review-user' v-if='!checkUser()'><span>By:</span> {{this.username}}</h6>
-     <h6 id='review-beer' v-else><span>Reviewed:</span> <br><router-link class='navlink' v-bind:to='{name : "BeerDetails", params: {id : this.beer.id}}'>{{beer.name}}</router-link></h6>
+     <h6 id='review-beer' v-else><span>Reviewed:</span> <br><router-link class='navlink' id='reviewCardLink' v-bind:to='{name : "BeerDetails", params: {id : this.beer.id}}'>{{beer.name}}</router-link></h6>
      <p id='review-overall'> <span>Overall:</span> {{review.overall}}</p>
      <p id='review-color'><span>Color:</span> {{review.color}}</p>
      <p id='review-taste'><span>Taste:</span> {{review.taste}}</p>
@@ -148,6 +148,9 @@ export default {
     padding: 4px;
 }
 
+#reviewCardLink:hover{
+    color:goldenrod
+}
 .review-card span{
     font-weight: bold;
     color: black;

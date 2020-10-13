@@ -1,6 +1,6 @@
 <template>
   <div id="beerInfo" class="container text-center col-xl-12 mx-auto rounded">
-    <h2>
+    <h2 id='beer-name-brewery'>
       {{ beer.name }} <br />
       <span v-bind="getBrewery()">
         <router-link
@@ -14,11 +14,11 @@
     <h1 id="avgRatingDisplay">{{ beer.rating }}</h1>
 
     <img id="beerImg" v-bind:src="beer.imgUrl" width="180px" height="auto" />
-    <ul>
-      <li id="beerType">{{ beer.type }}</li>
-      <li id="beerAbv">ABV : {{ beer.abv }}</li>
-      <li id="beerIbu">IBU : {{ beer.ibu }}</li>
-      <li id="beerStatus">{{ this.setStatus }}</li>
+    <ul id='beer-stats'>
+      <li><b>{{ beer.type }}</b></li>
+      <li><b>ABV : </b>{{ beer.abv }}</li>
+      <li><b>IBU : </b>{{ beer.ibu }}</li>
+      <li><b>{{ this.setStatus }}</b></li>
     </ul>
     <p id="beerDesc">{{ beer.description }}</p>
 
@@ -102,22 +102,15 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
     "img name rating"
-    "img name edit"
-    "type desc desc"
-    "abv desc desc"
-    "ibu desc desc"
-    "onTap desc desc"
+    "img desc type"
     "review review review";
+  gap: 3px;
 }
 li {
   list-style-type: none;
   text-align: left;
 }
-div > img {
-  margin: 10px;
-  height: 300px;
-  width: auto;
-}
+
 
 #avgRatingDisplay {
   font-weight: bold;
@@ -133,17 +126,22 @@ div > img {
 }
 #beerImg {
   grid-area: img;
+  max-height: 100%;
+  max-width: 90%;
 }
-#beerInfo > h2 {
+#beer-name-brewery {
   margin-top: 40px;
   grid-area: name;
   align-self: start;
+}
+#beer-stats{
+  grid-area: type;
 }
 #beerInfo > h2 > span {
   font-size: 25px;
   margin-top: 20px;
 }
-#beerType {
+/* #beerType {
   grid-area: type;
 }
 #beerAbv {
@@ -154,12 +152,12 @@ div > img {
 }
 #beerStatus {
   grid-area: onTap;
-}
+}*/
 #beerDesc {
   grid-area: desc;
-}
+} 
 #editBeerButton {
-  grid-area: edit;
+  grid-area: type;
   align-self: start;
   justify-self: right;
   margin: 50px;

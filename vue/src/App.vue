@@ -174,8 +174,13 @@ body {
 h1, h2, h3, h4 ,h5{
   font-family: 'Bungee Inline'
 }
-h6, p, span{
+h6, p{
   font-family: helvetica;
+}
+div > img {
+  margin: 10px;
+  height: 300px;
+  width: auto;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Inline&family=Bungee+Outline&family=Bungee+Shade&family=Freckle+Face&family=Frijole&family=Salsa&family=Skranji&family=Walter+Turncoat&display=swap');

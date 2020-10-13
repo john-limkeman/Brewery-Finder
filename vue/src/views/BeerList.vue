@@ -1,6 +1,8 @@
 <template>
   <div class="beer-container">
+    <div id='BeersListHeader' class='beer-type'>
     <h2>All Beers</h2>
+    </div>
     <div id="Sours-Container" class="beer-type">
       <h3>Sours</h3>
       <ul>
@@ -198,23 +200,27 @@ h3 {
   margin-right: 30px;
 }
 #Sours-Container {
-  background-color: #fdee6f;
+  background-color: rgba(253, 238, 111, 0.85);
 }
 #IPA-Container {
-  background-color: #fbc800;
+  background-color: rgba(251, 200, 0, 0.85);
 }
 #Ale-Container {
-  background-color: #eaa500;
+  background-color: rgba(234, 165, 0, 0.85);
 }
 #Lager-Container {
-  background-color: #dd8700;
+  background-color: rgba(221, 135, 0, 0.85);
 }
 #Stout-Porter-Container {
-  background-color: #630f0f;
+  background-color: rgba(99, 15, 15, 0.85);
   color: whitesmoke;
 }
 #Others-Container {
-  background-color: #2c0603;
+  background-color: rgba(44, 6, 3, 0.85);
   color: whitesmoke;
+}
+#BeersListHeader{
+  background-color: rgba(251, 241, 205, 0.8);
+
 }
 </style>

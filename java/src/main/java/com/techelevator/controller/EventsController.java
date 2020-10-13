@@ -20,30 +20,25 @@ public class EventsController {
 
 	@Autowired
 	private EventsDAO dao;
-	
-	
-	
-	
+
 	@RequestMapping(path = "/breweryEvents/{id}", method = RequestMethod.GET)
-	public List<Events> eventsByBreweryId(@PathVariable long breweryId){
-		return dao.getEventsByBreweryId(breweryId);
+	public List<Events> eventsByBreweryId(@PathVariable long id) {
+		return dao.getEventsByBreweryId(id);
 	}
-	
+
 	@RequestMapping(path = "/deleteEvent", method = RequestMethod.DELETE)
-	public void deleteEventsByBreweryId(@RequestBody Events event){
+	public void deleteEventsByBreweryId(@RequestBody Events event) {
 		dao.deleteEvent(event);
 	}
-	
-	@RequestMapping(path= "/newEvent/{id}", method = RequestMethod.POST)
+
+	@RequestMapping(path = "/newEvent/{id}", method = RequestMethod.POST)
 	public void createEvent(@PathVariable Long id, @RequestBody Events event) {
 		dao.createEvent(id);
 	}
-	
-	@RequestMapping(path= "/updateEvent", method = RequestMethod.PUT)
+
+	@RequestMapping(path = "/updateEvent", method = RequestMethod.PUT)
 	public void updateEvent(@RequestBody Events event) {
 		dao.updateEvent(event);
 	}
-	
-	
-	
+
 }
