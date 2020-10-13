@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpHeaders;
@@ -82,6 +84,11 @@ public class AuthenticationController {
 		userDAO.deleteUserById(id);
 	}
 
+	@RequestMapping(path = "/allUsers", method = RequestMethod.GET)
+	public List <User> getAllUsers() {
+		return userDAO.findAll();
+	}
+	
 	/**
 	 * Object to return as body in JWT Authentication.
 	 */

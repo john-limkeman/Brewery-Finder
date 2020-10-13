@@ -1,6 +1,7 @@
 <template>
   <div  class="container text-center col-xl-5 mx-auto border border-dark rounded">
       <router-link class="navlink" v-bind:to="{name: 'AddBrewery'}">Add a brewery</router-link>
+      <router-link class="navlink" v-bind:to="{name: 'AllUsers'}">View all users</router-link>
       <pending-brewer-request />
       <pending-brewery-request />
       <processed-brewer-reuest />
