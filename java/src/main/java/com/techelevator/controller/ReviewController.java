@@ -23,38 +23,37 @@ import com.techelevator.model.Review;
 @CrossOrigin
 public class ReviewController {
 
-	
 	@Autowired
 	ReviewDAO dao;
-	
-	
+
 	@PreAuthorize("permitAll()")
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path = "/new-review", method = RequestMethod.POST)
 	public void addReview(@Valid @RequestBody Review review) {
 		dao.addReview(review);
 	}
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(path = "/delete-review", method = RequestMethod.DELETE)
 	public void deleteReview(@Valid @RequestBody Review review) {
 		dao.deleteReview(review);
 	}
-	
+
 	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/beer/{id}/reviews", method = RequestMethod.GET)
-	public List<Review> reviewByBeer(@PathVariable Long id){
+	public List<Review> reviewByBeer(@PathVariable Long id) {
 		return dao.getReviewsByBeer(id);
 	}
-	
+
 	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/brewery/{id}/reviews", method = RequestMethod.GET)
-	public List<Review> reviewByBrewery(@PathVariable Long id){
+	public List<Review> reviewByBrewery(@PathVariable Long id) {
 		return dao.getReviewsByBrewery(id);
 	}
-	
+
 	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/user/{id}/reviews", method = RequestMethod.GET)
-	public List<Review> getReviewsByUserId(@PathVariable Long id){
+	public List<Review> getReviewsByUserId(@PathVariable Long id) {
 		return dao.getReviewsByUserId(id);
 	}
 }
