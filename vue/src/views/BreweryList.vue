@@ -89,7 +89,6 @@ div > img {
   margin: 15px;
 }
 h2 {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: center;
   font-weight: bold;
 }

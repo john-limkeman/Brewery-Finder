@@ -13,7 +13,8 @@
 
         </div>
       
-      <h6 id='review-user'><span>By:</span> {{this.username}}</h6>
+      <h6 id='review-user' v-if='!checkUser()'><span>By:</span> {{this.username}}</h6>
+     <h6 id='review-beer' v-else><span>Reviewed:</span> <br><router-link class='navlink' v-bind:to='{name : "BeerDetails", params: {id : this.beer.id}}'>{{beer.name}}</router-link></h6>
      <p id='review-overall'> <span>Overall:</span> {{review.overall}}</p>
      <p id='review-color'><span>Color:</span> {{review.color}}</p>
      <p id='review-taste'><span>Taste:</span> {{review.taste}}</p>
@@ -23,7 +24,7 @@
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
            <button class="btn btn-primary" id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
            
-           <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility == true' >
+           <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility' >
                  <label for="title">Title</label>
             <input
                 v-model="reply.title"
@@ -39,7 +40,7 @@
              placeholder="What is your reply?"
             /><br>
                <button class="btn btn-primary">Submit</button>
-            <button class="btn btn-primary" v-on:click='Cancel'>Cancel</button>
+            <button class="btn btn-primary" v-on:click.prevent='Cancel()'>Cancel</button>
            </form>
        
 </div>
@@ -63,6 +64,8 @@ export default {
 
             review: this.chosen,
             visibility: false,
+            beer: {},
+            username: "",
           
         }
 
@@ -82,24 +85,40 @@ export default {
 
     addReply(){
             this.reply.relpyDate = new Date();
-            console.log(this.reply)
             BreweryService.addReviewReply(this.reply).then( () => {
             } )
 
+    },
+    checkUser(){
+        let url = this.$route.name
+    if (url == 'UserPage'){
+        return true;
+    } else {
+        return false;
     }
     },
+
             Cancel(){
-            this.reply = {
-                title : "",
-                reply : "",
-            };
+
+         this.visibility = false;
+          //  this.reply = {
+       //         title : this.$store.state.user.id,
+       //         reply : this.chosen.id,
+       //     };
             
-            this.reply.visibility = false;
+         
         },
+    },
+
     created(){
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
                 this.username = response.data.username;
+                BreweryService.getBeerById(this.chosen.beerId).then(
+                    (response) => {
+                        this.beer = response.data;
+                    }
+                )
             }
         )
     },
@@ -112,7 +131,7 @@ export default {
     grid-template-columns: 1fr 2fr 2fr;
     grid-template-areas: 
     "title title rating"
-    "username . img"
+    "username username img"
     "overall overall img"
     "color color img"
     "smell smell img"
@@ -186,6 +205,9 @@ export default {
     grid-area: date;
     text-align: right;
     font-size: 12px;
+}
+#review-beer{
+    grid-area: username;
 }
 .revCardContainer{
     display: block;
