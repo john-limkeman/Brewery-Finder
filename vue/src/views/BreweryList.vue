@@ -1,30 +1,28 @@
 <template>
-  <div>
+  <div class="container text-center col-xl-8 mx-auto border border-dark rounded">
+      <h2 id='BreweryListHeader'>Breweries</h2>
     <div
-      id="beerlist"
-      class="container text-center col-xl-5 mx-auto border border-dark rounded"
+      id="breweryList"
     >
       <!--text-center col-xl-5 mx-auto border border-dark rounded-->
-      <h2>Breweries</h2>
       <div v-for='brewery in faves' v-bind:key='brewery.id' id='favoritedBreweryCard' class='brewery'>
-        <img v-bind:src="brewery.image" width="180px" height="auto" />
         <h3>
           <router-link
             v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }"
             class="brewery-name"
           >
-            {{ brewery.name }}
+        <img v-bind:src="brewery.image" width="180px" height="auto" />
+           
           </router-link>
         </h3>
       </div>
       <div v-for="brewery in nonFaves" v-bind:key="brewery.id" class="brewery">
-        <img v-bind:src="brewery.image" width="180px" height="auto" />
         <h3>
           <router-link
             v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }"
             class="brewery-name"
           >
-            {{ brewery.name }}
+        <img v-bind:src="brewery.image" width="180px" height="auto" />
           </router-link>
         </h3>
       </div>
@@ -76,17 +74,32 @@ export default {
 </script>
 
 <style>
+#breweryList{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%
+}
+
+#breweryList img{
+  height:250px;
+  width: 250px;
+  border-radius: 50%;
+}
 #favoritedBreweryCard{
-  background-color: rgba(255, 215, 0, 0.5);
+  
 }
-div > img {
-  max-width: 100%;
-  max-height: 100%;
+#favoritedBreweryCard img{
+  border: gold solid 5px;
+
 }
+
 .brewery {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 15px;
+
 }
 h2 {
   text-align: center;
@@ -103,5 +116,8 @@ img {
 }
 #addBreweryBtn {
   width: auto;
+}
+#BreweryListHeader{
+  margin-top: 50px;
 }
 </style>
