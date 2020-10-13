@@ -75,4 +75,15 @@ export default {
   align-items: center;
   margin-top: -10px;
 }
+#eventContainer{
+   background: rgba(245, 222, 179, 0.7);
+  text-align: center;
+  padding: 50px;
+  border-style: solid;
+  border-width: 3px;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+}
 </style>

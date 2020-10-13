@@ -25,8 +25,8 @@ public class EventsController {
 	
 	
 	@RequestMapping(path = "/breweryEvents/{id}", method = RequestMethod.GET)
-	public List<Events> eventsByBreweryId(@PathVariable long breweryId){
-		return dao.getEventsByBreweryId(breweryId);
+	public List<Events> eventsByBreweryId(@PathVariable long id){
+		return dao.getEventsByBreweryId(id);
 	}
 	
 	@RequestMapping(path = "/deleteEvent", method = RequestMethod.DELETE)
