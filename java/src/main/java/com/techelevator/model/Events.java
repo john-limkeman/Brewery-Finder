@@ -2,10 +2,27 @@ package com.techelevator.model;
 
 public class Events {
 
+	private long event_id;
 	private long brewery_id;
+	private String event_title;
 	private String event_date;
 	private String description;
 	private String picture;
+	
+	
+	
+	public String getEvent_title() {
+		return event_title;
+	}
+	public void setEvent_title(String event_title) {
+		this.event_title = event_title;
+	}
+	public long getEvent_id() {
+		return event_id;
+	}
+	public void setEvent_id(long event_id) {
+		this.event_id = event_id;
+	}
 	
 	
 	public long getBrewery_id() {
