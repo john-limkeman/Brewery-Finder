@@ -4,7 +4,7 @@
     <div
       class="home container text-center col-xl-5 mx-auto border border-dark rounded"
     >
-      <h1>Welcome to Denver Brew Finder</h1>
+      <h1>Denver Brew Finder</h1>
       <img src="@/Resources/output-onlinepngtools.png" id="main-page-logo" />
       <h3 class="newsContainer">Brewery News</h3>
       <div class="newsContainer" v-for="item in news" v-bind:Key="item.id">
@@ -55,9 +55,11 @@ export default {
   height: auto;
 }
 .home > h1 {
-  font-family: cursive;
+  font-family: 'Bungee Shade';
+  font-size: 70px;
 }
 .newsContainer {
   border-bottom: 3px solid black;
 }
+
 </style>

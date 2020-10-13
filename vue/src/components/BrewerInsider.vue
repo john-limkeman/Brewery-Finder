@@ -1,18 +1,27 @@
 <template>
-  <div>
+  <div id='brewerInsiderBox'>
     <div id="BrewBeerList">
-      <h4>{{ brewery.name }} Beers</h4>
-      <div v-for="beer in beers" v-bind:key="beer.id">
-       <p>{{ beer.name }} 
+      <h2>{{ brewery.name }}</h2>
+      <h4> Beers </h4>
+      <div v-for="beer in beers" v-bind:key="beer.id" id='beerSideBar'>
+      
+       <p>{{ beer.name }} &nbsp;</p>
+        
+         <p>
            <button class="btn btn-primary" v-on:click='getCurrentBeer(beer)' >Edit</button>
            <button class="btn btn-danger" v-on:click='deleteBeer(beer)' >Delete</button>
-        </p> 
+           </p>
+      
       </div>
+      <h4>Events</h4>
+      <!-- loop through events here -->
       <button class="btn btn-primary" v-on:click='addBeer()'>Add Beer</button>
+      <button class='btn btn-primary' v-on:click='addEvent()'>Add Event</button>
+      <button class='btn btn-primary' v-on:click='toggleVis()'> Update Brewery Information</button>
     </div>
     
-<div id="BreweryList">
-      <form id="newBreweryForm">
+
+      <form id="newBreweryForm" v-if='Vis'>
       <label for="name">Brewery name</label>
       <input
         v-model="brewery.name"
@@ -81,12 +90,10 @@
       <button class="btn btn-primary" v-on:click.prevent="clearForm">Clear</button>
       <br />
     </form>
-  
+    <img v-else v-bind:src='this.brewery.image'/>
 
     <!-- <BreweryForm v-bind:brewid="settingBreweryId"/> -->
 
-
-  </div > 
 
   </div>
 </template>
@@ -102,6 +109,7 @@ export default {
       brewery: {
 
       },
+      Vis: false
     };
   },
   computed: {
@@ -131,6 +139,17 @@ export default {
       BreweryService.updateBrewery(this.brewery);
       this.$router.push({ name: "BreweryBeers", params: {id : this.brewery.id} });
     },
+    addEvent(){
+      //function to add new event
+    },
+    toggleVis(){
+      if(this.Vis == true){
+        this.Vis = false;
+      } else{
+        this.Vis = true;
+      }
+    }
+
   },
   created() {
     
@@ -154,4 +173,45 @@ export default {
 </script>
 
 <style>
+#brewerInsiderBox{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  height: 100%;
+}
+#BrewBeerList{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-evenly;
+  width: 30%;
+  border-right: black 5px solid;
+  margin-right: 5px;
+}
+#beerSideBar{
+  display: flex;
+  justify-content: space-between;
+}
+#newBreweryForm{
+  display:flex;
+  flex-direction: column;
+  width: 70%;
+}
+#newBreweryForm label{
+  text-align: left;
+  margin-left: 50px;
+}
+#newBreweryForm input{
+  margin-left: 50px;
+  width: 50%
+}
+#brewerInsiderBox button{
+  margin: 5px;
+}
+#brewerInsiderBox img{
+  position: absolute;
+  left: 50%;
+  right: 50%;
+}
 </style>
