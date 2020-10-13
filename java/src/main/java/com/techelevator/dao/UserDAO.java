@@ -25,4 +25,5 @@ public interface UserDAO {
 	public List<BrewerRequest> getAllRequests();
 	
 	public void deleteUserById(long id);
+	
 }

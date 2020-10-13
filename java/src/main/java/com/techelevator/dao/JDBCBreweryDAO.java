@@ -85,6 +85,12 @@ public class JDBCBreweryDAO implements BreweryDAO {
 			throw new RuntimeException("No brewery found");
 		}
 	}
+
+	@Override
+	public void deleteBrewery(long id) {
+		jdbcTemplate.update("DELETE FROM breweries WHERE id = ?", id);
+		
+	}
 	
 	// maps SQL query to brewery object
 	private Brewery mapRowToBrewery(SqlRowSet results) {
@@ -101,6 +107,7 @@ public class JDBCBreweryDAO implements BreweryDAO {
 		brewery.setImage(results.getString("image"));
 		return brewery;
 	}
+
 
 
 
