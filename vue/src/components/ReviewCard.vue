@@ -40,6 +40,7 @@
                 placeholder="What is your reply to this review?"
             /><br>
                <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" v-on:click='Cancel'>Cancel</button>
            </form>
        
 </div>
@@ -51,13 +52,21 @@ import BreweryService from '../services/BreweryService'
 export default {
     data(){
         return{
+
+              reply: {
+
             userId : this.$store.state.user.id,
             reviewId: this.reviewId,
-            username : 'Stand-in',
-            review: this.chosen,
+            relpyDate : "",
             reply: this.chosen,
-        visibility: false
+        },
+
+            review: this.chosen,
+            visibility: false,
+          
         }
+
+      
     },
     props : ['chosen'],
     methods: {
@@ -72,16 +81,22 @@ export default {
         },
 
     addReply(){
-                this.review.reviewDate = new Date();
+            this.review.reviewDate = new Date();
             BreweryService.addReviewReply(this.reply).then( (response) => {
                 this.reply = response.data;
-
-
             } )
 
     }
 
     },
+            Cancel(){
+            this.reply = {
+                title : {},
+                reply : {},
+            };
+            
+            this.visibility = false;
+        },
     created(){
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
