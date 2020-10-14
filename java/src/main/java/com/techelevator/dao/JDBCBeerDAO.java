@@ -107,7 +107,7 @@ public class JDBCBeerDAO implements BeerDAO {
 	@Override
 	public List<Beer> topFiveBeers(){
 		List<Beer> topFiveList = new ArrayList<Beer>();
-		String sqlInsert = "SELECT * FROM beers WHERE rating IS NOT null ORDER BY rating DESC LIMIT 5;";
+		String sqlInsert = "SELECT * FROM beers where rating IS NOT NULL AND rating > 2.0 ORDER BY rating DESC LIMIT 5";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlInsert);
 		
 		while(result.next()) {

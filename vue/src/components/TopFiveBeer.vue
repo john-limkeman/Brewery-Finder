@@ -2,7 +2,7 @@
     <div>
         <H4 id="topFiveHeader">Top 5 Beers</H4>
             <div id="topFiveContainer" v-for="beer in beers" v-bind:Key="beer.id">
-             <router-link class="navLink" v-bind:to="{ name: 'BeerDetails', params: { id: beer.id } }">
+             <router-link id="beerlink" v-bind:to="{ name: 'BeerDetails', params: { id: beer.id } }">
                  {{beer.name}}
                 </router-link>
             </div>
@@ -38,4 +38,18 @@ export default {
 #topFiveHeader{
     text-decoration: underline;
 }
+ {
+  color: black;
+}
+#beerlink:hover {
+  color: whitesmoke;
+}
+#beerlink:visited {
+  color: #630f0f;
+}
+#beerlink:visited:hover {
+  color: whitesmoke;
+}
+
+
 </style>

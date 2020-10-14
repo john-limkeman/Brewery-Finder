@@ -2,7 +2,7 @@
 <div> 
     <H3>Brewery Events</H3><br>
     <div id="eventCard" v-for="event in events" v-bind:key="event.event_id" >
-        <h4>Brewery: {{this.brewery.name}}</h4>
+        <h4>Brewery: {{event.name}}</h4>
         <h4 id="eventTitle">{{event.event_title}}</h4>
         <h5 id="eventDate"> {{event.event_date}}</h5>
         <p id="description">{{event.description}}</p>
@@ -42,4 +42,16 @@ export default {
 
 <style>
 
+.navlink {
+  color: black;
+}
+.navlink:hover {
+  color: whitesmoke;
+}
+.navlink:visited {
+  color: #630f0f;
+}
+.navlink:visited:hover {
+  color: whitesmoke;
+}
 </style>

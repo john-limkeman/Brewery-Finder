@@ -213,6 +213,9 @@ export default {
     },
     deleteEvent(event){
       this.currentEvent = event;
+      BreweryService.deleteEvent(this.currentEvent).then(()=>{
+        
+      })
       //to delete event from DB
     },
     addEvent(){
