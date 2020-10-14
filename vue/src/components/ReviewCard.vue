@@ -22,17 +22,12 @@
      <p id='review-smell'><span>Smell:</span> {{review.smell}}</p>
      <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
-<<<<<<< HEAD
-        
-          
-=======
         <div v-for='reply in replies' v-bind:key='reply.id' id='replyCard'>
             <!-- <ReplyCard v-bind:repId='reply.id'/> -->
             <h4>{{reply.id}}</h4>
             <p> {{reply.reply}}</p>
 
         </div>
->>>>>>> 47704ac7b35fce5073bd46230eee4b1b8ac41f6f
            <button class="btn btn-primary" id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
 
            <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility' >
