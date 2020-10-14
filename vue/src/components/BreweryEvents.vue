@@ -42,4 +42,16 @@ export default {
 
 <style>
 
+.navlink {
+  color: black;
+}
+.navlink:hover {
+  color: whitesmoke;
+}
+.navlink:visited {
+  color: #630f0f;
+}
+.navlink:visited:hover {
+  color: whitesmoke;
+}
 </style>
