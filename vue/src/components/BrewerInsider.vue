@@ -15,7 +15,7 @@
       </div>
       <h4>Events</h4>
             <div v-for="event in events" v-bind:key="event.id" id='beerSideBar'>
-               <p>{{ beer.name }} &nbsp;</p>
+               <p>{{ event.event_title }} &nbsp;</p>
         
          <p>
            <button class="btn btn-primary" v-on:click='getCurrentEvent(event)' >Edit</button>
@@ -96,54 +96,52 @@
       /></span></p>
       <br />
       <button class="btn btn-primary" v-on:click.prevent="updateBrewery" >Update</button>
-      <button class="btn btn-primary" v-on:click.prevent="clearForm">Clear</button>
+      <button class="btn btn-primary" v-on:click.prevent="clearBreweryForm">Clear</button>
       <br />
     </form>
 
-      <form id="addEventForm" v-else-if='VisEvent'>
+      <form id="addEventForm" v-if='VisEvent'>
         <label for="event_title">Event Title</label>
             <input
-             v-model="newEvent.event_title"
+             v-model="currentEvent.event_title"
              type="text"
              name="title"
              placeholder="Event Title"
              />
         <label for="event_date">Date</label>
             <input
-             v-model="newEvent.event_date"
+             v-model="currentEvent.event_date"
              type="text"
              name="date"
              placeholder="Event Date"
              />
          <label for="description">Description</label>
             <input
-             v-model="newEvent.description"
+             v-model="currentEvent.description"
              type="text"
              name="description"
              placeholder="Event Description"
              />
          <label for="picture">Image URL</label>
             <input
-             v-model="newEvent.picture"
+             v-model="currentEvent.picture"
              type="text"
              name="active"
              placeholder="Event Picture"
              />
              <br>
-            <button class="btn btn-primary" v-on:click="addEvent">Add</button>
-            <button class="btn btn-primary" v-on:click="updateEvent">Update</button>
-            <button class="btn btn-primary" v-on:click="cancel">Cancel</button>
+            <button class="btn btn-primary" v-on:click.prevent="addEvent" v-if="currentEvent.event_id == null">Add</button>
+            <button class="btn btn-primary" v-on:click.prevent="updateEvent" v-else >Update</button>
+            <button class="btn btn-primary" v-on:click.prevent="clearEventForm">Clear</button>
       </form>
-    <img v-else v-bind:src='this.brewery.image'/>
+    <img v-if='picVis' v-bind:src='this.brewery.image'/>
 
-    <!-- <BreweryForm v-bind:brewid="settingBreweryId"/> -->
 
 
   </div>
 </template>
 
 <script>
-// import BreweryForm from "@/components/BreweryFrom.vue";
 import BreweryService from "@/services/BreweryService.js";
 export default {
   data() {
@@ -152,14 +150,28 @@ export default {
       beers: [],
       brewery: {},
       VisUpdate: false,
+      VisEvent: false,
       events: [],
       currentEvent: {},
     };
   },
+  // watch:{
+  //   brewery: function(oldVal, newVal) {
+  //     console.log(oldVal, newVal);
+  //     this.currentEvent.brewery_id = this.brewery.id
+  //   }
+  // },
   computed: {
     settingBreweryId(){
       let id = this.brewery.id;
       return id;
+    },
+    picVis(){
+      if (this.VisEvent == false && this.VisUpdate == false){
+        return true;
+      } else{
+        return false;
+      }
     }
   },
   methods: {
@@ -176,8 +188,18 @@ export default {
         this.$router.push({name : 'ConfirmDelete', params : {beerId : this.currentBeer.id}})
         
     },
-      clearForm() {
-      this.brewery = {};
+      clearBreweryForm() {
+      this.brewery.name = null;
+     this.brewery.address = null;
+     this.brewery.description = null;
+     this.brewery.image = null;
+     this.brewery.brewery_url = null;
+     this.brewery.phone = null;
+     this.brewery.hours = null;
+     this.brewery.active = null;
+      },
+      clearEventForm(){
+      this.currentEvent = {};
     },
         updateBrewery() {
       BreweryService.updateBrewery(this.brewery);
@@ -185,6 +207,8 @@ export default {
     },
     getCurrentEvent(event){
       this.currentEvent = event;
+      this.VisUpdate = false;
+      this.VisEvent = true;
       //to acquire current event and display edit form
     },
     deleteEvent(event){
@@ -192,12 +216,22 @@ export default {
       //to delete event from DB
     },
     addEvent(){
-      //function to add new event
+      this.currentEvent.brewery_id = this.brewery.id;
+      BreweryService.createEvent(this.currentEvent).then(() => {
+        this.VisEvent = false;
+      });
+    },
+    updateEvent(event){
+      BreweryService.updateEvent(event).then(()=>{
+        this.VisEvent = false;
+      });
+      // update event in DB
     },
     toggleVisUpdate(){
       if(this.VisUpdate == true){
         this.VisUpdate = false;
       } else{
+        this.VisEvent = false;
         this.VisUpdate = true;
       }
     },
@@ -227,10 +261,6 @@ export default {
       })
       });
   },
-  components: {
-    // BreweryForm,
-    
-  }
 };
 </script>
 
