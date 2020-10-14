@@ -41,7 +41,9 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 	@Override
 	public List<ReplyReview> getReplysByReviewId(Long reviewId) {
 		List<ReplyReview> output = new ArrayList<ReplyReview>();
-		String sql = "SELECT * FROM reply_review WHERE review_id = ? ";
+		String sql = "SELECT *" + 
+				"FROM reply_review JOIN users" + 
+				"ON reply_review.user_id = users.user_id WHERE review_id = ? ";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewId);
 		while (results.next()) {
 			output.add(mapRowToReply(results));
