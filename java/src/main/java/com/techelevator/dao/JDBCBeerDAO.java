@@ -15,8 +15,11 @@ import com.techelevator.model.Brewery;
 @Component
 public class JDBCBeerDAO implements BeerDAO {
 
-	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	public JDBCBeerDAO(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public List<Beer> getAllBeer() {
