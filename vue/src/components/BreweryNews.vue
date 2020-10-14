@@ -34,7 +34,5 @@ export default {
 </script>
 
 <style>
-.newsContainer {
-    border-bottom: 3px, solid, black;
-}
+
 </style>

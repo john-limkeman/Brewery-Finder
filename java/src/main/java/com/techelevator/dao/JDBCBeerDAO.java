@@ -14,9 +14,13 @@ import com.techelevator.model.Brewery;
 
 @Component
 public class JDBCBeerDAO implements BeerDAO {
-
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	public JDBCBeerDAO(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public List<Beer> getAllBeer() {
@@ -98,6 +102,19 @@ public class JDBCBeerDAO implements BeerDAO {
 		String update = "UPDATE beers SET rating = ? WHERE beer_id = ?";
 		jdbcTemplate.update(update, rounded, id);
 		
+	}
+	
+	@Override
+	public List<Beer> topFiveBeers(){
+		List<Beer> topFiveList = new ArrayList<Beer>();
+		String sqlInsert = "SELECT * FROM beers WHERE rating IS NOT null ORDER BY rating DESC LIMIT 5;";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlInsert);
+		
+		while(result.next()) {
+			topFiveList.add(mapRowToBeer(result));
+		}
+		
+		return topFiveList;
 	}
 
 	private Beer mapRowToBeer(SqlRowSet row) {

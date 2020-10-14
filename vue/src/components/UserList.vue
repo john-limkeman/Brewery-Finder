@@ -1,39 +1,38 @@
 <template>
   <div
-    class="container text-center col-xl-5 mx-auto border border-dark rounded"
+    class="container col-xl-5 border border-dark rounded aligncontent"
   >
+    <div class="userGrid">
       <h3>Users</h3>
-    <div v-for="user in users" v-bind:key="user.id">
-      <span>
-        {{ user.id }} {{ user.username }}
-      </span>
-        <button class="btn btn-danger deleteUser" v-on:click="deleteUser(user.id)">
+      <div class="users" v-for="user in users" v-bind:key="user.id">
+        <span class="flexUser"> {{ user.id }} {{ user.username }} </span>
+        <button
+          class="btn btn-danger deleteUser"
+          v-on:click="deleteUser(user.id)"
+        >
           Delete user
         </button>
-    </div>
+      </div>
       <h3>Brewers</h3>
-    <div v-for="brewer in brewers" v-bind:key="brewer.id">
-      <span>
-        {{ brewer.id }} {{ brewer.username }}
-      </span>
+      <div class="brewers" v-for="brewer in brewers" v-bind:key="brewer.id">
+        <span> {{ brewer.id }} {{ brewer.username }} </span>
         <button
           class="btn btn-danger deleteUser"
           v-on:click="deleteUser(brewer.id)"
         >
           Delete user
         </button>
-    </div>
+      </div>
       <h3>Admin</h3>
-    <div v-for="admin in admins" v-bind:key="admin.id">
-      <span>
-        {{ admin.id }} {{ admin.username }}
-      </span>
+      <div class="admin" v-for="admin in admins" v-bind:key="admin.id">
+        <span> {{ admin.id }} {{ admin.username }} </span>
         <button
           class="btn btn-danger deleteUser"
           v-on:click="deleteUser(admin.id)"
         >
           Delete user
         </button>
+      </div>
     </div>
   </div>
 </template>
@@ -63,7 +62,7 @@ export default {
   },
   methods: {
     deleteUser(id) {
-      this.$router.push({ name: "AdminConfirmDeleteUser", params:{id: id}});
+      this.$router.push({ name: "AdminConfirmDeleteUser", params: { id: id } });
     },
   },
 };
@@ -71,6 +70,30 @@ export default {
 
 <style>
 .deleteUser {
-    width: 115px;
+  width: 115px;
+}
+.userGrid {
+  display: flex;
+  flex-direction: column;
+  width: 300px;  
+}
+.users {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+.brewers {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+.admin {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+.aligncontent {
+  display: flex;
+  align-items: center;
 }
 </style>

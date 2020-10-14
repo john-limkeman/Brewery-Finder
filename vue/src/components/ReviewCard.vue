@@ -22,12 +22,18 @@
      <p id='review-smell'><span>Smell:</span> {{review.smell}}</p>
      <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
+<<<<<<< HEAD
         <div v-for='reply in replies' v-bind:key='reply.id' id='replyCard'>
             <!-- <ReplyCard v-bind:repId='reply.id'/> -->
             <h4>{{reply.id}}</h4>
             <p> {{reply.reply}}</p>
 
         </div>
+=======
+        <div>
+            <ReplyList v-bind:replies='this.replies'/>
+            </div>
+>>>>>>> 06015890dd557675a0074dc5825d0cba46825b46
            <button class="btn btn-primary" id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
 
            <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility' >
@@ -54,7 +60,7 @@
 </template>
 
 <script>
-// import ReplyCard from '@/components/ReplyCard'
+import ReplyList from '@/components/ReplyList.vue'
 import BreweryService from '../services/BreweryService'
 export default {
     data(){
@@ -117,10 +123,9 @@ export default {
         },
     },
     components : {
-        // ReplyCard
+        ReplyList
     },
     created(){
-        console.log('TEST TEST TEST')
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
                 this.username = response.data.username;
@@ -130,7 +135,6 @@ export default {
                         BreweryService.getRepliesByReviewId(this.chosen.id).then(
                             (response) => {
                                 this.replies = response.data;
-                                console.log(this.replies);
                             }
                         )
                         
@@ -155,9 +159,10 @@ export default {
     "taste taste img"
     "head head img"
     ". date date"
+    "repButton repButton ."
+    "replyForm  replyForm ."
     "replies replies replies"
-    "review review ."
-    "review-texts  review-texts .";
+    "replies replies replies";
     text-align:left;
     border: solid 3px goldenrod;
     border-radius: 10px;
@@ -235,14 +240,16 @@ export default {
 }
 
 #review-reply{
-     grid-area: review;
+     grid-area: repButton;
 }
 
 #review-reply-text{
-     grid-area: review-texts;
+     grid-area: replyForm;
 }
 
 #replyCard{
+    display: flex;
+    flex-direction:column;
     grid-area: replies;
 }
 

@@ -8,9 +8,16 @@ public class Events {
 	private String event_date;
 	private String description;
 	private String picture;
+	private String brewery_name;
 	
 	
 	
+	public String getBrewery_name() {
+		return brewery_name;
+	}
+	public void setBrewery_name(String brewery_name) {
+		this.brewery_name = brewery_name;
+	}
 	public String getEvent_title() {
 		return event_title;
 	}

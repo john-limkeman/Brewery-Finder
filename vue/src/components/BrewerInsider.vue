@@ -14,16 +14,23 @@
       
       </div>
       <h4>Events</h4>
-      <!-- loop through events here -->
+            <div v-for="event in events" v-bind:key="event.id" id='beerSideBar'>
+               <p>{{ beer.name }} &nbsp;</p>
+        
+         <p>
+           <button class="btn btn-primary" v-on:click='getCurrentEvent(event)' >Edit</button>
+           <button class="btn btn-danger" v-on:click='deleteEvent(event)' >Delete</button>
+           </p>
+           </div>
       <div id='BTbuttons'>
       <button class="btn btn-primary" v-on:click='addBeer()'>Add Beer</button>
-      <button class='btn btn-primary' v-on:click='addEvent()'>Add Event</button>
-      <button class='btn btn-primary' id='updateBreweryInformationButton' v-on:click='toggleVis()'> Update Brewery Information</button>
+      <button class='btn btn-primary' v-on:click='toggleVisEvent()'>Add Event</button>
+      <button class='btn btn-primary' id='updateBreweryInformationButton' v-on:click='toggleVisUpdate()'> Update Brewery Information</button>
       </div>
     </div>
     
 
-      <form id="updateBreweryForm" v-if='Vis'>
+      <form id="updateBreweryForm" v-if='VisUpdate'>
       <label for="name">Brewery name</label>
       <input
         v-model="brewery.name"
@@ -92,6 +99,41 @@
       <button class="btn btn-primary" v-on:click.prevent="clearForm">Clear</button>
       <br />
     </form>
+
+      <form id="addEventForm" v-else-if='VisEvent'>
+        <label for="event_title">Event Title</label>
+            <input
+             v-model="newEvent.event_title"
+             type="text"
+             name="title"
+             placeholder="Event Title"
+             />
+        <label for="event_date">Date</label>
+            <input
+             v-model="newEvent.event_date"
+             type="text"
+             name="date"
+             placeholder="Event Date"
+             />
+         <label for="description">Description</label>
+            <input
+             v-model="newEvent.description"
+             type="text"
+             name="description"
+             placeholder="Event Description"
+             />
+         <label for="picture">Image URL</label>
+            <input
+             v-model="newEvent.picture"
+             type="text"
+             name="active"
+             placeholder="Event Picture"
+             />
+             <br>
+            <button class="btn btn-primary" v-on:click="addEvent">Add</button>
+            <button class="btn btn-primary" v-on:click="updateEvent">Update</button>
+            <button class="btn btn-primary" v-on:click="cancel">Cancel</button>
+      </form>
     <img v-else v-bind:src='this.brewery.image'/>
 
     <!-- <BreweryForm v-bind:brewid="settingBreweryId"/> -->
@@ -108,10 +150,10 @@ export default {
     return {
     currentBeer : {},
       beers: [],
-      brewery: {
-
-      },
-      Vis: false
+      brewery: {},
+      VisUpdate: false,
+      events: [],
+      currentEvent: {},
     };
   },
   computed: {
@@ -141,29 +183,47 @@ export default {
       BreweryService.updateBrewery(this.brewery);
       this.$router.push({ name: "BreweryBeers", params: {id : this.brewery.id} });
     },
+    getCurrentEvent(event){
+      this.currentEvent = event;
+      //to acquire current event and display edit form
+    },
+    deleteEvent(event){
+      this.currentEvent = event;
+      //to delete event from DB
+    },
     addEvent(){
       //function to add new event
     },
-    toggleVis(){
-      if(this.Vis == true){
-        this.Vis = false;
+    toggleVisUpdate(){
+      if(this.VisUpdate == true){
+        this.VisUpdate = false;
       } else{
-        this.Vis = true;
+        this.VisUpdate = true;
       }
-    }
-
+    },
+  toggleVisEvent(){
+      if(this.VisEvent == true){
+        this.VisEvent = false;
+      } else{
+        this.VisUpdate = false;
+        this.VisEvent = true;
+      }
+    },
   },
   created() {
     
     BreweryService.getBreweryByBrewer(this.$store.state.user.id).then(
       (response) => {
         this.brewery = response.data;
-    console.log(`this is the BrewerInsider component ${this.brewery.id}`)
-       
+          BreweryService.getBeerByBrewery(this.brewery.id).then((response) => {
+            this.beers = response.data
+             this.currentBeer = {}
+             BreweryService.getEventsById(this.brewery.id).then(
+          (response) => {
+            this.events = response.data;
+          }
 
-    BreweryService.getBeerByBrewery(this.brewery.id).then((response) => {
-        this.beers = response.data
-        this.currentBeer = {}
+             )
       })
       });
   },

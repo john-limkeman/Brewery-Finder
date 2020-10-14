@@ -31,14 +31,22 @@ public class EventsController {
 		dao.deleteEvent(event);
 	}
 
-	@RequestMapping(path = "/newEvent/{id}", method = RequestMethod.POST)
-	public void createEvent(@PathVariable Long id, @RequestBody Events event) {
-		dao.createEvent(id);
+	@RequestMapping(path = "/newEvent/{breweryId}", method = RequestMethod.POST)
+	public void createEvent(@PathVariable Long breweryId, @RequestBody Events event) {
+		dao.createEvent(breweryId);
 	}
 
 	@RequestMapping(path = "/updateEvent", method = RequestMethod.PUT)
 	public void updateEvent(@RequestBody Events event) {
 		dao.updateEvent(event);
+	}
+	
+	@RequestMapping(path ="/events", method=RequestMethod.GET)
+	public List<Events> getAllEvents(){
+		
+		List<Events> allEvents = dao.getAllEvents();
+		
+		return allEvents;
 	}
 
 }
