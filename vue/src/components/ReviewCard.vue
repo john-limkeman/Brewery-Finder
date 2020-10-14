@@ -39,9 +39,9 @@
                 name="reply"
              placeholder="What is your reply?"
             /><br>
-               <button class="btn btn-primary">Submit</button>
-            <button class="btn btn-primary" v-on:click.prevent='Cancel()'>Cancel</button>
-           </form>
+               <button class="btn btn-primary">Submit</button> 
+            <button class="btn btn-primary" v-on:click.prevent='Cancel()'>Cancel</button> 
+           </form> 
        
 </div>
   </div>
@@ -98,14 +98,14 @@ export default {
     }
     },
 
-            Cancel(){
+            Cancel() {
 
          this.visibility = false;
           //  this.reply = {
        //         title : this.$store.state.user.id,
        //         reply : this.chosen.id,
        //     };
-            
+             
          
         },
     },
