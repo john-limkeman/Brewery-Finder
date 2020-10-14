@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// import breweryService from '@/services/BreweryService.js'
 export default {
     data(){
         return{
@@ -15,17 +14,15 @@ export default {
         }
     },
     props: ['replyData'],
-    // watch : {
-    //     reply: function(newVal, oldVal) { // watch it
-    //       console.log('Prop changed: ', newVal, ' | was: ', oldVal);
-    //       breweryService.getBreweryById(this.brewid).then(
-    //         (response) => {
-    //           this.newBrewery = response.data;
-    //         }
-    //       );
-    //  console.log(this.brewid)
-    // }    
-    // },
+watch: {
+    replyData: function(newVal, oldVal) { // watch it
+          console.log('Prop changed: ', newVal, ' | was: ', oldVal);
+        this.reply = this.replyData;
+    }    
+  },
+    created(){
+        console.log(this.replyData)
+    }
 }
 </script>
 
