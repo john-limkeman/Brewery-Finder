@@ -19,7 +19,7 @@ public class JDBCEventsDAO implements EventsDAO {
 	@Override
 	public List<Events> getAllEvents() {
 		List<Events> allEventsList = new ArrayList<Events>();
-		String sqlInsert = "SELECT * from events";
+		String sqlInsert = "SELECT * FROM events JOIN breweries ON breweries.id = events.brewery_id";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlInsert);
 
 		while (results.next()) {
@@ -74,7 +74,11 @@ public class JDBCEventsDAO implements EventsDAO {
 		event.setEvent_date(results.getString("event_date"));
 		event.setDescription(results.getString("description"));
 		event.setPicture(results.getString("picture"));
-
+		try {
+			event.setBrewery_name(results.getString("name"));
+		}catch(Exception e) {
+			
+		}
 		return event;
 	}
 

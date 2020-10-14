@@ -40,5 +40,13 @@ public class EventsController {
 	public void updateEvent(@RequestBody Events event) {
 		dao.updateEvent(event);
 	}
+	
+	@RequestMapping(path ="/events", method=RequestMethod.GET)
+	public List<Events> getAllEvents(){
+		
+		List<Events> allEvents = dao.getAllEvents();
+		
+		return allEvents;
+	}
 
 }

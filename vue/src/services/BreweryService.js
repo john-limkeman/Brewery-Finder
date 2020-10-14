@@ -129,5 +129,13 @@ export default {
         return http.delete(`/brewery/${id}`)
     },
 
+    getAllEvents(){
+        return http.get('/events')
+    },
+
+    getTopFiveBeers(){
+        return http.get('/topbeers')
+    },
+
 
 }
