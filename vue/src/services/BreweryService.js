@@ -133,5 +133,13 @@ export default {
     },
 
 
+    getAllEvents(){
+        return http.get('/events')
+    },
+
+    getTopFiveBeers(){
+        return http.get('/topbeers')
+    },
+
 
 }
