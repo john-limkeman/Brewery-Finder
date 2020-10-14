@@ -48,7 +48,6 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewId);
 		while (results.next()) {
 			output.add(mapRowToReply(results));
-			ReplyReview newReply = mapRowToReply(results);
 		}
 		return output;
 	}
