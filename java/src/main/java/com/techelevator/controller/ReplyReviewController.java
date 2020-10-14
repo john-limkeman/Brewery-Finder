@@ -32,7 +32,8 @@ public class ReplyReviewController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(path = "/replies", method = RequestMethod.DELETE)
-	public String deleteReplyReview(@Valid @RequestBody ReplyReview replyReview) {
+	public String deleteReplyReview(@RequestBody ReplyReview replyReview) {
+		System.out.println(replyReview.getTitle());
 		dao.deleteReplyReview(replyReview);
 		return "Reply Deleted";
 	}
@@ -40,7 +41,6 @@ public class ReplyReviewController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path = "/replies", method = RequestMethod.POST)
 	public void addReplyReview(@Valid @RequestBody ReplyReview replyReview) {
-		System.out.println(replyReview.getUserId());
 		dao.addReplyReview(replyReview);
 	}
 	

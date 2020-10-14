@@ -59,7 +59,7 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 
 	@Override
 	public void deleteReplyReview(ReplyReview replyReview) {
-		String sql = "DELETE * FROM reply_review WHERE id = ?";
+		String sql = "DELETE FROM reply_review WHERE id = ?";
 		jdbcTemplate.update(sql, replyReview.getId());
 	}
 

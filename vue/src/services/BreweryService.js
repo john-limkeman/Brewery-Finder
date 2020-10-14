@@ -128,6 +128,10 @@ export default {
     deleteBrewery(id) {
         return http.delete(`/brewery/${id}`)
     },
+    deleteReplies(replyReview) {
+        return http.delete("/replies", replyReview)
+    },
+
 
     getAllEvents(){
         return http.get('/events')
