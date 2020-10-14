@@ -2,7 +2,9 @@
     <div>
         <H4 id="topFiveHeader">Top 5 Beers</H4>
             <div id="topFiveContainer" v-for="beer in beers" v-bind:Key="beer.id">
-                <H5>{{beer.name}}</H5>
+             <router-link class="navLink" v-bind:to="{ name: 'BeerDetails', params: { id: beer.id } }">
+                 {{beer.name}}
+                </router-link>
             </div>
 
     </div>
@@ -11,6 +13,7 @@
 
 <script>
 import BreweryService from "@/services/BreweryService.js"
+
 export default {
     data(){
         return{

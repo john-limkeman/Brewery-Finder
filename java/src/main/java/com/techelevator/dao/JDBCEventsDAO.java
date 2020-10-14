@@ -31,10 +31,10 @@ public class JDBCEventsDAO implements EventsDAO {
 	}
 
 	@Override
-	public void createEvent(Long breweryId) {
-		String sqlInsert = "INSERT INTO events WHERE brewery_id = ?";
-		jdbcTemplate.update(sqlInsert, breweryId);
-		// TODO Auto-generated method stub
+	public void createEvent(Events event) {
+		String sqlInsert = "INSERT INTO events (brewery_id, event_title, event_date, description, picture) VALUES (?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sqlInsert, event.getBrewery_id(), event.getEvent_title(), event.getEvent_date(), event.getDescription(), event.getPicture());
+	
 
 	}
 
@@ -54,14 +54,14 @@ public class JDBCEventsDAO implements EventsDAO {
 	@Override
 	public void updateEvent(Events event) {
 		// TODO Auto-generated method stub
-		String sqlInsert = "UPDATE events SET ? WHERE brewery_id = ? AND event_date = ?";
-		jdbcTemplate.update(sqlInsert, event.getBrewery_id(), event.getEvent_date());
+		String sqlInsert = "UPDATE events SET event_title = ?, event_date = ?, description = ?, picture = ? WHERE event_id = ?";
+		jdbcTemplate.update(sqlInsert, event.getEvent_title(), event.getEvent_date(), event.getDescription(), event.getPicture(), event.getEvent_id());
 	}
 
 	@Override
 	public void deleteEvent(Events event) {
-		String sqlInsert = "DELETE from events WHERE brewery_id = ? AND event_date = ?";
-		jdbcTemplate.update(sqlInsert, event.getBrewery_id(), event.getEvent_date());
+		String sqlInsert = "DELETE from events WHERE event_id = ?";
+		jdbcTemplate.update(sqlInsert, event.getEvent_id());
 
 	}
 
