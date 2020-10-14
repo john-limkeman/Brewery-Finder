@@ -31,9 +31,9 @@ public class EventsController {
 		dao.deleteEvent(event);
 	}
 
-	@RequestMapping(path = "/newEvent/{breweryId}", method = RequestMethod.POST)
-	public void createEvent(@PathVariable Long breweryId, @RequestBody Events event) {
-		dao.createEvent(breweryId);
+	@RequestMapping(path = "/newEvent", method = RequestMethod.POST)
+	public void createEvent(@RequestBody Events event) {
+		dao.createEvent(event);
 	}
 
 	@RequestMapping(path = "/updateEvent", method = RequestMethod.PUT)

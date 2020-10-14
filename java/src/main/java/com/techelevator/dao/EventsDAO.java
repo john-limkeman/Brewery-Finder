@@ -9,7 +9,7 @@ public interface EventsDAO {
 
 	public List<Events> getAllEvents();
 
-	public void createEvent(Long breweryId);
+	public void createEvent(Events event);
 
 	public List<Events> getEventsByBreweryId(Long breweryId);
 

@@ -110,8 +110,8 @@ export default {
     updateEvent(event){
         return http.put('/updateEvent', event)
     },
-    createEvent(eventId, event){
-        return http.post(`/newEvent/${eventId}`, event)
+    createEvent(event){
+        return http.post("/newEvent", event)
     },
     getReviewReply() {
         return http.get("/replies")
