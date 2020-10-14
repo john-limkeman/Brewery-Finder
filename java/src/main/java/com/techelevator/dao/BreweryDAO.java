@@ -12,8 +12,6 @@ public interface BreweryDAO {
 	
 	public Brewery getBreweryByBrewer(Long id);
 
-	public void deleteBrewery(Long id);
-
 	public void saveBrewery(Brewery brewery);
 	
 	public void updateBrewery(Brewery brewery, long id);
