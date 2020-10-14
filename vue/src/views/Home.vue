@@ -7,6 +7,9 @@
       <h1>Denver Brew Finder</h1>
       <img src="@/Resources/output-onlinepngtools.png" id="main-page-logo" />
     </div>
+    <div class="beerCard">
+      <TopFiveBeer/>
+    </div>
     <div class="news">
        <h3 >Brewery News</h3>
      <div class="border border-dark rounded" v-for="item in news" v-bind:Key="item.id">
@@ -33,6 +36,7 @@
 
 <script>
 import breweryServices from "../services/BreweryService.js";
+import TopFiveBeer from "@/components/TopFiveBeer.vue"
 export default {
   name: "home",
   data() {
@@ -42,7 +46,9 @@ export default {
       events:[],
     };
   },
-  components: {},
+  components: {
+    TopFiveBeer,
+  },
   created() {
     breweryServices.getAllNews().then((response) => {
       this.news = response.data.reverse();
@@ -75,6 +81,7 @@ export default {
   margin-right: 50px;
   grid-template-areas: 
   "main main"
+  "news beer"
   "news event";
 
 
@@ -116,6 +123,14 @@ text-align: center;
   grid-area: event;
   border: 3px, solid, black;
   background-color: rgba(245,222,179 ,0.7 );
+}
+.beerCard{
+  grid-area: beer;
+  text-align: center;
+    align-items: center;
+  justify-content: center;
+  border: 3px, solid, black;
+  background-color: rgba(240, 192, 104, 0.7);
 }
 
 
