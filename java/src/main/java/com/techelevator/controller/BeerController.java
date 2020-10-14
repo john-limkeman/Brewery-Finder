@@ -23,6 +23,12 @@ public class BeerController {
 
 	@Autowired
 	BeerDAO dao;
+	
+	@RequestMapping(path = "/topbeers", method = RequestMethod.GET)
+	public List<Beer> getTopFiveBeers(){
+		List<Beer> topFiveBeers = dao.topFiveBeers();
+		return topFiveBeers;
+	}
 
 	@RequestMapping(path = "/beer", method = RequestMethod.GET)
 	public List<Beer> getAllBeer() {

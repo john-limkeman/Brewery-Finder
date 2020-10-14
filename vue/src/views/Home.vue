@@ -1,22 +1,31 @@
 <template>
-  <div>
-    
-
+  <div class="maingrid">
+   
     <div
-      class="home container text-center col-5 mx-auto border border-dark rounded"
+      class="home border border-dark rounded"
     >
       <h1>Denver Brew Finder</h1>
       <img src="@/Resources/output-onlinepngtools.png" id="main-page-logo" />
     </div>
-
-     <div class="container col-5 mx-auto border border-dark rounded" v-for="item in news" v-bind:Key="item.id">
-       <h3 class="newsContainer">Brewery News</h3>
+    <div class="news">
+       <h3 >Brewery News</h3>
+     <div class="border border-dark rounded" v-for="item in news" v-bind:Key="item.id">
         <h3>Brewery: {{ item.breweryName }}</h3>
         <h4 id="newsTitle">Title: {{ item.newstitle }}</h4>
         <p id="newsbody">{{ item.body }}</p>
         <img id="newsImage" v-bind:src="item.newsImageUrl" />
       </div>
-      
+    </div>
+  <div class="events">
+        <h3>Upcoming Events</h3>
+      <div class="border border-dark rounded" v-for="event in events" v-bind:Key="event.event_id">
+        <h3>Brewery: {{event.brewery_name}}</h3>
+        <h4 id="eventTitle">Event: {{event.event_title}}</h4>
+        <p id="eventDate">Date: {{event.event_date}}</p>
+        <p id="eventDescription">Description: {{ event.description }}</p>
+        <img id="eventImage" v-bind:src="event.picture" />
+         </div>
+  </div>
    
     
   </div>
@@ -30,6 +39,7 @@ export default {
     return {
       news: [],
       counter: 1,
+      events:[],
     };
   },
   components: {},
@@ -37,6 +47,13 @@ export default {
     breweryServices.getAllNews().then((response) => {
       this.news = response.data.reverse();
     });
+    breweryServices.getAllEvents().then(
+      (response) => {
+        for(let i = response.data.length - 1; i >= 0 && i > response.data.length-5 ; i--){
+        this.events.push(response.data[i]);
+        }
+      }
+    );
   },
   methods: {
     getBreweryName(id) {
@@ -48,13 +65,31 @@ export default {
 };
 </script>
 <style>
+
+.maingrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  margin-top: 50px;
+  margin-left:50px;
+  margin-right: 50px;
+  grid-template-areas: 
+  "main main"
+  "news event";
+
+
+}
+
 .home {
+  grid-area: main;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  border: 1px, solid, black;
+  background-color: rgba(245,222,179 ,0.7 );
+ 
 }
+
 #main-page-logo {
   width: 400px;
   height: auto;
@@ -62,13 +97,26 @@ export default {
 .home > h1 {
   font-family: 'Bungee Shade';
   font-size: 70px;
-}
-.newsContainer {
-
 
 }
-#newsImage{
-  width: 400px;
+.news {
+text-align: center;
+  grid-area: news;
+  align-items: center;
+  justify-content: center;
+  border: 3px, solid, black;
+  background-color: rgba(245,222,179 ,0.7 );
 }
+.events {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  grid-area: event;
+  border: 3px, solid, black;
+  background-color: rgba(245,222,179 ,0.7 );
+}
+
 
 </style>

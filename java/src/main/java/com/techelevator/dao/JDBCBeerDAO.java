@@ -103,6 +103,19 @@ public class JDBCBeerDAO implements BeerDAO {
 		jdbcTemplate.update(update, rounded, id);
 		
 	}
+	
+	@Override
+	public List<Beer> topFiveBeers(){
+		List<Beer> topFiveList = new ArrayList<Beer>();
+		String sqlInsert = "SELECT * FROM beers WHERE rating IS NOT null ORDER BY rating DESC LIMIT 5;";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlInsert);
+		
+		while(result.next()) {
+			topFiveList.add(mapRowToBeer(result));
+		}
+		
+		return topFiveList;
+	}
 
 	private Beer mapRowToBeer(SqlRowSet row) {
 
