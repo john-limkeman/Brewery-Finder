@@ -37,7 +37,7 @@ class DAOBeerTest extends DAOIntegrationTest{
 		beerList = dao.getAllBeer();
 		int actualResult = beerList.size();
 		
-		//check database for current number of beers
+		//checking database for current number of beers
 		int expectedResult = 29;
 		assertEquals(expectedResult, actualResult);
 		
