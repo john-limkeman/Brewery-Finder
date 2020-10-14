@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.decimal4j.arithmetic.Exceptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -47,6 +48,7 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewId);
 		while (results.next()) {
 			output.add(mapRowToReply(results));
+			ReplyReview newReply = mapRowToReply(results);
 		}
 		return output;
 	}
@@ -71,7 +73,11 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 		request.setReviewId(results.getLong("review_id"));
 		request.setTitle(results.getString("title"));
 		request.setReply(results.getString("reply"));
-
+		try {
+			request.setUsername(results.getString("username"));
+		}catch(Exception e){
+			
+		}
 		return request;
 	}
 
