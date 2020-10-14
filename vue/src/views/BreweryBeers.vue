@@ -3,7 +3,7 @@
     <BreweryDetails />
     <div
       id="beerList"
-      class="container contaner text-center col-xl-12 mx-auto rounded"
+      class="container text-center col-xl-12 mx-auto rounded"
     >
       <h2 id="beers-header">Beers</h2>
       <div class="" v-for="beer in beers" v-bind:key="beer.id">
@@ -15,10 +15,10 @@
         </router-link>
       </div>
     </div>
-    <div id="newsContainer" class="container contaner text-center col-xl-12 mx-auto rounded">
+    <div id="newsContainer" class="container text-center col-xl-12 mx-auto rounded">
       <BreweryNews/>
     </div>
-    <div id="eventContainer" class="container contaner text-center col-xl-12 mx-auto rounded">
+    <div id="eventContainer" class="container text-center col-xl-12 mx-auto rounded">
       <BreweryEvents/>
     </div>
   </div>
