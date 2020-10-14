@@ -51,7 +51,7 @@ public class ReplyReviewController {
 	
 	@RequestMapping(path = "/review/{reviewId}/replies", method = RequestMethod.GET)
 	public List<ReplyReview> getReplysByReviewId(@PathVariable Long reviewId){
-		return dao.getReplysByUserId(reviewId);
+		return dao.getReplysByReviewId(reviewId);
 	}	
 
 }

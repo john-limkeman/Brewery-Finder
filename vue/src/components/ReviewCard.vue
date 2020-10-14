@@ -22,8 +22,11 @@
      <p id='review-smell'><span>Smell:</span> {{review.smell}}</p>
      <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
+        <div>
+            <ReplyList v-bind:replies='this.replies'/>
+            </div>
            <button class="btn btn-primary" id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
-           
+
            <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility' >
                  <label for="title">Title</label>
             <input
@@ -48,6 +51,7 @@
 </template>
 
 <script>
+import ReplyList from '@/components/ReplyList.vue'
 import BreweryService from '../services/BreweryService'
 export default {
     data(){
@@ -57,7 +61,7 @@ export default {
 
             userId : this.$store.state.user.id,
             reviewId: this.chosen.id,
-            relpyDate : "",
+            replyDate : "",
             title: "",
             reply:""
         },
@@ -66,7 +70,7 @@ export default {
             visibility: false,
             beer: {},
             username: "",
-          
+            replies: [],
         }
 
       
@@ -84,7 +88,7 @@ export default {
         },
 
     addReply(){
-            this.reply.relpyDate = new Date();
+            this.reply.replyDate = new Date();
             BreweryService.addReviewReply(this.reply).then( () => {
             } )
 
@@ -109,7 +113,9 @@ export default {
          
         },
     },
-
+    components : {
+        ReplyList
+    },
     created(){
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
@@ -117,6 +123,12 @@ export default {
                 BreweryService.getBeerById(this.chosen.beerId).then(
                     (response) => {
                         this.beer = response.data;
+                        BreweryService.getRepliesByReviewId(this.chosen.id).then(
+                            (response) => {
+                                this.replies = response.data;
+                            }
+                        )
+                        
                     }
                 )
             }
@@ -138,8 +150,10 @@ export default {
     "taste taste img"
     "head head img"
     ". date date"
-    "review review ."
-    "review-texts  review-texts .";
+    "repButton repButton ."
+    "replyForm  replyForm ."
+    "replies replies replies"
+    "replies replies replies";
     text-align:left;
     border: solid 3px goldenrod;
     border-radius: 10px;
@@ -217,13 +231,17 @@ export default {
 }
 
 #review-reply{
-     grid-area: review;
+     grid-area: repButton;
 }
 
 #review-reply-text{
-     grid-area: review-texts;
+     grid-area: replyForm;
 }
 
-
+#replyCard{
+    display: flex;
+    flex-direction:column;
+    grid-area: replies;
+}
 
 </style>

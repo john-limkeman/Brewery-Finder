@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
@@ -35,6 +36,7 @@ public abstract class DAOIntegrationTest {
         dataSource.destroy();
     }
 
+   
     /* After each test, we rollback any changes that were made to the database so that
      * everything is clean for the next test */
     @After

@@ -1,19 +1,24 @@
 <template>
   <div>
-    <aside class="container"></aside>
+    
+
     <div
-      class="home container text-center col-xl-5 mx-auto border border-dark rounded"
+      class="home container text-center col-5 mx-auto border border-dark rounded"
     >
       <h1>Denver Brew Finder</h1>
       <img src="@/Resources/output-onlinepngtools.png" id="main-page-logo" />
-      <h3 class="newsContainer">Brewery News</h3>
-      <div class="newsContainer" v-for="item in news" v-bind:Key="item.id">
+    </div>
+
+     <div class="container col-5 mx-auto border border-dark rounded" v-for="item in news" v-bind:Key="item.id">
+       <h3 class="newsContainer">Brewery News</h3>
         <h3>Brewery: {{ item.breweryName }}</h3>
         <h4 id="newsTitle">Title: {{ item.newstitle }}</h4>
         <p id="newsbody">{{ item.body }}</p>
-        <img v-bind:src="item.newsImageUrl" />
+        <img id="newsImage" v-bind:src="item.newsImageUrl" />
       </div>
-    </div>
+      
+   
+    
   </div>
 </template>
 
@@ -59,7 +64,11 @@ export default {
   font-size: 70px;
 }
 .newsContainer {
-  border-bottom: 3px solid black;
+
+
+}
+#newsImage{
+  width: 400px;
 }
 
 </style>
