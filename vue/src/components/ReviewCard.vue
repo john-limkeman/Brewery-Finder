@@ -23,9 +23,7 @@
      <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
         <div v-for='reply in replies' v-bind:key='reply.id' id='replyCard'>
-            <!-- <ReplyCard v-bind:repId='reply.id'/> -->
-            <h4>{{reply.id}}</h4>
-            <p> {{reply.reply}}</p>
+           <ReplyCard v-bind:reply='reply'/>
 
         </div>
            <button class="btn btn-primary" id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
@@ -54,7 +52,7 @@
 </template>
 
 <script>
-// import ReplyCard from '@/components/ReplyCard'
+import ReplyCard from '@/components/ReplyCard.vue'
 import BreweryService from '../services/BreweryService'
 export default {
     data(){
@@ -117,10 +115,9 @@ export default {
         },
     },
     components : {
-        // ReplyCard
+        ReplyCard
     },
     created(){
-        console.log('TEST TEST TEST')
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
                 this.username = response.data.username;
@@ -130,7 +127,6 @@ export default {
                         BreweryService.getRepliesByReviewId(this.chosen.id).then(
                             (response) => {
                                 this.replies = response.data;
-                                console.log(this.replies);
                             }
                         )
                         
@@ -155,9 +151,10 @@ export default {
     "taste taste img"
     "head head img"
     ". date date"
+    "repButton repButton ."
+    "replyForm  replyForm ."
     "replies replies replies"
-    "review review ."
-    "review-texts  review-texts .";
+    "replies replies replies";
     text-align:left;
     border: solid 3px goldenrod;
     border-radius: 10px;
@@ -235,14 +232,16 @@ export default {
 }
 
 #review-reply{
-     grid-area: review;
+     grid-area: repButton;
 }
 
 #review-reply-text{
-     grid-area: review-texts;
+     grid-area: replyForm;
 }
 
 #replyCard{
+    display: flex;
+    flex-direction:column;
     grid-area: replies;
 }
 
