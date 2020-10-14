@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.decimal4j.arithmetic.Exceptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -41,7 +42,9 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 	@Override
 	public List<ReplyReview> getReplysByReviewId(Long reviewId) {
 		List<ReplyReview> output = new ArrayList<ReplyReview>();
-		String sql = "SELECT * FROM reply_review WHERE review_id = ? ";
+		String sql = "SELECT *" + 
+				"FROM reply_review JOIN users" + 
+				"ON reply_review.user_id = users.user_id WHERE review_id = ? ";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewId);
 		while (results.next()) {
 			output.add(mapRowToReply(results));
@@ -69,7 +72,11 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 		request.setReviewId(results.getLong("review_id"));
 		request.setTitle(results.getString("title"));
 		request.setReply(results.getString("reply"));
-
+		try {
+			request.setUsername(results.getString("username"));
+		}catch(Exception e){
+			
+		}
 		return request;
 	}
 
