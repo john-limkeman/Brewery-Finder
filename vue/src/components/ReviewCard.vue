@@ -22,8 +22,17 @@
      <p id='review-smell'><span>Smell:</span> {{review.smell}}</p>
      <p id='review-date'><span>Submitted On:</span> {{review.reviewDate}}</p>
         <img id='review-img' v-bind:src='review.reviewImgUrl'/>
+<<<<<<< HEAD
         
           
+=======
+        <div v-for='reply in replies' v-bind:key='reply.id' id='replyCard'>
+            <!-- <ReplyCard v-bind:repId='reply.id'/> -->
+            <h4>{{reply.id}}</h4>
+            <p> {{reply.reply}}</p>
+
+        </div>
+>>>>>>> 47704ac7b35fce5073bd46230eee4b1b8ac41f6f
            <button class="btn btn-primary" id= "review-reply" v-on:click="ChangeVis">Add Reply</button>
 
            <form id='review-reply-text' v-on:submit.prevent ='addReply' v-if='visibility' >
@@ -50,6 +59,7 @@
 </template>
 
 <script>
+// import ReplyCard from '@/components/ReplyCard'
 import BreweryService from '../services/BreweryService'
 export default {
     data(){
@@ -59,7 +69,7 @@ export default {
 
             userId : this.$store.state.user.id,
             reviewId: this.chosen.id,
-            relpyDate : "",
+            replyDate : "",
             title: "",
             reply:""
         },
@@ -68,7 +78,7 @@ export default {
             visibility: false,
             beer: {},
             username: "",
-          
+            replies: [],
         }
 
       
@@ -86,7 +96,7 @@ export default {
         },
 
     addReply(){
-            this.reply.relpyDate = new Date();
+            this.reply.replyDate = new Date();
             BreweryService.addReviewReply(this.reply).then( () => {
             } )
 
@@ -111,14 +121,24 @@ export default {
          
         },
     },
-
+    components : {
+        // ReplyCard
+    },
     created(){
+        console.log('TEST TEST TEST')
         BreweryService.getUser(this.chosen.userId).then(
             (response) => {
                 this.username = response.data.username;
                 BreweryService.getBeerById(this.chosen.beerId).then(
                     (response) => {
                         this.beer = response.data;
+                        BreweryService.getRepliesByReviewId(this.chosen.id).then(
+                            (response) => {
+                                this.replies = response.data;
+                                console.log(this.replies);
+                            }
+                        )
+                        
                     }
                 )
             }
@@ -140,6 +160,7 @@ export default {
     "taste taste img"
     "head head img"
     ". date date"
+    "replies replies replies"
     "review review ."
     "review-texts  review-texts .";
     text-align:left;
@@ -226,6 +247,8 @@ export default {
      grid-area: review-texts;
 }
 
-
+#replyCard{
+    grid-area: replies;
+}
 
 </style>

@@ -116,6 +116,9 @@ export default {
     getReviewReply() {
         return http.get("/replies")
     },
+    getRepliesByReviewId(id){
+        return http.get(`/review/${id}/replies`)
+    },
     addReviewReply(replyReview) {
         return http.post("/replies", replyReview)
     },
