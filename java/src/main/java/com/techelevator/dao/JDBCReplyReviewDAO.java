@@ -9,12 +9,12 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.model.ReplyReview;
+
 @Component
-public class JDBCReplyReviewDAO implements ReplyReviewDAO{
-	
+public class JDBCReplyReviewDAO implements ReplyReviewDAO {
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
 
 	@Override
 	public List<ReplyReview> getAllReplys() {
@@ -48,19 +48,20 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO{
 		}
 		return output;
 	}
-	
+
 	@Override
 	public void addReplyReview(ReplyReview replyReview) {
 		String sql = "INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (?,?,?,?);";
-		jdbcTemplate.update(sql, replyReview.getUserId(),replyReview.getReviewId(),replyReview.getTitle(),replyReview.getReply());
+		jdbcTemplate.update(sql, replyReview.getUserId(), replyReview.getReviewId(), replyReview.getTitle(),
+				replyReview.getReply());
 	}
 
 	@Override
 	public void deleteReplyReview(ReplyReview replyReview) {
 		String sql = "DELETE * FROM reply_review WHERE id = ?";
 		jdbcTemplate.update(sql, replyReview.getId());
-	}	
-	
+	}
+
 	private ReplyReview mapRowToReply(SqlRowSet results) {
 		ReplyReview request = new ReplyReview();
 		request.setId(results.getLong("id"));
@@ -71,6 +72,5 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO{
 
 		return request;
 	}
-
 
 }

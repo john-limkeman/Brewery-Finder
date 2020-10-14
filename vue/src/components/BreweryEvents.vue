@@ -7,10 +7,6 @@
         <p id="description">{{event.description}}</p>
         <img id="event-picture" v-bind:src="event.picture"/>
     </div>
-
-
-
-
 </div>
   
 </template>

@@ -14,7 +14,7 @@
         </div>
       
       <h6 id='review-user' v-if='!checkUser()'><span>By:</span> {{this.username}}</h6>
-     <h6 id='review-beer' v-else><span>Reviewed:</span> <br><router-link class='navlink' v-bind:to='{name : "BeerDetails", params: {id : this.beer.id}}'>{{beer.name}}</router-link></h6>
+     <h6 id='review-beer' v-else><span>Reviewed:</span> <br><router-link class='navlink' id='reviewCardLink' v-bind:to='{name : "BeerDetails", params: {id : this.beer.id}}'>{{beer.name}}</router-link></h6>
      <p id='review-overall'> <span>Overall:</span> {{review.overall}}</p>
      <p id='review-color'><span>Color:</span> {{review.color}}</p>
      <p id='review-taste'><span>Taste:</span> {{review.taste}}</p>
@@ -41,9 +41,9 @@
                 name="reply"
              placeholder="What is your reply?"
             /><br>
-               <button class="btn btn-primary">Submit</button>
-            <button class="btn btn-primary" v-on:click.prevent='Cancel()'>Cancel</button>
-           </form>
+               <button class="btn btn-primary">Submit</button> 
+            <button class="btn btn-primary" v-on:click.prevent='Cancel()'>Cancel</button> 
+           </form> 
        
 </div>
   </div>
@@ -100,14 +100,14 @@ export default {
     }
     },
 
-            Cancel(){
+            Cancel() {
 
          this.visibility = false;
           //  this.reply = {
        //         title : this.$store.state.user.id,
        //         reply : this.chosen.id,
        //     };
-            
+             
          
         },
     },
@@ -150,6 +150,9 @@ export default {
     padding: 4px;
 }
 
+#reviewCardLink:hover{
+    color:goldenrod
+}
 .review-card span{
     font-weight: bold;
     color: black;

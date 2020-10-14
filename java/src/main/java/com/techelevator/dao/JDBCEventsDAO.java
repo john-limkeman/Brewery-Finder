@@ -1,6 +1,5 @@
 package com.techelevator.dao;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,19 +9,20 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Events;
+
 @Component
-public class JDBCEventsDAO implements EventsDAO{
+public class JDBCEventsDAO implements EventsDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Override
 	public List<Events> getAllEvents() {
 		List<Events> allEventsList = new ArrayList<Events>();
 		String sqlInsert = "SELECT * from events";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlInsert);
-		
-		while(results.next()) {
+
+		while (results.next()) {
 			Events event = mapToRowEvents(results);
 			allEventsList.add(event);
 		}
@@ -35,7 +35,7 @@ public class JDBCEventsDAO implements EventsDAO{
 		String sqlInsert = "INSERT INTO events WHERE brewery_id = ?";
 		jdbcTemplate.update(sqlInsert, breweryId);
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class JDBCEventsDAO implements EventsDAO{
 			Events event = mapToRowEvents(results);
 			eventsByIdList.add(event);
 		}
-		
+
 		return eventsByIdList;
 	}
 
@@ -62,19 +62,19 @@ public class JDBCEventsDAO implements EventsDAO{
 	public void deleteEvent(Events event) {
 		String sqlInsert = "DELETE from events WHERE brewery_id = ? AND event_date = ?";
 		jdbcTemplate.update(sqlInsert, event.getBrewery_id(), event.getEvent_date());
-		
+
 	}
-	
+
 	public Events mapToRowEvents(SqlRowSet results) {
 		Events event = new Events();
-		
+
 		event.setEvent_id(results.getLong("event_id"));
 		event.setBrewery_id(results.getLong("brewery_id"));
 		event.setEvent_title(results.getString("event_title"));
 		event.setEvent_date(results.getString("event_date"));
 		event.setDescription(results.getString("description"));
 		event.setPicture(results.getString("picture"));
-		
+
 		return event;
 	}
 

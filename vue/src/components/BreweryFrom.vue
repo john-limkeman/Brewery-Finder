@@ -128,7 +128,7 @@ export default {
   display: flex;
   flex-direction: column;
   border: 1px, solid, black;
-  background-color: wheat;
+  background-color: rgba(245, 222, 179, 0.7);
   width: 70%;
 }
 #newBreweryForm {
