@@ -25,7 +25,8 @@ public class JDBCReviewDAO implements ReviewDAO {
 
 	@Override
 	public void deleteReview(Review review) {
-		String sql = "DELETE * FROM review WHERE id = ?";
+		jdbc.update("DELETE FROM reply_review WHERE review_id = ?", review.id);
+		String sql = "DELETE FROM review WHERE id = ?";
 		jdbc.update(sql, review.id);
 		
 	}
