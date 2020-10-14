@@ -1,11 +1,13 @@
 <template>
-  <div  class="container text-center col-xl-5 mx-auto border border-dark rounded">
-      <router-link class="navlink" v-bind:to="{name: 'AddBrewery'}">Add a brewery</router-link>
-      <router-link class="navlink" v-bind:to="{name: 'AllUsers'}">View all users</router-link>
-      <pending-brewer-request />
-      <pending-brewery-request />
-      <processed-brewer-reuest />
-      <processed-brewery-request />
+  <div id="adminTools" class="container text-center col-xl-10 mx-auto border border-dark rounded">
+    <div class="adminBtn">
+      <button class="btn btn-primary adminBtnBtn"  v-on:click="addBrewery">Add a brewery</button>
+      <button class="btn btn-primary adminBtnBtn" v-on:click="viewAllUsers">View all users</button>
+    </div>
+      <pending-brewer-request class="pendingBrewer" />
+      <pending-brewery-request class="pendingBrewery" />
+      <processed-brewer-reuest class="processedBrewer" />
+      <processed-brewery-request class="processedBrewery" />
   </div>
 </template>
 
@@ -21,6 +23,14 @@ export default {
         ProcessedBrewerReuest,
         ProcessedBreweryRequest
     },
+    methods: {
+      addBrewery() {
+        this.$router.push({name: 'AddBrewery'})
+      },
+      viewAllUsers() {
+        this.$router.push({name: 'AllUsers'})
+      }
+    }
 }
 </script>
 
@@ -47,7 +57,35 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
+#adminTools {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+  "adminBtn adminBtn"
+  "pendingBrewer pendingBrewery"
+  "processedBrewer processedBrewery"
+}
+.adminBtnBtn {
+  width: 150px;
+  margin: 25px;
+}
+.adminBtn {
+  grid-area: adminBtn;
+  display: flex;
+  justify-content: center;
+}
+.pendingBrewery{
+  grid-area: pendingBrewery;
+}
+.pendingBrewer {
+  grid-area: pendingBrewer;
+}
+.processedBrewer {
+  grid-area: processedBrewer;
+}
+.processedBrewery {
+  grid-area: processedBrewery;
+}
 #name {
   text-decoration: underline;
 }

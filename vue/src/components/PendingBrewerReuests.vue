@@ -1,12 +1,12 @@
 <template>
   <div>
     <h2>Pending Brewers Requests</h2>
-    <div v-for="user in pendingBrewers" v-bind:key="user.id">
+    <div v-for="user in pendingBrewers" v-bind:key="user.id" class="pendingBrewer">
       {{ user.id }} || {{ user.userId }} || {{ user.username }} ||
       {{ user.breweryId }}
-      <span class="navlink" v-on:click="approve(user)">Approve</span
-      >&nbsp;||&nbsp;
+      <span class="navlink" v-on:click="approve(user)">Approve</span>
       <span class="navlink" v-on:click="decline(user)">Decline</span>
+      <br>
     </div>
   </div>
 </template>
@@ -67,4 +67,10 @@ export default {
 </script>
 
 <style>
+.pendingBrewer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 </style>
