@@ -41,9 +41,6 @@
         <button class="btn btn-danger deleteReview" v-if="isAdmin()" v-on:click="deleteReview(review)">
           Delete Review
         </button>
-        <ReplyList v-bind:replies="this.replies" />
-      </div>
-
       <form
         id="review-reply-text"
         v-on:submit.prevent="addReply"
@@ -64,11 +61,14 @@
           name="reply"
           placeholder="What is your reply?"
         /><br />
-        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary" v-on:click="pushUser">Submit</button>
         <button class="btn btn-primary" v-on:click.prevent="Cancel()">
           Cancel
         </button>
       </form>
+        <ReplyList v-bind:replies="this.replies" />
+      </div>
+
     </div>
   </div>
 </template>
@@ -115,7 +115,9 @@ export default {
         this.$router.push({ name: "login" });
       }
     },
-
+    pushUser() {
+        this.$router.push({name: "UserPage"})
+    },
     addReply() {
       this.reply.replyDate = new Date();
       BreweryService.addReviewReply(this.reply).then(() => {});

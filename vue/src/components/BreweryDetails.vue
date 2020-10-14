@@ -44,8 +44,8 @@
       <span class="navlink" v-if="brewery.brewerId == ''" v-on:click="brewerRequest">
         Claim this brewery
       </span>
-      <button id='RemoveFavoriteBtn' class="btn btn-primary" v-if='isFavorite' v-on:click.prevent='toggleFavorite'>Unfavorite</button>
-      <button id='MakeFavoriteBtn' class="btn btn-primary" v-else v-on:click.prevent='toggleFavorite'>Favorite</button>
+      <button id='RemoveFavoriteBtn' class="btn btn-primary" v-if='isFavorite && this.$store.state.logIn' v-on:click.prevent='toggleFavorite'>Unfavorite</button>
+      <button id='MakeFavoriteBtn' class="btn btn-primary" v-else-if="this.$store.state.logIn" v-on:click.prevent='toggleFavorite'>Favorite</button>
       <button id="deleteBrewery" class="btn btn-danger" v-on:click="deleteBrewery(brewery.id)" v-if="isAdmin()" >Delete brewery</button>
     </div>
    
