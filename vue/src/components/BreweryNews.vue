@@ -6,8 +6,6 @@
               <p id="newsbody">{{news.body}}</p>
                       <img v-bind:src="news.newsImageUrl">
           </div>
-
-
   </div>
 </template>
 
