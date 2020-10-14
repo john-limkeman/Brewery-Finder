@@ -41,7 +41,7 @@ public class JDBCEventsDAO implements EventsDAO {
 	@Override
 	public List<Events> getEventsByBreweryId(Long breweryId) {
 		List<Events> eventsByIdList = new ArrayList<Events>();
-		String sqlInsert = "Select * from events where brewery_id = ?";
+		String sqlInsert = "Select * from events JOIN breweries ON breweries.id = events.brewery_id where breweries.id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlInsert, breweryId);
 		while (results.next()) {
 			Events event = mapToRowEvents(results);
