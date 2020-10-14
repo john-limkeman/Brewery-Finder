@@ -49,11 +49,6 @@ public class JDBCBreweryDAO implements BreweryDAO {
 			throw new RuntimeException("No Brewery Found");
 		}
 	}
-	@Override
-	public void deleteBrewery(Long id) {
-		jdbcTemplate.update("DELETE FROM breweries WHERE id = ?", id);
-
-	}
 
 	@Override
 	public void saveBrewery(Brewery brewery) {

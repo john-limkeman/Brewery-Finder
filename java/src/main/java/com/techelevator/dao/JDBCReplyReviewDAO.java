@@ -42,7 +42,7 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 	public List<ReplyReview> getReplysByReviewId(Long reviewId) {
 		List<ReplyReview> output = new ArrayList<ReplyReview>();
 		String sql = "SELECT * FROM reply_review WHERE review_id = ? ";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewId);
 		while (results.next()) {
 			output.add(mapRowToReply(results));
 		}

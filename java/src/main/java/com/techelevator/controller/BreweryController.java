@@ -52,13 +52,6 @@ public class BreweryController {
 	public Brewery getBreweryByBrewer(@PathVariable long id) {
 		return dao.getBreweryByBrewer(id);
 	}
-
-	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.DELETE)
-	public String deleteBeer(@PathVariable Long id) {
-		dao.deleteBrewery(id);
-		return "Brewery Deleted";
-
-	}
 	
 	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -89,7 +82,7 @@ public class BreweryController {
 		return dao.getBreweryByName(name);
 	}
 	
-	@RequestMapping(path = "/brewery{id}", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.DELETE)
 	public void deleteBrewery(@PathVariable long id) {
 		dao.deleteBrewery(id);
 	}
