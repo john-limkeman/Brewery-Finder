@@ -1,9 +1,8 @@
 package com.techelevator.dao;
 
 import java.util.List;
-
 import com.techelevator.model.BreweryNews;
-
+//interface for News
 public interface BreweryNewsDAO {
 
 	public List<BreweryNews> getAllNews();
