@@ -167,7 +167,7 @@
       >
         Add
       </button>
-      <button class="btn btn-primary" v-on:click.prevent="updateEvent" v-else>
+      <button class="btn btn-primary" v-on:click.prevent="updateEvent(currentEvent)" v-else>
         Update
       </button>
       <button class="btn btn-danger" v-on:click.prevent="clearEventForm">
