@@ -1,9 +1,9 @@
 <template>
   <div id="beerInfo" class="container text-center col-xl-12 mx-auto rounded">
     <h2 id="beer-name-brewery" >
+      <div id='#adminBeerButtons'>
           <button
       class="btn btn-primary"
-      id="editBeerButton"
       v-if="isAdmin()"
       v-bind:to="{
         name: 'UpdateBeer',
@@ -11,10 +11,9 @@
       }"
     >
       Edit
-    </button>
+    </button><span> &nbsp;
          <button
       class="btn btn-danger"
-      id="editBeerButton"
       v-if="isAdmin()"
       v-bind:to="{
         name: 'ConfirmDelete',
@@ -23,6 +22,8 @@
     >
       Delete
     </button>
+    </span>
+    </div>
       {{ beer.name }} <br />
       <span v-bind="getBrewery()">
         <router-link
@@ -162,7 +163,7 @@ li {
 #beerDesc {
   grid-area: desc;
 }
-#editBeerButton {
+#adminBeerButtons {
   font-size: 10px;
   margin-right: 50%;
    margin-left: 40%;
