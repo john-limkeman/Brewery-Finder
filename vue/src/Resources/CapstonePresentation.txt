@@ -12,9 +12,12 @@ Order of Events:
 
 Am I missing anything?
 
+
+Emit Solution for re-rendering components:
+
  this.$emit('finished');
- :key='ComponentRender' v-on:finished='finished()'
- ComponentRender : 0
+ :key='RenderKey' v-on:finished='finished()'
+ RenderKey : 0
    finished(){
-      this.ComponentRender += 1;
+      this.RenderKey += 1;
     }

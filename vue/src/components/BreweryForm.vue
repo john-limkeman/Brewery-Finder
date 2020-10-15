@@ -1,7 +1,6 @@
 <template>
+  <!-- this is only used by admin tools -->
   <div class="breweryFormComponent">
-    <p>Hi
-</p>
     <form id="newBreweryForm">
       <label for="name">Brewery name</label>
       <input
@@ -67,13 +66,16 @@
         placeholder="Active"
       />
       <br />
-      <button class="btn btn-primary"
+      <button
+        class="btn btn-primary"
         v-on:click="addBrewery"
         v-if="this.$route.params.id == null"
       >
         Create
       </button>
-      <button class="btn btn-primary" v-on:click="updateBrewery" v-else>Update</button>
+      <button class="btn btn-primary" v-on:click="updateBrewery" v-else>
+        Update
+      </button>
       <button class="btn btn-primary" v-on:click="cancelForm">Cancel</button>
       <br />
     </form>
@@ -90,14 +92,13 @@ export default {
   },
   props: ["brewid"],
   watch: {
-    brewid: function(newVal, oldVal) { // watch it
-          console.log('Prop changed: ', newVal, ' | was: ', oldVal);
-          breweryService.getBreweryById(this.brewid).then(
-            (response) => {
-              this.newBrewery = response.data;
-            }
-          );
-    }    
+    brewid: function (newVal, oldVal) {
+      // watch it
+      console.log("Prop changed: ", newVal, " | was: ", oldVal);
+      breweryService.getBreweryById(this.brewid).then((response) => {
+        this.newBrewery = response.data;
+      });
+    },
   },
   methods: {
     cancelForm() {
@@ -113,11 +114,7 @@ export default {
       this.$router.push({ name: "BreweryList" });
     },
   },
-  created() {
-    
-
-    
-  },
+  created() {},
 };
 </script>
 

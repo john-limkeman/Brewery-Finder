@@ -220,7 +220,15 @@ const router = new Router({
     meta: {
       requiresAuth: true
     }
-  }
+  },
+  {
+    path: "updateNews/brewery/:id/update/:newsId",
+    name: "UpdateNews",
+    component: NewsForm,
+    meta: {
+      requiresAuth: true
+    }
+  },  
   ]
 })
 

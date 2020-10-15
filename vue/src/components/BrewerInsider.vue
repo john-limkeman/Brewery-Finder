@@ -240,6 +240,14 @@ export default {
         params: { id: this.brewery.id, beerId: this.currentBeer.id },
       });
     },
+    getCurrentNews(item){
+      console.log(item);
+      this.currentNews = item;
+      this.$router.push({
+        name: "UpdateNews", 
+        params:{ id: this.brewery.id, newsId: this.currentNews.newsId},
+        });
+    },
     addBeer() {
       this.currentBeer = {};
       this.$router.push({ name: "AddBeer", params: { id: this.brewery.id } });
