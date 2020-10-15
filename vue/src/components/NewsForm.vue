@@ -23,9 +23,9 @@
              placeholder="News Picture"
              />
              <br>
-            <button class="btn btn-primary" v-on:click="addNews(newNews)">Add</button>
-            <button class="btn btn-primary" v-on:click="updateNews">Update</button>
-            <button class="btn btn-primary" v-on:click="cancel">Cancel</button>
+            <button class="btn btn-primary" v-on:click.prevent="addNews">Add</button>
+            <button class="btn btn-primary" v-on:click.prevent="updateNews">Update</button>
+            <button class="btn btn-primary" v-on:click.prevent="cancel">Cancel</button>
       </form>
   </div>
 </template>
@@ -50,8 +50,8 @@ export default {
     
   },
     methods: {
-        addNews(news){
-            BreweryService.addNews(news).then(
+        addNews(){
+            BreweryService.addNews(this.newNews).then(
                 () => {
                     this.$router.push({ name: "BrewerTools" });
                 }
