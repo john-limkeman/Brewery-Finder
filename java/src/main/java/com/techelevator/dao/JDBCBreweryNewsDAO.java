@@ -42,7 +42,7 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 	// deletes news by news id
 	@Override
 	public void deleteNews(Long newsId) {
-		String sqlInsert = "DELETE * FROM brewery_news WHERE newsid = ?";
+		String sqlInsert = "DELETE FROM brewery_news WHERE newsid = ?";
 		jdbcTemplate.update(sqlInsert, newsId);
 		
 	}

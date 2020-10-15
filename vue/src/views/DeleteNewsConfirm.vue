@@ -1,6 +1,6 @@
 <template>
   <div class="container text-center col-xl-12 mx-auto rounded">
-    <h4>Are you sure you wish to delete {{ news.newsTitle }}?</h4>
+    <h4>Are you sure you wish to delete {{ news.newstitle }}?</h4>
     <button class="btn btn-danger" v-on:click="DeleteNews(news)">Yes</button>
     <button class="btn btn-primary" v-on:click="Cancel">Cancel</button>
   </div>
@@ -18,7 +18,7 @@ export default {
     DeleteNews(news) {
       //delete news from db, then send back to brewer tools
       BreweryService.deleteNews(news.newsId).then(() => {
-        window.alert(`${news.newsTitle} has been deleted!`);
+        window.alert(`${news.newstitle} has been deleted!`);
         this.$router.push({ name: "BrewerTools" });
       });
     },
