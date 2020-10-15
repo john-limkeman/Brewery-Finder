@@ -5,20 +5,14 @@
           <button
       class="btn btn-primary"
       v-if="isAdmin()"
-      v-bind:to="{
-        name: 'UpdateBeer',
-        params: { id: this.brewery.id, beerId: this.beer.id },
-      }"
-    >
+      v-on:click.prevent="editBeer"
+      >
       Edit
     </button><span> &nbsp;
          <button
       class="btn btn-danger"
       v-if="isAdmin()"
-      v-bind:to="{
-        name: 'ConfirmDelete',
-        params: { beerId: this.beer.id },
-      }"
+      v-on:click.prevent="deleteBeer"
     >
       Delete
     </button>
@@ -76,10 +70,20 @@ export default {
     },
   },
   methods: {
-    getBrewery() {
-      //populates local brewery data based on this beer
-     
+    getBrewery(){
+    breweryServices.getBreweryById(this.beer.breweryId).then((response) => {
+        this.brewery = response.data;
+      });
     },
+    editBeer() {
+      this.$router.push({name: 'UpdateBeer', params: {id: this.brewery.id, beerId: this.beer.id}})
+      
+    },
+      deleteBeer() {
+      this.$router.push({name: 'ConfirmDelete', params: {beerId: this.beer.id }})
+      
+    },
+
     isAdmin() {
       // checks if current user is admin
       if (this.$store.state.logIn) {

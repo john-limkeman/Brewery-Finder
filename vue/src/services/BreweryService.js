@@ -152,5 +152,4 @@ export default {
         return http.get('/topbeers')
     },
 
-
 }

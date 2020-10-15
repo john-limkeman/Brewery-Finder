@@ -16,7 +16,6 @@
         </li>
       </ul>
     </div>
-
     <div id="IPA-Container" class="beer-type">
       <h3>IPAs</h3>
       <ul>
@@ -93,6 +92,7 @@ export default {
       beers: [],
     };
   },
+  // Seperates beers out into catagories such as Stouts Ails IPAs etc...
   computed: {
     getSours() {
       let Sours = [];
@@ -164,6 +164,7 @@ export default {
       return Others;
     },
   },
+  // Gets all beers from db
   created() {
     BreweryService.getBeerList().then((response) => {
       this.beers = response.data;
@@ -221,6 +222,5 @@ h3 {
 }
 #BeersListHeader{
   background-color: rgba(251, 241, 205, 0.8);
-
 }
 </style>

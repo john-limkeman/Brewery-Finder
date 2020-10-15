@@ -62,8 +62,13 @@ public class JDBCBeerDAO implements BeerDAO {
 	// deletes beer from specific beer database id
 	@Override
 	public void deleteBeer(Long id) {
+		
+		jdbcTemplate.update(
+				"DELETE FROM reply_review WHERE review_id IN (SELECT id FROM review WHERE beerid = ?)",
+				id);
+		jdbcTemplate.update("DELETE FROM review WHERE beerid = ?", id);
 		jdbcTemplate.update("DELETE FROM beers WHERE beer_id = ?", id);
-
+		
 	}
 	// creates new beer in the database
 	@Override
