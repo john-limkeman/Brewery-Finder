@@ -53,14 +53,15 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 
 	@Override
 	public void updateNews(BreweryNews news) {
-		
+		String sqlInsert = "UPDATE brewery_news SET newstitle = ?, body = ?, newsimageurl =? where brewery_id = ?";
+		jdbcTemplate.update(sqlInsert, news.getNewstitle(), news.getBody(), news.getNewsImageUrl(), news.getBreweryId());
 		
 	}
 
 	@Override
 	public void addNews(BreweryNews news) {
-		String sql = "INSERT INTO brewery_news (breweryId, newsTitle, body) VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, news.getBreweryId(), news.getNewstitle(), news.getBody());
+		String sql = "INSERT INTO brewery_news (breweryId, newsTitle, body, newsImageurl) VALUES (?, ?, ?, ?)";
+		jdbcTemplate.update(sql, news.getBreweryId(), news.getNewstitle(), news.getBody(), news.getNewsImageUrl());
 	}
 		
 	

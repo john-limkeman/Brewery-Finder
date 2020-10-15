@@ -18,12 +18,13 @@ public class BrewerRequestController {
 	@Autowired
 	public BrewerRequestDAO dao;
 	
+	// controller for administrator to change user to administrator 
 	@RequestMapping(path ="/processedStatus", method = RequestMethod.PUT)
 	public void processStatus( @RequestBody BrewerRequest brewerRequest ) {
 		dao.switchProcessedStatus(brewerRequest);
 		
 	}
-	
+	// controller to set each brewery to specific brewery 
 	@RequestMapping(path ="/setBrewerToBrewery", method = RequestMethod.PUT)
 	public void setBrewerToBrewery( @RequestBody BrewerRequest brewerRequest ) {
 		dao.updateBrewerIdForBrewery(brewerRequest);

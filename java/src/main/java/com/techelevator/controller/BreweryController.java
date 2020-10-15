@@ -30,61 +30,60 @@ public class BreweryController {
 	@Autowired
 	public UserDAO userDao;
 
-	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public String test() {
-		return "It worked";
-	}
-
+	// controller to list all breweries
 	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/breweries", method = RequestMethod.GET)
 	public List<Brewery> getAllBreweries() {
 		return dao.getAllBrewerys();
 	}
 
+	// controller to get breweries by database id
 	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.GET)
 	public Brewery getBrewery(@PathVariable long id) {
 		return dao.getBreweryById(id);
 	}
-	
+
+	// controller to get brewery by the brewer's database id
 	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/brewery/brewer/{id}", method = RequestMethod.GET)
 	public Brewery getBreweryByBrewer(@PathVariable long id) {
 		return dao.getBreweryByBrewer(id);
 	}
-	
-	//@PreAuthorize("hasRole('ROLE_ADMIN')")
+
+	// allows administrator to create brewery
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path = "/addBrewery", method = RequestMethod.POST)
 	public void saveBrewery(@Valid @RequestBody Brewery brewery) {
 		dao.saveBrewery(brewery);
 	}
-	
-	//@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+
+	// controller to edit brewery by breweries database id
 	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.PUT)
 	public void updateBrewery(@PathVariable long id, @RequestBody Brewery brewery) {
 		dao.updateBrewery(brewery, id);
-		
 	}
+
+	// controller to let user request to be a brewer
 	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.POST)
 	public void sendBrewerRequest(@PathVariable long id, @RequestBody User user) {
 		userDao.newBrewer(id, user);
-		
 	}
-	
+
+	// controller to list all requests
 	@RequestMapping(path = "/brewerRequest", method = RequestMethod.GET)
 	public List<BrewerRequest> getBrewerRequest() {
 		return userDao.getAllRequests();
 	}
-	
+	// controller to pull brewery by name
 	@RequestMapping(path = "/getBreweryByName/{name}", method = RequestMethod.GET)
 	public Brewery getBreweryByName(@PathVariable String name) {
 		return dao.getBreweryByName(name);
 	}
-	
+	// controller to pull brewery by database id
 	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.DELETE)
 	public void deleteBrewery(@PathVariable long id) {
 		dao.deleteBrewery(id);
 	}
-	
+
 }

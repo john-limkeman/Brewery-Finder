@@ -2,26 +2,23 @@ package com.techelevator.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
 import com.techelevator.model.Beer;
-import com.techelevator.model.Brewery;
 
 @Component
 public class JDBCBeerDAO implements BeerDAO {
-	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	public JDBCBeerDAO(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-
+// Communicates with database to get all beers
 	@Override
 	public List<Beer> getAllBeer() {
 
@@ -36,7 +33,7 @@ public class JDBCBeerDAO implements BeerDAO {
 		return allBeer;
 
 	}
-
+	// Communicates with database to get all beers from specific brewery
 	@Override
 	public List<Beer> BeerByBrewery(Long id) {
 		List<Beer> brewBeers = new ArrayList<>();
@@ -48,7 +45,7 @@ public class JDBCBeerDAO implements BeerDAO {
 		}
 		return brewBeers;
 	}
-
+	// Communicates with database to get beer from specific beer database id
 	@Override
 	public Beer getBeerById(Long id) {
 
@@ -59,18 +56,16 @@ public class JDBCBeerDAO implements BeerDAO {
 		if (result.next()) {
 			beer = mapRowToBeer(result);
 		}
-		
 
-		
 		return beer;
 	}
-
+	// deletes beer from specific beer database id
 	@Override
 	public void deleteBeer(Long id) {
 		jdbcTemplate.update("DELETE FROM beers WHERE beer_id = ?", id);
 
 	}
-
+	// creates new beer in the database
 	@Override
 	public void saveBeer(Beer beer) {
 		jdbcTemplate.update(
@@ -79,7 +74,7 @@ public class JDBCBeerDAO implements BeerDAO {
 				beer.getAbv(), beer.getIbu(), beer.isCurrent());
 
 	}
-
+	// changes existing beer in the database
 	@Override
 	public void updateBeer(Beer beer, long id) {
 
@@ -89,34 +84,34 @@ public class JDBCBeerDAO implements BeerDAO {
 				beer.getIbu(), beer.isCurrent(), id);
 
 	}
-	
+	// changes existing  rating of beer in the database
 	@Override
 	public void updateRating(Long id) {
 		String sql = "SELECT AVG(rating) FROM review WHERE beerId = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
 		Double rounded = 0.0;
 		while (result.next()) {
-		Double average = result.getDouble("avg");
-		rounded = DoubleRounder.round(average, 1);
+			Double average = result.getDouble("avg");
+			rounded = DoubleRounder.round(average, 1);
 		}
 		String update = "UPDATE beers SET rating = ? WHERE beer_id = ?";
 		jdbcTemplate.update(update, rounded, id);
-		
+
 	}
-	
+	// Communicates with database to get top rated beers from specific beer rating in database
 	@Override
-	public List<Beer> topFiveBeers(){
+	public List<Beer> topFiveBeers() {
 		List<Beer> topFiveList = new ArrayList<Beer>();
 		String sqlInsert = "SELECT * FROM beers where rating IS NOT NULL AND rating > 2.0 ORDER BY rating DESC LIMIT 5";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlInsert);
-		
-		while(result.next()) {
+
+		while (result.next()) {
 			topFiveList.add(mapRowToBeer(result));
 		}
-		
+
 		return topFiveList;
 	}
-
+	// maps data to Java by using database column name in table beers
 	private Beer mapRowToBeer(SqlRowSet row) {
 
 		Beer beer = new Beer();
@@ -135,6 +130,5 @@ public class JDBCBeerDAO implements BeerDAO {
 		return beer;
 
 	}
-
 
 }
