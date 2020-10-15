@@ -39,7 +39,7 @@ public class AuthenticationController {
 		this.authenticationManagerBuilder = authenticationManagerBuilder;
 		this.userDAO = userDAO;
 	}
-
+//  controller for creating token for security purposes 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginDTO loginDto) {
 
@@ -56,7 +56,7 @@ public class AuthenticationController {
 		httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 		return new ResponseEntity<>(new LoginResponse(jwt, user), httpHeaders, HttpStatus.OK);
 	}
-
+// controller to create new user
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public void register(@Valid @RequestBody RegisterUserDTO newUser) {
@@ -67,28 +67,27 @@ public class AuthenticationController {
 			userDAO.create(newUser.getUsername(), newUser.getPassword(), newUser.getRole());
 		}
 	}
-	
+// controller for getting user role
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
 	public User getUserById(@PathVariable("userId") long userId) {
-	  return userDAO.getUserById(userId);
+		return userDAO.getUserById(userId);
 	}
-	
-//	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@RequestMapping(value = "/user/{userId}" , method = RequestMethod.PUT)
-	public void updateUserRole( @PathVariable("userId") long userId, @Valid @RequestBody UserRoleChange user ) {
+// controller for changing user role
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.PUT)
+	public void updateUserRole(@PathVariable("userId") long userId, @Valid @RequestBody UserRoleChange user) {
 		userDAO.updateUserRole(user);
 	}
-	
+// controller for deleting user role
 	@RequestMapping(path = "/user/{id}", method = RequestMethod.DELETE)
 	public void deleteUserById(@PathVariable long id) {
 		userDAO.deleteUserById(id);
 	}
-
+// controller for deleting bad users 
 	@RequestMapping(path = "/allUsers", method = RequestMethod.GET)
-	public List <User> getAllUsers() {
+	public List<User> getAllUsers() {
 		return userDAO.findAll();
 	}
-	
+
 	/**
 	 * Object to return as body in JWT Authentication.
 	 */
