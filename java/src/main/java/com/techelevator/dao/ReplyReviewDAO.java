@@ -1,9 +1,8 @@
 package com.techelevator.dao;
 
 import java.util.List;
-
 import com.techelevator.model.ReplyReview;
-
+//interface for replies to reviews
 public interface ReplyReviewDAO {
 
 	public List<ReplyReview> getAllReplys();

@@ -23,8 +23,8 @@
              placeholder="News Picture"
              />
              <br>
-            <button class="btn btn-primary" v-on:click.prevent="addNews">Add</button>
-            <button class="btn btn-primary" v-on:click.prevent="updateNews">Update</button>
+            <button class="btn btn-primary" v-on:click.prevent="addNews" v-if="this.$route.params.newsId == null">Add</button>
+            <button class="btn btn-primary" v-on:click.prevent="updateNews" v-else>Update</button>
             <button class="btn btn-primary" v-on:click.prevent="cancel">Cancel</button>
       </form>
   </div>

@@ -132,6 +132,8 @@ text-align: center;
   border: 3px, solid, black;
   background-color: rgba(240, 192, 104, 0.7);
 }
-
+#eventTitle, #newsTitle {
+  font-family: helvetica;
+}
 
 </style>

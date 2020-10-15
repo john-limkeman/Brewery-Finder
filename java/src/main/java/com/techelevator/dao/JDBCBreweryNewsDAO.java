@@ -12,7 +12,7 @@ import com.techelevator.model.BreweryNews;
 public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
+	// Communicates with database to get all news
 	@Override
 	public List<BreweryNews> getAllNews() {
 		List<BreweryNews> allNews = new ArrayList<>();
@@ -25,7 +25,7 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 		}
 		return allNews;
 	}
-
+	// Communicates with database to get all news by specific brewery id
 	@Override
 	public List<BreweryNews> getNewsByBreweryId(Long breweryId) {
 		List<BreweryNews> newsList = new ArrayList<>();
@@ -37,24 +37,23 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 			
 			newsList.add(news);
 		}
-		// TODO Auto-generated method stub
 		return newsList;
 	}
-
+	// deletes news by news id
 	@Override
 	public void deleteNews(Long newsId) {
 		String sqlInsert = "DELETE * FROM brewery_news WHERE newsId = ?";
-		jdbcTemplate.update(sqlInsert, newsId);// TODO Auto-generated method stub
+		jdbcTemplate.update(sqlInsert, newsId);
 		
 	}
-
+	// edits news in database
 	@Override
 	public void updateNews(BreweryNews news) {
 		String sqlInsert = "UPDATE brewery_news SET newstitle = ?, body = ?, newsimageurl =? where brewery_id = ?";
 		jdbcTemplate.update(sqlInsert, news.getNewstitle(), news.getBody(), news.getNewsImageUrl(), news.getBreweryId());
 		
 	}
-
+	// creates news in database
 	@Override
 	public void addNews(BreweryNews news) {
 		String sql = "INSERT INTO brewery_news (breweryId, newsTitle, body, newsImageurl) VALUES (?, ?, ?, ?)";
@@ -62,7 +61,7 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 	}
 		
 	
-	
+	// maps data to object by using database column name in table brewery_news
 	public BreweryNews mapRowToBreweryNews(SqlRowSet results) {
 		BreweryNews news = new BreweryNews();
 		news.setNewsId(results.getLong("newsId"));
