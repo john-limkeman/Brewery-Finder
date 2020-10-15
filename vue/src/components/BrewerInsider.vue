@@ -375,7 +375,7 @@ export default {
   flex-direction: column;
   align-items: space-between;
   width: 30%;
-  height: 700px;
+  height: 100%;
   border-right: black 5px solid;
   margin-right: 5px;
 }
