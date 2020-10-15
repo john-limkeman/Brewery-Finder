@@ -83,6 +83,12 @@ export default {
     getNewsByBrewery(breweryId){
         return http.get(`/news/${breweryId}`)
     },
+    addNews(news){
+        return http.post('/addNews', news)
+    },
+    updateNews(news){
+        return http.put('/news', news);
+    },
     getBreweryByName(name) {
         return http.get(`/getBreweryByName/${name}`)
     },
@@ -132,7 +138,6 @@ export default {
         return http.delete(`/brewery/${id}`)
     },
     deleteReplies(replyReview) {
-        console.log(replyReview)
         return http.delete("/replies", replyReview)
     },
     getAllEvents(){

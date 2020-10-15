@@ -38,7 +38,7 @@ export default {
 #topFiveHeader{
     text-decoration: underline;
 }
- {
+ #beerLink{
   color: black;
 }
 #beerlink:hover {

@@ -1,10 +1,8 @@
 package com.techelevator.dao;
 
-import java.awt.Event;
 import java.util.List;
-
 import com.techelevator.model.Events;
-
+//interface for events
 public interface EventsDAO {
 
 	public List<Events> getAllEvents();

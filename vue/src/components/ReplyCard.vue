@@ -22,9 +22,6 @@ watch: {
         this.reply = this.replyData;
     }    
   },
-    created(){
-        console.log(this.replyData)
-    },
   methods: {
     isAdmin() {
       if (this.$store.state.logIn) {

@@ -1,9 +1,8 @@
 package com.techelevator.dao;
 
 import java.util.List;
-
 import com.techelevator.model.Brewery;
-
+//interface for brewery
 public interface BreweryDAO {
 
 	public List<Brewery> getAllBrewerys();

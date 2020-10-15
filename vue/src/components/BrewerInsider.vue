@@ -4,7 +4,7 @@
     class="container text-center col-xl-12 mx-auto border border-dark rounded"
   >
     <div id="BrewBeerList">
-      <h2>{{ brewery.name }}</h2>
+     <router-link id="route" v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }">{{brewery.name}}</router-link>
       <h4>Beers</h4>
       <div v-for="beer in beers" v-bind:key="beer.id" id="beerSideBar">
         <p>{{ beer.name }} &nbsp;</p>
@@ -37,10 +37,33 @@
           </button>
         </p>
       </div>
+      <H4>NEWS</H4>
+      <div v-for="item in news" v-bind:key="item.newsId" id="beerSideBar">
+        <p>{{ item.newstitle }} &nbsp;</p>
+
+        <p>
+          <button
+            class="btn btn-primary"
+            v-on:click.prevent="getCurrentNews(item)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-danger"
+            v-on:click.prevent="deleteNews(item)"
+          >
+            Delete
+          </button>
+        </p>
+      </div>
+
       <div id="BTbuttons">
         <button class="btn btn-primary" v-on:click="addBeer()">Add Beer</button>
         <button class="btn btn-primary" v-on:click="toggleVisEvent()">
           Add Event
+        </button>
+        <button class="btn btn-primary" v-on:click="addNews()">
+          Add News
         </button>
         <button
           class="btn btn-primary"
@@ -50,6 +73,7 @@
           Update Brewery Information
         </button>
       </div>
+      
     </div>
 
     <form class="BIforms" v-if="VisUpdate">
@@ -167,7 +191,7 @@
       >
         Add
       </button>
-      <button class="btn btn-primary" v-on:click.prevent="updateEvent" v-else>
+      <button class="btn btn-primary" v-on:click.prevent="updateEvent(currentEvent)" v-else>
         Update
       </button>
       <button class="btn btn-danger" v-on:click.prevent="clearEventForm">
@@ -188,8 +212,11 @@ export default {
       brewery: {},
       VisUpdate: false,
       VisEvent: false,
+      VisNews: false,
       events: [],
       currentEvent: {},
+      news:[],
+      currentNews: {},
     };
   },
   computed: {
@@ -268,7 +295,11 @@ export default {
         this.VisEvent = false;
         this.$emit("finished");
       });
-      // update event in DB
+      
+    },
+    addNews(){
+      this.currentNews = {};
+      this.$router.push({ name: "AddNews", params: { id: this.brewery.id } });
     },
     toggleVisUpdate() {
       if (this.VisUpdate == true) {
@@ -287,6 +318,7 @@ export default {
         this.VisEvent = true;
       }
     },
+
   },
   created() {
     BreweryService.getBreweryByBrewer(this.$store.state.user.id).then(
@@ -297,6 +329,10 @@ export default {
           this.currentBeer = {};
           BreweryService.getEventsById(this.brewery.id).then((response) => {
             this.events = response.data;
+            BreweryService.getNewsByBrewery(this.brewery.id).then((response) => {
+              this.news = response.data;
+              this.currentBeer = {};
+            });
           });
         });
       }
@@ -306,6 +342,7 @@ export default {
 </script>
 
 <style>
+
 #brewerInsiderBox {
   display: flex;
   flex-direction: row;
@@ -358,5 +395,20 @@ export default {
 }
 #updateBreweryInformationButton {
   width: auto;
+}
+#route{
+  font-family: 'Bungee Inline';
+  font-size: 30px;
+
+}
+
+#route:hover {
+  color: whitesmoke;
+}
+#route:visited {
+  color: #630f0f;
+}
+#route:visited:hover {
+  color: whitesmoke;
 }
 </style>
