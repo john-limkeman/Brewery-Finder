@@ -133,7 +133,7 @@ export default {
     addReply() {
       this.reply.replyDate = new Date();
       BreweryService.addReviewReply(this.reply).then(() => {});
-      this.$route.push({name: "BrewerTools"});
+      this.$router.push({name: "BrewerTools"});
     },
     checkUser() {
       let url = this.$route.name;
