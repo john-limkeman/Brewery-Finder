@@ -29,12 +29,12 @@
           <button
             class="btn btn-primary newsBtnBtn"
             v-on:click.prevent="addNews"
-          >
+          v-if="this.$route.params.newsId == null">
             Add
           </button>
           <button
             class="btn btn-primary newsBtnBtn"
-            v-on:click.prevent="updateNews"
+            v-on:click.prevent="updateNews" v-else
           >
             Update
           </button>
@@ -87,7 +87,7 @@ export default {
       }
     },
      updateNews() {
-      BreweryService.updateNews(this.newNews.newsId, this.newNews);
+      BreweryService.updateNews(this.newNews);
       if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
         this.$router.push({ name: "BrewerTools" });
       } else {
