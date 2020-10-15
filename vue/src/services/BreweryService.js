@@ -50,8 +50,6 @@ export default {
         return http.get(`/user/${userId}`)
     },
     sendBrewerRequest(id, user) {
-        console.log(id)
-        console.log(user.id)
         return http.post(`/brewerRequest/${id}`, user)
     },
     getReviewByUser(userId) {
