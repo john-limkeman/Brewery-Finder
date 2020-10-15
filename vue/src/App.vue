@@ -119,7 +119,7 @@ span:hover {
   display: flex;
 }
 .navlink {
-  color: black;
+  color: #630f0f;
 }
 .navlink:hover {
   color: whitesmoke;
