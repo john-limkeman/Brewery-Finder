@@ -217,12 +217,6 @@ export default {
       currentNews: {},
     };
   },
-  // watch:{
-  //   brewery: function(oldVal, newVal) {
-  //     console.log(oldVal, newVal);
-  //     this.currentEvent.brewery_id = this.brewery.id
-  //   }
-  // },
   computed: {
     settingBreweryId() {
       let id = this.brewery.id;
