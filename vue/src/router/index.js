@@ -172,9 +172,9 @@ const router = new Router({
       component: DeleteEventConfirm
     },
     {
-    path: "/replies",
-    name: "ReviewReplies",
-    component: ReviewCard
+      path: "/replies",
+      name: "ReviewReplies",
+      component: ReviewCard
     },
     {
       path: "/confirmDeleteUser/:id",
@@ -208,30 +208,30 @@ const router = new Router({
         requiresAuth: true
       }
     },
-{
-    path: "addNews/brewery/:id",
-    name: "AddNews",
-    component: NewsForm,
-    meta: {
-      requiresAuth: true
+    {
+      path: "addNews/brewery/:id",
+      name: "AddNews",
+      component: NewsForm,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "updateNews/brewery/:id/update/:newsId",
+      name: "UpdateNews",
+      component: NewsForm,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "deleteNews/:newsId",
+      name: "DeleteNews",
+      component: DeleteNewsConfirm,
+      meta: {
+        requiresAuth: true
+      }
     }
-  },
-  {
-    path: "updateNews/brewery/:id/update/:newsId",
-    name: "UpdateNews",
-    component: NewsForm,
-    meta: {
-      requiresAuth: true
-    }
-  },  
-  {
-    path: "deleteNews/:newsId",
-    name: "DeleteNews",
-    component: DeleteNewsConfirm,
-    meta: {
-      requiresAuth: true
-    }
-  }
   ]
 })
 

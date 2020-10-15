@@ -1,53 +1,80 @@
 <template>
-  <div id="adminTools" class="container text-center col-xl-10 mx-auto border border-dark rounded">
+  <div
+    id="adminTools"
+    class="container text-center col-xl-10 mx-auto border border-dark rounded"
+  >
     <div class="adminBtn">
-      <button class="btn btn-primary adminBtnBtn"  v-on:click="addBrewery">Add a brewery</button>
-      <button class="btn btn-primary adminBtnBtn" v-on:click="viewAllUsers">View all users</button>
+      <button class="btn btn-primary adminBtnBtn" v-on:click="addBrewery">
+        Add a brewery
+      </button>
+      <button class="btn btn-primary adminBtnBtn" v-on:click="viewAllUsers">
+        View all users
+      </button>
     </div>
-      <pending-brewer-request class="pendingBrewer"  :key='BrewerPendingKey' v-on:finished='finished()'/>
-      <pending-brewery-request class="pendingBrewery" :key='BreweryPendingKey' v-on:finishedBrewery='finishedBrewery()'/>
-      <processed-brewer-reuest class="processedBrewer" :key='BrewerProcessedKey' v-on:finished='finished()'/>
-      <processed-brewery-request class="processedBrewery" :key='BreweryProcessedKey' v-on:finishedBrewery='finishedBrewery()'/>
+    <pending-brewer-request
+      class="pendingBrewer"
+      :key="BrewerPendingKey"
+      v-on:finished="finished()"
+    />
+    <pending-brewery-request
+      class="pendingBrewery"
+      :key="BreweryPendingKey"
+      v-on:finishedBrewery="finishedBrewery()"
+    />
+    <processed-brewer-reuest
+      class="processedBrewer"
+      :key="BrewerProcessedKey"
+      v-on:finished="finished()"
+    />
+    <processed-brewery-request
+      class="processedBrewery"
+      :key="BreweryProcessedKey"
+      v-on:finishedBrewery="finishedBrewery()"
+    />
   </div>
 </template>
 
 <script>
-import PendingBrewerRequest from "../components/PendingBrewerReuests.vue"
-import PendingBreweryRequest from "../components/PendingBreweryRequests.vue"
-import ProcessedBrewerReuest from "../components/ProcessedBrewerRequests.vue"
-import ProcessedBreweryRequest from "../components/ProcessedBreweryRequests.vue"
+import PendingBrewerRequest from "../components/PendingBrewerReuests.vue";
+import PendingBreweryRequest from "../components/PendingBreweryRequests.vue";
+import ProcessedBrewerReuest from "../components/ProcessedBrewerRequests.vue";
+import ProcessedBreweryRequest from "../components/ProcessedBreweryRequests.vue";
 export default {
-  data(){
-    return{
-      BreweryPendingKey : 0,
-      BrewerPendingKey : 0,
+  data() {
+    return {
+      BreweryPendingKey: 0,
+      BrewerPendingKey: 0,
       BrewerProcessedKey: 0,
-      BreweryProcessedKey: 0
-    }
+      BreweryProcessedKey: 0,
+    };
   },
-    components: {
-        PendingBrewerRequest,
-        PendingBreweryRequest,
-        ProcessedBrewerReuest,
-        ProcessedBreweryRequest
+  components: {
+    PendingBrewerRequest,
+    PendingBreweryRequest,
+    ProcessedBrewerReuest,
+    ProcessedBreweryRequest,
+  },
+  methods: {
+    // Pushes you to add beer form
+    addBrewery() {
+      this.$router.push({ name: "AddBrewery" });
     },
-    methods: {
-      addBrewery() {
-        this.$router.push({name: 'AddBrewery'})
-      },
-      viewAllUsers() {
-        this.$router.push({name: 'AllUsers'})
-      },
-    finished(){
+    // Pushes you to view all users page
+    viewAllUsers() {
+      this.$router.push({ name: "AllUsers" });
+    },
+    // Counter for updating page
+    finished() {
       this.BrewerPendingKey += 1;
-      this.BrewerProcessedKey += 1
+      this.BrewerProcessedKey += 1;
     },
-    finishedBrewery(){
+    // Counter for updating page
+    finishedBrewery() {
       this.BreweryProcessedKey += 1;
       this.BreweryPendingKey += 1;
-    }
     },
-}
+  },
+};
 </script>
 
 <style>
@@ -77,9 +104,9 @@ export default {
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-areas:
-  "adminBtn adminBtn"
-  "pendingBrewer pendingBrewery"
-  "processedBrewer processedBrewery"
+    "adminBtn adminBtn"
+    "pendingBrewer pendingBrewery"
+    "processedBrewer processedBrewery";
 }
 .adminBtnBtn {
   width: 150px;
@@ -90,7 +117,7 @@ export default {
   display: flex;
   justify-content: center;
 }
-.pendingBrewery{
+.pendingBrewery {
   grid-area: pendingBrewery;
 }
 .pendingBrewer {
