@@ -1,7 +1,7 @@
 <template>
   <div >
       <div id='brewerInsider' v-if='isRole() == "BREWER"' >
-          <BrewerInsider />
+          <BrewerInsider :key='RenderKey' v-on:finished='finished()'/>
       </div>
 
       <div id='brewerOutsider' v-if='isRole() == "USER"'>
@@ -16,7 +16,7 @@ import BrewerInsider from '@/components/BrewerInsider.vue'
 export default {
     data(){
         return{
-          
+          Renderkey : 0
         }
     },
     methods:{
@@ -31,6 +31,9 @@ export default {
         return "USER";
       }
     },
+    finished(){
+      this.RenderKey += 1;
+    }
     
        
     },

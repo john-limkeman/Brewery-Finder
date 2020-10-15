@@ -1,5 +1,5 @@
 package com.techelevator.model;
-
+//model for replies to reviews
 public class ReplyReview {
 	
 	private Long id;

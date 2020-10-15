@@ -1,5 +1,5 @@
 package com.techelevator.model;
-
+//model for brewery news
 public class BreweryNews {
 
 	private Long newsId;

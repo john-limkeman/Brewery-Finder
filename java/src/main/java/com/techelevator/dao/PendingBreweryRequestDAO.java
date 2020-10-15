@@ -1,9 +1,9 @@
 package com.techelevator.dao;
 
 import java.util.List;
-
 import com.techelevator.model.PendingBreweryRequest;
 
+//interface for pending brewery request
 public interface PendingBreweryRequestDAO {
 	
 	public List<PendingBreweryRequest> getAllRequest();

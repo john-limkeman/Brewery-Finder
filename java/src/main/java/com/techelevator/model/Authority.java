@@ -1,7 +1,7 @@
 package com.techelevator.model;
 
 import java.util.Objects;
-
+// model for authority 
 public class Authority {
 
    private String name;

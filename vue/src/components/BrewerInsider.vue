@@ -39,7 +39,7 @@
       </div>
       <H4>NEWS</H4>
       <div v-for="item in news" v-bind:key="item.newsId" id="beerSideBar">
-        <p>{{ event.event_title }} &nbsp;</p>
+        <p>{{ item.newstitle }} &nbsp;</p>
 
         <p>
           <button
@@ -56,6 +56,7 @@
           </button>
         </p>
       </div>
+
       <div id="BTbuttons">
         <button class="btn btn-primary" v-on:click="addBeer()">Add Beer</button>
         <button class="btn btn-primary" v-on:click="toggleVisEvent()">
@@ -72,6 +73,7 @@
           Update Brewery Information
         </button>
       </div>
+      
     </div>
 
     <form class="BIforms" v-if="VisUpdate">
@@ -148,7 +150,7 @@
       <button class="btn btn-danger" v-on:click.prevent="clearBreweryForm">
         Cancel
       </button>
-     
+
       <br />
     </form>
 
@@ -281,11 +283,17 @@ export default {
       this.currentEvent.brewery_id = this.brewery.id;
       BreweryService.createEvent(this.currentEvent).then(() => {
         this.VisEvent = false;
+        this.$emit("finished");
+        this.$router.push({
+          name: "BreweryBeers",
+          params: { id: this.brewery.id },
+        });
       });
     },
     updateEvent(event) {
       BreweryService.updateEvent(event).then(() => {
         this.VisEvent = false;
+        this.$emit("finished");
       });
       
     },
@@ -334,6 +342,7 @@ export default {
 </script>
 
 <style>
+
 #brewerInsiderBox {
   display: flex;
   flex-direction: row;

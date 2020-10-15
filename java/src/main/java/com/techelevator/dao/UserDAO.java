@@ -3,9 +3,8 @@ package com.techelevator.dao;
 import com.techelevator.model.BrewerRequest;
 import com.techelevator.model.User;
 import com.techelevator.model.UserRoleChange;
-
 import java.util.List;
-
+//interface for user
 public interface UserDAO {
 
 	List<User> findAll();

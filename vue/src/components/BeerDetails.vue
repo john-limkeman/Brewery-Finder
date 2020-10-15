@@ -1,6 +1,6 @@
 <template>
   <div id="beerInfo" class="container text-center col-xl-12 mx-auto rounded">
-    <h2 id='beer-name-brewery'>
+    <h2 id="beer-name-brewery">
       {{ beer.name }} <br />
       <span v-bind="getBrewery()">
         <router-link
@@ -14,11 +14,15 @@
     <h1 id="avgRatingDisplay">{{ beer.rating }}</h1>
 
     <img id="beerImg" v-bind:src="beer.imgUrl" width="180px" height="auto" />
-    <ul id='beer-stats'>
-      <li><b>{{ beer.type }}</b></li>
+    <ul id="beer-stats">
+      <li>
+        <b>{{ beer.type }}</b>
+      </li>
       <li><b>ABV : </b>{{ beer.abv }}</li>
       <li><b>IBU : </b>{{ beer.ibu }}</li>
-      <li><b>{{ this.setStatus }}</b></li>
+      <li>
+        <b>{{ this.setStatus }}</b>
+      </li>
     </ul>
     <p id="beerDesc">{{ beer.description }}</p>
 
@@ -66,7 +70,7 @@ export default {
     },
     isAdmin() {
       if (this.$store.state.logIn) {
-        if (this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
+        if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN") {
           return true;
         }
       } else {
@@ -109,7 +113,6 @@ li {
   text-align: left;
 }
 
-
 #avgRatingDisplay {
   font-weight: bold;
   color: goldenrod;
@@ -132,28 +135,16 @@ li {
   grid-area: name;
   align-self: start;
 }
-#beer-stats{
+#beer-stats {
   grid-area: type;
 }
 #beerInfo > h2 > span {
   font-size: 25px;
   margin-top: 20px;
 }
-/* #beerType {
-  grid-area: type;
-}
-#beerAbv {
-  grid-area: abv;
-}
-#beerIbu {
-  grid-area: ibu;
-}
-#beerStatus {
-  grid-area: onTap;
-}*/
 #beerDesc {
   grid-area: desc;
-} 
+}
 #editBeerButton {
   grid-area: type;
   align-self: start;
