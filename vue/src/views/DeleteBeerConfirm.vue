@@ -15,6 +15,7 @@ export default {
         }
     },
     methods: {
+        // Delets beer given a beer object
         DeleteBeer(beer){
             BreweryService.deleteBeer(beer.id).then(
                 () => {
@@ -26,6 +27,7 @@ export default {
             this.$router.push({name : 'BrewerTools'})
         }
     },
+    // Pulls a beer by id from the db
     created(){
         BreweryService.getBeerById(this.$route.params.beerId).then(
             (response) => {

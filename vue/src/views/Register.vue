@@ -36,7 +36,9 @@
         required
       />
       <br />
-      <router-link :to="{ name: 'login' }" class="navlink">Have an account?</router-link>
+      <router-link :to="{ name: 'login' }" class="navlink"
+        >Have an account?</router-link
+      >
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
@@ -46,7 +48,6 @@
 
 <script>
 import authService from "../services/AuthService";
-
 export default {
   name: "register",
   data() {
@@ -62,6 +63,7 @@ export default {
     };
   },
   methods: {
+    // Allows users to register for an account
     register() {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
