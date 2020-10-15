@@ -130,7 +130,7 @@ text-align: center;
     align-items: center;
   justify-content: center;
   border: 3px, solid, black;
-  background-color: rgba(240, 192, 104, 0.7);
+  background-color: rgba(240, 192, 104, 0.90);
 }
 #eventTitle, #newsTitle {
   font-family: helvetica;
