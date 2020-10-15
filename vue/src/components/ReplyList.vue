@@ -1,6 +1,6 @@
 <template>
   <div>
-        <div v-for='reply in AllReplies' v-bind:key='reply.id' id='replyCard'>
+        <div v-for='reply in AllReplies' v-bind:key='reply.id' id='replyCards'>
            <ReplyCard v-bind:replyData='reply'/>
 
         </div>
@@ -29,5 +29,10 @@ export default {
 </script>
 
 <style>
-
+#replyCards{
+  width: 1fr;
+  border: grey, solid, 3px;
+  padding: 5px;
+  margin: 5px;
+}
 </style>

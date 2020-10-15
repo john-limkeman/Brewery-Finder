@@ -23,6 +23,7 @@ import ReviewCard from "../components/ReviewCard.vue"
 import AllUsers from "../components/UserList.vue"
 import AdminConfirmDeleteUser from "../views/AdminDeleteUserConfirmation.vue"
 import AdminConfirmDeleteBrewery from "../views/AdminConfirmDeleteBrewery.vue"
+import DeleteEventConfirm from '@/views/DeleteEventConfirm.vue'
 
 Vue.use(Router)
 
@@ -163,6 +164,11 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/confirmDelete/:eventId",
+      name: "ConfirmDeleteEvent",
+      component: DeleteEventConfirm
     },
     {
     path: "/replies",

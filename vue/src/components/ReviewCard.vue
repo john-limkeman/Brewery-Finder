@@ -66,7 +66,7 @@
           Cancel
         </button>
       </form>
-        <ReplyList v-bind:replies="this.replies" />
+        <ReplyList v-bind:replies="this.replies" id='replyGridSection'/>
       </div>
 
     </div>
@@ -171,7 +171,6 @@ export default {
     ". date date"
     "repButton repButton ."
     "replyForm  replyForm ."
-    "replies replies replies"
     "replies replies replies";
   text-align: left;
   border: solid 3px goldenrod;
@@ -259,9 +258,12 @@ export default {
   grid-area: replyForm;
 }
 
-#replyCard {
+#replyGridSection {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row;
   grid-area: replies;
+  width: fill;
+
 }
 </style>

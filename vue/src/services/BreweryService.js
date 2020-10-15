@@ -104,8 +104,11 @@ export default {
     getEventsById(breweryId){
         return http.get(`/breweryEvents/${breweryId}`)
     },
-    deleteEvent(event){
-        return http.delete('/deleteEvent', event)
+    getEventByEventId(id){
+        return http.get(`/breweryEvents/event/${id}`)
+    },
+    deleteEvent(event_id){
+        return http.delete(`/deleteEvent/${event_id}`)
     },
     updateEvent(event){
         return http.put('/updateEvent', event)
