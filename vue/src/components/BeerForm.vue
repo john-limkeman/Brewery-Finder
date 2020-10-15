@@ -15,7 +15,7 @@
         type="text"
         name="type"
         placeholder="Type"
-      />
+      /> 
       <br />
       <label for="description">Description</label>
       <input
