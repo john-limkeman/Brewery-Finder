@@ -4,7 +4,7 @@
     class="container text-center col-xl-12 mx-auto border border-dark rounded"
   >
     <div id="BrewBeerList">
-      <h2>{{ brewery.name }}</h2>
+     <router-link id="route" v-bind:to="{ name: 'BreweryBeers', params: { id: brewery.id } }">{{brewery.name}}</router-link>
       <h4>Beers</h4>
       <div v-for="beer in beers" v-bind:key="beer.id" id="beerSideBar">
         <p>{{ beer.name }} &nbsp;</p>
@@ -358,5 +358,20 @@ export default {
 }
 #updateBreweryInformationButton {
   width: auto;
+}
+#route{
+  font-family: 'Bungee Inline';
+  font-size: 30px;
+
+}
+
+#route:hover {
+  color: whitesmoke;
+}
+#route:visited {
+  color: #630f0f;
+}
+#route:visited:hover {
+  color: whitesmoke;
 }
 </style>
