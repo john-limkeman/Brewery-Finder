@@ -1,0 +1,13 @@
+Order of Events:
+
+1. Demonstrate Home Page -> BreweriesList -> BeersList -> Attempt Review
+2. Register new user DannyDevito and log in.
+3. Place Review on a beer -> add reply to another beer -> favorite a brewery
+4. Request to become a brewer and add a brewery.
+5. Login as Admin -> admin tool suite preview -> approve/deny requests -> Approve DannyDevito and his petition to create Paddy's Pub
+6. Login as DannyDevito again -> Go to Brewer Tools
+7. Create a beer -> edit beer -> create an event -> edit event -> show Brewery page with new changes
+8. Delete beer -> delete event
+9. Login as Admin -> delete DannyDevito -> delete Paddy's Pub
+
+Am I missing anything?

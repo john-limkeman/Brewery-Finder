@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import java.awt.Event;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,6 @@ public class JDBCEventsDAO implements EventsDAO {
 			Events event = mapToRowEvents(results);
 			allEventsList.add(event);
 		}
-		// TODO Auto-generated method stub
 		return allEventsList;
 	}
 
@@ -52,16 +52,25 @@ public class JDBCEventsDAO implements EventsDAO {
 	}
 
 	@Override
+	public Events getEventByEventId(Long id) {
+		Events event = new Events();
+		String sql = "SELECT * from events WHERE event_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+		while (results.next()) {
+			event = mapToRowEvents(results);
+		}
+		return event;
+	}
+	@Override
 	public void updateEvent(Events event) {
-		// TODO Auto-generated method stub
 		String sqlInsert = "UPDATE events SET event_title = ?, event_date = ?, description = ?, picture = ? WHERE event_id = ?";
 		jdbcTemplate.update(sqlInsert, event.getEvent_title(), event.getEvent_date(), event.getDescription(), event.getPicture(), event.getEvent_id());
 	}
 
 	@Override
-	public void deleteEvent(Events event) {
+	public void deleteEvent(Long id) {
 		String sqlInsert = "DELETE from events WHERE event_id = ?";
-		jdbcTemplate.update(sqlInsert, event.getEvent_id());
+		jdbcTemplate.update(sqlInsert, id);
 
 	}
 
@@ -81,5 +90,6 @@ public class JDBCEventsDAO implements EventsDAO {
 		}
 		return event;
 	}
+
 
 }

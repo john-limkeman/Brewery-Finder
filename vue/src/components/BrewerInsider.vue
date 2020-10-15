@@ -1,36 +1,58 @@
 <template>
-  <div id='brewerInsiderBox' class='container text-center col-xl-12 mx-auto border border-dark rounded' >
+  <div
+    id="brewerInsiderBox"
+    class="container text-center col-xl-12 mx-auto border border-dark rounded"
+  >
     <div id="BrewBeerList">
       <h2>{{ brewery.name }}</h2>
-      <h4> Beers </h4>
-      <div v-for="beer in beers" v-bind:key="beer.id" id='beerSideBar'>
-      
-       <p>{{ beer.name }} &nbsp;</p>
-        
-         <p>
-           <button class="btn btn-primary" v-on:click='getCurrentBeer(beer)' >Edit</button>
-           <button class="btn btn-danger" v-on:click='deleteBeer(beer)' >Delete</button>
-           </p>
-      
+      <h4>Beers</h4>
+      <div v-for="beer in beers" v-bind:key="beer.id" id="beerSideBar">
+        <p>{{ beer.name }} &nbsp;</p>
+
+        <p>
+          <button class="btn btn-primary" v-on:click="getCurrentBeer(beer)">
+            Edit
+          </button>
+          <button class="btn btn-danger" v-on:click="deleteBeer(beer)">
+            Delete
+          </button>
+        </p>
       </div>
       <h4>Events</h4>
-            <div v-for="event in events" v-bind:key="event.id" id='beerSideBar'>
-               <p>{{ event.event_title }} &nbsp;</p>
-        
-         <p>
-           <button class="btn btn-primary" v-on:click='getCurrentEvent(event)' >Edit</button>
-           <button class="btn btn-danger" v-on:click='deleteEvent(event)' >Delete</button>
-           </p>
-           </div>
-      <div id='BTbuttons'>
-      <button class="btn btn-primary" v-on:click='addBeer()'>Add Beer</button>
-      <button class='btn btn-primary' v-on:click='toggleVisEvent()'>Add Event</button>
-      <button class='btn btn-primary' id='updateBreweryInformationButton' v-on:click='toggleVisUpdate()'> Update Brewery Information</button>
+      <div v-for="event in events" v-bind:key="event.id" id="beerSideBar">
+        <p>{{ event.event_title }} &nbsp;</p>
+
+        <p>
+          <button
+            class="btn btn-primary"
+            v-on:click.prevent="getCurrentEvent(event)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-danger"
+            v-on:click.prevent="deleteEvent(event)"
+          >
+            Delete
+          </button>
+        </p>
+      </div>
+      <div id="BTbuttons">
+        <button class="btn btn-primary" v-on:click="addBeer()">Add Beer</button>
+        <button class="btn btn-primary" v-on:click="toggleVisEvent()">
+          Add Event
+        </button>
+        <button
+          class="btn btn-primary"
+          id="updateBreweryInformationButton"
+          v-on:click="toggleVisUpdate()"
+        >
+          Update Brewery Information
+        </button>
       </div>
     </div>
-    
 
-      <form id="updateBreweryForm" v-if='VisUpdate'>
+    <form class="BIforms" v-if="VisUpdate">
       <label for="name">Brewery name</label>
       <input
         v-model="brewery.name"
@@ -87,57 +109,72 @@
         placeholder="Hours"
       />
       <br />
-      <p>Active: <span>
-      <input
-        v-model="brewery.active"
-        type="checkbox"
-        name="active"
-        placeholder="Active"
-      /></span></p>
+      <p>
+        Active:
+        <span>
+          <input
+            v-model="brewery.active"
+            type="checkbox"
+            name="active"
+            placeholder="Active"
+        /></span>
+      </p>
       <br />
-      <button class="btn btn-primary" v-on:click.prevent="updateBrewery" >Update</button>
-      <button class="btn btn-primary" v-on:click.prevent="clearBreweryForm">Clear</button>
+      <button class="btn btn-primary" v-on:click.prevent="updateBrewery">
+        Update
+      </button>
+      <button class="btn btn-danger" v-on:click.prevent="clearBreweryForm">
+        Cancel
+      </button>
+     
       <br />
     </form>
 
-      <form id="addEventForm" v-if='VisEvent'>
-        <label for="event_title">Event Title</label>
-            <input
-             v-model="currentEvent.event_title"
-             type="text"
-             name="title"
-             placeholder="Event Title"
-             />
-        <label for="event_date">Date</label>
-            <input
-             v-model="currentEvent.event_date"
-             type="text"
-             name="date"
-             placeholder="Event Date"
-             />
-         <label for="description">Description</label>
-            <input
-             v-model="currentEvent.description"
-             type="text"
-             name="description"
-             placeholder="Event Description"
-             />
-         <label for="picture">Image URL</label>
-            <input
-             v-model="currentEvent.picture"
-             type="text"
-             name="active"
-             placeholder="Event Picture"
-             />
-             <br>
-            <button class="btn btn-primary" v-on:click.prevent="addEvent" v-if="currentEvent.event_id == null">Add</button>
-            <button class="btn btn-primary" v-on:click.prevent="updateEvent" v-else >Update</button>
-            <button class="btn btn-primary" v-on:click.prevent="clearEventForm">Clear</button>
-      </form>
-    <img v-if='picVis' v-bind:src='this.brewery.image'/>
-
-
-
+    <form class="BIforms" v-if="VisEvent">
+      <label for="event_title">Event Title</label>
+      <input
+        v-model="currentEvent.event_title"
+        type="text"
+        name="title"
+        placeholder="Event Title"
+      />
+      <label for="event_date">Date</label>
+      <input
+        v-model="currentEvent.event_date"
+        type="text"
+        name="date"
+        placeholder="Event Date"
+      />
+      <label for="description">Description</label>
+      <input
+        v-model="currentEvent.description"
+        type="text"
+        name="description"
+        placeholder="Event Description"
+      />
+      <label for="picture">Image URL</label>
+      <input
+        v-model="currentEvent.picture"
+        type="text"
+        name="active"
+        placeholder="Event Picture"
+      />
+      <br />
+      <button
+        class="btn btn-primary"
+        v-on:click.prevent="addEvent"
+        v-if="currentEvent.event_id == null"
+      >
+        Add
+      </button>
+      <button class="btn btn-primary" v-on:click.prevent="updateEvent" v-else>
+        Update
+      </button>
+      <button class="btn btn-danger" v-on:click.prevent="clearEventForm">
+        Cancel
+      </button>
+    </form>
+    <img v-if="picVis" v-bind:src="this.brewery.image" />
   </div>
 </template>
 
@@ -146,7 +183,7 @@ import BreweryService from "@/services/BreweryService.js";
 export default {
   data() {
     return {
-    currentBeer : {},
+      currentBeer: {},
       beers: [],
       brewery: {},
       VisUpdate: false,
@@ -162,120 +199,121 @@ export default {
   //   }
   // },
   computed: {
-    settingBreweryId(){
+    settingBreweryId() {
       let id = this.brewery.id;
       return id;
     },
-    picVis(){
-      if (this.VisEvent == false && this.VisUpdate == false){
+    picVis() {
+      if (this.VisEvent == false && this.VisUpdate == false) {
         return true;
-      } else{
+      } else {
         return false;
       }
-    }
+    },
   },
   methods: {
-    getCurrentBeer(beer){
-        this.currentBeer = beer;
-        this.$router.push({name: 'UpdateBeer', params : {id: this.brewery.id , beerId : this.currentBeer.id}})
+    getCurrentBeer(beer) {
+      this.currentBeer = beer;
+      this.$router.push({
+        name: "UpdateBeer",
+        params: { id: this.brewery.id, beerId: this.currentBeer.id },
+      });
     },
-    addBeer(){
-        this.currentBeer = {};
-        this.$router.push({name: 'AddBeer', params : {id: this.brewery.id}})
+    addBeer() {
+      this.currentBeer = {};
+      this.$router.push({ name: "AddBeer", params: { id: this.brewery.id } });
     },
-    deleteBeer(beer){
-        this.currentBeer = beer;
-        this.$router.push({name : 'ConfirmDelete', params : {beerId : this.currentBeer.id}})
-        
+    deleteBeer(beer) {
+      this.currentBeer = beer;
+      this.$router.push({
+        name: "ConfirmDelete",
+        params: { beerId: this.currentBeer.id },
+      });
     },
-      clearBreweryForm() {
-      this.brewery.name = null;
-     this.brewery.address = null;
-     this.brewery.description = null;
-     this.brewery.image = null;
-     this.brewery.brewery_url = null;
-     this.brewery.phone = null;
-     this.brewery.hours = null;
-     this.brewery.active = null;
-      },
-      clearEventForm(){
+    clearBreweryForm() {
+      this.VisUpdate = false;
+    },
+    clearEventForm() {
       this.currentEvent = {};
+      this.VisEvent = false;
     },
-        updateBrewery() {
+    updateBrewery() {
       BreweryService.updateBrewery(this.brewery);
-      this.$router.push({ name: "BreweryBeers", params: {id : this.brewery.id} });
+      this.$router.push({
+        name: "BreweryBeers",
+        params: { id: this.brewery.id },
+      });
     },
-    getCurrentEvent(event){
+    getCurrentEvent(event) {
       this.currentEvent = event;
       this.VisUpdate = false;
       this.VisEvent = true;
       //to acquire current event and display edit form
     },
-    deleteEvent(event){
+    deleteEvent(event) {
       this.currentEvent = event;
-      BreweryService.deleteEvent(this.currentEvent).then(()=>{
-        
-      })
+      this.$router.push({
+        name: "ConfirmDeleteEvent",
+        params: { eventId: this.currentEvent.event_id },
+      });
       //to delete event from DB
     },
-    addEvent(){
+    addEvent() {
       this.currentEvent.brewery_id = this.brewery.id;
       BreweryService.createEvent(this.currentEvent).then(() => {
         this.VisEvent = false;
       });
     },
-    updateEvent(event){
-      BreweryService.updateEvent(event).then(()=>{
+    updateEvent(event) {
+      BreweryService.updateEvent(event).then(() => {
         this.VisEvent = false;
       });
       // update event in DB
     },
-    toggleVisUpdate(){
-      if(this.VisUpdate == true){
+    toggleVisUpdate() {
+      if (this.VisUpdate == true) {
         this.VisUpdate = false;
-      } else{
+      } else {
         this.VisEvent = false;
         this.VisUpdate = true;
       }
     },
-  toggleVisEvent(){
-      if(this.VisEvent == true){
+    toggleVisEvent() {
+      if (this.VisEvent == true) {
         this.VisEvent = false;
-      } else{
+      } else {
         this.VisUpdate = false;
+        this.currentEvent = {};
         this.VisEvent = true;
       }
     },
   },
   created() {
-    
     BreweryService.getBreweryByBrewer(this.$store.state.user.id).then(
       (response) => {
         this.brewery = response.data;
-          BreweryService.getBeerByBrewery(this.brewery.id).then((response) => {
-            this.beers = response.data
-             this.currentBeer = {}
-             BreweryService.getEventsById(this.brewery.id).then(
-          (response) => {
+        BreweryService.getBeerByBrewery(this.brewery.id).then((response) => {
+          this.beers = response.data;
+          this.currentBeer = {};
+          BreweryService.getEventsById(this.brewery.id).then((response) => {
             this.events = response.data;
-          }
-
-             )
-      })
-      });
+          });
+        });
+      }
+    );
   },
 };
 </script>
 
 <style>
-#brewerInsiderBox{
+#brewerInsiderBox {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
   height: 100%;
 }
-#BrewBeerList{
+#BrewBeerList {
   display: flex;
   flex-direction: column;
   align-items: space-between;
@@ -284,41 +322,41 @@ export default {
   border-right: black 5px solid;
   margin-right: 5px;
 }
-#beerSideBar{
+#beerSideBar {
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-right: 10px;
 }
-#updateBreweryForm{
-  display:flex;
+.BIforms {
+  display: flex;
   flex-direction: column;
   width: 70%;
 }
-#updateBreweryForm label{
+.BIforms label {
   text-align: left;
   margin-left: 50px;
 }
-#updateBreweryForm p{
-    text-align: left;
-  margin-left: 50px
-}
-#updateBreweryForm input{
+.BIforms p {
+  text-align: left;
   margin-left: 50px;
-  width: 50%
 }
-#brewerInsiderBox button{
+.BIforms input {
+  margin-left: 50px;
+  width: 50%;
+}
+#brewerInsiderBox button {
   margin: 5px;
 }
-#brewerInsiderBox img{
+#brewerInsiderBox img {
   position: absolute;
   left: 50%;
   right: 50%;
   height: 500px;
   width: auto;
 }
-#updateBreweryInformationButton{
+#updateBreweryInformationButton {
   width: auto;
 }
 </style>

@@ -288,3 +288,6 @@ INSERT INTO events (brewery_id, event_title, event_date, description, picture) V
 INSERT INTO events (brewery_id, event_title, event_date, description, picture) VALUES (2, 'Broncos vs Eagles', '10/18/2020', 'Come enjoy a pint with friends while the game is on', 'https://pbs.twimg.com/profile_images/1306062984427364353/LvHV6KGB_400x400.jpg');
 
 COMMIT TRANSACTION;
+
+
+

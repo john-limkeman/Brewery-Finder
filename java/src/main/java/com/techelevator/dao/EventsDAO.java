@@ -12,9 +12,11 @@ public interface EventsDAO {
 	public void createEvent(Events event);
 
 	public List<Events> getEventsByBreweryId(Long breweryId);
+	
+	public Events getEventByEventId(Long id);
 
 	public void updateEvent(Events event);
 
-	public void deleteEvent(Events event);
+	public void deleteEvent(Long id);
 
 }

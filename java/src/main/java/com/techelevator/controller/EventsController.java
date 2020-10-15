@@ -26,9 +26,9 @@ public class EventsController {
 		return dao.getEventsByBreweryId(id);
 	}
 
-	@RequestMapping(path = "/deleteEvent", method = RequestMethod.DELETE)
-	public void deleteEventsByBreweryId(@RequestBody Events event) {
-		dao.deleteEvent(event);
+	@RequestMapping(path = "/deleteEvent/{id}", method = RequestMethod.DELETE)
+	public void deleteEvent(@PathVariable Long id) {
+		dao.deleteEvent(id);
 	}
 
 	@RequestMapping(path = "/newEvent", method = RequestMethod.POST)
@@ -47,6 +47,11 @@ public class EventsController {
 		List<Events> allEvents = dao.getAllEvents();
 		
 		return allEvents;
+	}
+	
+	@RequestMapping(path = "/breweryEvents/event/{id}", method = RequestMethod.GET)
+	public Events getEventByEventId(@PathVariable Long id) {
+		return dao.getEventByEventId(id);
 	}
 
 }
