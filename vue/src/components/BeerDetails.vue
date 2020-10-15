@@ -7,7 +7,7 @@
       v-if="isAdmin()"
       v-bind:to="{
         name: 'UpdateBeer',
-        params: { id: beer.breweryId, beerId: beer.id },
+        params: { id: this.brewery.id, beerId: this.beer.id },
       }"
     >
       Edit
@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       beer: {},
-      brewery: "",
+      brewery: {},
     };
   },
   computed: {
@@ -77,9 +77,7 @@ export default {
   methods: {
     getBrewery() {
       //populates local brewery data based on this beer
-      breweryServices.getBreweryById(this.beer.breweryId).then((response) => {
-        this.brewery = response.data;
-      });
+     
     },
     isAdmin() {
       // checks if current user is admin
@@ -97,6 +95,9 @@ export default {
     breweryServices.getBeerById(this.$route.params.id).then((response) => {
       this.beer = response.data;
     });
+     breweryServices.getBreweryById(this.beer.breweryId).then((response) => {
+        this.brewery = response.data;
+      });
   },
   components: {
     ReviewList,
