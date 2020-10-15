@@ -38,37 +38,40 @@
         >
           Add Reply
         </button>
-        <button class="btn btn-danger deleteReview" v-if="isAdmin()" v-on:click="deleteReview(review)">
+        <button
+          class="btn btn-danger deleteReview"
+          v-if="isAdmin()"
+          v-on:click="deleteReview(review)"
+        >
           Delete Review
         </button>
-      <form
-        id="review-reply-text"
-        v-on:submit.prevent="addReply"
-        v-if="visibility"
-      >
-        <label for="title">Title</label>
-        <input
-          v-model="reply.title"
-          type="text"
-          name="reviewTitle"
-          placeholder="Title for Review reply"
-        />
-        <br />
-        <label for="reply">Reply</label>
-        <input
-          v-model="reply.reply"
-          type="text"
-          name="reply"
-          placeholder="What is your reply?"
-        /><br />
-        <button class="btn btn-primary" v-on:click="pushUser">Submit</button>
-        <button class="btn btn-primary" v-on:click.prevent="Cancel()">
-          Cancel
-        </button>
-      </form>
-        <ReplyList v-bind:replies="this.replies" id='replyGridSection'/>
+        <form
+          id="review-reply-text"
+          v-on:submit.prevent="addReply"
+          v-if="visibility"
+        >
+          <label for="title">Title</label>
+          <input
+            v-model="reply.title"
+            type="text"
+            name="reviewTitle"
+            placeholder="Title for Review reply"
+          />
+          <br />
+          <label for="reply">Reply</label>
+          <input
+            v-model="reply.reply"
+            type="text"
+            name="reply"
+            placeholder="What is your reply?"
+          /><br />
+          <button class="btn btn-primary" v-on:click="pushUser">Submit</button>
+          <button class="btn btn-primary" v-on:click.prevent="Cancel()">
+            Cancel
+          </button>
+        </form>
+        <ReplyList v-bind:replies="this.replies" id="replyGridSection" />
       </div>
-
     </div>
   </div>
 </template>
@@ -106,7 +109,7 @@ export default {
       }
     },
     deleteReview(review) {
-        BreweryService.deleteReview(review).then(() => {})
+      BreweryService.deleteReview(review).then(() => {});
     },
     ChangeVis() {
       if (this.$store.state.logIn) {
@@ -116,7 +119,7 @@ export default {
       }
     },
     pushUser() {
-        this.$router.push({name: "UserPage"})
+      this.$router.push({ name: "UserPage" });
     },
     addReply() {
       this.reply.replyDate = new Date();
@@ -176,7 +179,7 @@ export default {
   padding: 4px;
 }
 .deleteReview {
-    width: 125px;
+  width: 125px;
 }
 #reviewCardLink:hover {
   color: goldenrod;
@@ -260,6 +263,5 @@ export default {
   flex-direction: row;
   grid-area: replies;
   width: stretch;
-
 }
 </style>
