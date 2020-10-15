@@ -1,5 +1,5 @@
 package com.techelevator.model;
-
+//model for brewer request
 public class BrewerRequest {
 
 	private long id;

@@ -1,5 +1,5 @@
 package com.techelevator.model;
-
+//model for favorite brewery
 public class Favorite {
 
 		public Long user_id;

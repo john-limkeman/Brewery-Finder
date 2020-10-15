@@ -1,5 +1,5 @@
 package com.techelevator.model;
-
+//model for brewery
 public class Brewery {
 
 	private long id;

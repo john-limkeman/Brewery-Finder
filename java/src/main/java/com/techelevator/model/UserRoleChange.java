@@ -1,5 +1,5 @@
 package com.techelevator.model;
-
+//model for changing user role
 public class UserRoleChange {
 	
 	private long userId;
