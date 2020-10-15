@@ -15,14 +15,17 @@
             placeholder="Witty Title Here"
           />
           <br />
-          <label class="label" for="overall">Overall</label>
-          <input
+          <label class="label" for="overall" >Overall</label>
+          
+          <textarea rows="3" cols="23"
             class="input"
             v-model="review.overall"
-            type="text"
+            type="text-area"
             name="overall"
             placeholder="What is your overall impression of this brew?"
-          /><br />
+          />
+          
+          <br />
           <label class="label" for="color">Color</label>
           <input
             class="input"
@@ -160,6 +163,14 @@ export default {
   grid-area: label;
   text-align: left;
 }
+
+.textarea {
+  display: inline-block;
+  width: 100px;
+  grid-area: label;
+  margin-left: 50px;
+}
+
 .input {
   display: inline-block;
   grid-area: input;
