@@ -133,10 +133,6 @@ export default {
 
     Cancel() {
       this.visibility = false;
-      //  this.reply = {
-      //         title : this.$store.state.user.id,
-      //         reply : this.chosen.id,
-      //     };
     },
   },
   components: {
@@ -263,7 +259,7 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
   grid-area: replies;
-  width: fill;
+  width: stretch;
 
 }
 </style>

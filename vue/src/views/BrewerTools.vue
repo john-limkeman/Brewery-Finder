@@ -32,7 +32,7 @@ export default {
       }
     },
     finished(){
-      this.RenderKey += 1;
+      this.RenderKey += 1; // key for my emit-method re-rendering. Not operational on this component at this time.
     }
     
        

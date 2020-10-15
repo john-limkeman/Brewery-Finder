@@ -15,7 +15,7 @@
         type="text"
         name="type"
         placeholder="Type"
-      />
+      /> 
       <br />
       <label for="description">Description</label>
       <input
@@ -50,10 +50,16 @@
       />
       <br />
 
-      <button class="btn btn-primary" v-on:click="saveBeer" v-if="this.$route.params.beerId == null">
+      <button
+        class="btn btn-primary"
+        v-on:click="saveBeer"
+        v-if="this.$route.params.beerId == null"
+      >
         Add
       </button>
-      <button class="btn btn-primary" v-on:click="updateBeer" v-else>Update</button>
+      <button class="btn btn-primary" v-on:click="updateBeer" v-else>
+        Update
+      </button>
       <button class="btn btn-primary" v-on:click="cancel">Cancel</button>
     </form>
   </div>
@@ -66,42 +72,46 @@ export default {
   data() {
     return {
       newBeer: {
-          breweryId: this.$route.params.id,
+        breweryId: this.$route.params.id,
       },
     };
   },
   methods: {
     saveBeer() {
+      //checks if user is brewer or admin, creates beer in DB and sends user to their logical page
       breweryService.addBeer(this.newBeer);
-      if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
-        window.alert(`${this.newBeer.name} has been created!`)
+      if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
+        window.alert(`${this.newBeer.name} has been created!`);
         this.$router.push({ name: "BrewerTools" });
-      }else{
-      this.$router.push({ name: "BreweryBeers" });
+      } else {
+        this.$router.push({ name: "BreweryBeers" });
       }
     },
     updateBeer() {
+      //same process but with updating a current beer
       breweryService.updateBeer(this.newBeer);
-      if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
+      if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
         this.$router.push({ name: "BrewerTools" });
-      }else{
-      this.$router.push({ name: "BreweryBeers" });
+      } else {
+        this.$router.push({ name: "BreweryBeers" });
       }
     },
     cancel() {
-      if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
+      //sends user back to where they came from
+      if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
         this.$router.push({ name: "BrewerTools" });
-      }else{
-      this.$router.push({ name: "BreweryBeers" });
+      } else {
+        this.$router.push({ name: "BreweryBeers" });
       }
     },
   },
   created() {
+    //populates local beer data from route param
     if (this.$route.params.beerId != null) {
       breweryService.getBeerById(this.$route.params.beerId).then((response) => {
         this.newBeer = response.data;
       });
-    } 
+    }
   },
 };
 </script>
