@@ -35,7 +35,7 @@
         required
       />
       <br />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link :to="{ name: 'register' }" class="navlink">Need an account?</router-link>
       <button type="submit" class="btn btn-lg btn-primary btn-block">
         Sign in
       </button>
