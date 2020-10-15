@@ -20,7 +20,11 @@ export default {
             BreweryService.deleteBeer(beer.id).then(
                 () => {
             window.alert(`${beer.name} has been deleted!`)
+            if(this.$store.state.user.authorities[0].name == "ROLE_BREWER"){
             this.$router.push({name : 'BrewerTools'})
+            } else{
+                this.$router.push({name : 'AdminTools'})
+            }
             }
             )},
         Cancel(){
