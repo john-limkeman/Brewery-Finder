@@ -1,7 +1,6 @@
 <template>
+<!-- this is only used by admin tools -->
   <div class="breweryFormComponent">
-    <p>Hi
-</p>
     <form id="newBreweryForm">
       <label for="name">Brewery name</label>
       <input

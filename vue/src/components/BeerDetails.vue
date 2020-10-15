@@ -39,6 +39,7 @@
     </router-link>
     <div id="reviewListContainer">
       <ReviewList />
+      <!-- link to component holding all reviews for this beer -->
     </div>
   </div>
 </template>
@@ -55,6 +56,7 @@ export default {
   },
   computed: {
     setStatus() {
+      // checks if beer is set to active, determines which string to display
       if (this.beer.current) {
         return "This beer is currently on tap!";
       } else {
@@ -64,11 +66,13 @@ export default {
   },
   methods: {
     getBrewery() {
+      //populates local brewery data based on this beer
       breweryServices.getBreweryById(this.beer.breweryId).then((response) => {
         this.brewery = response.data;
       });
     },
     isAdmin() {
+      // checks if current user is admin
       if (this.$store.state.logIn) {
         if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN") {
           return true;
@@ -79,6 +83,7 @@ export default {
     },
   },
   created() {
+    // populates local beer info based on route
     breweryServices.getBeerById(this.$route.params.id).then((response) => {
       this.beer = response.data;
     });

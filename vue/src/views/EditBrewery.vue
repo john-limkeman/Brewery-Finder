@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import breweryForm from "../components/BreweryFrom";
+import breweryForm from "../components/BreweryForm";
 import breweryService from "../services/BreweryService";
 export default {
   data() {
