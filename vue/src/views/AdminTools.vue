@@ -4,7 +4,7 @@
       <button class="btn btn-primary adminBtnBtn"  v-on:click="addBrewery">Add a brewery</button>
       <button class="btn btn-primary adminBtnBtn" v-on:click="viewAllUsers">View all users</button>
     </div>
-      <pending-brewer-request class="pendingBrewer" />
+      <pending-brewer-request class="pendingBrewer"  :key='ComponentRender' v-on:finished='finished()'/>
       <pending-brewery-request class="pendingBrewery" />
       <processed-brewer-reuest class="processedBrewer" />
       <processed-brewery-request class="processedBrewery" />
@@ -17,6 +17,11 @@ import PendingBreweryRequest from "../components/PendingBreweryRequests.vue"
 import ProcessedBrewerReuest from "../components/ProcessedBrewerRequests.vue"
 import ProcessedBreweryRequest from "../components/ProcessedBreweryRequests.vue"
 export default {
+  data(){
+    return{
+      ComponentRender : 0
+    }
+  },
     components: {
         PendingBrewerRequest,
         PendingBreweryRequest,
@@ -29,8 +34,11 @@ export default {
       },
       viewAllUsers() {
         this.$router.push({name: 'AllUsers'})
-      }
+      },
+    finished(){
+      this.ComponentRender += 1;
     }
+    },
 }
 </script>
 

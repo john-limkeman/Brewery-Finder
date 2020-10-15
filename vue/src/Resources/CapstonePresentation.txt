@@ -11,3 +11,10 @@ Order of Events:
 9. Login as Admin -> delete DannyDevito -> delete Paddy's Pub
 
 Am I missing anything?
+
+ this.$emit('finished');
+ :key='ComponentRender' v-on:finished='finished()'
+ ComponentRender : 0
+   finished(){
+      this.ComponentRender += 1;
+    }
