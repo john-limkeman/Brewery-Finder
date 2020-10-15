@@ -53,18 +53,25 @@
 <script>
 import BreweryService from "@/services/BreweryService.js";
 export default {
-  data() {
-    return {
-      newNews: {
-        breweryId: this.$route.params.id,
-      },
-      brewery: {},
-    };
-  },
-  created() {
-    BreweryService.getBreweryById(this.newNews.breweryId).then((response) => {
-      this.brewery = response.data;
-    });
+    data() {
+        return{
+            newNews:{
+                breweryId: this.$route.params.id,
+            },
+            brewery:{},
+
+        };
+    },
+     created() {
+    if (this.$route.params.newsId != null) {
+      BreweryService.getNewsByNewsId(this.$route.params.newsId).then((response) => {
+        this.newNews = response.data;
+      });
+    } 
+      BreweryService.getBreweryById(this.newNews.breweryId).then((response) => {
+        this.brewery = response.data;
+      });
+    
   },
   methods: {
     addNews() {
@@ -79,9 +86,9 @@ export default {
         this.$router.push({ name: "BreweryBeers" });
       }
     },
-    updateNews() {
-      BreweryService.updateNews(this.newNews);
-      if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
+     updateNews() {
+      BreweryService.updateNews(this.newNews.newsId, this.newNews);
+      if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
         this.$router.push({ name: "BrewerTools" });
       } else {
         this.$router.push({ name: "BreweryBeers" });

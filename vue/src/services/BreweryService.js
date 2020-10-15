@@ -86,8 +86,8 @@ export default {
     addNews(news){
         return http.post('/addNews', news)
     },
-    updateNews(newsid, news){
-        return http.put(`/updateNews/${newsid}`, news);
+    updateNews(news){
+        return http.put(`/updateNews/`, news);
     },
     getAllNews() {
         return http.get("/allNews")
@@ -97,6 +97,9 @@ export default {
     },
     getBreweryByName(name) {
         return http.get(`/getBreweryByName/${name}`)
+    },
+    getNewsByNewsId(newsId){
+        return http.get(`/getNewsById/${newsId}`)
     },
     getFavoritesByUser(id){
         return http.get(`/favorite/${id}`)
