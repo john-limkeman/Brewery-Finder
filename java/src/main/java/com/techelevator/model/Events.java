@@ -1,5 +1,5 @@
 package com.techelevator.model;
-
+//model for brewery events
 public class Events {
 
 	private long event_id;

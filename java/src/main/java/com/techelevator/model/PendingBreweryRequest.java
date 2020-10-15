@@ -1,5 +1,5 @@
 package com.techelevator.model;
-
+//model for pending brewery request
 public class PendingBreweryRequest {
 	
 	private long id;

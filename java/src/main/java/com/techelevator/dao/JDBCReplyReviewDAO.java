@@ -25,6 +25,7 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 		}
 		return output;
 	}
+
 	// Communicates with database to get all replies by specific user
 	@Override
 	public List<ReplyReview> getReplysByUserId(Long userId) {
@@ -36,6 +37,7 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 		}
 		return output;
 	}
+
 	// Communicates with database to get all replies by specific review
 	@Override
 	public List<ReplyReview> getReplysByReviewId(Long reviewId) {
@@ -47,19 +49,22 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 		}
 		return output;
 	}
-	// creates new reply in database 
+
+	// creates new reply in database
 	@Override
 	public void addReplyReview(ReplyReview replyReview) {
 		String sql = "INSERT INTO reply_review (user_id, review_id, title, reply) VALUES (?,?,?,?);";
 		jdbcTemplate.update(sql, replyReview.getUserId(), replyReview.getReviewId(), replyReview.getTitle(),
 				replyReview.getReply());
 	}
-	// deletes reply in database 
+
+	// deletes reply in database
 	@Override
 	public void deleteReplyReview(ReplyReview replyReview) {
 		String sql = "DELETE FROM reply_review WHERE id = ?";
 		jdbcTemplate.update(sql, replyReview.getId());
 	}
+
 	// maps data to object by using database column name in table reply_review
 	private ReplyReview mapRowToReply(SqlRowSet results) {
 		ReplyReview request = new ReplyReview();
@@ -70,8 +75,8 @@ public class JDBCReplyReviewDAO implements ReplyReviewDAO {
 		request.setReply(results.getString("reply"));
 		try {
 			request.setUsername(results.getString("username"));
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 		return request;
 	}
