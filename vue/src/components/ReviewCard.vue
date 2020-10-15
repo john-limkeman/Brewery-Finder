@@ -34,7 +34,7 @@
         <button
           class="btn btn-primary"
           id="review-reply"
-          v-on:click="ChangeVis"
+          v-on:click="ChangeVis" v-if="isBrewer()"
         >
           Add Reply
         </button>
@@ -102,6 +102,15 @@ export default {
     isAdmin() {
       if (this.$store.state.logIn) {
         if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN") {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    },
+       isBrewer() {
+      if (this.$store.state.logIn) {
+        if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
           return true;
         }
       } else {

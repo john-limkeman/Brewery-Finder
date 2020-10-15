@@ -19,7 +19,7 @@
       <p id="description">
         {{ brewery.description }}
       </p>
-      <a class="navlink" v-bind:href="brewery.brewery_url">Web site</a> <br />
+      <a class="navlink" target="blank" v-bind:href="brewery.brewery_url">Web site</a> <br />
       <br />
       <a
         target="blank"
