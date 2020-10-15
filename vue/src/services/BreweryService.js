@@ -132,7 +132,6 @@ export default {
         return http.delete(`/brewery/${id}`)
     },
     deleteReplies(replyReview) {
-        console.log(replyReview)
         return http.delete("/replies", replyReview)
     },
     getAllEvents(){

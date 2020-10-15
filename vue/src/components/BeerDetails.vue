@@ -77,8 +77,6 @@ export default {
   created() {
     breweryServices.getBeerById(this.$route.params.id).then((response) => {
       this.beer = response.data;
-      console.log(this.beer.breweryId);
-      console.log(this.$store.state.logIn);
     });
   },
   components: {

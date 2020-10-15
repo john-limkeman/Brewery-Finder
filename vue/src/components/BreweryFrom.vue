@@ -97,7 +97,6 @@ export default {
               this.newBrewery = response.data;
             }
           );
-     console.log(this.brewid)
     }    
   },
   methods: {
@@ -106,7 +105,6 @@ export default {
       this.$router.push({ name: "BreweryList" });
     },
     addBrewery() {
-      console.log(this.newBrewery)
       breweryService.addBrewery(this.newBrewery);
       this.$router.push({ name: "BreweryList" });
     },
