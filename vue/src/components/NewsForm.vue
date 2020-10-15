@@ -39,7 +39,7 @@
             Update
           </button>
           <button
-            class="btn btn-primary newsBtnBtn"
+            class="btn btn-danger newsBtnBtn"
             v-on:click.prevent="cancel"
           >
             Cancel
