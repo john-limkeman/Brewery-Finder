@@ -310,7 +310,6 @@ export default {
         this.$emit("finished");
       });
     },
-
     //NEWS METHODS
     getCurrentNews(item) {
       console.log(item);
@@ -378,6 +377,7 @@ export default {
   align-items: flex-start;
   justify-content: space-between;
   height: 100%;
+  min-height: 550px;
 }
 #BrewBeerList {
   display: flex;
@@ -415,7 +415,7 @@ export default {
 #brewerInsiderBox button {
   margin: 5px;
 }
-#brewerInsiderBox img {
+#brewerInsiderBox > img {
   position: absolute;
   left: 50%;
   right: 50%;
@@ -429,7 +429,6 @@ export default {
   font-family: "Bungee Inline";
   font-size: 30px;
 }
-
 #route:hover {
   color: whitesmoke;
 }
