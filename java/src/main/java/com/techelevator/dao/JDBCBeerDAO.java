@@ -111,7 +111,7 @@ public class JDBCBeerDAO implements BeerDAO {
 
 		return topFiveList;
 	}
-	// maps data to Java by using database column name in table beers
+	// maps data to java object by using database column name in table beers
 	private Beer mapRowToBeer(SqlRowSet row) {
 
 		Beer beer = new Beer();
