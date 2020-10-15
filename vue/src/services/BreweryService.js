@@ -83,6 +83,12 @@ export default {
     getNewsByBrewery(breweryId){
         return http.get(`/news/${breweryId}`)
     },
+    addNews(news){
+        return http.post('/news', news)
+    },
+    updateNews(news){
+        return http.put('/news', news);
+    },
     getBreweryByName(name) {
         return http.get(`/getBreweryByName/${name}`)
     },

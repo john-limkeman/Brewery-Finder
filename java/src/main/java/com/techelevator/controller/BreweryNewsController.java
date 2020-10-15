@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,18 @@ public class BreweryNewsController {
 	public void deleteNews(@PathVariable Long id){
 		dao.deleteNews(id);
 	}
+	
+	@RequestMapping(path = "/addNews", method = RequestMethod.POST)
+	public void addNews(@RequestBody BreweryNews news) {
+		dao.addNews(news);
+	}
+	
+	@RequestMapping(path = "/updateNews", method = RequestMethod.PUT)
+	public void updateNews(@RequestBody BreweryNews news) {
+		dao.updateNews(news);
+	}
+	
+	
 	
 	
 }

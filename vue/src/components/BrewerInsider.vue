@@ -37,10 +37,32 @@
           </button>
         </p>
       </div>
+      <H4>NEWS</H4>
+      <div v-for="item in news" v-bind:key="item.newsId" id="beerSideBar">
+        <p>{{ event.event_title }} &nbsp;</p>
+
+        <p>
+          <button
+            class="btn btn-primary"
+            v-on:click.prevent="getCurrentNews(item)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-danger"
+            v-on:click.prevent="deleteNews(item)"
+          >
+            Delete
+          </button>
+        </p>
+      </div>
       <div id="BTbuttons">
         <button class="btn btn-primary" v-on:click="addBeer()">Add Beer</button>
         <button class="btn btn-primary" v-on:click="toggleVisEvent()">
           Add Event
+        </button>
+        <button class="btn btn-primary" v-on:click="addNews()">
+          Add News
         </button>
         <button
           class="btn btn-primary"
@@ -188,8 +210,11 @@ export default {
       brewery: {},
       VisUpdate: false,
       VisEvent: false,
+      VisNews: false,
       events: [],
       currentEvent: {},
+      news:[],
+      currentNews: {},
     };
   },
   // watch:{
@@ -268,7 +293,11 @@ export default {
       BreweryService.updateEvent(event).then(() => {
         this.VisEvent = false;
       });
-      // update event in DB
+      
+    },
+    addNews(){
+      this.currentNews = {};
+      this.$router.push({ name: "AddNews", params: { id: this.brewery.id } });
     },
     toggleVisUpdate() {
       if (this.VisUpdate == true) {
@@ -287,6 +316,7 @@ export default {
         this.VisEvent = true;
       }
     },
+
   },
   created() {
     BreweryService.getBreweryByBrewer(this.$store.state.user.id).then(
@@ -297,6 +327,10 @@ export default {
           this.currentBeer = {};
           BreweryService.getEventsById(this.brewery.id).then((response) => {
             this.events = response.data;
+            BreweryService.getNewsByBrewery(this.brewery.id).then((response) => {
+              this.news = response.data;
+              this.currentBeer = {};
+            });
           });
         });
       }
