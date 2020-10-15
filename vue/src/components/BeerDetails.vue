@@ -12,6 +12,17 @@
     >
       Edit
     </button>
+         <button
+      class="btn btn-danger"
+      id="editBeerButton"
+      v-if="isAdmin()"
+      v-bind:to="{
+        name: 'ConfirmDelete',
+        params: { beerId: this.beer.id },
+      }"
+    >
+      Delete
+    </button>
       {{ beer.name }} <br />
       <span v-bind="getBrewery()">
         <router-link

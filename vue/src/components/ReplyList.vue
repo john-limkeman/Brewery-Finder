@@ -12,7 +12,7 @@ import ReplyCard from '@/components/ReplyCard.vue'
 export default {
     data(){
         return{
-            AllReplies : this.replies
+            AllReplies : this.replies,
         }
     },
     props: ['replies'],
@@ -22,7 +22,6 @@ export default {
       watch: {
     replies: function(newVal, oldVal) { // watch it
           console.log('Prop changed: ', newVal, ' | was: ', oldVal);
-        this.AllReplies = this.replies;
     }    
   },
 }
