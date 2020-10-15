@@ -43,7 +43,11 @@ export default {
         };
     },
      created() {
-    
+    if (this.$route.params.newsId != null) {
+      BreweryService.getNewsByNewsId(this.$route.params.newsId).then((response) => {
+        this.newNews = response.data;
+      });
+    } 
       BreweryService.getBreweryById(this.newNews.breweryId).then((response) => {
         this.brewery = response.data;
       });
@@ -65,7 +69,7 @@ export default {
       }
     },
      updateNews() {
-      BreweryService.updateNews(this.newNews);
+      BreweryService.updateNews(this.newNews.newsId, this.newNews);
       if (this.$store.state.user.authorities[0].name == 'ROLE_BREWER'){
         this.$router.push({ name: "BrewerTools" });
       }else{

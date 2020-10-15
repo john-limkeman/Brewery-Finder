@@ -14,4 +14,6 @@ public interface BreweryNewsDAO {
 	public void updateNews(BreweryNews news);
 	
 	public void addNews(BreweryNews news);
+	
+	public BreweryNews getNewsByNewsId(Long newsId);
 }
