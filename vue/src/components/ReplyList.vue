@@ -22,6 +22,7 @@ export default {
       watch: {
     replies: function(newVal, oldVal) { // watch it
           console.log('Prop changed: ', newVal, ' | was: ', oldVal);
+          this.AllReplies = this.replies;
     }    
   },
 }

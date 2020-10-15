@@ -2,7 +2,6 @@
   <div>
     <h3>Reviews</h3>
     <div v-for="card in reviews" v-bind:key="card.id">
-      <!-- loop through every review and populate a reviewCard for it -->
       <ReviewCard v-bind:chosen="card"> </ReviewCard>
     </div>
     <div>
