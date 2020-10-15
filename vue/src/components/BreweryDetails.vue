@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="breweryInfo"
-    class="container text-center col-xl-12 mx-auto rounded"
-  >
+  <div id="breweryInfo" class="container text-center col-xl-12 mx-auto rounded">
     <div class="flexLeft">
       <img v-bind:src="brewery.image" width="180px" height="auto" />
     </div>
@@ -24,11 +21,16 @@
       </p>
       <a class="navlink" v-bind:href="brewery.brewery_url">Web site</a> <br />
       <br />
-      <a target="blank" class="navlink" v-bind:href="directions + brewery.address">Directions</a>
+      <a
+        target="blank"
+        class="navlink"
+        v-bind:href="directions + brewery.address"
+        >Directions</a
+      >
       <router-link
         class="navlink"
         v-bind:to="{ name: 'UpdateBrewery', params: { id: brewery.id } }"
-        v-if="isAdmin()" 
+        v-if="isAdmin()"
       >
         Update Brewery
       </router-link>
@@ -36,19 +38,43 @@
       <router-link
         class="navlink"
         v-bind:to="{ name: 'AddBeer', params: { id: brewery.id } }"
-        v-if="isAdmin()" 
+        v-if="isAdmin()"
       >
         Add Beer
       </router-link>
       <br />
-      <span class="navlink" v-if="brewery.brewerId == ''" v-on:click="brewerRequest">
+      <span
+        class="navlink"
+        v-if="brewery.brewerId == ''"
+        v-on:click="sendBrewerRequest"
+      >
         Claim this brewery
       </span>
-      <button id='RemoveFavoriteBtn' class="btn btn-primary" v-if='isFavorite && this.$store.state.logIn' v-on:click.prevent='toggleFavorite'>Unfavorite</button>
-      <button id='MakeFavoriteBtn' class="btn btn-primary" v-else-if="this.$store.state.logIn" v-on:click.prevent='toggleFavorite'>Favorite</button>
-      <button id="deleteBrewery" class="btn btn-danger" v-on:click="deleteBrewery(brewery.id)" v-if="isAdmin()" >Delete brewery</button>
+      <button
+        id="RemoveFavoriteBtn"
+        class="btn btn-primary"
+        v-if="isFavorite && this.$store.state.logIn"
+        v-on:click.prevent="toggleFavorite"
+      >
+        Unfavorite
+      </button>
+      <button
+        id="MakeFavoriteBtn"
+        class="btn btn-primary"
+        v-else-if="this.$store.state.logIn"
+        v-on:click.prevent="toggleFavorite"
+      >
+        Favorite
+      </button>
+      <button
+        id="deleteBrewery"
+        class="btn btn-danger"
+        v-on:click="deleteBrewery(brewery.id)"
+        v-if="isAdmin()"
+      >
+        Delete brewery
+      </button>
     </div>
-   
   </div>
 </template>
 
@@ -60,7 +86,8 @@ export default {
     return {
       brewery: {},
       directions: "https://www.google.com/maps/place/",
-      isFavorite: false
+      isFavorite: false,
+      brewerRequest: {},
     };
   },
   created() {
@@ -69,20 +96,22 @@ export default {
       BreweryService.getFavoritesByUser(this.$store.state.user.id).then(
         (response) => {
           let results = response.data;
-          for (let i = 0; i < results.length; i++){
-            if (results[i].brewery_id == this.brewery.id){
-                this.isFavorite = true;
+          for (let i = 0; i < results.length; i++) {
+            if (results[i].brewery_id == this.brewery.id) {
+              this.isFavorite = true;
             }
           }
         }
-      )
+      );
     });
   },
   methods: {
-    brewerRequest() {
-      BreweryService.brewerRequest(
+    sendBrewerRequest() {
+      this.brewerRequest.userId = this.$store.state.user.id;
+      this.brewerRequest.username = this.$store.state.user.username;
+      BreweryService.sendBrewerRequest(
         this.$route.params.id,
-        this.$store.state.user
+        this.brewerRequest
       ).then((response) => {
         if (response.status === 200) {
           alert("Request Sent");
@@ -91,33 +120,38 @@ export default {
     },
     isAdmin() {
       if (this.$store.state.logIn) {
-        if (this.$store.state.user.authorities[0].name == 'ROLE_ADMIN') {
+        if (this.$store.state.user.authorities[0].name == "ROLE_ADMIN") {
           return true;
         }
       } else {
         return false;
       }
     },
-    toggleFavorite(){
-      if (this.isFavorite == true){
-        BreweryService.deleteFavorite(this.$store.state.user.id, this.brewery.id).then(
-          () => {
-            this.isFavorite = false;
-          }
-        )
-      }else {
-        BreweryService.addFavorite(this.$store.state.user.id, this.brewery.id).then(
-          () => {
-            this.isFavorite = true;
-          }
-        )
+    toggleFavorite() {
+      if (this.isFavorite == true) {
+        BreweryService.deleteFavorite(
+          this.$store.state.user.id,
+          this.brewery.id
+        ).then(() => {
+          this.isFavorite = false;
+        });
+      } else {
+        BreweryService.addFavorite(
+          this.$store.state.user.id,
+          this.brewery.id
+        ).then(() => {
+          this.isFavorite = true;
+        });
       }
     },
     deleteBrewery(id) {
-      this.$router.push({ name: "AdminConfirmDeleteBrewery", params:{id: id}})
-    }
+      this.$router.push({
+        name: "AdminConfirmDeleteBrewery",
+        params: { id: id },
+      });
+    },
   },
-  components: {  }
+  components: {},
 };
 </script>
 

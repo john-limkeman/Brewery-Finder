@@ -101,9 +101,9 @@ public class UserSqlDAO implements UserDAO {
 
 	// creates new brewer request for users to become brewers
 	@Override
-	public void newBrewer(long breweryId, User user) {
-		String sqlInsert = "INSERT INTO brewer_request (user_id, username, brewery_id, processed) VALUES (?, ?, ?, false)";
-		jdbcTemplate.update(sqlInsert, user.getId(), user.getUsername(), breweryId);
+	public void newBrewer(long breweryId, BrewerRequest user) {
+		String sqlInsert = "INSERT INTO brewer_request (user_id, username, breweryId, processed) VALUES (?, ?, ?, false)";
+		jdbcTemplate.update(sqlInsert, user.getUserId(), user.getUsername(), breweryId);
 
 	}
 
