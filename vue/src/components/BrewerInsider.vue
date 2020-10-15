@@ -3,6 +3,7 @@
     id="brewerInsiderBox"
     class="container text-center col-xl-12 mx-auto border border-dark rounded"
   >
+  <!-- div including the sidebar of beers, events, news, and buttons -->
     <div id="BrewBeerList">
       <router-link
         id="route"
@@ -230,6 +231,7 @@ export default {
       return id;
     },
     picVis() {
+      //determines if logo should display
       if (this.VisEvent == false && this.VisUpdate == false) {
         return true;
       } else {
@@ -239,6 +241,7 @@ export default {
   },
   methods: {
     getCurrentBeer(beer) {
+      //when a beer's button is clicked, this insures we are working with the correct beer data
       this.currentBeer = beer;
       this.$router.push({
         name: "UpdateBeer",
@@ -246,10 +249,12 @@ export default {
       });
     },
     addBeer() {
+      //empties current beer properties and pushes to component to add beer
       this.currentBeer = {};
       this.$router.push({ name: "AddBeer", params: { id: this.brewery.id } });
     },
     deleteBeer(beer) {
+      //load currentBeer and pushes to confirmation page
       this.currentBeer = beer;
       this.$router.push({
         name: "ConfirmDelete",
@@ -257,13 +262,16 @@ export default {
       });
     },
     clearBreweryForm() {
+      //hides update form
       this.VisUpdate = false;
     },
     clearEventForm() {
+      //hides event form
       this.currentEvent = {};
       this.VisEvent = false;
     },
     updateBrewery() {
+      //sends out update info, then pushes user to their breweries display page to see results
       BreweryService.updateBrewery(this.brewery);
       this.$router.push({
         name: "BreweryBeers",
@@ -271,20 +279,21 @@ export default {
       });
     },
     getCurrentEvent(event) {
+      //to acquire selected event data and display edit form
       this.currentEvent = event;
       this.VisUpdate = false;
       this.VisEvent = true;
-      //to acquire current event and display edit form
     },
     deleteEvent(event) {
+      // sends chosen event data to confirmation page to delete event
       this.currentEvent = event;
       this.$router.push({
         name: "ConfirmDeleteEvent",
         params: { eventId: this.currentEvent.event_id },
       });
-      //to delete event from DB
     },
     addEvent() {
+      // grabs current brewery info
       this.currentEvent.brewery_id = this.brewery.id;
       BreweryService.createEvent(this.currentEvent).then(() => {
         this.VisEvent = false;
