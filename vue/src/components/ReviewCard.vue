@@ -47,7 +47,7 @@
         </button>
         <form
           id="review-reply-text"
-          v-on:submit.prevent="addReply"
+          v-on:submit.prevent="addReply()"
           v-if="visibility"
         >
           <label for="title">Title</label>
@@ -108,7 +108,7 @@ export default {
         return false;
       }
     },
-       isBrewer() {
+    isBrewer() {
       if (this.$store.state.logIn) {
         if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
           return true;
