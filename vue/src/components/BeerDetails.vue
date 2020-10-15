@@ -1,6 +1,17 @@
 <template>
   <div id="beerInfo" class="container text-center col-xl-12 mx-auto rounded">
-    <h2 id="beer-name-brewery">
+    <h2 id="beer-name-brewery" >
+          <button
+      class="btn btn-primary"
+      id="editBeerButton"
+      v-if="isAdmin()"
+      v-bind:to="{
+        name: 'UpdateBeer',
+        params: { id: beer.breweryId, beerId: beer.id },
+      }"
+    >
+      Edit
+    </button>
       {{ beer.name }} <br />
       <span v-bind="getBrewery()">
         <router-link
@@ -25,18 +36,6 @@
       </li>
     </ul>
     <p id="beerDesc">{{ beer.description }}</p>
-
-    <router-link
-      class="navlink"
-      id="editBeerButton"
-      v-if="isAdmin()"
-      v-bind:to="{
-        name: 'UpdateBeer',
-        params: { id: beer.breweryId, beerId: beer.id },
-      }"
-    >
-      Edit this beer
-    </router-link>
     <div id="reviewListContainer">
       <ReviewList />
       <!-- link to component holding all reviews for this beer -->
@@ -139,6 +138,7 @@ li {
   margin-top: 40px;
   grid-area: name;
   align-self: start;
+   justify-content: flex-start;
 }
 #beer-stats {
   grid-area: type;
@@ -151,15 +151,15 @@ li {
   grid-area: desc;
 }
 #editBeerButton {
-  grid-area: type;
-  align-self: start;
-  justify-self: right;
-  margin: 50px;
-  border: solid #630f0f 2px;
-  padding: 5px;
-  color: #630f0f;
+  font-size: 10px;
+  margin-right: 50%;
+   margin-left: 40%;
+  margin-bottom: 20px;
+  z-index: 10;
 }
 #reviewListContainer {
   grid-area: review;
 }
+
+
 </style>
