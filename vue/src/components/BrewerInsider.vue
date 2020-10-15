@@ -317,8 +317,8 @@ export default {
     },
     deleteNews(news){
       this.$router.push({
-        name: "ConfirmDeleteEvent",
-        params: { eventId: news.newsId },
+        name: "DeleteNews",
+        params: { newsId: news.newsId },
       });
     },
     toggleVisUpdate() {

@@ -95,11 +95,11 @@ export default {
     deleteNews(id){
         return http.delete(`/news/${id}`)
     },
-    getBreweryByName(name) {
-        return http.get(`/getBreweryByName/${name}`)
-    },
     getNewsByNewsId(newsId){
         return http.get(`/getNewsById/${newsId}`)
+    },
+    getBreweryByName(name) {
+        return http.get(`/getBreweryByName/${name}`)
     },
     getFavoritesByUser(id){
         return http.get(`/favorite/${id}`)
