@@ -78,6 +78,7 @@ export default {
   },
   methods: {
     saveBeer() {
+      //checks if user is brewer or admin, creates beer in DB and sends user to their logical page
       breweryService.addBeer(this.newBeer);
       if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
         window.alert(`${this.newBeer.name} has been created!`);
@@ -87,6 +88,7 @@ export default {
       }
     },
     updateBeer() {
+      //same process but with updating a current beer
       breweryService.updateBeer(this.newBeer);
       if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
         this.$router.push({ name: "BrewerTools" });
@@ -95,6 +97,7 @@ export default {
       }
     },
     cancel() {
+      //sends user back to where they came from
       if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
         this.$router.push({ name: "BrewerTools" });
       } else {
@@ -103,6 +106,7 @@ export default {
     },
   },
   created() {
+    //populates local beer data from route param
     if (this.$route.params.beerId != null) {
       breweryService.getBeerById(this.$route.params.beerId).then((response) => {
         this.newBeer = response.data;

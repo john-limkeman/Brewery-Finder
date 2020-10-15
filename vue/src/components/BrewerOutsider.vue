@@ -85,6 +85,7 @@
         <br />
       </form>
     </div>
+    <!-- displays message after form is submitted -->
     <div v-if="!vis">
       <h3>Thanks for submitting your request!</h3>
       <p>Our team will review your request and will be reaching out shortly.</p>
@@ -107,6 +108,7 @@ export default {
       this.$router.push("/");
     },
     SendRequest() {
+      //creates request in DB for admin, shows message
       this.newBrewery.userId = this.$store.state.user.id;
       this.newBrewery.processed = false;
       BreweryService.SendPendingBreweryRequest(this.newBrewery).then(() => {
@@ -116,6 +118,7 @@ export default {
     },
   },
   created() {
+    //sets form visible and empty
     this.vis = true;
     this.newBrewery = {};
   },
