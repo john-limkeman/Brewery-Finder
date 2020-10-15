@@ -87,7 +87,7 @@ export default {
         return http.post('/addNews', news)
     },
     updateNews(news){
-        return http.put(`/updateNews/`, news);
+        return http.put(`/updateNews`, news);
     },
     getAllNews() {
         return http.get("/allNews")

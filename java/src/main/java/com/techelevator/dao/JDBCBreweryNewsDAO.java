@@ -62,10 +62,13 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 		
 	@Override
 	public BreweryNews getNewsByNewsId(Long newsId) {
+		BreweryNews news = new BreweryNews();
 		String sqlInsert = "SELECT * from brewery_news where newsid = ?";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlInsert, newsId);
-		
-		return mapRowToBreweryNews(result);
+		while(result.next()) {
+			news = mapRowToBreweryNews(result);
+		}
+		return news;
 	}
 	
 	// maps data to object by using database column name in table brewery_news
