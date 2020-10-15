@@ -39,8 +39,8 @@ public class BreweryNewsController {
 		dao.addNews(news);
 	}
 	
-	@RequestMapping(path = "/updateNews", method = RequestMethod.PUT)
-	public void updateNews(@RequestBody BreweryNews news) {
+	@RequestMapping(path = "/updateNews/{newsid}", method = RequestMethod.PUT)
+	public void updateNews(@PathVariable long newsid, @RequestBody BreweryNews news) {
 		dao.updateNews(news);
 	}
 	
