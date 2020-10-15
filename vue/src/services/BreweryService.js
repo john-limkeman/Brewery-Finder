@@ -49,9 +49,8 @@ export default {
     getUser(userId) {
         return http.get(`/user/${userId}`)
     },
-    sendBrewerRequest(breweryId, user) {
-        return http.post(`/brewery/${breweryId}`, user)
-
+    sendBrewerRequest(id, user) {
+        return http.post(`/brewerRequest/${id}`, user)
     },
     getReviewByUser(userId) {
         return http.get(`/user/${userId}/reviews`)

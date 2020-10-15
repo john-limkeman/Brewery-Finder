@@ -65,8 +65,8 @@ public class BreweryController {
 	}
 
 	// controller to let user request to be a brewer
-	@RequestMapping(path = "/brewery/{id}", method = RequestMethod.POST)
-	public void sendBrewerRequest(@PathVariable long id, @RequestBody User user) {
+	@RequestMapping(path = "/brewerRequest/{id}", method = RequestMethod.POST)
+	public void sendBrewerRequest(@PathVariable long id, @RequestBody BrewerRequest user) {
 		userDao.newBrewer(id, user);
 	}
 

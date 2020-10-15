@@ -34,7 +34,7 @@
         <button
           class="btn btn-primary"
           id="review-reply"
-          v-on:click="ChangeVis"
+          v-on:click="ChangeVis" v-if="isBrewer()"
         >
           Add Reply
         </button>
@@ -108,6 +108,15 @@ export default {
         return false;
       }
     },
+       isBrewer() {
+      if (this.$store.state.logIn) {
+        if (this.$store.state.user.authorities[0].name == "ROLE_BREWER") {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    },
     deleteReview(review) {
       BreweryService.deleteReview(review).then(() => {});
     },
@@ -119,7 +128,7 @@ export default {
       }
     },
     pushUser() {
-      this.$router.push({ name: "UserPage" });
+      this.$router.push({ name: "BrewerTools" });
     },
     addReply() {
       this.reply.replyDate = new Date();
