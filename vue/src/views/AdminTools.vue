@@ -4,10 +4,10 @@
       <button class="btn btn-primary adminBtnBtn"  v-on:click="addBrewery">Add a brewery</button>
       <button class="btn btn-primary adminBtnBtn" v-on:click="viewAllUsers">View all users</button>
     </div>
-      <pending-brewer-request class="pendingBrewer"  :key='ComponentRender' v-on:finished='finished()'/>
-      <pending-brewery-request class="pendingBrewery" :key='BreweryRenderKey' v-on:finishedBrewery='finishedBrewery()'/>
-      <processed-brewer-reuest class="processedBrewer" />
-      <processed-brewery-request class="processedBrewery" />
+      <pending-brewer-request class="pendingBrewer"  :key='BrewerPendingKey' v-on:finished='finished()'/>
+      <pending-brewery-request class="pendingBrewery" :key='BreweryPendingKey' v-on:finishedBrewery='finishedBrewery()'/>
+      <processed-brewer-reuest class="processedBrewer" :key='BrewerProcessedKey' v-on:finished='finished()'/>
+      <processed-brewery-request class="processedBrewery" :key='BreweryProcessedKey' v-on:finishedBrewery='finishedBrewery()'/>
   </div>
 </template>
 
@@ -19,8 +19,10 @@ import ProcessedBreweryRequest from "../components/ProcessedBreweryRequests.vue"
 export default {
   data(){
     return{
-      ComponentRender : 0,
-      BreweryRenderKey: 0
+      BreweryPendingKey : 0,
+      BrewerPendingKey : 0,
+      BrewerProcessedKey: 0,
+      BreweryProcessedKey: 0
     }
   },
     components: {
@@ -37,10 +39,12 @@ export default {
         this.$router.push({name: 'AllUsers'})
       },
     finished(){
-      this.ComponentRender += 1;
+      this.BrewerPendingKey += 1;
+      this.BrewerProcessedKey += 1
     },
     finishedBrewery(){
-      this.BreweryRenderKey += 1;
+      this.BreweryProcessedKey += 1;
+      this.BreweryPendingKey += 1;
     }
     },
 }

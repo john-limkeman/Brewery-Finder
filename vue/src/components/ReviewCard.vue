@@ -119,7 +119,7 @@ export default {
       }
     },
     pushUser() {
-      this.$router.push({ name: "UserPage" });
+      this.$router.push({ name: "BrewerTools" });
     },
     addReply() {
       this.reply.replyDate = new Date();
