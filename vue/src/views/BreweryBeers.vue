@@ -40,15 +40,11 @@ export default {
     BreweryNews,
     BreweryEvents,
   },
+  // Pulls all beers from a single brewery when given a brewery id
   created() {
     BreweryService.getBeerByBrewery(this.$route.params.id).then((response) => {
       this.beers = response.data;
     });
-  },
-  methods: {
-    addBeer() {
-      this.$router.push();
-    },
   },
 };
 </script>

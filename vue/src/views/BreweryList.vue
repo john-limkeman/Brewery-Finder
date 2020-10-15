@@ -12,7 +12,6 @@
             class="brewery-name"
           >
         <img v-bind:src="brewery.image" width="180px" height="auto" />
-           
           </router-link>
         </h3>
       </div>
@@ -32,7 +31,6 @@
 
 <script>
 import BreweryService from "@/services/BreweryService.js";
-
 export default {
   name: "BreweryList",
   data() {
@@ -42,6 +40,7 @@ export default {
     };
   },
   computed: {
+    // Sorts breweries by favoret
     nonFaves(){
       let nonFaves = [];
       this.breweries.forEach((brewery) => {
@@ -52,7 +51,7 @@ export default {
       return nonFaves;
     }
   },
-  components: {},
+  // pulls a list of brewery from the db
   created() {
     BreweryService.getBreweryList().then((response) => {
       this.breweries = response.data;
@@ -80,26 +79,19 @@ export default {
   flex-wrap: wrap;
   width: 100%
 }
-
 #breweryList img{
   height:250px;
   width: 250px;
   border-radius: 50%;
 }
-#favoritedBreweryCard{
-  
-}
 #favoritedBreweryCard img{
   border: gold solid 5px;
-
 }
-
 .brewery {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 15px;
-
 }
 h2 {
   text-align: center;

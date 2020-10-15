@@ -35,7 +35,9 @@
         required
       />
       <br />
-      <router-link :to="{ name: 'register' }" class="navlink">Need an account?</router-link>
+      <router-link :to="{ name: 'register' }" class="navlink"
+        >Need an account?</router-link
+      >
       <button type="submit" class="btn btn-lg btn-primary btn-block">
         Sign in
       </button>
@@ -46,7 +48,6 @@
 
 <script>
 import authService from "../services/AuthService";
-
 export default {
   name: "login",
   components: {},
@@ -60,6 +61,7 @@ export default {
     };
   },
   methods: {
+    // Lets users log in and mutates data in the Store
     login() {
       authService
         .login(this.user)
@@ -86,6 +88,4 @@ export default {
 #login {
   padding: 20px;
 }
-
-
 </style>

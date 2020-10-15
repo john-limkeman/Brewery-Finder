@@ -15,6 +15,7 @@ export default {
     };
   },
   methods: {
+    // Deletes users after they click the delete from the "my page"
     deleteUser() {
       BreweryService.deleteUserById(this.$route.params.id).then(() => {
         console.log(`User ${this.user.username} deleted`);
@@ -25,6 +26,7 @@ export default {
       this.$router.push({ name: "UserPage" });
     },
   },
+  // Gets user info by user id
   created() {
     BreweryService.getUser(this.$route.params.id).then((response) => {
       this.user = response.data;
