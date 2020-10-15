@@ -126,7 +126,7 @@
       <button class="btn btn-danger" v-on:click.prevent="clearBreweryForm">
         Cancel
       </button>
-     
+
       <br />
     </form>
 
@@ -192,12 +192,6 @@ export default {
       currentEvent: {},
     };
   },
-  // watch:{
-  //   brewery: function(oldVal, newVal) {
-  //     console.log(oldVal, newVal);
-  //     this.currentEvent.brewery_id = this.brewery.id
-  //   }
-  // },
   computed: {
     settingBreweryId() {
       let id = this.brewery.id;
@@ -262,11 +256,17 @@ export default {
       this.currentEvent.brewery_id = this.brewery.id;
       BreweryService.createEvent(this.currentEvent).then(() => {
         this.VisEvent = false;
+        this.$emit("finished");
+        this.$router.push({
+          name: "BreweryBeers",
+          params: { id: this.brewery.id },
+        });
       });
     },
     updateEvent(event) {
       BreweryService.updateEvent(event).then(() => {
         this.VisEvent = false;
+        this.$emit("finished");
       });
       // update event in DB
     },

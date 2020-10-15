@@ -52,6 +52,7 @@ export default {
         if (response.status == 200) {
           console.log("Brewery updated");
         }
+        this.$emit('finished');
       });
     },
     decline(user) {
@@ -60,6 +61,7 @@ export default {
         if (response.status == 200) {
           console.log("proccessed");
         }
+        this.$emit('finished');
       });
     },
   },

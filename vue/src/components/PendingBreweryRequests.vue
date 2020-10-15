@@ -98,6 +98,7 @@ export default {
               if (response.status == 200) {
                 console.log("User added to brewery");
               }
+               this.$emit('finished');
             });
         })
       });
@@ -108,6 +109,7 @@ export default {
         if (response.status == 200) {
           console.log("proccessed");
         }
+         this.$emit('finished');
       });
     },
   },
