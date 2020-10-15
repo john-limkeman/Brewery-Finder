@@ -41,8 +41,5 @@ export default new Vuex.Store({
       axios.defaults.headers.common = {};
       state.logIn = false;
     },
-    // CURRENT_BREWERY(state, brewery) {
-
-    // }
   }
 })

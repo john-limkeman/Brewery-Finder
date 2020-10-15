@@ -16,16 +16,21 @@ export default {
   },
   props: ["id"],
   methods: {
+    // Method to delete a brewery
     deleteBrewery() {
-        BreweryService.deleteBrewery(this.brewery.id).then(() => {
-          console.log(`Brewery ${this.brewery.name} deleted`);
-        });
+      BreweryService.deleteBrewery(this.brewery.id).then(() => {
+        console.log(`Brewery ${this.brewery.name} deleted`);
+      });
       this.$router.push({ name: "BreweryList" });
     },
     Cancel() {
-      this.$router.push({ name: "BreweryBeers", params:{id: this.brewery.id} });
+      this.$router.push({
+        name: "BreweryBeers",
+        params: { id: this.brewery.id },
+      });
     },
   },
+  // pulls a brewery from the db when given a brewery id
   created() {
     BreweryService.getBreweryById(this.$route.params.id).then((response) => {
       this.brewery = response.data;
