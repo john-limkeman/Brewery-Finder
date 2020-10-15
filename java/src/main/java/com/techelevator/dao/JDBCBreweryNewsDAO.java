@@ -42,15 +42,15 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 	// deletes news by news id
 	@Override
 	public void deleteNews(Long newsId) {
-		String sqlInsert = "DELETE * FROM brewery_news WHERE newsId = ?";
+		String sqlInsert = "DELETE FROM brewery_news WHERE newsid = ?";
 		jdbcTemplate.update(sqlInsert, newsId);
 		
 	}
 	// edits news in database
 	@Override
 	public void updateNews(BreweryNews news) {
-		String sqlInsert = "UPDATE brewery_news SET newstitle = ?, body = ?, newsimageurl =? where brewery_id = ?";
-		jdbcTemplate.update(sqlInsert, news.getNewstitle(), news.getBody(), news.getNewsImageUrl(), news.getBreweryId());
+		String sqlInsert = "UPDATE brewery_news SET newstitle = ?, body = ?, newsimageurl =? where newsid = ?";
+		jdbcTemplate.update(sqlInsert, news.getNewstitle(), news.getBody(), news.getNewsImageUrl(), news.getNewsId());
 		
 	}
 	// creates news in database
@@ -60,11 +60,21 @@ public class JDBCBreweryNewsDAO implements BreweryNewsDAO{
 		jdbcTemplate.update(sql, news.getBreweryId(), news.getNewstitle(), news.getBody(), news.getNewsImageUrl());
 	}
 		
+	@Override
+	public BreweryNews getNewsByNewsId(Long newsId) {
+		BreweryNews news = new BreweryNews();
+		String sqlInsert = "SELECT * from brewery_news where newsid = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sqlInsert, newsId);
+		while(result.next()) {
+			news = mapRowToBreweryNews(result);
+		}
+		return news;
+	}
 	
 	// maps data to object by using database column name in table brewery_news
 	public BreweryNews mapRowToBreweryNews(SqlRowSet results) {
 		BreweryNews news = new BreweryNews();
-		news.setNewsId(results.getLong("newsId"));
+		news.setNewsId(results.getLong("newsid"));
 		news.setBreweryId(results.getLong("breweryId"));
 		news.setNewstitle(results.getString("newsTitle"));
 		news.setBody(results.getString("body"));

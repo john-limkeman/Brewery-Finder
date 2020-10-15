@@ -86,14 +86,20 @@ export default {
     addNews(news){
         return http.post('/addNews', news)
     },
-    updateNews(newsid, news){
-        return http.put(`/updateNews/${newsid}`, news);
-    },
-    getBreweryByName(name) {
-        return http.get(`/getBreweryByName/${name}`)
+    updateNews(news){
+        return http.put(`/updateNews`, news);
     },
     getAllNews() {
         return http.get("/allNews")
+    },
+    deleteNews(id){
+        return http.delete(`/news/${id}`)
+    },
+    getNewsByNewsId(newsId){
+        return http.get(`/getNewsById/${newsId}`)
+    },
+    getBreweryByName(name) {
+        return http.get(`/getBreweryByName/${name}`)
     },
     getFavoritesByUser(id){
         return http.get(`/favorite/${id}`)
