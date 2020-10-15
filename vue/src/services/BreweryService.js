@@ -84,7 +84,7 @@ export default {
         return http.get(`/news/${breweryId}`)
     },
     addNews(news){
-        return http.post('/news', news)
+        return http.post('/addNews', news)
     },
     updateNews(news){
         return http.put('/news', news);
