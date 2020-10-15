@@ -25,6 +25,7 @@ import AdminConfirmDeleteUser from "../views/AdminDeleteUserConfirmation.vue"
 import AdminConfirmDeleteBrewery from "../views/AdminConfirmDeleteBrewery.vue"
 import DeleteEventConfirm from '@/views/DeleteEventConfirm.vue'
 import NewsForm from "@/components/NewsForm.vue"
+import DeleteNewsConfirm from '@/views/DeleteNewsConfirm.vue'
 
 Vue.use(Router)
 
@@ -229,6 +230,14 @@ const router = new Router({
       requiresAuth: true
     }
   },  
+  {
+    path: "deleteNews/:newsId",
+    name: "DeleteNews",
+    component: DeleteNewsConfirm,
+    meta: {
+      requiresAuth: true
+    }
+  }
   ]
 })
 

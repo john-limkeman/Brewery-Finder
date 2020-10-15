@@ -89,11 +89,14 @@ export default {
     updateNews(news){
         return http.put(`/updateNews`, news);
     },
-    getBreweryByName(name) {
-        return http.get(`/getBreweryByName/${name}`)
-    },
     getAllNews() {
         return http.get("/allNews")
+    },
+    deleteNews(id){
+        return http.delete(`/news/${id}`)
+    },
+    getBreweryByName(name) {
+        return http.get(`/getBreweryByName/${name}`)
     },
     getNewsByNewsId(newsId){
         return http.get(`/getNewsById/${newsId}`)
