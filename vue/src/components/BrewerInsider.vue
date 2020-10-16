@@ -371,6 +371,8 @@ export default {
   align-items: flex-start;
   justify-content: space-between;
   height: 100%;
+  min-height: 550px;
+  
 }
 #BrewBeerList {
   display: flex;
@@ -415,10 +417,11 @@ export default {
 }
 #brewerInsiderBox img {
   position: absolute;
-  left: 50%;
+  left: 40%;
   right: 50%;
   height: 500px;
   width: auto;
+  
 }
 #updateBreweryInformationButton {
   width: auto;
