@@ -426,6 +426,7 @@ export default {
 #route {
   font-family: "Bungee Inline";
   font-size: 30px;
+  color:#630f0f;
 }
 
 #route:hover {
