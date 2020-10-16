@@ -34,8 +34,7 @@
         <button
           class="btn btn-primary"
           id="review-reply"
-          v-on:click="ChangeVis"
-          v-if="isBrewer()"
+          v-on:click.prevent="ChangeVis" v-if="isBrewer()"
         >
           Add Reply
         </button>
@@ -66,7 +65,7 @@
             name="reply"
             placeholder="What is your reply?"
           /><br />
-          <button class="btn btn-primary" v-on:click="pushUser">Submit</button>
+          <button class="btn btn-primary" >Submit</button>
           <button class="btn btn-primary" v-on:click.prevent="Cancel()">
             Cancel
           </button>
@@ -134,6 +133,7 @@ export default {
     addReply() {
       this.reply.replyDate = new Date();
       BreweryService.addReviewReply(this.reply).then(() => {});
+      this.$router.push({name: "BrewerTools"});
     },
     checkUser() {
       let url = this.$route.name;
