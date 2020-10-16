@@ -28,7 +28,7 @@
           <br />
           <label class="label" for="color">Color</label>
           <input
-            class="input"
+            class="input "
             v-model="review.color"
             type="text"
             name="color"
@@ -58,6 +58,7 @@
             name="smell"
             placeholder="Use those olfactory sense!"
           /><br />
+
           <label id="selecter" class="label" for="rating">Rating</label>
           <select
             class="input"
@@ -82,7 +83,7 @@
           />
           <br />
           <button class="btn btn-primary reviewBtn">Submit</button>
-          <button class="btn btn-primary" v-on:click="Cancel">Cancel</button>
+          <button class="btn btn-primary reviewBtn" v-on:click="Cancel">Cancel</button>
         </form>
       </div>
     </div>
@@ -147,6 +148,7 @@ export default {
 <style>
 #addReviewBtn {
   width: 200px;
+  margin-bottom: 15px;
 }
 .outterForm {
   display: flex;
@@ -175,11 +177,13 @@ export default {
   display: inline-block;
   grid-area: input;
   align-self: right;
+  width: 300px;
 }
 .reviewBtn {
+  margin-top: 8px;
   margin-right: 10px;
 }
 #selecter {
-  width: 175px;
+  width: 100px;
 }
 </style>
