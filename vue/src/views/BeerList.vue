@@ -1,7 +1,7 @@
 <template>
   <div class="beer-container">
     <div id='BeersListHeader' class='beer-type'>
-    <h2>All Beers</h2>
+    <h3>All Beers</h3>
     </div>
     <div id="Sours-Container" class="beer-type">
       <h3>Sours</h3>
@@ -223,4 +223,5 @@ h3 {
 #BeersListHeader{
   background-color: rgba(251, 241, 205, 0.8);
 }
+
 </style>

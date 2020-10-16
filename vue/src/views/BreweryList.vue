@@ -1,6 +1,6 @@
 <template>
   <div class="container text-center col-xl-8 mx-auto border border-dark rounded">
-      <h2 id='BreweryListHeader'>Breweries</h2>
+      <h1 id='BreweryListHeader'>Breweries</h1>
     <div
       id="breweryList"
     >

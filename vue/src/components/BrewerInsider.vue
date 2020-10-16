@@ -78,7 +78,7 @@
     </div>
 
     <form class="BIforms" v-if="VisUpdate">
-       <h2>Update Your Brewery</h2>
+       <h4>Update Your Brewery</h4>
       <label for="name">Brewery name</label>
       <input
         v-model="brewery.name"
@@ -438,8 +438,5 @@ export default {
   color: whitesmoke;
 }
 
-h2 {
-  text-align: left;
-  padding-left: 10%;
-}
+
 </style>

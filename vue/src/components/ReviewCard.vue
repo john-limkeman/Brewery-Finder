@@ -68,7 +68,7 @@
             placeholder="What is your reply to this review?"
           /><br />
           <button class="btn btn-primary replyButton" >Submit</button>
-          <button class="btn btn-primary replyButton" v-on:click.prevent="Cancel()">
+          <button class="btn btn-danger replyButton" v-on:click.prevent="Cancel()">
             Cancel
           </button>
         </form>
