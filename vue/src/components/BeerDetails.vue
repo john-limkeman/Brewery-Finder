@@ -63,7 +63,8 @@ export default {
     setStatus() {
       // checks if beer is set to active, determines which string to display
       if (this.beer.current) {
-        return "This beer is currently on tap!";
+return "This beer is currently on tap! ";
+ 
       } else {
         return "This beer is currently not on tap.";
       }

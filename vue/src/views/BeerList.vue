@@ -223,4 +223,5 @@ h3 {
 #BeersListHeader{
   background-color: rgba(251, 241, 205, 0.8);
 }
+
 </style>
