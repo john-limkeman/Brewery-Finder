@@ -32,11 +32,11 @@
       <img id="review-img" v-bind:src="review.reviewImgUrl" />
       <div>
         <button
-          class="btn btn-primary"
+          class="btn btn-primary addReplyButton"
           id="review-reply"
           v-on:click.prevent="ChangeVis" v-if="isBrewer()"
         >
-          Add Reply
+          Reply to this review
         </button>
         <button
           class="btn btn-danger deleteReview"
@@ -50,23 +50,25 @@
           v-on:submit.prevent="addReply()"
           v-if="visibility"
         >
-          <label for="title">Title</label>
+          <label class="replyLabel" for="title">Title</label>
           <input
+            class="input"
             v-model="reply.title"
             type="text"
             name="reviewTitle"
             placeholder="Title for Review reply"
           />
           <br />
-          <label for="reply">Reply</label>
-          <input
+          <label class="replyLabel" for="reply">Reply</label>
+           <textarea rows="3" cols="23"
+          class="input"
             v-model="reply.reply"
             type="text"
             name="reply"
-            placeholder="What is your reply?"
+            placeholder="What is your reply to this review?"
           /><br />
-          <button class="btn btn-primary" >Submit</button>
-          <button class="btn btn-primary" v-on:click.prevent="Cancel()">
+          <button class="btn btn-primary replyButton" >Submit</button>
+          <button class="btn btn-primary replyButton" v-on:click.prevent="Cancel()">
             Cancel
           </button>
         </form>
@@ -274,4 +276,28 @@ export default {
   grid-area: replies;
   width: stretch;
 }
+
+.replyLabel {
+   display: inline-block;
+  width: 100px;
+  grid-area: label;
+  text-align: left;
+}
+
+.input {
+    display: inline-block;
+  grid-area: input;
+  align-self: right;
+  width: 300px;
+}
+.replyButton {
+    margin-top: 8px;
+  margin-right: 10px;
+}
+
+.addReplyButton {
+    width: 200px;
+  margin-bottom: 15px;
+}
+
 </style>

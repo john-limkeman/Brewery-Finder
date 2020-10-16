@@ -18,7 +18,7 @@
       /> 
       <br />
       <label for="description">Description</label>
-      <input
+     <textarea rows="3" cols="23"
         v-model="newBeer.description"
         type="text"
         name="description"
@@ -41,7 +41,7 @@
         placeholder="Image URL"
       />
       <br />
-      <label for="Current">Available</label>
+      <label for="Current">Is this beer currently on tap?</label>
       <input
         v-model="newBeer.current"
         type="checkbox"
@@ -60,7 +60,7 @@
       <button class="btn btn-primary" v-on:click="updateBeer" v-else>
         Update
       </button>
-      <button class="btn btn-primary" v-on:click="cancel">Cancel</button>
+      <button class="btn btn-danger" v-on:click="cancel">Cancel</button>
     </form>
   </div>
 </template>

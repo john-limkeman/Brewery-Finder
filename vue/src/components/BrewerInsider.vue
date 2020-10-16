@@ -3,7 +3,6 @@
     id="brewerInsiderBox"
     class="container text-center col-xl-12 mx-auto border border-dark rounded"
   >
-  <!-- div including the sidebar of beers, events, news, and buttons -->
     <div id="BrewBeerList">
       <router-link
         id="route"
@@ -79,6 +78,7 @@
     </div>
 
     <form class="BIforms" v-if="VisUpdate">
+       <h2>Update Your Brewery</h2>
       <label for="name">Brewery name</label>
       <input
         v-model="brewery.name"
@@ -157,6 +157,7 @@
     </form>
 
     <form class="BIforms" v-if="VisEvent">
+       <h2>Add an event for your brewery!</h2>
       <label for="event_title">Event Title</label>
       <input
         v-model="currentEvent.event_title"
@@ -167,12 +168,12 @@
       <label for="event_date">Date</label>
       <input
         v-model="currentEvent.event_date"
-        type="text"
+        type="date"
         name="date"
         placeholder="Event Date"
       />
       <label for="description">Description</label>
-      <input
+          <textarea rows="3" cols="23"
         v-model="currentEvent.description"
         type="text"
         name="description"
@@ -231,7 +232,6 @@ export default {
       return id;
     },
     picVis() {
-      //determines if logo should display
       if (this.VisEvent == false && this.VisUpdate == false) {
         return true;
       } else {
@@ -241,7 +241,6 @@ export default {
   },
   methods: {
     getCurrentBeer(beer) {
-      //when a beer's button is clicked, this insures we are working with the correct beer data
       this.currentBeer = beer;
       this.$router.push({
         name: "UpdateBeer",
@@ -249,12 +248,10 @@ export default {
       });
     },
     addBeer() {
-      //empties current beer properties and pushes to component to add beer
       this.currentBeer = {};
       this.$router.push({ name: "AddBeer", params: { id: this.brewery.id } });
     },
     deleteBeer(beer) {
-      //load currentBeer and pushes to confirmation page
       this.currentBeer = beer;
       this.$router.push({
         name: "ConfirmDelete",
@@ -262,16 +259,13 @@ export default {
       });
     },
     clearBreweryForm() {
-      //hides update form
       this.VisUpdate = false;
     },
     clearEventForm() {
-      //hides event form
       this.currentEvent = {};
       this.VisEvent = false;
     },
     updateBrewery() {
-      //sends out update info, then pushes user to their breweries display page to see results
       BreweryService.updateBrewery(this.brewery);
       this.$router.push({
         name: "BreweryBeers",
@@ -279,21 +273,20 @@ export default {
       });
     },
     getCurrentEvent(event) {
-      //to acquire selected event data and display edit form
       this.currentEvent = event;
       this.VisUpdate = false;
       this.VisEvent = true;
+      //to acquire current event and display edit form
     },
     deleteEvent(event) {
-      // sends chosen event data to confirmation page to delete event
       this.currentEvent = event;
       this.$router.push({
         name: "ConfirmDeleteEvent",
         params: { eventId: this.currentEvent.event_id },
       });
+      //to delete event from DB
     },
     addEvent() {
-      // grabs current brewery info
       this.currentEvent.brewery_id = this.brewery.id;
       BreweryService.createEvent(this.currentEvent).then(() => {
         this.VisEvent = false;
@@ -310,6 +303,7 @@ export default {
         this.$emit("finished");
       });
     },
+
     //NEWS METHODS
     getCurrentNews(item) {
       console.log(item);
@@ -377,7 +371,6 @@ export default {
   align-items: flex-start;
   justify-content: space-between;
   height: 100%;
-  min-height: 550px;
 }
 #BrewBeerList {
   display: flex;
@@ -412,10 +405,15 @@ export default {
   margin-left: 50px;
   width: 50%;
 }
+.BIforms textarea {
+    margin-left: 50px;
+  width: 50%;
+}
+
 #brewerInsiderBox button {
   margin: 5px;
 }
-#brewerInsiderBox > img {
+#brewerInsiderBox img {
   position: absolute;
   left: 50%;
   right: 50%;
@@ -429,6 +427,7 @@ export default {
   font-family: "Bungee Inline";
   font-size: 30px;
 }
+
 #route:hover {
   color: whitesmoke;
 }
@@ -437,5 +436,10 @@ export default {
 }
 #route:visited:hover {
   color: whitesmoke;
+}
+
+h2 {
+  text-align: left;
+  padding-left: 10%;
 }
 </style>

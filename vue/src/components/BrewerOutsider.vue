@@ -9,7 +9,7 @@
     </p>
 
     <div class="breweryFormComponent">
-      <form id="newBreweryForm" v-if="vis">
+      <form class = "addBrewery" id="newBreweryForm" v-if="vis">
         <label for="name">Brewery name</label>
         <input
           v-model="newBrewery.name"
@@ -27,7 +27,7 @@
         />
         <br />
         <label for="description">Description</label>
-        <input
+          <textarea rows="3" cols="23"
           v-model="newBrewery.description"
           type="text"
           name="description"
@@ -66,13 +66,16 @@
           placeholder="Hours"
         />
         <br />
-        <label for="active">Active</label>
+         <p>
+        Is your brewery currently active?&nbsp;&nbsp;&nbsp;
+        <span>
         <input
           v-model="newBrewery.active"
           type="checkbox"
           name="active"
           placeholder="Active"
-        />
+        /> </span>
+      </p>
         <br />
         <span>
           <button class="btn btn-primary" v-on:click.prevent="SendRequest">
@@ -135,4 +138,10 @@ export default {
   align-self: center;
   justify-self: center;
 }
+
+.addBrewery p {
+    text-align: center;
+}
+
+
 </style>

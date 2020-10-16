@@ -19,7 +19,7 @@
       />
       <br />
       <label for="description">Description</label>
-      <input
+      <textarea rows="3" cols="23"
         v-model="newBrewery.description"
         type="text"
         name="description"

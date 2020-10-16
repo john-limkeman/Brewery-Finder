@@ -3,7 +3,7 @@
     <div class="newsForm">
       <h2>Add some news!</h2>
       <form id="addNewsForm">
-        <label for="newstitle">Event Title</label>
+        <label for="newstitle">News Title</label>
         <input
           v-model="newNews.newstitle"
           type="text"
@@ -11,11 +11,11 @@
           placeholder="News Title"
         />
         <label for="body">Body</label>
-        <input
+       <textarea rows="3" cols="23"
           v-model="newNews.body"
           type="text"
           name="text"
-          placeholder="Body"
+          placeholder="What news do you want to share?"
         />
         <label for="picture">Image URL</label>
         <input
@@ -124,4 +124,6 @@ export default {
 .newsBtnBtn {
   margin: 10px;
 }
+
+
 </style>

@@ -83,7 +83,7 @@
           />
           <br />
           <button class="btn btn-primary reviewBtn">Submit</button>
-          <button class="btn btn-primary reviewBtn" v-on:click="Cancel">Cancel</button>
+          <button class="btn btn-danger reviewBtn" v-on:click="Cancel">Cancel</button>
         </form>
       </div>
     </div>
@@ -147,6 +147,7 @@ export default {
 
 <style>
 #addReviewBtn {
+  margin-top: 10px;
   width: 200px;
   margin-bottom: 15px;
 }
